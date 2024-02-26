@@ -36,7 +36,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.Department.Search(context.Background(), req)
+	resp, err := client.Contact.V3.Department.Search(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -32,13 +32,14 @@ func main() {
 		ClientToken("fe599b60-450f-46ff-b2ef-9f6675625b97").
 		AppTableField(larkbitable.NewAppTableFieldBuilder().
 			FieldName("字段名称").
-			Type(1).
+			Type(0).
 			Property(larkbitable.NewAppTableFieldPropertyBuilder().Build()).
 			Description(larkbitable.NewAppTableFieldDescriptionBuilder().Build()).
+			UiType("Progress").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppTableField.Create(context.Background(), req)
+	resp, err := client.Bitable.V1.AppTableField.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

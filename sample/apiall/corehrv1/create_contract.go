@@ -43,7 +43,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Contract.Create(context.Background(), req)
+	resp, err := client.Corehr.V1.Contract.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

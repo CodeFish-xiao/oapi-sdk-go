@@ -31,7 +31,7 @@ func main() {
 		Type("doc").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.PermissionPublicPassword.Delete(context.Background(), req)
+	resp, err := client.Drive.V1.PermissionPublicPassword.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

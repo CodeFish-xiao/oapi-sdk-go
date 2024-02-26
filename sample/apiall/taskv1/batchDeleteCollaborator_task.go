@@ -34,7 +34,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Task.Task.BatchDeleteCollaborator(context.Background(), req)
+	resp, err := client.Task.V1.Task.BatchDeleteCollaborator(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

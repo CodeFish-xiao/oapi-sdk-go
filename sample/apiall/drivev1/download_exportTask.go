@@ -30,7 +30,7 @@ func main() {
 		FileToken("boxcnNAlfwHxxxxxxxxxxSaLSec").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.ExportTask.Download(context.Background(), req)
+	resp, err := client.Drive.V1.ExportTask.Download(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

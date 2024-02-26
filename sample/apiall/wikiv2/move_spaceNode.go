@@ -35,7 +35,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Wiki.SpaceNode.Move(context.Background(), req)
+	resp, err := client.Wiki.V2.SpaceNode.Move(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

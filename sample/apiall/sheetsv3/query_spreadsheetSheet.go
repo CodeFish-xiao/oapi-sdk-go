@@ -30,7 +30,7 @@ func main() {
 		SpreadsheetToken("shtxxxxxxxxxxxxxxxx").
 		Build()
 	// 发起请求
-	resp, err := client.Sheets.SpreadsheetSheet.Query(context.Background(), req)
+	resp, err := client.Sheets.V3.SpreadsheetSheet.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

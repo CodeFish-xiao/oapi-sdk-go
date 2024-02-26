@@ -34,7 +34,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.Unit.UnbindDepartment(context.Background(), req)
+	resp, err := client.Contact.V3.Unit.UnbindDepartment(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

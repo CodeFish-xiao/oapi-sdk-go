@@ -33,6 +33,7 @@ func main() {
 		DepartmentIdType("people_corehr_department_id").
 		JobData(larkcorehr.NewJobDataBuilder().
 			JobLevelId("6890452208593372679").
+			JobGradeId("6890452208593372679").
 			EmployeeTypeId("6890452208593372679").
 			WorkingHoursTypeId("6890452208593372679").
 			WorkLocationId("6890452208593372679").
@@ -55,7 +56,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.JobData.Patch(context.Background(), req)
+	resp, err := client.Corehr.V1.JobData.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		TransferTypeUniqueIdentifier([]string{}).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.TransferType.Query(context.Background(), req)
+	resp, err := client.Corehr.V1.TransferType.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

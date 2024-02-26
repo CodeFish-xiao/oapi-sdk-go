@@ -31,9 +31,10 @@ func main() {
 		PageSize(10).
 		PageToken("xx").
 		UserIdType("open_id").
+		JobLevelIdType("people_admin_job_level_id").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.ApplicationInterview.List(context.Background(), req)
+	resp, err := client.Hire.V1.ApplicationInterview.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		GrantId("g_uS4yux").
 		Build()
 	// 发起请求
-	resp, err := client.Admin.BadgeGrant.Delete(context.Background(), req)
+	resp, err := client.Admin.V1.BadgeGrant.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

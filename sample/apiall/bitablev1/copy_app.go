@@ -32,10 +32,11 @@ func main() {
 			Name("一篇新的多维表格").
 			FolderToken("fldbco*****CIMltVc").
 			WithoutContent(false).
+			TimeZone("Asia/Shanghai").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.App.Copy(context.Background(), req)
+	resp, err := client.Bitable.V1.App.Copy(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

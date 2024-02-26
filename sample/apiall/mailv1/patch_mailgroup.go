@@ -36,7 +36,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Mail.Mailgroup.Patch(context.Background(), req)
+	resp, err := client.Mail.V1.Mailgroup.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

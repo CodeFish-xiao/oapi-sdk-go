@@ -32,7 +32,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Task.TaskFollower.Delete(context.Background(), req)
+	resp, err := client.Task.V1.TaskFollower.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

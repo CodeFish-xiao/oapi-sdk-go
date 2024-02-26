@@ -34,15 +34,13 @@ func main() {
 			Address([]*larkcorehr.Address{larkcorehr.NewAddressBuilder().Build()}).
 			WorkingHoursTypeId("4690238309151997779").
 			EffectiveTime("2020-05-01 00:00:00").
-			ExpirationTime("2020-05-02 00:00:00").
-			CustomFields([]*larkcorehr.ObjectFieldData{larkcorehr.NewObjectFieldDataBuilder().Build()}).
 			Locale(larkcorehr.NewEnumBuilder().Build()).
 			TimeZoneId("123456789").
 			DisplayLanguageId("123456789").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Location.Create(context.Background(), req)
+	resp, err := client.Corehr.V1.Location.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

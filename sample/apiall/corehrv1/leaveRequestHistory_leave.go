@@ -42,9 +42,13 @@ func main() {
 		UserIdType("people_corehr_id").
 		LeaveUpdateTimeMin("2022-10-24 10:00:00").
 		LeaveUpdateTimeMax("2022-10-24 10:00:00").
+		ReturnDetail(false).
+		LeaveTermType(0).
+		TimeZone("Asia/Shanghai").
+		DataSource(1).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Leave.LeaveRequestHistory(context.Background(), req)
+	resp, err := client.Corehr.V1.Leave.LeaveRequestHistory(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		Type("doc").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.PermissionPublic.Get(context.Background(), req)
+	resp, err := client.Drive.V1.PermissionPublic.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

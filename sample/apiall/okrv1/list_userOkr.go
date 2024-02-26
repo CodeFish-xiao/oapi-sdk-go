@@ -35,7 +35,7 @@ func main() {
 		PeriodIds([]string{}).
 		Build()
 	// 发起请求
-	resp, err := client.Okr.UserOkr.List(context.Background(), req)
+	resp, err := client.Okr.V1.UserOkr.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

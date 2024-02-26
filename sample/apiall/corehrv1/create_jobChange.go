@@ -41,7 +41,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.JobChange.Create(context.Background(), req)
+	resp, err := client.Corehr.V1.JobChange.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		TalentId("6960663240925956660").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.ExternalApplication.Delete(context.Background(), req)
+	resp, err := client.Hire.V1.ExternalApplication.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

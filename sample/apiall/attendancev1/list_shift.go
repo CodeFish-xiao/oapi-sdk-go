@@ -31,7 +31,7 @@ func main() {
 		PageToken("YrkvQ1wGaPVta45tkxuGiQ==").
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.Shift.List(context.Background(), req)
+	resp, err := client.Attendance.V1.Shift.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

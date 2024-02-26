@@ -30,7 +30,7 @@ func main() {
 		ImageKey("img_8d5181ca-0aed-40f0-b0d1-b1452132afbg").
 		Build()
 	// 发起请求
-	resp, err := client.Im.Image.Get(context.Background(), req)
+	resp, err := client.Im.V1.Image.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

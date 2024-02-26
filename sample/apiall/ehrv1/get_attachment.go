@@ -30,7 +30,7 @@ func main() {
 		Token("09bf7b924f9a4a69875788891b5970d8").
 		Build()
 	// 发起请求
-	resp, err := client.Ehr.Attachment.Get(context.Background(), req)
+	resp, err := client.Ehr.V1.Attachment.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

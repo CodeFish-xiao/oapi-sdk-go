@@ -31,7 +31,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.Room.Get(context.Background(), req)
+	resp, err := client.Vc.V1.Room.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

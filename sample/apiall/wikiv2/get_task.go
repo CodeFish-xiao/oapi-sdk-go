@@ -31,7 +31,7 @@ func main() {
 		TaskType("move").
 		Build()
 	// 发起请求
-	resp, err := client.Wiki.Task.Get(context.Background(), req)
+	resp, err := client.Wiki.V2.Task.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

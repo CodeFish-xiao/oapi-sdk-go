@@ -28,6 +28,7 @@ func main() {
 	// 创建请求对象
 	req := larkdrive.NewCopyFileReqBuilder().
 		FileToken("doccngpahSdXrFPIBD4XdIabcef").
+		UserIdType("user_id").
 		Body(larkdrive.NewCopyFileReqBodyBuilder().
 			Name("test.txt").
 			Type("doc").
@@ -36,7 +37,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Drive.File.Copy(context.Background(), req)
+	resp, err := client.Drive.V1.File.Copy(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

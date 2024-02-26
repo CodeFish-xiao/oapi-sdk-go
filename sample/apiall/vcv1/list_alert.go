@@ -35,7 +35,7 @@ func main() {
 		PageToken("100").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.Alert.List(context.Background(), req)
+	resp, err := client.Vc.V1.Alert.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

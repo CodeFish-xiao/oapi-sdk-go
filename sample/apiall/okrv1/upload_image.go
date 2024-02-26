@@ -40,7 +40,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Okr.Image.Upload(context.Background(), req)
+	resp, err := client.Okr.V1.Image.Upload(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

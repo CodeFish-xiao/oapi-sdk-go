@@ -40,7 +40,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Sheets.SpreadsheetSheetFloatImage.Patch(context.Background(), req)
+	resp, err := client.Sheets.V3.SpreadsheetSheetFloatImage.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -24,14 +24,35 @@ import (
 )
 
 const (
-	UserIdTypeUserId  = "user_id"  // 以 user_id 来识别用户
-	UserIdTypeUnionId = "union_id" // 以 union_id 来识别用户
-	UserIdTypeOpenId  = "open_id"  // 以 open_id 来识别用户
+	UserIdTypeUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeOpenId  = "open_id"  // 以open_id来识别用户
+)
+
+const (
+	UserIdTypeOfferApplicationUserId  = "user_id"  // 以 user_id 来识别用户
+	UserIdTypeOfferApplicationUnionId = "union_id" // 以 union_id 来识别用户
+	UserIdTypeOfferApplicationOpenId  = "open_id"  // 以 open_id 来识别用户
 )
 
 const (
 	DepartmentIdTypeOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
 	DepartmentIdTypeDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypePeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypePeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypePeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
 )
 
 const (
@@ -54,6 +75,21 @@ const (
 )
 
 const (
+	JobLevelIdTypeTransferOnboardApplicationPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeTransferOnboardApplicationJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeTransferOnboardApplicationPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeTransferOnboardApplicationJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeTransferOnboardApplicationPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeTransferOnboardApplicationEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
+)
+
+const (
 	UserIdTypeListApplicationInterviewUserId        = "user_id"         // 以user_id来识别用户
 	UserIdTypeListApplicationInterviewUnionId       = "union_id"        // 以union_id来识别用户
 	UserIdTypeListApplicationInterviewOpenId        = "open_id"         // 以open_id来识别用户
@@ -61,9 +97,32 @@ const (
 )
 
 const (
+	JobLevelIdTypeListApplicationInterviewPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeListApplicationInterviewJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
 	Type附件简历  = 1 // 附件简历
 	Type候选人作品 = 2 // 候选人作品
 	Type自定义附件 = 3 // 自定义附件
+
+)
+
+const (
+	Scope背调 = 1 // 背调
+	Scope笔试 = 2 // 笔试
+
+)
+
+const (
+	ScopeBatchUpdateEcoAccountCustomField背调 = 1 // 背调
+	ScopeBatchUpdateEcoAccountCustomField笔试 = 2 // 笔试
+
+)
+
+const (
+	ScopeCreateEcoAccountCustomField背调 = 1 // 背调
+	ScopeCreateEcoAccountCustomField笔试 = 2 // 笔试
 
 )
 
@@ -86,6 +145,21 @@ const (
 )
 
 const (
+	JobLevelIdTypeGetEmployeePeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeGetEmployeeJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeGetEmployeePeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeGetEmployeeJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeGetEmployeePeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeGetEmployeeEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
+)
+
+const (
 	UserIdTypeGetByApplicationEmployeeUserId  = "user_id"  // 以 user_id 来识别用户
 	UserIdTypeGetByApplicationEmployeeUnionId = "union_id" // 以 union_id 来识别用户
 	UserIdTypeGetByApplicationEmployeeOpenId  = "open_id"  // 以 open_id 来识别用户
@@ -95,6 +169,21 @@ const (
 	DepartmentIdTypeGetByApplicationEmployeeOpenDepartmentId        = "open_department_id"         // 以 open_department_id 来标识部门
 	DepartmentIdTypeGetByApplicationEmployeeDepartmentId            = "department_id"              // 以 department_id 来标识部门
 	DepartmentIdTypeGetByApplicationEmployeePeopleAdminDepartmentId = "people_admin_department_id" // 以 people_admin_department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeGetByApplicationEmployeePeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeGetByApplicationEmployeeJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeGetByApplicationEmployeePeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeGetByApplicationEmployeeJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeGetByApplicationEmployeePeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeGetByApplicationEmployeeEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
 )
 
 const (
@@ -113,6 +202,21 @@ const (
 	DepartmentIdTypePatchEmployeeOpenDepartmentId        = "open_department_id"         // 以 open_department_id 来标识部门
 	DepartmentIdTypePatchEmployeeDepartmentId            = "department_id"              // 以 department_id 来标识部门
 	DepartmentIdTypePatchEmployeePeopleAdminDepartmentId = "people_admin_department_id" // 以 people_admin_department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypePatchEmployeePeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypePatchEmployeeJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypePatchEmployeePeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypePatchEmployeeJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypePatchEmployeePeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypePatchEmployeeEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
 )
 
 const (
@@ -158,10 +262,15 @@ const (
 )
 
 const (
-	Conclusion不通过 = 1 // 不通过
-	Conclusion通过  = 2 // 通过
-	Conclusion待定  = 3 // 待定
+	ConclusionFail           = 1 // 不通过
+	ConclusionPass           = 2 // 通过
+	ConclusionToBeDetermined = 3 // 待定
 
+)
+
+const (
+	JobLevelIdTypeListInterviewPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeListInterviewJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
 )
 
 const (
@@ -219,6 +328,16 @@ const (
 )
 
 const (
+	JobLevelIdTypeCombinedCreateJobPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeCombinedCreateJobJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeCombinedCreateJobPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeCombinedCreateJobJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
 	ExperienceCombinedUpdateJobNoLimit         = 1 // 不限
 	ExperienceCombinedUpdateJobGraduate        = 2 // 应届毕业生
 	ExperienceCombinedUpdateJobUnderOneYear    = 3 // 1年以下
@@ -261,6 +380,16 @@ const (
 )
 
 const (
+	JobLevelIdTypeCombinedUpdateJobPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeCombinedUpdateJobJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeCombinedUpdateJobPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeCombinedUpdateJobJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
 	UserIdTypeConfigJobUserId        = "user_id"         // 以user_id来识别用户
 	UserIdTypeConfigJobUnionId       = "union_id"        // 以union_id来识别用户
 	UserIdTypeConfigJobOpenId        = "open_id"         // 以open_id来识别用户
@@ -277,6 +406,43 @@ const (
 const (
 	DepartmentIdTypeGetJobOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
 	DepartmentIdTypeGetJobDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeGetJobPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeGetJobJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeGetJobPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeGetJobJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	UserIdTypeListJobUserId  = "user_id"  // 以 user_id 来识别用户
+	UserIdTypeListJobUnionId = "union_id" // 以 union_id 来识别用户
+	UserIdTypeListJobOpenId  = "open_id"  // 以 open_id 来识别用户
+)
+
+const (
+	DepartmentIdTypeListJobOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
+	DepartmentIdTypeListJobDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeListJobPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeListJobJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeListJobPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeListJobJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	UserIdTypeRecruiterJobUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeRecruiterJobUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeRecruiterJobOpenId  = "open_id"  // 以open_id来识别用户
 )
 
 const (
@@ -329,6 +495,12 @@ const (
 )
 
 const (
+	ProcessTypeCreateJobRequirementSocial = 1 // 社招
+	ProcessTypeCreateJobRequirementCampus = 2 // 校招
+
+)
+
+const (
 	UserIdTypeCreateJobRequirementUserId  = "user_id"  // 以user_id来识别用户
 	UserIdTypeCreateJobRequirementUnionId = "union_id" // 以union_id来识别用户
 	UserIdTypeCreateJobRequirementOpenId  = "open_id"  // 以open_id来识别用户
@@ -337,6 +509,21 @@ const (
 const (
 	DepartmentIdTypeCreateJobRequirementOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
 	DepartmentIdTypeCreateJobRequirementDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeCreateJobRequirementPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeCreateJobRequirementJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeCreateJobRequirementPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeCreateJobRequirementJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeCreateJobRequirementPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeCreateJobRequirementEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
 )
 
 const (
@@ -351,6 +538,21 @@ const (
 )
 
 const (
+	JobLevelIdTypeListJobRequirementPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeListJobRequirementJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeListJobRequirementPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeListJobRequirementJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeListJobRequirementPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeListJobRequirementEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
+)
+
+const (
 	UserIdTypeListByIdJobRequirementUserId  = "user_id"  // 以user_id来识别用户
 	UserIdTypeListByIdJobRequirementUnionId = "union_id" // 以union_id来识别用户
 	UserIdTypeListByIdJobRequirementOpenId  = "open_id"  // 以open_id来识别用户
@@ -359,6 +561,21 @@ const (
 const (
 	DepartmentIdTypeListByIdJobRequirementOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
 	DepartmentIdTypeListByIdJobRequirementDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeListByIdJobRequirementPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeListByIdJobRequirementJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeListByIdJobRequirementPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeListByIdJobRequirementJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeListByIdJobRequirementPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeListByIdJobRequirementEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
 )
 
 const (
@@ -398,6 +615,12 @@ const (
 )
 
 const (
+	ProcessTypeUpdateJobRequirementSocial = 1 // 社招
+	ProcessTypeUpdateJobRequirementCampus = 2 // 校招
+
+)
+
+const (
 	UserIdTypeUpdateJobRequirementUserId  = "user_id"  // 以user_id来识别用户
 	UserIdTypeUpdateJobRequirementUnionId = "union_id" // 以union_id来识别用户
 	UserIdTypeUpdateJobRequirementOpenId  = "open_id"  // 以open_id来识别用户
@@ -406,6 +629,21 @@ const (
 const (
 	DepartmentIdTypeUpdateJobRequirementOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
 	DepartmentIdTypeUpdateJobRequirementDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeUpdateJobRequirementPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeUpdateJobRequirementJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeUpdateJobRequirementPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeUpdateJobRequirementJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeUpdateJobRequirementPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeUpdateJobRequirementEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
 )
 
 const (
@@ -461,6 +699,21 @@ const (
 )
 
 const (
+	JobLevelIdTypeCreateOfferPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeCreateOfferJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeCreateOfferPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeCreateOfferJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeCreateOfferPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeCreateOfferEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
+)
+
+const (
 	UserIdTypeGetOfferUserId        = "user_id"         // 以user_id来识别用户
 	UserIdTypeGetOfferUnionId       = "union_id"        // 以union_id来识别用户
 	UserIdTypeGetOfferOpenId        = "open_id"         // 以open_id来识别用户
@@ -470,6 +723,21 @@ const (
 const (
 	DepartmentIdTypeGetOfferOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
 	DepartmentIdTypeGetOfferDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeGetOfferPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeGetOfferJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeGetOfferPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeGetOfferJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeGetOfferPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeGetOfferEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
 )
 
 const (
@@ -483,6 +751,11 @@ const (
 	UserIdTypeListOfferUnionId       = "union_id"        // 以union_id来识别用户
 	UserIdTypeListOfferOpenId        = "open_id"         // 以open_id来识别用户
 	UserIdTypeListOfferPeopleAdminId = "people_admin_id" // 以people_admin_id来识别用户
+)
+
+const (
+	EmployeeTypeIdTypeListOfferPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeListOfferEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
 )
 
 const (
@@ -510,10 +783,70 @@ const (
 )
 
 const (
+	JobLevelIdTypeUpdateOfferPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeUpdateOfferJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	JobFamilyIdTypeUpdateOfferPeopleAdminJobCategoryId = "people_admin_job_category_id" // 「人力系统管理后台」适用的序列 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobFamilyIdTypeUpdateOfferJobFamilyId              = "job_family_id"                // 「飞书管理后台」适用的序列 ID，通过「获取租户序列列表」接口获取
+)
+
+const (
+	EmployeeTypeIdTypeUpdateOfferPeopleAdminEmployeeTypeId = "people_admin_employee_type_id" // 「人力系统管理后台」适用的人员类型 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	EmployeeTypeIdTypeUpdateOfferEmployeeTypeEnumId        = "employee_type_enum_id"         // 「飞书管理后台」适用的人员类型 ID，通过「查询人员类型」接口获取
+)
+
+const (
 	UserIdTypeGetByApplicationReferralUserId        = "user_id"         // 以user_id来识别用户
 	UserIdTypeGetByApplicationReferralUnionId       = "union_id"        // 以union_id来识别用户
 	UserIdTypeGetByApplicationReferralOpenId        = "open_id"         // 以open_id来识别用户
 	UserIdTypeGetByApplicationReferralPeopleAdminId = "people_admin_id" // 以people_admin_id来识别用户
+)
+
+const (
+	UserIdTypeGetReferralWebsiteJobPostUserId  = "user_id"  // 以 user_id 来识别用户
+	UserIdTypeGetReferralWebsiteJobPostUnionId = "union_id" // 以 union_id 来识别用户
+	UserIdTypeGetReferralWebsiteJobPostOpenId  = "open_id"  // 以 open_id 来识别用户
+)
+
+const (
+	DepartmentIdTypeGetReferralWebsiteJobPostOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
+	DepartmentIdTypeGetReferralWebsiteJobPostDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeGetReferralWebsiteJobPostPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeGetReferralWebsiteJobPostJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	ProcessTypeListReferralWebsiteJobPostSocialProcess = 1 // 社招
+	ProcessTypeListReferralWebsiteJobPostCampusProcess = 2 // 校招
+
+)
+
+const (
+	UserIdTypeListReferralWebsiteJobPostUserId  = "user_id"  // 以 user_id 来识别用户
+	UserIdTypeListReferralWebsiteJobPostUnionId = "union_id" // 以 union_id 来识别用户
+	UserIdTypeListReferralWebsiteJobPostOpenId  = "open_id"  // 以 open_id 来识别用户
+)
+
+const (
+	DepartmentIdTypeListReferralWebsiteJobPostOpenDepartmentId = "open_department_id" // 以 open_department_id 来标识部门
+	DepartmentIdTypeListReferralWebsiteJobPostDepartmentId     = "department_id"      // 以 department_id 来标识部门
+)
+
+const (
+	JobLevelIdTypeListReferralWebsiteJobPostPeopleAdminJobLevelId = "people_admin_job_level_id" // 「人力系统管理后台」适用的职级 ID。人力系统管理后台逐步下线中，建议不继续使用此 ID。
+	JobLevelIdTypeListReferralWebsiteJobPostJobLevelId            = "job_level_id"              // 「飞书管理后台」适用的职级 ID，通过「获取租户职级列表」接口获取
+)
+
+const (
+	ScenarioInterviewRegistration  = 5  // 面试登记表
+	ScenarioOnboardRegistration    = 6  // 入职登记表
+	ScenarioInfoUpdateRegistration = 14 // 人才信息登记表
+
 )
 
 const (
@@ -530,19 +863,147 @@ const (
 	UserIdTypeListTalentFolderPeopleAdminId = "people_admin_id" // 以people_admin_id来识别用户
 )
 
+type Ability struct {
+	Id          *string `json:"id,omitempty"`          // 能力项ID
+	Name        *I18n   `json:"name,omitempty"`        // 能力项名称
+	Description *I18n   `json:"description,omitempty"` // 能力项描述
+}
+
+type AbilityBuilder struct {
+	id              string // 能力项ID
+	idFlag          bool
+	name            *I18n // 能力项名称
+	nameFlag        bool
+	description     *I18n // 能力项描述
+	descriptionFlag bool
+}
+
+func NewAbilityBuilder() *AbilityBuilder {
+	builder := &AbilityBuilder{}
+	return builder
+}
+
+// 能力项ID
+//
+// 示例值：7270798542321666366
+func (builder *AbilityBuilder) Id(id string) *AbilityBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 能力项名称
+//
+// 示例值：
+func (builder *AbilityBuilder) Name(name *I18n) *AbilityBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 能力项描述
+//
+// 示例值：
+func (builder *AbilityBuilder) Description(description *I18n) *AbilityBuilder {
+	builder.description = description
+	builder.descriptionFlag = true
+	return builder
+}
+
+func (builder *AbilityBuilder) Build() *Ability {
+	req := &Ability{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.nameFlag {
+		req.Name = builder.name
+	}
+	if builder.descriptionFlag {
+		req.Description = builder.description
+	}
+	return req
+}
+
+type Account struct {
+	AccountId *string `json:"account_id,omitempty"` // 账户ID
+	Assets    *Assets `json:"assets,omitempty"`     // 账户资产
+	Status    *int    `json:"status,omitempty"`     // 账号状态
+}
+
+type AccountBuilder struct {
+	accountId     string // 账户ID
+	accountIdFlag bool
+	assets        *Assets // 账户资产
+	assetsFlag    bool
+	status        int // 账号状态
+	statusFlag    bool
+}
+
+func NewAccountBuilder() *AccountBuilder {
+	builder := &AccountBuilder{}
+	return builder
+}
+
+// 账户ID
+//
+// 示例值：6942778198054125570
+func (builder *AccountBuilder) AccountId(accountId string) *AccountBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+// 账户资产
+//
+// 示例值：
+func (builder *AccountBuilder) Assets(assets *Assets) *AccountBuilder {
+	builder.assets = assets
+	builder.assetsFlag = true
+	return builder
+}
+
+// 账号状态
+//
+// 示例值：1
+func (builder *AccountBuilder) Status(status int) *AccountBuilder {
+	builder.status = status
+	builder.statusFlag = true
+	return builder
+}
+
+func (builder *AccountBuilder) Build() *Account {
+	req := &Account{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+
+	}
+	if builder.assetsFlag {
+		req.Assets = builder.assets
+	}
+	if builder.statusFlag {
+		req.Status = &builder.status
+
+	}
+	return req
+}
+
 type Agency struct {
-	Id          *string `json:"id,omitempty"`           // 猎头供应商ID
-	Name        *string `json:"name,omitempty"`         // 猎头供应商名称
-	ContactorId *string `json:"contactor_id,omitempty"` // 供应商联系人ID
+	Id            *string `json:"id,omitempty"`             // 猎头供应商ID
+	Name          *string `json:"name,omitempty"`           // 猎头供应商名称
+	ContactorId   *string `json:"contactor_id,omitempty"`   // 供应商联系人ID
+	ContactorName *I18n   `json:"contactor_name,omitempty"` // 供应商联系人名称
 }
 
 type AgencyBuilder struct {
-	id              string // 猎头供应商ID
-	idFlag          bool
-	name            string // 猎头供应商名称
-	nameFlag        bool
-	contactorId     string // 供应商联系人ID
-	contactorIdFlag bool
+	id                string // 猎头供应商ID
+	idFlag            bool
+	name              string // 猎头供应商名称
+	nameFlag          bool
+	contactorId       string // 供应商联系人ID
+	contactorIdFlag   bool
+	contactorName     *I18n // 供应商联系人名称
+	contactorNameFlag bool
 }
 
 func NewAgencyBuilder() *AgencyBuilder {
@@ -577,6 +1038,15 @@ func (builder *AgencyBuilder) ContactorId(contactorId string) *AgencyBuilder {
 	return builder
 }
 
+// 供应商联系人名称
+//
+// 示例值：
+func (builder *AgencyBuilder) ContactorName(contactorName *I18n) *AgencyBuilder {
+	builder.contactorName = contactorName
+	builder.contactorNameFlag = true
+	return builder
+}
+
 func (builder *AgencyBuilder) Build() *Agency {
 	req := &Agency{}
 	if builder.idFlag {
@@ -590,6 +1060,151 @@ func (builder *AgencyBuilder) Build() *Agency {
 	if builder.contactorIdFlag {
 		req.ContactorId = &builder.contactorId
 
+	}
+	if builder.contactorNameFlag {
+		req.ContactorName = builder.contactorName
+	}
+	return req
+}
+
+type AgencyProtection struct {
+	ProtectionType         *int    `json:"protection_type,omitempty"`           // 保护期类型
+	ApplicationId          *string `json:"application_id,omitempty"`            // 如保护期类型为职位保护，返回职位保护所在的投递id
+	StartTime              *string `json:"start_time,omitempty"`                // 保护期开始时间
+	ExpireTime             *string `json:"expire_time,omitempty"`               // 保护期过期时间
+	AgencySupplierId       *string `json:"agency_supplier_id,omitempty"`        // 推荐的猎头供应商 ID
+	AgencySupplierName     *I18n   `json:"agency_supplier_name,omitempty"`      // 推荐的猎头供应商名称
+	AgencySupplierUserId   *string `json:"agency_supplier_user_id,omitempty"`   // 推荐的猎头顾问ID，目前仅作为唯一标识，不可查询具体的人员信息
+	AgencySupplierUserName *I18n   `json:"agency_supplier_user_name,omitempty"` // 推荐的猎头顾问名称
+}
+
+type AgencyProtectionBuilder struct {
+	protectionType             int // 保护期类型
+	protectionTypeFlag         bool
+	applicationId              string // 如保护期类型为职位保护，返回职位保护所在的投递id
+	applicationIdFlag          bool
+	startTime                  string // 保护期开始时间
+	startTimeFlag              bool
+	expireTime                 string // 保护期过期时间
+	expireTimeFlag             bool
+	agencySupplierId           string // 推荐的猎头供应商 ID
+	agencySupplierIdFlag       bool
+	agencySupplierName         *I18n // 推荐的猎头供应商名称
+	agencySupplierNameFlag     bool
+	agencySupplierUserId       string // 推荐的猎头顾问ID，目前仅作为唯一标识，不可查询具体的人员信息
+	agencySupplierUserIdFlag   bool
+	agencySupplierUserName     *I18n // 推荐的猎头顾问名称
+	agencySupplierUserNameFlag bool
+}
+
+func NewAgencyProtectionBuilder() *AgencyProtectionBuilder {
+	builder := &AgencyProtectionBuilder{}
+	return builder
+}
+
+// 保护期类型
+//
+// 示例值：1
+func (builder *AgencyProtectionBuilder) ProtectionType(protectionType int) *AgencyProtectionBuilder {
+	builder.protectionType = protectionType
+	builder.protectionTypeFlag = true
+	return builder
+}
+
+// 如保护期类型为职位保护，返回职位保护所在的投递id
+//
+// 示例值：6930815272790114323
+func (builder *AgencyProtectionBuilder) ApplicationId(applicationId string) *AgencyProtectionBuilder {
+	builder.applicationId = applicationId
+	builder.applicationIdFlag = true
+	return builder
+}
+
+// 保护期开始时间
+//
+// 示例值：1700023694629
+func (builder *AgencyProtectionBuilder) StartTime(startTime string) *AgencyProtectionBuilder {
+	builder.startTime = startTime
+	builder.startTimeFlag = true
+	return builder
+}
+
+// 保护期过期时间
+//
+// 示例值：1700023694630
+func (builder *AgencyProtectionBuilder) ExpireTime(expireTime string) *AgencyProtectionBuilder {
+	builder.expireTime = expireTime
+	builder.expireTimeFlag = true
+	return builder
+}
+
+// 推荐的猎头供应商 ID
+//
+// 示例值：6930815272790114324
+func (builder *AgencyProtectionBuilder) AgencySupplierId(agencySupplierId string) *AgencyProtectionBuilder {
+	builder.agencySupplierId = agencySupplierId
+	builder.agencySupplierIdFlag = true
+	return builder
+}
+
+// 推荐的猎头供应商名称
+//
+// 示例值：
+func (builder *AgencyProtectionBuilder) AgencySupplierName(agencySupplierName *I18n) *AgencyProtectionBuilder {
+	builder.agencySupplierName = agencySupplierName
+	builder.agencySupplierNameFlag = true
+	return builder
+}
+
+// 推荐的猎头顾问ID，目前仅作为唯一标识，不可查询具体的人员信息
+//
+// 示例值：6930815272790114324
+func (builder *AgencyProtectionBuilder) AgencySupplierUserId(agencySupplierUserId string) *AgencyProtectionBuilder {
+	builder.agencySupplierUserId = agencySupplierUserId
+	builder.agencySupplierUserIdFlag = true
+	return builder
+}
+
+// 推荐的猎头顾问名称
+//
+// 示例值：
+func (builder *AgencyProtectionBuilder) AgencySupplierUserName(agencySupplierUserName *I18n) *AgencyProtectionBuilder {
+	builder.agencySupplierUserName = agencySupplierUserName
+	builder.agencySupplierUserNameFlag = true
+	return builder
+}
+
+func (builder *AgencyProtectionBuilder) Build() *AgencyProtection {
+	req := &AgencyProtection{}
+	if builder.protectionTypeFlag {
+		req.ProtectionType = &builder.protectionType
+
+	}
+	if builder.applicationIdFlag {
+		req.ApplicationId = &builder.applicationId
+
+	}
+	if builder.startTimeFlag {
+		req.StartTime = &builder.startTime
+
+	}
+	if builder.expireTimeFlag {
+		req.ExpireTime = &builder.expireTime
+
+	}
+	if builder.agencySupplierIdFlag {
+		req.AgencySupplierId = &builder.agencySupplierId
+
+	}
+	if builder.agencySupplierNameFlag {
+		req.AgencySupplierName = builder.agencySupplierName
+	}
+	if builder.agencySupplierUserIdFlag {
+		req.AgencySupplierUserId = &builder.agencySupplierUserId
+
+	}
+	if builder.agencySupplierUserNameFlag {
+		req.AgencySupplierUserName = builder.agencySupplierUserName
 	}
 	return req
 }
@@ -1734,7 +2349,7 @@ type Application struct {
 	Id                           *string                         `json:"id,omitempty"`                              // 投递id
 	JobId                        *string                         `json:"job_id,omitempty"`                          // 投递的职位 ID
 	TalentId                     *string                         `json:"talent_id,omitempty"`                       // 候选人 ID
-	ResumeResourceId             *string                         `json:"resume_resource_id,omitempty"`              // 简历来源 ID
+	ResumeSourceId               *string                         `json:"resume_source_id,omitempty"`                // 简历来源 ID
 	Stage                        *ApplicationStageInfo           `json:"stage,omitempty"`                           // 投递处于的阶段
 	ActiveStatus                 *int                            `json:"active_status,omitempty"`                   // 活跃状态
 	DeliveryType                 *int                            `json:"delivery_type,omitempty"`                   // 投递方式
@@ -1748,6 +2363,7 @@ type Application struct {
 	TerminationReasonList        []string                        `json:"termination_reason_list,omitempty"`         // 终止的具体原因的id列表
 	TerminationReasonNote        *string                         `json:"termination_reason_note,omitempty"`         // 终止备注
 	ApplicationPreferredCityList []*CodeNameObject               `json:"application_preferred_city_list,omitempty"` // 意向投递城市列表
+	CreatorId                    *string                         `json:"creator_id,omitempty"`                      // 投递创建人 ID，仅当投递创建人为企业内部员工时可获取（如员工手动上传简历 / 加入职位 / 内推），其余情况返回为空（如候选人主动投递）
 }
 
 type ApplicationBuilder struct {
@@ -1757,8 +2373,8 @@ type ApplicationBuilder struct {
 	jobIdFlag                        bool
 	talentId                         string // 候选人 ID
 	talentIdFlag                     bool
-	resumeResourceId                 string // 简历来源 ID
-	resumeResourceIdFlag             bool
+	resumeSourceId                   string // 简历来源 ID
+	resumeSourceIdFlag               bool
 	stage                            *ApplicationStageInfo // 投递处于的阶段
 	stageFlag                        bool
 	activeStatus                     int // 活跃状态
@@ -1785,6 +2401,8 @@ type ApplicationBuilder struct {
 	terminationReasonNoteFlag        bool
 	applicationPreferredCityList     []*CodeNameObject // 意向投递城市列表
 	applicationPreferredCityListFlag bool
+	creatorId                        string // 投递创建人 ID，仅当投递创建人为企业内部员工时可获取（如员工手动上传简历 / 加入职位 / 内推），其余情况返回为空（如候选人主动投递）
+	creatorIdFlag                    bool
 }
 
 func NewApplicationBuilder() *ApplicationBuilder {
@@ -1822,9 +2440,9 @@ func (builder *ApplicationBuilder) TalentId(talentId string) *ApplicationBuilder
 // 简历来源 ID
 //
 // 示例值：6583482347283472832
-func (builder *ApplicationBuilder) ResumeResourceId(resumeResourceId string) *ApplicationBuilder {
-	builder.resumeResourceId = resumeResourceId
-	builder.resumeResourceIdFlag = true
+func (builder *ApplicationBuilder) ResumeSourceId(resumeSourceId string) *ApplicationBuilder {
+	builder.resumeSourceId = resumeSourceId
+	builder.resumeSourceIdFlag = true
 	return builder
 }
 
@@ -1945,6 +2563,15 @@ func (builder *ApplicationBuilder) ApplicationPreferredCityList(applicationPrefe
 	return builder
 }
 
+// 投递创建人 ID，仅当投递创建人为企业内部员工时可获取（如员工手动上传简历 / 加入职位 / 内推），其余情况返回为空（如候选人主动投递）
+//
+// 示例值：ou_ce613028fe74745421f5dc320bb9c709
+func (builder *ApplicationBuilder) CreatorId(creatorId string) *ApplicationBuilder {
+	builder.creatorId = creatorId
+	builder.creatorIdFlag = true
+	return builder
+}
+
 func (builder *ApplicationBuilder) Build() *Application {
 	req := &Application{}
 	if builder.idFlag {
@@ -1959,8 +2586,8 @@ func (builder *ApplicationBuilder) Build() *Application {
 		req.TalentId = &builder.talentId
 
 	}
-	if builder.resumeResourceIdFlag {
-		req.ResumeResourceId = &builder.resumeResourceId
+	if builder.resumeSourceIdFlag {
+		req.ResumeSourceId = &builder.resumeSourceId
 
 	}
 	if builder.stageFlag {
@@ -2008,6 +2635,10 @@ func (builder *ApplicationBuilder) Build() *Application {
 	}
 	if builder.applicationPreferredCityListFlag {
 		req.ApplicationPreferredCityList = builder.applicationPreferredCityList
+	}
+	if builder.creatorIdFlag {
+		req.CreatorId = &builder.creatorId
+
 	}
 	return req
 }
@@ -2342,30 +2973,33 @@ func (builder *ApplicationJobAddressBuilder) Build() *ApplicationJobAddress {
 }
 
 type ApplicationOffer struct {
-	Id            *string                     `json:"id,omitempty"`             // Offer id
-	ApplicationId *string                     `json:"application_id,omitempty"` // 投递id
-	BasicInfo     *ApplicationOfferBasicInfo  `json:"basic_info,omitempty"`     // 基础信息
-	SalaryPlan    *ApplicationOfferSalaryPlan `json:"salary_plan,omitempty"`    // 薪酬计划
-	SchemaId      *string                     `json:"schema_id,omitempty"`      // 当前 Offer 使用的 schema
-	OfferStatus   *int                        `json:"offer_status,omitempty"`   // Offer 状态
-	JobInfo       *OfferJobInfo               `json:"job_info,omitempty"`       // 职位信息
+	Id                   *string                         `json:"id,omitempty"`                     // Offer id
+	ApplicationId        *string                         `json:"application_id,omitempty"`         // 投递id
+	BasicInfo            *ApplicationOfferBasicInfo      `json:"basic_info,omitempty"`             // 基础信息
+	SalaryPlan           *ApplicationOfferSalaryPlan     `json:"salary_plan,omitempty"`            // 薪酬计划
+	SchemaId             *string                         `json:"schema_id,omitempty"`              // 当前 Offer 使用的 schema
+	OfferStatus          *int                            `json:"offer_status,omitempty"`           // Offer 状态
+	JobInfo              *OfferJobInfo                   `json:"job_info,omitempty"`               // 职位信息
+	CustomizedModuleList []*ApplicationOfferCustomModule `json:"customized_module_list,omitempty"` // offer自定义模块列表
 }
 
 type ApplicationOfferBuilder struct {
-	id                string // Offer id
-	idFlag            bool
-	applicationId     string // 投递id
-	applicationIdFlag bool
-	basicInfo         *ApplicationOfferBasicInfo // 基础信息
-	basicInfoFlag     bool
-	salaryPlan        *ApplicationOfferSalaryPlan // 薪酬计划
-	salaryPlanFlag    bool
-	schemaId          string // 当前 Offer 使用的 schema
-	schemaIdFlag      bool
-	offerStatus       int // Offer 状态
-	offerStatusFlag   bool
-	jobInfo           *OfferJobInfo // 职位信息
-	jobInfoFlag       bool
+	id                       string // Offer id
+	idFlag                   bool
+	applicationId            string // 投递id
+	applicationIdFlag        bool
+	basicInfo                *ApplicationOfferBasicInfo // 基础信息
+	basicInfoFlag            bool
+	salaryPlan               *ApplicationOfferSalaryPlan // 薪酬计划
+	salaryPlanFlag           bool
+	schemaId                 string // 当前 Offer 使用的 schema
+	schemaIdFlag             bool
+	offerStatus              int // Offer 状态
+	offerStatusFlag          bool
+	jobInfo                  *OfferJobInfo // 职位信息
+	jobInfoFlag              bool
+	customizedModuleList     []*ApplicationOfferCustomModule // offer自定义模块列表
+	customizedModuleListFlag bool
 }
 
 func NewApplicationOfferBuilder() *ApplicationOfferBuilder {
@@ -2436,6 +3070,15 @@ func (builder *ApplicationOfferBuilder) JobInfo(jobInfo *OfferJobInfo) *Applicat
 	return builder
 }
 
+// offer自定义模块列表
+//
+// 示例值：
+func (builder *ApplicationOfferBuilder) CustomizedModuleList(customizedModuleList []*ApplicationOfferCustomModule) *ApplicationOfferBuilder {
+	builder.customizedModuleList = customizedModuleList
+	builder.customizedModuleListFlag = true
+	return builder
+}
+
 func (builder *ApplicationOfferBuilder) Build() *ApplicationOffer {
 	req := &ApplicationOffer{}
 	if builder.idFlag {
@@ -2462,6 +3105,9 @@ func (builder *ApplicationOfferBuilder) Build() *ApplicationOffer {
 	}
 	if builder.jobInfoFlag {
 		req.JobInfo = builder.jobInfo
+	}
+	if builder.customizedModuleListFlag {
+		req.CustomizedModuleList = builder.customizedModuleList
 	}
 	return req
 }
@@ -2515,63 +3161,69 @@ func (builder *ApplicationOfferAttachmentBuilder) Build() *ApplicationOfferAttac
 }
 
 type ApplicationOfferBasicInfo struct {
-	OfferType         *int                           `json:"offer_type,omitempty"`          // Offer 类型
-	Remark            *string                        `json:"remark,omitempty"`              // 备注
-	ExpireTime        *int                           `json:"expire_time,omitempty"`         // Offer 过期时间
-	OwnerUserId       *string                        `json:"owner_user_id,omitempty"`       // Offer 负责人 ID
-	CreatorUserId     *string                        `json:"creator_user_id,omitempty"`     // Offer 创建人 ID
-	EmployeeType      *BaseBilingualWithId           `json:"employee_type,omitempty"`       // Offer 人员类型
-	CreateTime        *string                        `json:"create_time,omitempty"`         // 创建时间
-	LeaderUserId      *string                        `json:"leader_user_id,omitempty"`      // 直属上级 ID
-	OnboardDate       *string                        `json:"onboard_date,omitempty"`        // 入职日期
-	DepartmentId      *string                        `json:"department_id,omitempty"`       // 入职部门
-	ProbationMonth    *int                           `json:"probation_month,omitempty"`     // 试用期, 比如试用期6个月
-	ContractYear      *int                           `json:"contract_year,omitempty"`       // 合同期, 比如3年
-	RecruitmentType   *BaseBilingualWithId           `json:"recruitment_type,omitempty"`    // 雇员类型
-	Sequence          *BaseBilingualWithId           `json:"sequence,omitempty"`            // 序列
-	Level             *BaseBilingualWithId           `json:"level,omitempty"`               // 级别
-	OnboardAddress    *BaseAddress                   `json:"onboard_address,omitempty"`     // 入职地点
-	WorkAddress       *BaseAddress                   `json:"work_address,omitempty"`        // 工作地点
-	CustomizeInfoList []*ApplicationOfferCustomValue `json:"customize_info_list,omitempty"` // 自定义字段信息
+	OfferType               *int                           `json:"offer_type,omitempty"`                 // Offer 类型
+	Remark                  *string                        `json:"remark,omitempty"`                     // 备注
+	ExpireTime              *int                           `json:"expire_time,omitempty"`                // Offer 过期时间
+	OwnerUserId             *string                        `json:"owner_user_id,omitempty"`              // Offer 负责人 ID
+	CreatorUserId           *string                        `json:"creator_user_id,omitempty"`            // Offer 创建人 ID
+	EmployeeType            *BaseBilingualWithId           `json:"employee_type,omitempty"`              // Offer 人员类型
+	CreateTime              *string                        `json:"create_time,omitempty"`                // 创建时间
+	LeaderUserId            *string                        `json:"leader_user_id,omitempty"`             // 直属上级 ID
+	OnboardDate             *string                        `json:"onboard_date,omitempty"`               // 入职日期
+	DepartmentId            *string                        `json:"department_id,omitempty"`              // 入职部门
+	ProbationMonth          *int                           `json:"probation_month,omitempty"`            // 试用期, 比如试用期6个月
+	ContractYear            *int                           `json:"contract_year,omitempty"`              // 合同期, 比如3年
+	ContractPeriod          *ContractPeriodInfo            `json:"contract_period,omitempty"`            // 合同期（年/月）
+	RecruitmentType         *BaseBilingualWithId           `json:"recruitment_type,omitempty"`           // 雇员类型
+	Sequence                *BaseBilingualWithId           `json:"sequence,omitempty"`                   // 序列
+	Level                   *BaseBilingualWithId           `json:"level,omitempty"`                      // 级别
+	OnboardAddress          *BaseAddress                   `json:"onboard_address,omitempty"`            // 入职地点
+	WorkAddress             *BaseAddress                   `json:"work_address,omitempty"`               // 工作地点
+	CustomizeInfoList       []*ApplicationOfferCustomValue `json:"customize_info_list,omitempty"`        // 自定义字段信息
+	WorkLocationAddressInfo *MasterLocationAddressInfo     `json:"work_location_address_info,omitempty"` // 人事侧的办公地点与地址（目前仅字节可用)
 }
 
 type ApplicationOfferBasicInfoBuilder struct {
-	offerType             int // Offer 类型
-	offerTypeFlag         bool
-	remark                string // 备注
-	remarkFlag            bool
-	expireTime            int // Offer 过期时间
-	expireTimeFlag        bool
-	ownerUserId           string // Offer 负责人 ID
-	ownerUserIdFlag       bool
-	creatorUserId         string // Offer 创建人 ID
-	creatorUserIdFlag     bool
-	employeeType          *BaseBilingualWithId // Offer 人员类型
-	employeeTypeFlag      bool
-	createTime            string // 创建时间
-	createTimeFlag        bool
-	leaderUserId          string // 直属上级 ID
-	leaderUserIdFlag      bool
-	onboardDate           string // 入职日期
-	onboardDateFlag       bool
-	departmentId          string // 入职部门
-	departmentIdFlag      bool
-	probationMonth        int // 试用期, 比如试用期6个月
-	probationMonthFlag    bool
-	contractYear          int // 合同期, 比如3年
-	contractYearFlag      bool
-	recruitmentType       *BaseBilingualWithId // 雇员类型
-	recruitmentTypeFlag   bool
-	sequence              *BaseBilingualWithId // 序列
-	sequenceFlag          bool
-	level                 *BaseBilingualWithId // 级别
-	levelFlag             bool
-	onboardAddress        *BaseAddress // 入职地点
-	onboardAddressFlag    bool
-	workAddress           *BaseAddress // 工作地点
-	workAddressFlag       bool
-	customizeInfoList     []*ApplicationOfferCustomValue // 自定义字段信息
-	customizeInfoListFlag bool
+	offerType                   int // Offer 类型
+	offerTypeFlag               bool
+	remark                      string // 备注
+	remarkFlag                  bool
+	expireTime                  int // Offer 过期时间
+	expireTimeFlag              bool
+	ownerUserId                 string // Offer 负责人 ID
+	ownerUserIdFlag             bool
+	creatorUserId               string // Offer 创建人 ID
+	creatorUserIdFlag           bool
+	employeeType                *BaseBilingualWithId // Offer 人员类型
+	employeeTypeFlag            bool
+	createTime                  string // 创建时间
+	createTimeFlag              bool
+	leaderUserId                string // 直属上级 ID
+	leaderUserIdFlag            bool
+	onboardDate                 string // 入职日期
+	onboardDateFlag             bool
+	departmentId                string // 入职部门
+	departmentIdFlag            bool
+	probationMonth              int // 试用期, 比如试用期6个月
+	probationMonthFlag          bool
+	contractYear                int // 合同期, 比如3年
+	contractYearFlag            bool
+	contractPeriod              *ContractPeriodInfo // 合同期（年/月）
+	contractPeriodFlag          bool
+	recruitmentType             *BaseBilingualWithId // 雇员类型
+	recruitmentTypeFlag         bool
+	sequence                    *BaseBilingualWithId // 序列
+	sequenceFlag                bool
+	level                       *BaseBilingualWithId // 级别
+	levelFlag                   bool
+	onboardAddress              *BaseAddress // 入职地点
+	onboardAddressFlag          bool
+	workAddress                 *BaseAddress // 工作地点
+	workAddressFlag             bool
+	customizeInfoList           []*ApplicationOfferCustomValue // 自定义字段信息
+	customizeInfoListFlag       bool
+	workLocationAddressInfo     *MasterLocationAddressInfo // 人事侧的办公地点与地址（目前仅字节可用)
+	workLocationAddressInfoFlag bool
 }
 
 func NewApplicationOfferBasicInfoBuilder() *ApplicationOfferBasicInfoBuilder {
@@ -2687,6 +3339,15 @@ func (builder *ApplicationOfferBasicInfoBuilder) ContractYear(contractYear int) 
 	return builder
 }
 
+// 合同期（年/月）
+//
+// 示例值：
+func (builder *ApplicationOfferBasicInfoBuilder) ContractPeriod(contractPeriod *ContractPeriodInfo) *ApplicationOfferBasicInfoBuilder {
+	builder.contractPeriod = contractPeriod
+	builder.contractPeriodFlag = true
+	return builder
+}
+
 // 雇员类型
 //
 // 示例值：
@@ -2741,6 +3402,15 @@ func (builder *ApplicationOfferBasicInfoBuilder) CustomizeInfoList(customizeInfo
 	return builder
 }
 
+// 人事侧的办公地点与地址（目前仅字节可用)
+//
+// 示例值：
+func (builder *ApplicationOfferBasicInfoBuilder) WorkLocationAddressInfo(workLocationAddressInfo *MasterLocationAddressInfo) *ApplicationOfferBasicInfoBuilder {
+	builder.workLocationAddressInfo = workLocationAddressInfo
+	builder.workLocationAddressInfoFlag = true
+	return builder
+}
+
 func (builder *ApplicationOfferBasicInfoBuilder) Build() *ApplicationOfferBasicInfo {
 	req := &ApplicationOfferBasicInfo{}
 	if builder.offerTypeFlag {
@@ -2790,6 +3460,9 @@ func (builder *ApplicationOfferBasicInfoBuilder) Build() *ApplicationOfferBasicI
 		req.ContractYear = &builder.contractYear
 
 	}
+	if builder.contractPeriodFlag {
+		req.ContractPeriod = builder.contractPeriod
+	}
 	if builder.recruitmentTypeFlag {
 		req.RecruitmentType = builder.recruitmentType
 	}
@@ -2807,6 +3480,9 @@ func (builder *ApplicationOfferBasicInfoBuilder) Build() *ApplicationOfferBasicI
 	}
 	if builder.customizeInfoListFlag {
 		req.CustomizeInfoList = builder.customizeInfoList
+	}
+	if builder.workLocationAddressInfoFlag {
+		req.WorkLocationAddressInfo = builder.workLocationAddressInfo
 	}
 	return req
 }
@@ -3108,6 +3784,53 @@ func (builder *ApplicationOfferBasicInfoUserBuilder) Build() *ApplicationOfferBa
 	if builder.inAppScopeFlag {
 		req.InAppScope = &builder.inAppScope
 
+	}
+	return req
+}
+
+type ApplicationOfferCustomModule struct {
+	ID         *string                        `json:"ID,omitempty"`          // 自定义模块ID
+	ObjectList []*ApplicationOfferCustomValue `json:"object_list,omitempty"` // 自定义模块下字段的值
+}
+
+type ApplicationOfferCustomModuleBuilder struct {
+	iD             string // 自定义模块ID
+	iDFlag         bool
+	objectList     []*ApplicationOfferCustomValue // 自定义模块下字段的值
+	objectListFlag bool
+}
+
+func NewApplicationOfferCustomModuleBuilder() *ApplicationOfferCustomModuleBuilder {
+	builder := &ApplicationOfferCustomModuleBuilder{}
+	return builder
+}
+
+// 自定义模块ID
+//
+// 示例值：6930815272790114324
+func (builder *ApplicationOfferCustomModuleBuilder) ID(iD string) *ApplicationOfferCustomModuleBuilder {
+	builder.iD = iD
+	builder.iDFlag = true
+	return builder
+}
+
+// 自定义模块下字段的值
+//
+// 示例值：
+func (builder *ApplicationOfferCustomModuleBuilder) ObjectList(objectList []*ApplicationOfferCustomValue) *ApplicationOfferCustomModuleBuilder {
+	builder.objectList = objectList
+	builder.objectListFlag = true
+	return builder
+}
+
+func (builder *ApplicationOfferCustomModuleBuilder) Build() *ApplicationOfferCustomModule {
+	req := &ApplicationOfferCustomModule{}
+	if builder.iDFlag {
+		req.ID = &builder.iD
+
+	}
+	if builder.objectListFlag {
+		req.ObjectList = builder.objectList
 	}
 	return req
 }
@@ -6190,6 +6913,103 @@ func (builder *ApplicationWebsiteResumeSourceBuilder) Build() *ApplicationWebsit
 	return req
 }
 
+type AssessmentScoreInfo struct {
+	CalculateType *int     `json:"calculate_type,omitempty"` // 计分方式
+	Score         *float64 `json:"score,omitempty"`          // 分数(精确到小数点后两位)
+	FullScore     *int     `json:"full_score,omitempty"`     // 满分
+}
+
+type AssessmentScoreInfoBuilder struct {
+	calculateType     int // 计分方式
+	calculateTypeFlag bool
+	score             float64 // 分数(精确到小数点后两位)
+	scoreFlag         bool
+	fullScore         int // 满分
+	fullScoreFlag     bool
+}
+
+func NewAssessmentScoreInfoBuilder() *AssessmentScoreInfoBuilder {
+	builder := &AssessmentScoreInfoBuilder{}
+	return builder
+}
+
+// 计分方式
+//
+// 示例值：1
+func (builder *AssessmentScoreInfoBuilder) CalculateType(calculateType int) *AssessmentScoreInfoBuilder {
+	builder.calculateType = calculateType
+	builder.calculateTypeFlag = true
+	return builder
+}
+
+// 分数(精确到小数点后两位)
+//
+// 示例值：
+func (builder *AssessmentScoreInfoBuilder) Score(score float64) *AssessmentScoreInfoBuilder {
+	builder.score = score
+	builder.scoreFlag = true
+	return builder
+}
+
+// 满分
+//
+// 示例值：100
+func (builder *AssessmentScoreInfoBuilder) FullScore(fullScore int) *AssessmentScoreInfoBuilder {
+	builder.fullScore = fullScore
+	builder.fullScoreFlag = true
+	return builder
+}
+
+func (builder *AssessmentScoreInfoBuilder) Build() *AssessmentScoreInfo {
+	req := &AssessmentScoreInfo{}
+	if builder.calculateTypeFlag {
+		req.CalculateType = &builder.calculateType
+
+	}
+	if builder.scoreFlag {
+		req.Score = &builder.score
+
+	}
+	if builder.fullScoreFlag {
+		req.FullScore = &builder.fullScore
+
+	}
+	return req
+}
+
+type Assets struct {
+	ConfirmedBonus *BonusAmount `json:"confirmed_bonus,omitempty"` // 已确认的奖励
+
+}
+
+type AssetsBuilder struct {
+	confirmedBonus     *BonusAmount // 已确认的奖励
+	confirmedBonusFlag bool
+}
+
+func NewAssetsBuilder() *AssetsBuilder {
+	builder := &AssetsBuilder{}
+	return builder
+}
+
+// 已确认的奖励
+//
+// 示例值：
+func (builder *AssetsBuilder) ConfirmedBonus(confirmedBonus *BonusAmount) *AssetsBuilder {
+	builder.confirmedBonus = confirmedBonus
+	builder.confirmedBonusFlag = true
+	return builder
+}
+
+func (builder *AssetsBuilder) Build() *Assets {
+	req := &Assets{}
+	if builder.confirmedBonusFlag {
+		req.ConfirmedBonus = builder.confirmedBonus
+	}
+
+	return req
+}
+
 type Attachment struct {
 	Id         *string `json:"id,omitempty"`          // 附件id
 	Url        *string `json:"url,omitempty"`         // 附件的url
@@ -6382,6 +7202,102 @@ func (builder *AttachmentInfoBuilder) Build() *AttachmentInfo {
 	return req
 }
 
+type AttachmentV2 struct {
+	Id         *string `json:"id,omitempty"`          // 附件ID
+	Url        *string `json:"url,omitempty"`         // 附件的url
+	Name       *string `json:"name,omitempty"`        // 附件文件名
+	Mime       *string `json:"mime,omitempty"`        // MIME type
+	CreateTime *string `json:"create_time,omitempty"` // 附件创建时间(ms)
+}
+
+type AttachmentV2Builder struct {
+	id             string // 附件ID
+	idFlag         bool
+	url            string // 附件的url
+	urlFlag        bool
+	name           string // 附件文件名
+	nameFlag       bool
+	mime           string // MIME type
+	mimeFlag       bool
+	createTime     string // 附件创建时间(ms)
+	createTimeFlag bool
+}
+
+func NewAttachmentV2Builder() *AttachmentV2Builder {
+	builder := &AttachmentV2Builder{}
+	return builder
+}
+
+// 附件ID
+//
+// 示例值：7270798542321666364
+func (builder *AttachmentV2Builder) Id(id string) *AttachmentV2Builder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 附件的url
+//
+// 示例值：https://open.feishu.cn/hire/file/blob/xxxx/
+func (builder *AttachmentV2Builder) Url(url string) *AttachmentV2Builder {
+	builder.url = url
+	builder.urlFlag = true
+	return builder
+}
+
+// 附件文件名
+//
+// 示例值：成绩单
+func (builder *AttachmentV2Builder) Name(name string) *AttachmentV2Builder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// MIME type
+//
+// 示例值：image/jpg
+func (builder *AttachmentV2Builder) Mime(mime string) *AttachmentV2Builder {
+	builder.mime = mime
+	builder.mimeFlag = true
+	return builder
+}
+
+// 附件创建时间(ms)
+//
+// 示例值：1693884103327
+func (builder *AttachmentV2Builder) CreateTime(createTime string) *AttachmentV2Builder {
+	builder.createTime = createTime
+	builder.createTimeFlag = true
+	return builder
+}
+
+func (builder *AttachmentV2Builder) Build() *AttachmentV2 {
+	req := &AttachmentV2{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.urlFlag {
+		req.Url = &builder.url
+
+	}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	if builder.mimeFlag {
+		req.Mime = &builder.mime
+
+	}
+	if builder.createTimeFlag {
+		req.CreateTime = &builder.createTime
+
+	}
+	return req
+}
+
 type Auth struct {
 	Id   *string `json:"id,omitempty"`   // 权限 ID
 	Name *I18n   `json:"name,omitempty"` // 权限名称
@@ -6493,12 +7409,63 @@ func (builder *AwardInfoBuilder) Build() *AwardInfo {
 	return req
 }
 
+type BackgroundCheckCustomFieldDataValue struct {
+	Key   *string `json:"key,omitempty"`   // 对应模板字段的Key
+	Value *string `json:"value,omitempty"` // 对应模板字段的value
+}
+
+type BackgroundCheckCustomFieldDataValueBuilder struct {
+	key       string // 对应模板字段的Key
+	keyFlag   bool
+	value     string // 对应模板字段的value
+	valueFlag bool
+}
+
+func NewBackgroundCheckCustomFieldDataValueBuilder() *BackgroundCheckCustomFieldDataValueBuilder {
+	builder := &BackgroundCheckCustomFieldDataValueBuilder{}
+	return builder
+}
+
+// 对应模板字段的Key
+//
+// 示例值：1
+func (builder *BackgroundCheckCustomFieldDataValueBuilder) Key(key string) *BackgroundCheckCustomFieldDataValueBuilder {
+	builder.key = key
+	builder.keyFlag = true
+	return builder
+}
+
+// 对应模板字段的value
+//
+// 示例值：text
+func (builder *BackgroundCheckCustomFieldDataValueBuilder) Value(value string) *BackgroundCheckCustomFieldDataValueBuilder {
+	builder.value = value
+	builder.valueFlag = true
+	return builder
+}
+
+func (builder *BackgroundCheckCustomFieldDataValueBuilder) Build() *BackgroundCheckCustomFieldDataValue {
+	req := &BackgroundCheckCustomFieldDataValue{}
+	if builder.keyFlag {
+		req.Key = &builder.key
+
+	}
+	if builder.valueFlag {
+		req.Value = &builder.value
+
+	}
+	return req
+}
+
 type BackgroundCheckFeedbackInfo struct {
+	FeedbackId    *string `json:"feedback_id,omitempty"`    // 背调报告ID
 	AttachmentUrl *string `json:"attachment_url,omitempty"` // 背调信息附件下载链接
 	Result        *string `json:"result,omitempty"`         // 背调结果：红灯、黄灯、绿灯
 }
 
 type BackgroundCheckFeedbackInfoBuilder struct {
+	feedbackId        string // 背调报告ID
+	feedbackIdFlag    bool
 	attachmentUrl     string // 背调信息附件下载链接
 	attachmentUrlFlag bool
 	result            string // 背调结果：红灯、黄灯、绿灯
@@ -6507,6 +7474,15 @@ type BackgroundCheckFeedbackInfoBuilder struct {
 
 func NewBackgroundCheckFeedbackInfoBuilder() *BackgroundCheckFeedbackInfoBuilder {
 	builder := &BackgroundCheckFeedbackInfoBuilder{}
+	return builder
+}
+
+// 背调报告ID
+//
+// 示例值：6930815272790114324
+func (builder *BackgroundCheckFeedbackInfoBuilder) FeedbackId(feedbackId string) *BackgroundCheckFeedbackInfoBuilder {
+	builder.feedbackId = feedbackId
+	builder.feedbackIdFlag = true
 	return builder
 }
 
@@ -6530,6 +7506,10 @@ func (builder *BackgroundCheckFeedbackInfoBuilder) Result(result string) *Backgr
 
 func (builder *BackgroundCheckFeedbackInfoBuilder) Build() *BackgroundCheckFeedbackInfo {
 	req := &BackgroundCheckFeedbackInfo{}
+	if builder.feedbackIdFlag {
+		req.FeedbackId = &builder.feedbackId
+
+	}
 	if builder.attachmentUrlFlag {
 		req.AttachmentUrl = &builder.attachmentUrl
 
@@ -6541,16 +7521,78 @@ func (builder *BackgroundCheckFeedbackInfoBuilder) Build() *BackgroundCheckFeedb
 	return req
 }
 
+type BackgroundCheckItemInfo struct {
+	Id   *string `json:"id,omitempty"`   // 附加项的ID
+	Name *string `json:"name,omitempty"` // 附加项的名称
+}
+
+type BackgroundCheckItemInfoBuilder struct {
+	id       string // 附加项的ID
+	idFlag   bool
+	name     string // 附加项的名称
+	nameFlag bool
+}
+
+func NewBackgroundCheckItemInfoBuilder() *BackgroundCheckItemInfoBuilder {
+	builder := &BackgroundCheckItemInfoBuilder{}
+	return builder
+}
+
+// 附加项的ID
+//
+// 示例值：6930815272790114324
+func (builder *BackgroundCheckItemInfoBuilder) Id(id string) *BackgroundCheckItemInfoBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 附加项的名称
+//
+// 示例值：户籍查询
+func (builder *BackgroundCheckItemInfoBuilder) Name(name string) *BackgroundCheckItemInfoBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+func (builder *BackgroundCheckItemInfoBuilder) Build() *BackgroundCheckItemInfo {
+	req := &BackgroundCheckItemInfo{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	return req
+}
+
 type BackgroundCheckOrder struct {
-	OrderId          *string                        `json:"order_id,omitempty"`           // 背调 ID
-	ApplicationId    *string                        `json:"application_id,omitempty"`     // 投递 ID
-	OrderStatus      *int                           `json:"order_status,omitempty"`       // 背调状态
-	AccountThirdType *int                           `json:"account_third_type,omitempty"` // 供应商名称
-	Package          *string                        `json:"package,omitempty"`            // 背调套餐
-	Name             *string                        `json:"name,omitempty"`               // 背调名称（仅手动录入的背调结果具有）
-	FeedbackInfoList []*BackgroundCheckFeedbackInfo `json:"feedback_info_list,omitempty"` // 背调报告信息
-	ProcessInfoList  []*BackgroundCheckProcessInfo  `json:"process_info_list,omitempty"`  // 进度
-	UploadTime       *string                        `json:"upload_time,omitempty"`        // 录入时间（仅手动录入的背调结果具有）
+	OrderId          *string                                `json:"order_id,omitempty"`           // 背调 ID
+	ApplicationId    *string                                `json:"application_id,omitempty"`     // 投递 ID
+	OrderStatus      *int                                   `json:"order_status,omitempty"`       // 背调状态
+	AccountThirdType *int                                   `json:"account_third_type,omitempty"` // 供应商名称
+	Package          *string                                `json:"package,omitempty"`            // 背调套餐
+	Name             *string                                `json:"name,omitempty"`               // 背调名称（仅手动录入的背调结果具有）
+	FeedbackInfoList []*BackgroundCheckOrderFeedbackInfo    `json:"feedback_info_list,omitempty"` // 背调报告信息
+	ProcessInfoList  []*BackgroundCheckOrderProcessInfo     `json:"process_info_list,omitempty"`  // 进度
+	UploadTime       *string                                `json:"upload_time,omitempty"`        // 录入时间（仅手动录入的背调结果具有）
+	CandidateInfo    *UserContactInfo                       `json:"candidate_info,omitempty"`     // 候选人信息
+	CreatorInfo      *BackgroundCheckOrderCreator           `json:"creator_info,omitempty"`       // 背调发起人信息
+	ContactorInfo    *UserContactInfo                       `json:"contactor_info,omitempty"`     // 背调联系人信息
+	BeginTime        *string                                `json:"begin_time,omitempty"`         // 背调发起时间
+	EndTime          *string                                `json:"end_time,omitempty"`           // 背调结束时间
+	Conclusion       *string                                `json:"conclusion,omitempty"`         // 背调结论
+	ProviderInfo     *ProviderIdNameObject                  `json:"provider_info,omitempty"`      // 供应商信息
+	CustomFieldList  []*EcoBackgroundCheckCustomFieldData   `json:"custom_field_list,omitempty"`  // 自定义字段模板
+	CustomDataList   []*BackgroundCheckCustomFieldDataValue `json:"custom_data_list,omitempty"`   // 自定义字段值
+	ExtItemInfoList  []*BackgroundCheckItemInfo             `json:"ext_item_info_list,omitempty"` // 背调调查附加项
+	UpdateTime       *string                                `json:"update_time,omitempty"`        // 订单更新时间
+	Geo              *string                                `json:"geo,omitempty"`                // 属地
+	LocationCode     *string                                `json:"location_code,omitempty"`      // 国家城市编码
+	Remark           *string                                `json:"remark,omitempty"`             // 备注
 }
 
 type BackgroundCheckOrderBuilder struct {
@@ -6566,12 +7608,40 @@ type BackgroundCheckOrderBuilder struct {
 	packageFlag          bool
 	name                 string // 背调名称（仅手动录入的背调结果具有）
 	nameFlag             bool
-	feedbackInfoList     []*BackgroundCheckFeedbackInfo // 背调报告信息
+	feedbackInfoList     []*BackgroundCheckOrderFeedbackInfo // 背调报告信息
 	feedbackInfoListFlag bool
-	processInfoList      []*BackgroundCheckProcessInfo // 进度
+	processInfoList      []*BackgroundCheckOrderProcessInfo // 进度
 	processInfoListFlag  bool
 	uploadTime           string // 录入时间（仅手动录入的背调结果具有）
 	uploadTimeFlag       bool
+	candidateInfo        *UserContactInfo // 候选人信息
+	candidateInfoFlag    bool
+	creatorInfo          *BackgroundCheckOrderCreator // 背调发起人信息
+	creatorInfoFlag      bool
+	contactorInfo        *UserContactInfo // 背调联系人信息
+	contactorInfoFlag    bool
+	beginTime            string // 背调发起时间
+	beginTimeFlag        bool
+	endTime              string // 背调结束时间
+	endTimeFlag          bool
+	conclusion           string // 背调结论
+	conclusionFlag       bool
+	providerInfo         *ProviderIdNameObject // 供应商信息
+	providerInfoFlag     bool
+	customFieldList      []*EcoBackgroundCheckCustomFieldData // 自定义字段模板
+	customFieldListFlag  bool
+	customDataList       []*BackgroundCheckCustomFieldDataValue // 自定义字段值
+	customDataListFlag   bool
+	extItemInfoList      []*BackgroundCheckItemInfo // 背调调查附加项
+	extItemInfoListFlag  bool
+	updateTime           string // 订单更新时间
+	updateTimeFlag       bool
+	geo                  string // 属地
+	geoFlag              bool
+	locationCode         string // 国家城市编码
+	locationCodeFlag     bool
+	remark               string // 备注
+	remarkFlag           bool
 }
 
 func NewBackgroundCheckOrderBuilder() *BackgroundCheckOrderBuilder {
@@ -6636,7 +7706,7 @@ func (builder *BackgroundCheckOrderBuilder) Name(name string) *BackgroundCheckOr
 // 背调报告信息
 //
 // 示例值：
-func (builder *BackgroundCheckOrderBuilder) FeedbackInfoList(feedbackInfoList []*BackgroundCheckFeedbackInfo) *BackgroundCheckOrderBuilder {
+func (builder *BackgroundCheckOrderBuilder) FeedbackInfoList(feedbackInfoList []*BackgroundCheckOrderFeedbackInfo) *BackgroundCheckOrderBuilder {
 	builder.feedbackInfoList = feedbackInfoList
 	builder.feedbackInfoListFlag = true
 	return builder
@@ -6645,7 +7715,7 @@ func (builder *BackgroundCheckOrderBuilder) FeedbackInfoList(feedbackInfoList []
 // 进度
 //
 // 示例值：
-func (builder *BackgroundCheckOrderBuilder) ProcessInfoList(processInfoList []*BackgroundCheckProcessInfo) *BackgroundCheckOrderBuilder {
+func (builder *BackgroundCheckOrderBuilder) ProcessInfoList(processInfoList []*BackgroundCheckOrderProcessInfo) *BackgroundCheckOrderBuilder {
 	builder.processInfoList = processInfoList
 	builder.processInfoListFlag = true
 	return builder
@@ -6657,6 +7727,132 @@ func (builder *BackgroundCheckOrderBuilder) ProcessInfoList(processInfoList []*B
 func (builder *BackgroundCheckOrderBuilder) UploadTime(uploadTime string) *BackgroundCheckOrderBuilder {
 	builder.uploadTime = uploadTime
 	builder.uploadTimeFlag = true
+	return builder
+}
+
+// 候选人信息
+//
+// 示例值：
+func (builder *BackgroundCheckOrderBuilder) CandidateInfo(candidateInfo *UserContactInfo) *BackgroundCheckOrderBuilder {
+	builder.candidateInfo = candidateInfo
+	builder.candidateInfoFlag = true
+	return builder
+}
+
+// 背调发起人信息
+//
+// 示例值：
+func (builder *BackgroundCheckOrderBuilder) CreatorInfo(creatorInfo *BackgroundCheckOrderCreator) *BackgroundCheckOrderBuilder {
+	builder.creatorInfo = creatorInfo
+	builder.creatorInfoFlag = true
+	return builder
+}
+
+// 背调联系人信息
+//
+// 示例值：
+func (builder *BackgroundCheckOrderBuilder) ContactorInfo(contactorInfo *UserContactInfo) *BackgroundCheckOrderBuilder {
+	builder.contactorInfo = contactorInfo
+	builder.contactorInfoFlag = true
+	return builder
+}
+
+// 背调发起时间
+//
+// 示例值：1686297649024
+func (builder *BackgroundCheckOrderBuilder) BeginTime(beginTime string) *BackgroundCheckOrderBuilder {
+	builder.beginTime = beginTime
+	builder.beginTimeFlag = true
+	return builder
+}
+
+// 背调结束时间
+//
+// 示例值：1686297649024
+func (builder *BackgroundCheckOrderBuilder) EndTime(endTime string) *BackgroundCheckOrderBuilder {
+	builder.endTime = endTime
+	builder.endTimeFlag = true
+	return builder
+}
+
+// 背调结论
+//
+// 示例值：绿灯
+func (builder *BackgroundCheckOrderBuilder) Conclusion(conclusion string) *BackgroundCheckOrderBuilder {
+	builder.conclusion = conclusion
+	builder.conclusionFlag = true
+	return builder
+}
+
+// 供应商信息
+//
+// 示例值：
+func (builder *BackgroundCheckOrderBuilder) ProviderInfo(providerInfo *ProviderIdNameObject) *BackgroundCheckOrderBuilder {
+	builder.providerInfo = providerInfo
+	builder.providerInfoFlag = true
+	return builder
+}
+
+// 自定义字段模板
+//
+// 示例值：
+func (builder *BackgroundCheckOrderBuilder) CustomFieldList(customFieldList []*EcoBackgroundCheckCustomFieldData) *BackgroundCheckOrderBuilder {
+	builder.customFieldList = customFieldList
+	builder.customFieldListFlag = true
+	return builder
+}
+
+// 自定义字段值
+//
+// 示例值：
+func (builder *BackgroundCheckOrderBuilder) CustomDataList(customDataList []*BackgroundCheckCustomFieldDataValue) *BackgroundCheckOrderBuilder {
+	builder.customDataList = customDataList
+	builder.customDataListFlag = true
+	return builder
+}
+
+// 背调调查附加项
+//
+// 示例值：
+func (builder *BackgroundCheckOrderBuilder) ExtItemInfoList(extItemInfoList []*BackgroundCheckItemInfo) *BackgroundCheckOrderBuilder {
+	builder.extItemInfoList = extItemInfoList
+	builder.extItemInfoListFlag = true
+	return builder
+}
+
+// 订单更新时间
+//
+// 示例值：1686809576215
+func (builder *BackgroundCheckOrderBuilder) UpdateTime(updateTime string) *BackgroundCheckOrderBuilder {
+	builder.updateTime = updateTime
+	builder.updateTimeFlag = true
+	return builder
+}
+
+// 属地
+//
+// 示例值：cn
+func (builder *BackgroundCheckOrderBuilder) Geo(geo string) *BackgroundCheckOrderBuilder {
+	builder.geo = geo
+	builder.geoFlag = true
+	return builder
+}
+
+// 国家城市编码
+//
+// 示例值：CN_1
+func (builder *BackgroundCheckOrderBuilder) LocationCode(locationCode string) *BackgroundCheckOrderBuilder {
+	builder.locationCode = locationCode
+	builder.locationCodeFlag = true
+	return builder
+}
+
+// 备注
+//
+// 示例值：候选人很优秀
+func (builder *BackgroundCheckOrderBuilder) Remark(remark string) *BackgroundCheckOrderBuilder {
+	builder.remark = remark
+	builder.remarkFlag = true
 	return builder
 }
 
@@ -6694,6 +7890,279 @@ func (builder *BackgroundCheckOrderBuilder) Build() *BackgroundCheckOrder {
 	}
 	if builder.uploadTimeFlag {
 		req.UploadTime = &builder.uploadTime
+
+	}
+	if builder.candidateInfoFlag {
+		req.CandidateInfo = builder.candidateInfo
+	}
+	if builder.creatorInfoFlag {
+		req.CreatorInfo = builder.creatorInfo
+	}
+	if builder.contactorInfoFlag {
+		req.ContactorInfo = builder.contactorInfo
+	}
+	if builder.beginTimeFlag {
+		req.BeginTime = &builder.beginTime
+
+	}
+	if builder.endTimeFlag {
+		req.EndTime = &builder.endTime
+
+	}
+	if builder.conclusionFlag {
+		req.Conclusion = &builder.conclusion
+
+	}
+	if builder.providerInfoFlag {
+		req.ProviderInfo = builder.providerInfo
+	}
+	if builder.customFieldListFlag {
+		req.CustomFieldList = builder.customFieldList
+	}
+	if builder.customDataListFlag {
+		req.CustomDataList = builder.customDataList
+	}
+	if builder.extItemInfoListFlag {
+		req.ExtItemInfoList = builder.extItemInfoList
+	}
+	if builder.updateTimeFlag {
+		req.UpdateTime = &builder.updateTime
+
+	}
+	if builder.geoFlag {
+		req.Geo = &builder.geo
+
+	}
+	if builder.locationCodeFlag {
+		req.LocationCode = &builder.locationCode
+
+	}
+	if builder.remarkFlag {
+		req.Remark = &builder.remark
+
+	}
+	return req
+}
+
+type BackgroundCheckOrderCreator struct {
+	UserId *string `json:"user_id,omitempty"` // 创建人ID
+}
+
+type BackgroundCheckOrderCreatorBuilder struct {
+	userId     string // 创建人ID
+	userIdFlag bool
+}
+
+func NewBackgroundCheckOrderCreatorBuilder() *BackgroundCheckOrderCreatorBuilder {
+	builder := &BackgroundCheckOrderCreatorBuilder{}
+	return builder
+}
+
+// 创建人ID
+//
+// 示例值：6930815272790114324
+func (builder *BackgroundCheckOrderCreatorBuilder) UserId(userId string) *BackgroundCheckOrderCreatorBuilder {
+	builder.userId = userId
+	builder.userIdFlag = true
+	return builder
+}
+
+func (builder *BackgroundCheckOrderCreatorBuilder) Build() *BackgroundCheckOrderCreator {
+	req := &BackgroundCheckOrderCreator{}
+	if builder.userIdFlag {
+		req.UserId = &builder.userId
+
+	}
+	return req
+}
+
+type BackgroundCheckOrderFeedbackInfo struct {
+	Id               *string `json:"id,omitempty"`                 // 背调报告ID
+	AttachmentUrl    *string `json:"attachment_url,omitempty"`     // 背调信息附件下载链接
+	ReportPreviewUrl *string `json:"report_preview_url,omitempty"` // 背调信息附件预览链接
+	Result           *string `json:"result,omitempty"`             // 背调结果：红灯、黄灯、绿灯
+	ReportType       *int    `json:"report_type,omitempty"`        // 报告类型
+	CreateTime       *string `json:"create_time,omitempty"`        // 创建时间
+	ReportName       *string `json:"report_name,omitempty"`        // 报告名称
+}
+
+type BackgroundCheckOrderFeedbackInfoBuilder struct {
+	id                   string // 背调报告ID
+	idFlag               bool
+	attachmentUrl        string // 背调信息附件下载链接
+	attachmentUrlFlag    bool
+	reportPreviewUrl     string // 背调信息附件预览链接
+	reportPreviewUrlFlag bool
+	result               string // 背调结果：红灯、黄灯、绿灯
+	resultFlag           bool
+	reportType           int // 报告类型
+	reportTypeFlag       bool
+	createTime           string // 创建时间
+	createTimeFlag       bool
+	reportName           string // 报告名称
+	reportNameFlag       bool
+}
+
+func NewBackgroundCheckOrderFeedbackInfoBuilder() *BackgroundCheckOrderFeedbackInfoBuilder {
+	builder := &BackgroundCheckOrderFeedbackInfoBuilder{}
+	return builder
+}
+
+// 背调报告ID
+//
+// 示例值：6930815272790114324
+func (builder *BackgroundCheckOrderFeedbackInfoBuilder) Id(id string) *BackgroundCheckOrderFeedbackInfoBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 背调信息附件下载链接
+//
+// 示例值：https://feishucdn.com/staource/v1/2de04c10-5cda-4c50~?image_size=np&cutpe=&quity=&mat=g&stmat=.wp
+func (builder *BackgroundCheckOrderFeedbackInfoBuilder) AttachmentUrl(attachmentUrl string) *BackgroundCheckOrderFeedbackInfoBuilder {
+	builder.attachmentUrl = attachmentUrl
+	builder.attachmentUrlFlag = true
+	return builder
+}
+
+// 背调信息附件预览链接
+//
+// 示例值：https://feishucdn.com/preview/file/6930815272790114324/
+func (builder *BackgroundCheckOrderFeedbackInfoBuilder) ReportPreviewUrl(reportPreviewUrl string) *BackgroundCheckOrderFeedbackInfoBuilder {
+	builder.reportPreviewUrl = reportPreviewUrl
+	builder.reportPreviewUrlFlag = true
+	return builder
+}
+
+// 背调结果：红灯、黄灯、绿灯
+//
+// 示例值：红灯
+func (builder *BackgroundCheckOrderFeedbackInfoBuilder) Result(result string) *BackgroundCheckOrderFeedbackInfoBuilder {
+	builder.result = result
+	builder.resultFlag = true
+	return builder
+}
+
+// 报告类型
+//
+// 示例值：1
+func (builder *BackgroundCheckOrderFeedbackInfoBuilder) ReportType(reportType int) *BackgroundCheckOrderFeedbackInfoBuilder {
+	builder.reportType = reportType
+	builder.reportTypeFlag = true
+	return builder
+}
+
+// 创建时间
+//
+// 示例值：1686645425868
+func (builder *BackgroundCheckOrderFeedbackInfoBuilder) CreateTime(createTime string) *BackgroundCheckOrderFeedbackInfoBuilder {
+	builder.createTime = createTime
+	builder.createTimeFlag = true
+	return builder
+}
+
+// 报告名称
+//
+// 示例值：张三的背调报告
+func (builder *BackgroundCheckOrderFeedbackInfoBuilder) ReportName(reportName string) *BackgroundCheckOrderFeedbackInfoBuilder {
+	builder.reportName = reportName
+	builder.reportNameFlag = true
+	return builder
+}
+
+func (builder *BackgroundCheckOrderFeedbackInfoBuilder) Build() *BackgroundCheckOrderFeedbackInfo {
+	req := &BackgroundCheckOrderFeedbackInfo{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.attachmentUrlFlag {
+		req.AttachmentUrl = &builder.attachmentUrl
+
+	}
+	if builder.reportPreviewUrlFlag {
+		req.ReportPreviewUrl = &builder.reportPreviewUrl
+
+	}
+	if builder.resultFlag {
+		req.Result = &builder.result
+
+	}
+	if builder.reportTypeFlag {
+		req.ReportType = &builder.reportType
+
+	}
+	if builder.createTimeFlag {
+		req.CreateTime = &builder.createTime
+
+	}
+	if builder.reportNameFlag {
+		req.ReportName = &builder.reportName
+
+	}
+	return req
+}
+
+type BackgroundCheckOrderProcessInfo struct {
+	Process    *string `json:"process,omitempty"`     // 背调进度
+	UpdateTime *string `json:"update_time,omitempty"` // 进度更新时间
+	EnProcess  *string `json:"en_process,omitempty"`  // 英文背调进度
+}
+
+type BackgroundCheckOrderProcessInfoBuilder struct {
+	process        string // 背调进度
+	processFlag    bool
+	updateTime     string // 进度更新时间
+	updateTimeFlag bool
+	enProcess      string // 英文背调进度
+	enProcessFlag  bool
+}
+
+func NewBackgroundCheckOrderProcessInfoBuilder() *BackgroundCheckOrderProcessInfoBuilder {
+	builder := &BackgroundCheckOrderProcessInfoBuilder{}
+	return builder
+}
+
+// 背调进度
+//
+// 示例值：待安排
+func (builder *BackgroundCheckOrderProcessInfoBuilder) Process(process string) *BackgroundCheckOrderProcessInfoBuilder {
+	builder.process = process
+	builder.processFlag = true
+	return builder
+}
+
+// 进度更新时间
+//
+// 示例值：1638359554952
+func (builder *BackgroundCheckOrderProcessInfoBuilder) UpdateTime(updateTime string) *BackgroundCheckOrderProcessInfoBuilder {
+	builder.updateTime = updateTime
+	builder.updateTimeFlag = true
+	return builder
+}
+
+// 英文背调进度
+//
+// 示例值：arranged
+func (builder *BackgroundCheckOrderProcessInfoBuilder) EnProcess(enProcess string) *BackgroundCheckOrderProcessInfoBuilder {
+	builder.enProcess = enProcess
+	builder.enProcessFlag = true
+	return builder
+}
+
+func (builder *BackgroundCheckOrderProcessInfoBuilder) Build() *BackgroundCheckOrderProcessInfo {
+	req := &BackgroundCheckOrderProcessInfo{}
+	if builder.processFlag {
+		req.Process = &builder.process
+
+	}
+	if builder.updateTimeFlag {
+		req.UpdateTime = &builder.updateTime
+
+	}
+	if builder.enProcessFlag {
+		req.EnProcess = &builder.enProcess
 
 	}
 	return req
@@ -7510,6 +8979,41 @@ func (builder *BasicInfoBuilder) Build() *BasicInfo {
 	return req
 }
 
+type BonusAmount struct {
+	PointBonus *int `json:"point_bonus,omitempty"` // 积分奖励
+
+}
+
+type BonusAmountBuilder struct {
+	pointBonus     int // 积分奖励
+	pointBonusFlag bool
+}
+
+func NewBonusAmountBuilder() *BonusAmountBuilder {
+	builder := &BonusAmountBuilder{}
+	return builder
+}
+
+// 积分奖励
+//
+// 示例值：100
+func (builder *BonusAmountBuilder) PointBonus(pointBonus int) *BonusAmountBuilder {
+	builder.pointBonus = pointBonus
+	builder.pointBonusFlag = true
+	return builder
+}
+
+func (builder *BonusAmountBuilder) Build() *BonusAmount {
+	req := &BonusAmount{}
+
+	if builder.pointBonusFlag {
+		req.PointBonus = &builder.pointBonus
+
+	}
+
+	return req
+}
+
 type CareerInfo struct {
 	CareerType *int    `json:"career_type,omitempty"` // 类型
 	Company    *string `json:"company,omitempty"`     // 公司
@@ -7622,6 +9126,54 @@ func (builder *CareerInfoBuilder) Build() *CareerInfo {
 	return req
 }
 
+type Cash struct {
+	CurrencyType *string  `json:"currency_type,omitempty"` // 币种
+	Amount       *float64 `json:"amount,omitempty"`        // 数额
+}
+
+type CashBuilder struct {
+	currencyType     string // 币种
+	currencyTypeFlag bool
+	amount           float64 // 数额
+	amountFlag       bool
+}
+
+func NewCashBuilder() *CashBuilder {
+	builder := &CashBuilder{}
+	return builder
+}
+
+// 币种
+//
+// 示例值：CNY
+func (builder *CashBuilder) CurrencyType(currencyType string) *CashBuilder {
+	builder.currencyType = currencyType
+	builder.currencyTypeFlag = true
+	return builder
+}
+
+// 数额
+//
+// 示例值：100
+func (builder *CashBuilder) Amount(amount float64) *CashBuilder {
+	builder.amount = amount
+	builder.amountFlag = true
+	return builder
+}
+
+func (builder *CashBuilder) Build() *Cash {
+	req := &Cash{}
+	if builder.currencyTypeFlag {
+		req.CurrencyType = &builder.currencyType
+
+	}
+	if builder.amountFlag {
+		req.Amount = &builder.amount
+
+	}
+	return req
+}
+
 type CertificateInfo struct {
 	Desc *string `json:"desc,omitempty"` // 证件描述
 	Name *string `json:"name,omitempty"` // 证件名称
@@ -7728,6 +9280,68 @@ func (builder *ChangeEmployeeStageBuilder) Build() *ChangeEmployeeStage {
 	}
 	if builder.overboardInfoFlag {
 		req.OverboardInfo = builder.overboardInfo
+	}
+	return req
+}
+
+type CheckFailedAccountInfo struct {
+	AccountId               *string      `json:"account_id,omitempty"`                 // 账户ID
+	TotalWithdrawRewardInfo *BonusAmount `json:"total_withdraw_reward_info,omitempty"` // 招聘系统内的提取金额
+	TotalRechargeRewardInfo *BonusAmount `json:"total_recharge_reward_info,omitempty"` // 商城实际充值金额
+}
+
+type CheckFailedAccountInfoBuilder struct {
+	accountId                   string // 账户ID
+	accountIdFlag               bool
+	totalWithdrawRewardInfo     *BonusAmount // 招聘系统内的提取金额
+	totalWithdrawRewardInfoFlag bool
+	totalRechargeRewardInfo     *BonusAmount // 商城实际充值金额
+	totalRechargeRewardInfoFlag bool
+}
+
+func NewCheckFailedAccountInfoBuilder() *CheckFailedAccountInfoBuilder {
+	builder := &CheckFailedAccountInfoBuilder{}
+	return builder
+}
+
+// 账户ID
+//
+// 示例值：6930815272790114324
+func (builder *CheckFailedAccountInfoBuilder) AccountId(accountId string) *CheckFailedAccountInfoBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+// 招聘系统内的提取金额
+//
+// 示例值：
+func (builder *CheckFailedAccountInfoBuilder) TotalWithdrawRewardInfo(totalWithdrawRewardInfo *BonusAmount) *CheckFailedAccountInfoBuilder {
+	builder.totalWithdrawRewardInfo = totalWithdrawRewardInfo
+	builder.totalWithdrawRewardInfoFlag = true
+	return builder
+}
+
+// 商城实际充值金额
+//
+// 示例值：
+func (builder *CheckFailedAccountInfoBuilder) TotalRechargeRewardInfo(totalRechargeRewardInfo *BonusAmount) *CheckFailedAccountInfoBuilder {
+	builder.totalRechargeRewardInfo = totalRechargeRewardInfo
+	builder.totalRechargeRewardInfoFlag = true
+	return builder
+}
+
+func (builder *CheckFailedAccountInfoBuilder) Build() *CheckFailedAccountInfo {
+	req := &CheckFailedAccountInfo{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+
+	}
+	if builder.totalWithdrawRewardInfoFlag {
+		req.TotalWithdrawRewardInfo = builder.totalWithdrawRewardInfo
+	}
+	if builder.totalRechargeRewardInfoFlag {
+		req.TotalRechargeRewardInfo = builder.totalRechargeRewardInfo
 	}
 	return req
 }
@@ -7859,77 +9473,78 @@ func (builder *CodeNameObjectBuilder) Build() *CodeNameObject {
 }
 
 type CombinedJob struct {
-	Id                            *string                      `json:"id,omitempty"`                               // 职位 ID
-	Code                          *string                      `json:"code,omitempty"`                             // 职位编号，可传入职位的「职位编号」、「职位 ID」或者「职位序号」，将以传入的参数作为职位编号，以便双方系统的数据映射
-	Experience                    *int                         `json:"experience,omitempty"`                       // 工作年限
-	ExpiryTime                    *int                         `json:"expiry_time,omitempty"`                      // 到期日期
-	CustomizedDataList            []*CombinedJobObjectValueMap `json:"customized_data_list,omitempty"`             // 自定义字段
-	MinLevelId                    *string                      `json:"min_level_id,omitempty"`                     // 最低职级，枚举通过接口「获取职级列表」获取
-	MinSalary                     *int                         `json:"min_salary,omitempty"`                       // 最低薪资，单位：k
-	Title                         *string                      `json:"title,omitempty"`                            // 职位名称
-	JobManagers                   *JobManager                  `json:"job_managers,omitempty"`                     // 职位的招聘团队
-	JobProcessId                  *string                      `json:"job_process_id,omitempty"`                   // 招聘流程，枚举通过接口「获取招聘流程信息」获取
-	ProcessType                   *int                         `json:"process_type,omitempty"`                     // 职位流程类型
-	SubjectId                     *string                      `json:"subject_id,omitempty"`                       // 项目，枚举通过「获取项目列表」接口
-	JobFunctionId                 *string                      `json:"job_function_id,omitempty"`                  // 职能分类，通过「获取职能分类」获取
-	DepartmentId                  *string                      `json:"department_id,omitempty"`                    // 部门 ID，须传入open_department_id，格式为"od-xxxx"。可通过「获取部门信息列表」获取
-	HeadCount                     *int                         `json:"head_count,omitempty"`                       // 招聘数量
-	IsNeverExpired                *bool                        `json:"is_never_expired,omitempty"`                 // 是否长期有效
-	MaxSalary                     *int                         `json:"max_salary,omitempty"`                       // 最高薪资，单位：k
-	Requirement                   *string                      `json:"requirement,omitempty"`                      // 职位要求
-	AddressId                     *string                      `json:"address_id,omitempty"`                       // 工作地点，枚举通过接口「获取地址列表」获取，选择地点用途为「职位地址」
-	Description                   *string                      `json:"description,omitempty"`                      // 职位描述
-	HighlightList                 []string                     `json:"highlight_list,omitempty"`                   // 职位亮点
-	JobTypeId                     *string                      `json:"job_type_id,omitempty"`                      // 职位类别
-	MaxLevelId                    *string                      `json:"max_level_id,omitempty"`                     // 最高职级，枚举通过接口「获取职级列表」获取
-	RecruitmentTypeId             *string                      `json:"recruitment_type_id,omitempty"`              // 雇佣类型
-	RequiredDegree                *int                         `json:"required_degree,omitempty"`                  // 学历要求
-	JobCategoryId                 *string                      `json:"job_category_id,omitempty"`                  // 序列
-	AddressIdList                 []string                     `json:"address_id_list,omitempty"`                  // 工作地点，枚举通过接口「获取地址列表」获取，选择地点用途为「职位地址」
-	JobAttribute                  *int                         `json:"job_attribute,omitempty"`                    // 职位属性，1是实体职位，2是虚拟职位
-	ExpiryTimestamp               *string                      `json:"expiry_timestamp,omitempty"`                 // 到期日期的毫秒时间戳
-	InterviewRegistrationSchemaId *string                      `json:"interview_registration_schema_id,omitempty"` // 面试登记表ID
+	Id                 *string                      `json:"id,omitempty"`                   // 职位 ID
+	Code               *string                      `json:"code,omitempty"`                 // 职位编号，可传入职位的「职位编号」、「职位 ID」或者「职位序号」，将以传入的参数作为职位编号，以便双方系统的数据映射
+	Experience         *int                         `json:"experience,omitempty"`           // 工作年限
+	ExpiryTime         *int                         `json:"expiry_time,omitempty"`          // 到期日期
+	CustomizedDataList []*CombinedJobObjectValueMap `json:"customized_data_list,omitempty"` // 自定义字段
+	MinLevelId         *string                      `json:"min_level_id,omitempty"`         // 最低职级，枚举通过接口「获取职级列表」获取
+	MinSalary          *int                         `json:"min_salary,omitempty"`           // 最低薪资，单位：k
+	Title              *string                      `json:"title,omitempty"`                // 职位名称
+	JobManagers        *JobManager                  `json:"job_managers,omitempty"`         // 职位的招聘团队
+	JobProcessId       *string                      `json:"job_process_id,omitempty"`       // 招聘流程，枚举通过接口「获取招聘流程信息」获取
+	ProcessType        *int                         `json:"process_type,omitempty"`         // 职位流程类型
+	SubjectId          *string                      `json:"subject_id,omitempty"`           // 项目，枚举通过「获取项目列表」接口
+	JobFunctionId      *string                      `json:"job_function_id,omitempty"`      // 职能分类，通过「获取职能分类」获取
+	DepartmentId       *string                      `json:"department_id,omitempty"`        // 部门 ID，须传入open_department_id，格式为"od-xxxx"。可通过「获取部门信息列表」获取
+	HeadCount          *int                         `json:"head_count,omitempty"`           // 招聘数量
+	IsNeverExpired     *bool                        `json:"is_never_expired,omitempty"`     // 是否长期有效
+	MaxSalary          *int                         `json:"max_salary,omitempty"`           // 最高薪资，单位：k
+	Requirement        *string                      `json:"requirement,omitempty"`          // 职位要求
+
+	Description                   *string  `json:"description,omitempty"`                      // 职位描述
+	HighlightList                 []string `json:"highlight_list,omitempty"`                   // 职位亮点
+	JobTypeId                     *string  `json:"job_type_id,omitempty"`                      // 职位类别
+	MaxLevelId                    *string  `json:"max_level_id,omitempty"`                     // 最高职级，枚举通过接口「获取职级列表」获取
+	RecruitmentTypeId             *string  `json:"recruitment_type_id,omitempty"`              // 雇佣类型
+	RequiredDegree                *int     `json:"required_degree,omitempty"`                  // 学历要求
+	JobCategoryId                 *string  `json:"job_category_id,omitempty"`                  // 序列
+	AddressIdList                 []string `json:"address_id_list,omitempty"`                  // 工作地点，枚举通过接口「获取地址列表」获取，选择地点用途为「职位地址」
+	JobAttribute                  *int     `json:"job_attribute,omitempty"`                    // 职位属性，1是实体职位，2是虚拟职位
+	ExpiryTimestamp               *string  `json:"expiry_timestamp,omitempty"`                 // 到期日期的毫秒时间戳
+	InterviewRegistrationSchemaId *string  `json:"interview_registration_schema_id,omitempty"` // 面试登记表ID
+	OnboardRegistrationSchemaId   *string  `json:"onboard_registration_schema_id,omitempty"`   // 入职登记表ID
+	TargetMajorIdList             []string `json:"target_major_id_list,omitempty"`             // 目标专业ID List
 }
 
 type CombinedJobBuilder struct {
-	id                                string // 职位 ID
-	idFlag                            bool
-	code                              string // 职位编号，可传入职位的「职位编号」、「职位 ID」或者「职位序号」，将以传入的参数作为职位编号，以便双方系统的数据映射
-	codeFlag                          bool
-	experience                        int // 工作年限
-	experienceFlag                    bool
-	expiryTime                        int // 到期日期
-	expiryTimeFlag                    bool
-	customizedDataList                []*CombinedJobObjectValueMap // 自定义字段
-	customizedDataListFlag            bool
-	minLevelId                        string // 最低职级，枚举通过接口「获取职级列表」获取
-	minLevelIdFlag                    bool
-	minSalary                         int // 最低薪资，单位：k
-	minSalaryFlag                     bool
-	title                             string // 职位名称
-	titleFlag                         bool
-	jobManagers                       *JobManager // 职位的招聘团队
-	jobManagersFlag                   bool
-	jobProcessId                      string // 招聘流程，枚举通过接口「获取招聘流程信息」获取
-	jobProcessIdFlag                  bool
-	processType                       int // 职位流程类型
-	processTypeFlag                   bool
-	subjectId                         string // 项目，枚举通过「获取项目列表」接口
-	subjectIdFlag                     bool
-	jobFunctionId                     string // 职能分类，通过「获取职能分类」获取
-	jobFunctionIdFlag                 bool
-	departmentId                      string // 部门 ID，须传入open_department_id，格式为"od-xxxx"。可通过「获取部门信息列表」获取
-	departmentIdFlag                  bool
-	headCount                         int // 招聘数量
-	headCountFlag                     bool
-	isNeverExpired                    bool // 是否长期有效
-	isNeverExpiredFlag                bool
-	maxSalary                         int // 最高薪资，单位：k
-	maxSalaryFlag                     bool
-	requirement                       string // 职位要求
-	requirementFlag                   bool
-	addressId                         string // 工作地点，枚举通过接口「获取地址列表」获取，选择地点用途为「职位地址」
-	addressIdFlag                     bool
+	id                     string // 职位 ID
+	idFlag                 bool
+	code                   string // 职位编号，可传入职位的「职位编号」、「职位 ID」或者「职位序号」，将以传入的参数作为职位编号，以便双方系统的数据映射
+	codeFlag               bool
+	experience             int // 工作年限
+	experienceFlag         bool
+	expiryTime             int // 到期日期
+	expiryTimeFlag         bool
+	customizedDataList     []*CombinedJobObjectValueMap // 自定义字段
+	customizedDataListFlag bool
+	minLevelId             string // 最低职级，枚举通过接口「获取职级列表」获取
+	minLevelIdFlag         bool
+	minSalary              int // 最低薪资，单位：k
+	minSalaryFlag          bool
+	title                  string // 职位名称
+	titleFlag              bool
+	jobManagers            *JobManager // 职位的招聘团队
+	jobManagersFlag        bool
+	jobProcessId           string // 招聘流程，枚举通过接口「获取招聘流程信息」获取
+	jobProcessIdFlag       bool
+	processType            int // 职位流程类型
+	processTypeFlag        bool
+	subjectId              string // 项目，枚举通过「获取项目列表」接口
+	subjectIdFlag          bool
+	jobFunctionId          string // 职能分类，通过「获取职能分类」获取
+	jobFunctionIdFlag      bool
+	departmentId           string // 部门 ID，须传入open_department_id，格式为"od-xxxx"。可通过「获取部门信息列表」获取
+	departmentIdFlag       bool
+	headCount              int // 招聘数量
+	headCountFlag          bool
+	isNeverExpired         bool // 是否长期有效
+	isNeverExpiredFlag     bool
+	maxSalary              int // 最高薪资，单位：k
+	maxSalaryFlag          bool
+	requirement            string // 职位要求
+	requirementFlag        bool
+
 	description                       string // 职位描述
 	descriptionFlag                   bool
 	highlightList                     []string // 职位亮点
@@ -7952,6 +9567,10 @@ type CombinedJobBuilder struct {
 	expiryTimestampFlag               bool
 	interviewRegistrationSchemaId     string // 面试登记表ID
 	interviewRegistrationSchemaIdFlag bool
+	onboardRegistrationSchemaId       string // 入职登记表ID
+	onboardRegistrationSchemaIdFlag   bool
+	targetMajorIdList                 []string // 目标专业ID List
+	targetMajorIdListFlag             bool
 }
 
 func NewCombinedJobBuilder() *CombinedJobBuilder {
@@ -8121,15 +9740,6 @@ func (builder *CombinedJobBuilder) Requirement(requirement string) *CombinedJobB
 	return builder
 }
 
-// 工作地点，枚举通过接口「获取地址列表」获取，选择地点用途为「职位地址」
-//
-// 示例值：6960663240925956553
-func (builder *CombinedJobBuilder) AddressId(addressId string) *CombinedJobBuilder {
-	builder.addressId = addressId
-	builder.addressIdFlag = true
-	return builder
-}
-
 // 职位描述
 //
 // 示例值：后端研发岗位描述
@@ -8229,6 +9839,24 @@ func (builder *CombinedJobBuilder) InterviewRegistrationSchemaId(interviewRegist
 	return builder
 }
 
+// 入职登记表ID
+//
+// 示例值：6930815272790114325
+func (builder *CombinedJobBuilder) OnboardRegistrationSchemaId(onboardRegistrationSchemaId string) *CombinedJobBuilder {
+	builder.onboardRegistrationSchemaId = onboardRegistrationSchemaId
+	builder.onboardRegistrationSchemaIdFlag = true
+	return builder
+}
+
+// 目标专业ID List
+//
+// 示例值：
+func (builder *CombinedJobBuilder) TargetMajorIdList(targetMajorIdList []string) *CombinedJobBuilder {
+	builder.targetMajorIdList = targetMajorIdList
+	builder.targetMajorIdListFlag = true
+	return builder
+}
+
 func (builder *CombinedJobBuilder) Build() *CombinedJob {
 	req := &CombinedJob{}
 	if builder.idFlag {
@@ -8301,10 +9929,7 @@ func (builder *CombinedJobBuilder) Build() *CombinedJob {
 		req.Requirement = &builder.requirement
 
 	}
-	if builder.addressIdFlag {
-		req.AddressId = &builder.addressId
 
-	}
 	if builder.descriptionFlag {
 		req.Description = &builder.description
 
@@ -8346,6 +9971,13 @@ func (builder *CombinedJobBuilder) Build() *CombinedJob {
 	if builder.interviewRegistrationSchemaIdFlag {
 		req.InterviewRegistrationSchemaId = &builder.interviewRegistrationSchemaId
 
+	}
+	if builder.onboardRegistrationSchemaIdFlag {
+		req.OnboardRegistrationSchemaId = &builder.onboardRegistrationSchemaId
+
+	}
+	if builder.targetMajorIdListFlag {
+		req.TargetMajorIdList = builder.targetMajorIdList
 	}
 	return req
 }
@@ -8402,7 +10034,9 @@ type CombinedJobResult struct {
 	DefaultJobPost                  *CombinedJobResultDefaultJobPost `json:"default_job_post,omitempty"`                   // 职位广告
 	Job                             *Job                             `json:"job,omitempty"`                                // 职位
 	JobManager                      *JobManager                      `json:"job_manager,omitempty"`                        // 职位负责人
-	InterviewRegistrationSchemaInfo *RegistrationInfo                `json:"interview_registration_schema_info,omitempty"` // 面试登记表
+	InterviewRegistrationSchemaInfo *RegistrationSchemaInfo          `json:"interview_registration_schema_info,omitempty"` // 面试登记表
+	OnboardRegistrationSchemaInfo   *RegistrationSchemaInfo          `json:"onboard_registration_schema_info,omitempty"`   // 入职登记表
+	TargetMajorList                 []*TargetMajorInfo               `json:"target_major_list,omitempty"`                  // 目标专业
 }
 
 type CombinedJobResultBuilder struct {
@@ -8412,8 +10046,12 @@ type CombinedJobResultBuilder struct {
 	jobFlag                             bool
 	jobManager                          *JobManager // 职位负责人
 	jobManagerFlag                      bool
-	interviewRegistrationSchemaInfo     *RegistrationInfo // 面试登记表
+	interviewRegistrationSchemaInfo     *RegistrationSchemaInfo // 面试登记表
 	interviewRegistrationSchemaInfoFlag bool
+	onboardRegistrationSchemaInfo       *RegistrationSchemaInfo // 入职登记表
+	onboardRegistrationSchemaInfoFlag   bool
+	targetMajorList                     []*TargetMajorInfo // 目标专业
+	targetMajorListFlag                 bool
 }
 
 func NewCombinedJobResultBuilder() *CombinedJobResultBuilder {
@@ -8451,9 +10089,27 @@ func (builder *CombinedJobResultBuilder) JobManager(jobManager *JobManager) *Com
 // 面试登记表
 //
 // 示例值：
-func (builder *CombinedJobResultBuilder) InterviewRegistrationSchemaInfo(interviewRegistrationSchemaInfo *RegistrationInfo) *CombinedJobResultBuilder {
+func (builder *CombinedJobResultBuilder) InterviewRegistrationSchemaInfo(interviewRegistrationSchemaInfo *RegistrationSchemaInfo) *CombinedJobResultBuilder {
 	builder.interviewRegistrationSchemaInfo = interviewRegistrationSchemaInfo
 	builder.interviewRegistrationSchemaInfoFlag = true
+	return builder
+}
+
+// 入职登记表
+//
+// 示例值：
+func (builder *CombinedJobResultBuilder) OnboardRegistrationSchemaInfo(onboardRegistrationSchemaInfo *RegistrationSchemaInfo) *CombinedJobResultBuilder {
+	builder.onboardRegistrationSchemaInfo = onboardRegistrationSchemaInfo
+	builder.onboardRegistrationSchemaInfoFlag = true
+	return builder
+}
+
+// 目标专业
+//
+// 示例值：
+func (builder *CombinedJobResultBuilder) TargetMajorList(targetMajorList []*TargetMajorInfo) *CombinedJobResultBuilder {
+	builder.targetMajorList = targetMajorList
+	builder.targetMajorListFlag = true
 	return builder
 }
 
@@ -8470,6 +10126,12 @@ func (builder *CombinedJobResultBuilder) Build() *CombinedJobResult {
 	}
 	if builder.interviewRegistrationSchemaInfoFlag {
 		req.InterviewRegistrationSchemaInfo = builder.interviewRegistrationSchemaInfo
+	}
+	if builder.onboardRegistrationSchemaInfoFlag {
+		req.OnboardRegistrationSchemaInfo = builder.onboardRegistrationSchemaInfo
+	}
+	if builder.targetMajorListFlag {
+		req.TargetMajorList = builder.targetMajorList
 	}
 	return req
 }
@@ -9130,6 +10792,54 @@ func (builder *CompetitionInfoBuilder) Build() *CompetitionInfo {
 	return req
 }
 
+type ContractPeriodInfo struct {
+	PeriodType *int `json:"period_type,omitempty"` // 合同周期类型
+	Period     *int `json:"period,omitempty"`      // 合同时长
+}
+
+type ContractPeriodInfoBuilder struct {
+	periodType     int // 合同周期类型
+	periodTypeFlag bool
+	period         int // 合同时长
+	periodFlag     bool
+}
+
+func NewContractPeriodInfoBuilder() *ContractPeriodInfoBuilder {
+	builder := &ContractPeriodInfoBuilder{}
+	return builder
+}
+
+// 合同周期类型
+//
+// 示例值：1
+func (builder *ContractPeriodInfoBuilder) PeriodType(periodType int) *ContractPeriodInfoBuilder {
+	builder.periodType = periodType
+	builder.periodTypeFlag = true
+	return builder
+}
+
+// 合同时长
+//
+// 示例值：3
+func (builder *ContractPeriodInfoBuilder) Period(period int) *ContractPeriodInfoBuilder {
+	builder.period = period
+	builder.periodFlag = true
+	return builder
+}
+
+func (builder *ContractPeriodInfoBuilder) Build() *ContractPeriodInfo {
+	req := &ContractPeriodInfo{}
+	if builder.periodTypeFlag {
+		req.PeriodType = &builder.periodType
+
+	}
+	if builder.periodFlag {
+		req.Period = &builder.period
+
+	}
+	return req
+}
+
 type Country struct {
 	CountryCode *string `json:"country_code,omitempty"` // 国家编码
 	Name        *string `json:"name,omitempty"`         // 名字
@@ -9253,6 +10963,54 @@ func (builder *DepartmentBuilder) Build() *Department {
 	}
 	if builder.enNameFlag {
 		req.EnName = &builder.enName
+
+	}
+	return req
+}
+
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
 
 	}
 	return req
@@ -9638,18 +11396,24 @@ func (builder *EcoAccountCustomFieldEventDataBuilder) Build() *EcoAccountCustomF
 }
 
 type EcoBackgroundCheckCreateEventCandidateInfo struct {
-	Name   *string                              `json:"name,omitempty"`   // 候选人姓名
-	Mobile *EcoBackgroundCheckCreateEventMobile `json:"mobile,omitempty"` // 候选人手机号
-	Email  *string                              `json:"email,omitempty"`  // 候选人邮箱
+	Name      *string                              `json:"name,omitempty"`       // 候选人姓名
+	Mobile    *EcoBackgroundCheckCreateEventMobile `json:"mobile,omitempty"`     // 候选人手机号
+	Email     *string                              `json:"email,omitempty"`      // 候选人邮箱
+	FirstName *string                              `json:"first_name,omitempty"` // 名字
+	LastName  *string                              `json:"last_name,omitempty"`  // 姓氏
 }
 
 type EcoBackgroundCheckCreateEventCandidateInfoBuilder struct {
-	name       string // 候选人姓名
-	nameFlag   bool
-	mobile     *EcoBackgroundCheckCreateEventMobile // 候选人手机号
-	mobileFlag bool
-	email      string // 候选人邮箱
-	emailFlag  bool
+	name          string // 候选人姓名
+	nameFlag      bool
+	mobile        *EcoBackgroundCheckCreateEventMobile // 候选人手机号
+	mobileFlag    bool
+	email         string // 候选人邮箱
+	emailFlag     bool
+	firstName     string // 名字
+	firstNameFlag bool
+	lastName      string // 姓氏
+	lastNameFlag  bool
 }
 
 func NewEcoBackgroundCheckCreateEventCandidateInfoBuilder() *EcoBackgroundCheckCreateEventCandidateInfoBuilder {
@@ -9684,6 +11448,24 @@ func (builder *EcoBackgroundCheckCreateEventCandidateInfoBuilder) Email(email st
 	return builder
 }
 
+// 名字
+//
+// 示例值：Ming
+func (builder *EcoBackgroundCheckCreateEventCandidateInfoBuilder) FirstName(firstName string) *EcoBackgroundCheckCreateEventCandidateInfoBuilder {
+	builder.firstName = firstName
+	builder.firstNameFlag = true
+	return builder
+}
+
+// 姓氏
+//
+// 示例值：Lee
+func (builder *EcoBackgroundCheckCreateEventCandidateInfoBuilder) LastName(lastName string) *EcoBackgroundCheckCreateEventCandidateInfoBuilder {
+	builder.lastName = lastName
+	builder.lastNameFlag = true
+	return builder
+}
+
 func (builder *EcoBackgroundCheckCreateEventCandidateInfoBuilder) Build() *EcoBackgroundCheckCreateEventCandidateInfo {
 	req := &EcoBackgroundCheckCreateEventCandidateInfo{}
 	if builder.nameFlag {
@@ -9695,6 +11477,14 @@ func (builder *EcoBackgroundCheckCreateEventCandidateInfoBuilder) Build() *EcoBa
 	}
 	if builder.emailFlag {
 		req.Email = &builder.email
+
+	}
+	if builder.firstNameFlag {
+		req.FirstName = &builder.firstName
+
+	}
+	if builder.lastNameFlag {
+		req.LastName = &builder.lastName
 
 	}
 	return req
@@ -10253,15 +12043,18 @@ func (builder *EcoBackgroundCheckPackageDataBuilder) Build() *EcoBackgroundCheck
 }
 
 type EcoBackgroundCheckReportFile struct {
-	ReportName *string `json:"report_name,omitempty"` // 报告名称
-	ReportUrl  *string `json:"report_url,omitempty"`  // 报告地址
+	ReportName    *string `json:"report_name,omitempty"`     // 报告名称
+	ReportUrl     *string `json:"report_url,omitempty"`      // 报告地址
+	ReportUrlType *int    `json:"report_url_type,omitempty"` // 报告地址类型；枚举值 1 或为空时为可下载的 pdf 链接，2 为预览型链接
 }
 
 type EcoBackgroundCheckReportFileBuilder struct {
-	reportName     string // 报告名称
-	reportNameFlag bool
-	reportUrl      string // 报告地址
-	reportUrlFlag  bool
+	reportName        string // 报告名称
+	reportNameFlag    bool
+	reportUrl         string // 报告地址
+	reportUrlFlag     bool
+	reportUrlType     int // 报告地址类型；枚举值 1 或为空时为可下载的 pdf 链接，2 为预览型链接
+	reportUrlTypeFlag bool
 }
 
 func NewEcoBackgroundCheckReportFileBuilder() *EcoBackgroundCheckReportFileBuilder {
@@ -10287,6 +12080,15 @@ func (builder *EcoBackgroundCheckReportFileBuilder) ReportUrl(reportUrl string) 
 	return builder
 }
 
+// 报告地址类型；枚举值 1 或为空时为可下载的 pdf 链接，2 为预览型链接
+//
+// 示例值：1
+func (builder *EcoBackgroundCheckReportFileBuilder) ReportUrlType(reportUrlType int) *EcoBackgroundCheckReportFileBuilder {
+	builder.reportUrlType = reportUrlType
+	builder.reportUrlTypeFlag = true
+	return builder
+}
+
 func (builder *EcoBackgroundCheckReportFileBuilder) Build() *EcoBackgroundCheckReportFile {
 	req := &EcoBackgroundCheckReportFile{}
 	if builder.reportNameFlag {
@@ -10295,6 +12097,10 @@ func (builder *EcoBackgroundCheckReportFileBuilder) Build() *EcoBackgroundCheckR
 	}
 	if builder.reportUrlFlag {
 		req.ReportUrl = &builder.reportUrl
+
+	}
+	if builder.reportUrlTypeFlag {
+		req.ReportUrlType = &builder.reportUrlType
 
 	}
 	return req
@@ -10777,15 +12583,18 @@ func (builder *EcoExamResultDetailBuilder) Build() *EcoExamResultDetail {
 }
 
 type EcoExamResultReport struct {
-	Name *string `json:"name,omitempty"` // 报告名称
-	Url  *string `json:"url,omitempty"`  // 报告链接
+	Name       *string `json:"name,omitempty"`        // 报告名称
+	Url        *string `json:"url,omitempty"`         // 报告链接
+	AnswerTime *string `json:"answer_time,omitempty"` // 作答完成时间(毫秒时间戳)
 }
 
 type EcoExamResultReportBuilder struct {
-	name     string // 报告名称
-	nameFlag bool
-	url      string // 报告链接
-	urlFlag  bool
+	name           string // 报告名称
+	nameFlag       bool
+	url            string // 报告链接
+	urlFlag        bool
+	answerTime     string // 作答完成时间(毫秒时间戳)
+	answerTimeFlag bool
 }
 
 func NewEcoExamResultReportBuilder() *EcoExamResultReportBuilder {
@@ -10811,6 +12620,15 @@ func (builder *EcoExamResultReportBuilder) Url(url string) *EcoExamResultReportB
 	return builder
 }
 
+// 作答完成时间(毫秒时间戳)
+//
+// 示例值：1658676234053
+func (builder *EcoExamResultReportBuilder) AnswerTime(answerTime string) *EcoExamResultReportBuilder {
+	builder.answerTime = answerTime
+	builder.answerTimeFlag = true
+	return builder
+}
+
 func (builder *EcoExamResultReportBuilder) Build() *EcoExamResultReport {
 	req := &EcoExamResultReport{}
 	if builder.nameFlag {
@@ -10819,6 +12637,10 @@ func (builder *EcoExamResultReportBuilder) Build() *EcoExamResultReport {
 	}
 	if builder.urlFlag {
 		req.Url = &builder.url
+
+	}
+	if builder.answerTimeFlag {
+		req.AnswerTime = &builder.answerTime
 
 	}
 	return req
@@ -11731,6 +13553,7 @@ type ExternalApplication struct {
 	TerminationReason  *string `json:"termination_reason,omitempty"`   // 终止原因
 	DeliveryType       *int    `json:"delivery_type,omitempty"`        // 投递类型
 	ModifyTime         *int    `json:"modify_time,omitempty"`          // 更新时间
+	CreateTime         *int    `json:"create_time,omitempty"`          // 投递在外部系统创建时间
 	TerminationType    *string `json:"termination_type,omitempty"`     // 终止类型
 }
 
@@ -11755,6 +13578,8 @@ type ExternalApplicationBuilder struct {
 	deliveryTypeFlag       bool
 	modifyTime             int // 更新时间
 	modifyTimeFlag         bool
+	createTime             int // 投递在外部系统创建时间
+	createTimeFlag         bool
 	terminationType        string // 终止类型
 	terminationTypeFlag    bool
 }
@@ -11854,6 +13679,15 @@ func (builder *ExternalApplicationBuilder) ModifyTime(modifyTime int) *ExternalA
 	return builder
 }
 
+// 投递在外部系统创建时间
+//
+// 示例值：1618500278644
+func (builder *ExternalApplicationBuilder) CreateTime(createTime int) *ExternalApplicationBuilder {
+	builder.createTime = createTime
+	builder.createTimeFlag = true
+	return builder
+}
+
 // 终止类型
 //
 // 示例值：health
@@ -11903,6 +13737,10 @@ func (builder *ExternalApplicationBuilder) Build() *ExternalApplication {
 	}
 	if builder.modifyTimeFlag {
 		req.ModifyTime = &builder.modifyTime
+
+	}
+	if builder.createTimeFlag {
+		req.CreateTime = &builder.createTime
 
 	}
 	if builder.terminationTypeFlag {
@@ -12511,6 +14349,309 @@ func (builder *ExternalInterviewAssessmentDimensionBuilder) Build() *ExternalInt
 	}
 	if builder.descriptionFlag {
 		req.Description = &builder.description
+
+	}
+	return req
+}
+
+type ExternalReward struct {
+	ReferralUserId *string      `json:"referral_user_id,omitempty"` // 内推人ID
+	CreateUserId   *string      `json:"create_user_id,omitempty"`   // 奖励创建人，管理员与内推人可见，若不传，则默认为「外部系统」
+	ConfirmUserId  *string      `json:"confirm_user_id,omitempty"`  // 奖励确认人，若导入的「内推奖励状态」为「已确认」可传入，若不传，则默认为「外部系统」
+	PayUserId      *string      `json:"pay_user_id,omitempty"`      // 奖励发放人，导入奖励状态为「已发放」的奖励传入，若不传，则默认为「外部系统」
+	ExternalId     *string      `json:"external_id,omitempty"`      // 外部系统奖励唯一id（仅用于幂等）
+	ApplicationId  *string      `json:"application_id,omitempty"`   // 投递id，和「人才id」二选一
+	TalentId       *string      `json:"talent_id,omitempty"`        // 人才id，和「投递id」二选一
+	JobId          *string      `json:"job_id,omitempty"`           // 职位id，当参数包含「人才id」时，可以选填职位id
+	Reason         *string      `json:"reason,omitempty"`           // 奖励原因
+	RuleType       *int         `json:"rule_type,omitempty"`        // 导入的奖励规则类型，将展示在内推奖励明细中，管理员与内推人可见
+	Bonus          *BonusAmount `json:"bonus,omitempty"`            // 奖励数据
+	Stage          *int         `json:"stage,omitempty"`            // 导入的内推奖励状态
+	CreateTime     *string      `json:"create_time,omitempty"`      // 奖励产生时间，内推奖励触发时间，若未传入，取接口传入时间
+	ConfirmTime    *string      `json:"confirm_time,omitempty"`     // 奖励确认时间，若导入的「内推奖励状态」为「已确认」可传入，若未传入，取接口传入时间
+	PayTime        *string      `json:"pay_time,omitempty"`         // 奖励发放时间，若导入的「内推奖励状态」为「已确认」可传入，若未传入，取接口传入时间
+	OnboardTime    *string      `json:"onboard_time,omitempty"`     // 入职时间，管理员与内推人可见，若为「入职奖励」可传入
+	ConversionTime *string      `json:"conversion_time,omitempty"`  // 入职时间，管理员与内推人可见，若为「入职奖励」可传入
+	Comment        *string      `json:"comment,omitempty"`          // 操作备注，管理员与内推人可见，若为空，将展示为奖励原因
+}
+
+type ExternalRewardBuilder struct {
+	referralUserId     string // 内推人ID
+	referralUserIdFlag bool
+	createUserId       string // 奖励创建人，管理员与内推人可见，若不传，则默认为「外部系统」
+	createUserIdFlag   bool
+	confirmUserId      string // 奖励确认人，若导入的「内推奖励状态」为「已确认」可传入，若不传，则默认为「外部系统」
+	confirmUserIdFlag  bool
+	payUserId          string // 奖励发放人，导入奖励状态为「已发放」的奖励传入，若不传，则默认为「外部系统」
+	payUserIdFlag      bool
+	externalId         string // 外部系统奖励唯一id（仅用于幂等）
+	externalIdFlag     bool
+	applicationId      string // 投递id，和「人才id」二选一
+	applicationIdFlag  bool
+	talentId           string // 人才id，和「投递id」二选一
+	talentIdFlag       bool
+	jobId              string // 职位id，当参数包含「人才id」时，可以选填职位id
+	jobIdFlag          bool
+	reason             string // 奖励原因
+	reasonFlag         bool
+	ruleType           int // 导入的奖励规则类型，将展示在内推奖励明细中，管理员与内推人可见
+	ruleTypeFlag       bool
+	bonus              *BonusAmount // 奖励数据
+	bonusFlag          bool
+	stage              int // 导入的内推奖励状态
+	stageFlag          bool
+	createTime         string // 奖励产生时间，内推奖励触发时间，若未传入，取接口传入时间
+	createTimeFlag     bool
+	confirmTime        string // 奖励确认时间，若导入的「内推奖励状态」为「已确认」可传入，若未传入，取接口传入时间
+	confirmTimeFlag    bool
+	payTime            string // 奖励发放时间，若导入的「内推奖励状态」为「已确认」可传入，若未传入，取接口传入时间
+	payTimeFlag        bool
+	onboardTime        string // 入职时间，管理员与内推人可见，若为「入职奖励」可传入
+	onboardTimeFlag    bool
+	conversionTime     string // 入职时间，管理员与内推人可见，若为「入职奖励」可传入
+	conversionTimeFlag bool
+	comment            string // 操作备注，管理员与内推人可见，若为空，将展示为奖励原因
+	commentFlag        bool
+}
+
+func NewExternalRewardBuilder() *ExternalRewardBuilder {
+	builder := &ExternalRewardBuilder{}
+	return builder
+}
+
+// 内推人ID
+//
+// 示例值：on_94a1ee5551019f18cd73d9f111898cf2
+func (builder *ExternalRewardBuilder) ReferralUserId(referralUserId string) *ExternalRewardBuilder {
+	builder.referralUserId = referralUserId
+	builder.referralUserIdFlag = true
+	return builder
+}
+
+// 奖励创建人，管理员与内推人可见，若不传，则默认为「外部系统」
+//
+// 示例值：on_94a1ee5551019f18cd73d9f111898cf2
+func (builder *ExternalRewardBuilder) CreateUserId(createUserId string) *ExternalRewardBuilder {
+	builder.createUserId = createUserId
+	builder.createUserIdFlag = true
+	return builder
+}
+
+// 奖励确认人，若导入的「内推奖励状态」为「已确认」可传入，若不传，则默认为「外部系统」
+//
+// 示例值：on_94a1ee5551019f18cd73d9f111898cf2
+func (builder *ExternalRewardBuilder) ConfirmUserId(confirmUserId string) *ExternalRewardBuilder {
+	builder.confirmUserId = confirmUserId
+	builder.confirmUserIdFlag = true
+	return builder
+}
+
+// 奖励发放人，导入奖励状态为「已发放」的奖励传入，若不传，则默认为「外部系统」
+//
+// 示例值：on_94a1ee5551019f18cd73d9f111898cf2
+func (builder *ExternalRewardBuilder) PayUserId(payUserId string) *ExternalRewardBuilder {
+	builder.payUserId = payUserId
+	builder.payUserIdFlag = true
+	return builder
+}
+
+// 外部系统奖励唯一id（仅用于幂等）
+//
+// 示例值：6930815272790114324
+func (builder *ExternalRewardBuilder) ExternalId(externalId string) *ExternalRewardBuilder {
+	builder.externalId = externalId
+	builder.externalIdFlag = true
+	return builder
+}
+
+// 投递id，和「人才id」二选一
+//
+// 示例值：6930815272790114325
+func (builder *ExternalRewardBuilder) ApplicationId(applicationId string) *ExternalRewardBuilder {
+	builder.applicationId = applicationId
+	builder.applicationIdFlag = true
+	return builder
+}
+
+// 人才id，和「投递id」二选一
+//
+// 示例值：6930815272790114326
+func (builder *ExternalRewardBuilder) TalentId(talentId string) *ExternalRewardBuilder {
+	builder.talentId = talentId
+	builder.talentIdFlag = true
+	return builder
+}
+
+// 职位id，当参数包含「人才id」时，可以选填职位id
+//
+// 示例值：6930815272790114327
+func (builder *ExternalRewardBuilder) JobId(jobId string) *ExternalRewardBuilder {
+	builder.jobId = jobId
+	builder.jobIdFlag = true
+	return builder
+}
+
+// 奖励原因
+//
+// 示例值：首次推荐
+func (builder *ExternalRewardBuilder) Reason(reason string) *ExternalRewardBuilder {
+	builder.reason = reason
+	builder.reasonFlag = true
+	return builder
+}
+
+// 导入的奖励规则类型，将展示在内推奖励明细中，管理员与内推人可见
+//
+// 示例值：1
+func (builder *ExternalRewardBuilder) RuleType(ruleType int) *ExternalRewardBuilder {
+	builder.ruleType = ruleType
+	builder.ruleTypeFlag = true
+	return builder
+}
+
+// 奖励数据
+//
+// 示例值：
+func (builder *ExternalRewardBuilder) Bonus(bonus *BonusAmount) *ExternalRewardBuilder {
+	builder.bonus = bonus
+	builder.bonusFlag = true
+	return builder
+}
+
+// 导入的内推奖励状态
+//
+// 示例值：1
+func (builder *ExternalRewardBuilder) Stage(stage int) *ExternalRewardBuilder {
+	builder.stage = stage
+	builder.stageFlag = true
+	return builder
+}
+
+// 奖励产生时间，内推奖励触发时间，若未传入，取接口传入时间
+//
+// 示例值：1704720275000
+func (builder *ExternalRewardBuilder) CreateTime(createTime string) *ExternalRewardBuilder {
+	builder.createTime = createTime
+	builder.createTimeFlag = true
+	return builder
+}
+
+// 奖励确认时间，若导入的「内推奖励状态」为「已确认」可传入，若未传入，取接口传入时间
+//
+// 示例值：1704720275000
+func (builder *ExternalRewardBuilder) ConfirmTime(confirmTime string) *ExternalRewardBuilder {
+	builder.confirmTime = confirmTime
+	builder.confirmTimeFlag = true
+	return builder
+}
+
+// 奖励发放时间，若导入的「内推奖励状态」为「已确认」可传入，若未传入，取接口传入时间
+//
+// 示例值：1704720275001
+func (builder *ExternalRewardBuilder) PayTime(payTime string) *ExternalRewardBuilder {
+	builder.payTime = payTime
+	builder.payTimeFlag = true
+	return builder
+}
+
+// 入职时间，管理员与内推人可见，若为「入职奖励」可传入
+//
+// 示例值：1704720275002
+func (builder *ExternalRewardBuilder) OnboardTime(onboardTime string) *ExternalRewardBuilder {
+	builder.onboardTime = onboardTime
+	builder.onboardTimeFlag = true
+	return builder
+}
+
+// 入职时间，管理员与内推人可见，若为「入职奖励」可传入
+//
+// 示例值：1704720275003
+func (builder *ExternalRewardBuilder) ConversionTime(conversionTime string) *ExternalRewardBuilder {
+	builder.conversionTime = conversionTime
+	builder.conversionTimeFlag = true
+	return builder
+}
+
+// 操作备注，管理员与内推人可见，若为空，将展示为奖励原因
+//
+// 示例值：已发放
+func (builder *ExternalRewardBuilder) Comment(comment string) *ExternalRewardBuilder {
+	builder.comment = comment
+	builder.commentFlag = true
+	return builder
+}
+
+func (builder *ExternalRewardBuilder) Build() *ExternalReward {
+	req := &ExternalReward{}
+	if builder.referralUserIdFlag {
+		req.ReferralUserId = &builder.referralUserId
+
+	}
+	if builder.createUserIdFlag {
+		req.CreateUserId = &builder.createUserId
+
+	}
+	if builder.confirmUserIdFlag {
+		req.ConfirmUserId = &builder.confirmUserId
+
+	}
+	if builder.payUserIdFlag {
+		req.PayUserId = &builder.payUserId
+
+	}
+	if builder.externalIdFlag {
+		req.ExternalId = &builder.externalId
+
+	}
+	if builder.applicationIdFlag {
+		req.ApplicationId = &builder.applicationId
+
+	}
+	if builder.talentIdFlag {
+		req.TalentId = &builder.talentId
+
+	}
+	if builder.jobIdFlag {
+		req.JobId = &builder.jobId
+
+	}
+	if builder.reasonFlag {
+		req.Reason = &builder.reason
+
+	}
+	if builder.ruleTypeFlag {
+		req.RuleType = &builder.ruleType
+
+	}
+	if builder.bonusFlag {
+		req.Bonus = builder.bonus
+	}
+	if builder.stageFlag {
+		req.Stage = &builder.stage
+
+	}
+	if builder.createTimeFlag {
+		req.CreateTime = &builder.createTime
+
+	}
+	if builder.confirmTimeFlag {
+		req.ConfirmTime = &builder.confirmTime
+
+	}
+	if builder.payTimeFlag {
+		req.PayTime = &builder.payTime
+
+	}
+	if builder.onboardTimeFlag {
+		req.OnboardTime = &builder.onboardTime
+
+	}
+	if builder.conversionTimeFlag {
+		req.ConversionTime = &builder.conversionTime
+
+	}
+	if builder.commentFlag {
+		req.Comment = &builder.comment
 
 	}
 	return req
@@ -13886,30 +16027,42 @@ func (builder *InterviewAssessmentTemplateArgsBuilder) Build() *InterviewAssessm
 }
 
 type InterviewDimensionAssessment struct {
-	Id                 *string                    `json:"id,omitempty"`                   // 题目评价 ID
-	Name               *I18n                      `json:"name,omitempty"`                 // 题目名称
-	Content            *string                    `json:"content,omitempty"`              // 当题目类型为描述题时，从此取值
-	DimensionId        *string                    `json:"dimension_id,omitempty"`         // 题目 ID
-	DimensionScore     *InterviewDimensionScore   `json:"dimension_score,omitempty"`      // 当题目类型为单选题时，从此取值
-	DimensionScoreList []*InterviewDimensionScore `json:"dimension_score_list,omitempty"` // 当题目类型为多选题时，从此取值
-	DimensionType      *int                       `json:"dimension_type,omitempty"`       // 题目类型
+	Id                   *string                    `json:"id,omitempty"`                     // 题目评价 ID
+	Name                 *I18n                      `json:"name,omitempty"`                   // 题目名称
+	FullScore            *int                       `json:"full_score,omitempty"`             // 打分题总分，仅当题目类型为「打分题(单选)」、「打分题(填空)」时可用
+	Content              *string                    `json:"content,omitempty"`                // 当题目类型为描述题时，从此取值
+	DimensionId          *string                    `json:"dimension_id,omitempty"`           // 题目 ID
+	DimensionScore       *InterviewDimensionScore   `json:"dimension_score,omitempty"`        // 当题目类型为单选题时，从此取值
+	DimensionScoreList   []*InterviewDimensionScore `json:"dimension_score_list,omitempty"`   // 当题目类型为多选题时，从此取值
+	DimensionCustomScore *int                       `json:"dimension_custom_score,omitempty"` // 当维度评价方式为「打分题(填空)时」，从此取值
+	AbilityList          []*Ability                 `json:"ability_list,omitempty"`           // 维度关联能力项
+	QuestionList         []*InterviewQuestion       `json:"question_list,omitempty"`          // 维度关联面试题
+	DimensionType        *int                       `json:"dimension_type,omitempty"`         // 题目类型
 }
 
 type InterviewDimensionAssessmentBuilder struct {
-	id                     string // 题目评价 ID
-	idFlag                 bool
-	name                   *I18n // 题目名称
-	nameFlag               bool
-	content                string // 当题目类型为描述题时，从此取值
-	contentFlag            bool
-	dimensionId            string // 题目 ID
-	dimensionIdFlag        bool
-	dimensionScore         *InterviewDimensionScore // 当题目类型为单选题时，从此取值
-	dimensionScoreFlag     bool
-	dimensionScoreList     []*InterviewDimensionScore // 当题目类型为多选题时，从此取值
-	dimensionScoreListFlag bool
-	dimensionType          int // 题目类型
-	dimensionTypeFlag      bool
+	id                       string // 题目评价 ID
+	idFlag                   bool
+	name                     *I18n // 题目名称
+	nameFlag                 bool
+	fullScore                int // 打分题总分，仅当题目类型为「打分题(单选)」、「打分题(填空)」时可用
+	fullScoreFlag            bool
+	content                  string // 当题目类型为描述题时，从此取值
+	contentFlag              bool
+	dimensionId              string // 题目 ID
+	dimensionIdFlag          bool
+	dimensionScore           *InterviewDimensionScore // 当题目类型为单选题时，从此取值
+	dimensionScoreFlag       bool
+	dimensionScoreList       []*InterviewDimensionScore // 当题目类型为多选题时，从此取值
+	dimensionScoreListFlag   bool
+	dimensionCustomScore     int // 当维度评价方式为「打分题(填空)时」，从此取值
+	dimensionCustomScoreFlag bool
+	abilityList              []*Ability // 维度关联能力项
+	abilityListFlag          bool
+	questionList             []*InterviewQuestion // 维度关联面试题
+	questionListFlag         bool
+	dimensionType            int // 题目类型
+	dimensionTypeFlag        bool
 }
 
 func NewInterviewDimensionAssessmentBuilder() *InterviewDimensionAssessmentBuilder {
@@ -13932,6 +16085,15 @@ func (builder *InterviewDimensionAssessmentBuilder) Id(id string) *InterviewDime
 func (builder *InterviewDimensionAssessmentBuilder) Name(name *I18n) *InterviewDimensionAssessmentBuilder {
 	builder.name = name
 	builder.nameFlag = true
+	return builder
+}
+
+// 打分题总分，仅当题目类型为「打分题(单选)」、「打分题(填空)」时可用
+//
+// 示例值：100
+func (builder *InterviewDimensionAssessmentBuilder) FullScore(fullScore int) *InterviewDimensionAssessmentBuilder {
+	builder.fullScore = fullScore
+	builder.fullScoreFlag = true
 	return builder
 }
 
@@ -13971,6 +16133,33 @@ func (builder *InterviewDimensionAssessmentBuilder) DimensionScoreList(dimension
 	return builder
 }
 
+// 当维度评价方式为「打分题(填空)时」，从此取值
+//
+// 示例值：10
+func (builder *InterviewDimensionAssessmentBuilder) DimensionCustomScore(dimensionCustomScore int) *InterviewDimensionAssessmentBuilder {
+	builder.dimensionCustomScore = dimensionCustomScore
+	builder.dimensionCustomScoreFlag = true
+	return builder
+}
+
+// 维度关联能力项
+//
+// 示例值：
+func (builder *InterviewDimensionAssessmentBuilder) AbilityList(abilityList []*Ability) *InterviewDimensionAssessmentBuilder {
+	builder.abilityList = abilityList
+	builder.abilityListFlag = true
+	return builder
+}
+
+// 维度关联面试题
+//
+// 示例值：
+func (builder *InterviewDimensionAssessmentBuilder) QuestionList(questionList []*InterviewQuestion) *InterviewDimensionAssessmentBuilder {
+	builder.questionList = questionList
+	builder.questionListFlag = true
+	return builder
+}
+
 // 题目类型
 //
 // 示例值：1
@@ -13989,6 +16178,10 @@ func (builder *InterviewDimensionAssessmentBuilder) Build() *InterviewDimensionA
 	if builder.nameFlag {
 		req.Name = builder.name
 	}
+	if builder.fullScoreFlag {
+		req.FullScore = &builder.fullScore
+
+	}
 	if builder.contentFlag {
 		req.Content = &builder.content
 
@@ -14003,6 +16196,16 @@ func (builder *InterviewDimensionAssessmentBuilder) Build() *InterviewDimensionA
 	if builder.dimensionScoreListFlag {
 		req.DimensionScoreList = builder.dimensionScoreList
 	}
+	if builder.dimensionCustomScoreFlag {
+		req.DimensionCustomScore = &builder.dimensionCustomScore
+
+	}
+	if builder.abilityListFlag {
+		req.AbilityList = builder.abilityList
+	}
+	if builder.questionListFlag {
+		req.QuestionList = builder.questionList
+	}
 	if builder.dimensionTypeFlag {
 		req.DimensionType = &builder.dimensionType
 
@@ -14011,15 +16214,18 @@ func (builder *InterviewDimensionAssessmentBuilder) Build() *InterviewDimensionA
 }
 
 type InterviewDimensionScore struct {
-	Id   *string `json:"id,omitempty"`   // 选项 ID
-	Name *I18n   `json:"name,omitempty"` // 选项名称
+	Id       *string `json:"id,omitempty"`        // 选项 ID
+	Name     *I18n   `json:"name,omitempty"`      // 选项名称
+	ScoreVal *int    `json:"score_val,omitempty"` // 选项对应的分数，维度评价为方式「打分题(单选)」时关注该字段
 }
 
 type InterviewDimensionScoreBuilder struct {
-	id       string // 选项 ID
-	idFlag   bool
-	name     *I18n // 选项名称
-	nameFlag bool
+	id           string // 选项 ID
+	idFlag       bool
+	name         *I18n // 选项名称
+	nameFlag     bool
+	scoreVal     int // 选项对应的分数，维度评价为方式「打分题(单选)」时关注该字段
+	scoreValFlag bool
 }
 
 func NewInterviewDimensionScoreBuilder() *InterviewDimensionScoreBuilder {
@@ -14045,6 +16251,15 @@ func (builder *InterviewDimensionScoreBuilder) Name(name *I18n) *InterviewDimens
 	return builder
 }
 
+// 选项对应的分数，维度评价为方式「打分题(单选)」时关注该字段
+//
+// 示例值：10
+func (builder *InterviewDimensionScoreBuilder) ScoreVal(scoreVal int) *InterviewDimensionScoreBuilder {
+	builder.scoreVal = scoreVal
+	builder.scoreValFlag = true
+	return builder
+}
+
 func (builder *InterviewDimensionScoreBuilder) Build() *InterviewDimensionScore {
 	req := &InterviewDimensionScore{}
 	if builder.idFlag {
@@ -14053,6 +16268,10 @@ func (builder *InterviewDimensionScoreBuilder) Build() *InterviewDimensionScore 
 	}
 	if builder.nameFlag {
 		req.Name = builder.name
+	}
+	if builder.scoreValFlag {
+		req.ScoreVal = &builder.scoreVal
+
 	}
 	return req
 }
@@ -14577,31 +16796,124 @@ func (builder *InterviewMeetingRoomBuilder) Build() *InterviewMeetingRoom {
 	return req
 }
 
+type InterviewQuestion struct {
+	Id          *string    `json:"id,omitempty"`           // 面试题题目ID
+	Title       *I18n      `json:"title,omitempty"`        // 面试题题目
+	Description *I18n      `json:"description,omitempty"`  // 面试题描述
+	Content     *string    `json:"content,omitempty"`      // 面试者作答内容
+	AbilityList []*Ability `json:"ability_list,omitempty"` // 题目关联的能力项
+}
+
+type InterviewQuestionBuilder struct {
+	id              string // 面试题题目ID
+	idFlag          bool
+	title           *I18n // 面试题题目
+	titleFlag       bool
+	description     *I18n // 面试题描述
+	descriptionFlag bool
+	content         string // 面试者作答内容
+	contentFlag     bool
+	abilityList     []*Ability // 题目关联的能力项
+	abilityListFlag bool
+}
+
+func NewInterviewQuestionBuilder() *InterviewQuestionBuilder {
+	builder := &InterviewQuestionBuilder{}
+	return builder
+}
+
+// 面试题题目ID
+//
+// 示例值：7270798542321666367
+func (builder *InterviewQuestionBuilder) Id(id string) *InterviewQuestionBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 面试题题目
+//
+// 示例值：
+func (builder *InterviewQuestionBuilder) Title(title *I18n) *InterviewQuestionBuilder {
+	builder.title = title
+	builder.titleFlag = true
+	return builder
+}
+
+// 面试题描述
+//
+// 示例值：
+func (builder *InterviewQuestionBuilder) Description(description *I18n) *InterviewQuestionBuilder {
+	builder.description = description
+	builder.descriptionFlag = true
+	return builder
+}
+
+// 面试者作答内容
+//
+// 示例值：没有
+func (builder *InterviewQuestionBuilder) Content(content string) *InterviewQuestionBuilder {
+	builder.content = content
+	builder.contentFlag = true
+	return builder
+}
+
+// 题目关联的能力项
+//
+// 示例值：
+func (builder *InterviewQuestionBuilder) AbilityList(abilityList []*Ability) *InterviewQuestionBuilder {
+	builder.abilityList = abilityList
+	builder.abilityListFlag = true
+	return builder
+}
+
+func (builder *InterviewQuestionBuilder) Build() *InterviewQuestion {
+	req := &InterviewQuestion{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.titleFlag {
+		req.Title = builder.title
+	}
+	if builder.descriptionFlag {
+		req.Description = builder.description
+	}
+	if builder.contentFlag {
+		req.Content = &builder.content
+
+	}
+	if builder.abilityListFlag {
+		req.AbilityList = builder.abilityList
+	}
+	return req
+}
+
 type InterviewRecord struct {
-	Id                      *string                         `json:"id,omitempty"`                        // 面试记录 ID
-	UserId                  *string                         `json:"user_id,omitempty"`                   // 面试官用户 ID
-	Content                 *string                         `json:"content,omitempty"`                   // 系统预设「记录」题目内容
-	MinJobLevelId           *string                         `json:"min_job_level_id,omitempty"`          // 建议定级下限的职级 ID
-	MaxJobLevelId           *string                         `json:"max_job_level_id,omitempty"`          // 建议定级上限的职级 ID
+	Id      *string `json:"id,omitempty"`      // 面试记录 ID
+	UserId  *string `json:"user_id,omitempty"` // 面试官用户 ID
+	Content *string `json:"content,omitempty"` // 系统预设「记录」题目内容
+
 	CommitStatus            *int                            `json:"commit_status,omitempty"`             // 提交状态
 	FeedbackSubmitTime      *int                            `json:"feedback_submit_time,omitempty"`      // 面试评价提交时间
 	Conclusion              *int                            `json:"conclusion,omitempty"`                // 面试结论
 	InterviewScore          *InterviewScore                 `json:"interview_score,omitempty"`           // 面试评分
+	AssessmentScore         *AssessmentScoreInfo            `json:"assessment_score,omitempty"`          // 面评打分题分数
+	QuestionList            []*InterviewQuestion            `json:"question_list,omitempty"`             // 面试题目
+	CodeQuestionList        []*InterviewQuestion            `json:"code_question_list,omitempty"`        // 在线编程题目
 	Interviewer             *IdNameObject                   `json:"interviewer,omitempty"`               // 面试官信息
+	ImageList               []*AttachmentV2                 `json:"image_list,omitempty"`                // 面试评价图片
 	DimensionAssessmentList []*InterviewDimensionAssessment `json:"dimension_assessment_list,omitempty"` // 面试评价
 }
 
 type InterviewRecordBuilder struct {
-	id                          string // 面试记录 ID
-	idFlag                      bool
-	userId                      string // 面试官用户 ID
-	userIdFlag                  bool
-	content                     string // 系统预设「记录」题目内容
-	contentFlag                 bool
-	minJobLevelId               string // 建议定级下限的职级 ID
-	minJobLevelIdFlag           bool
-	maxJobLevelId               string // 建议定级上限的职级 ID
-	maxJobLevelIdFlag           bool
+	id          string // 面试记录 ID
+	idFlag      bool
+	userId      string // 面试官用户 ID
+	userIdFlag  bool
+	content     string // 系统预设「记录」题目内容
+	contentFlag bool
+
 	commitStatus                int // 提交状态
 	commitStatusFlag            bool
 	feedbackSubmitTime          int // 面试评价提交时间
@@ -14610,8 +16922,16 @@ type InterviewRecordBuilder struct {
 	conclusionFlag              bool
 	interviewScore              *InterviewScore // 面试评分
 	interviewScoreFlag          bool
+	assessmentScore             *AssessmentScoreInfo // 面评打分题分数
+	assessmentScoreFlag         bool
+	questionList                []*InterviewQuestion // 面试题目
+	questionListFlag            bool
+	codeQuestionList            []*InterviewQuestion // 在线编程题目
+	codeQuestionListFlag        bool
 	interviewer                 *IdNameObject // 面试官信息
 	interviewerFlag             bool
+	imageList                   []*AttachmentV2 // 面试评价图片
+	imageListFlag               bool
 	dimensionAssessmentList     []*InterviewDimensionAssessment // 面试评价
 	dimensionAssessmentListFlag bool
 }
@@ -14645,24 +16965,6 @@ func (builder *InterviewRecordBuilder) UserId(userId string) *InterviewRecordBui
 func (builder *InterviewRecordBuilder) Content(content string) *InterviewRecordBuilder {
 	builder.content = content
 	builder.contentFlag = true
-	return builder
-}
-
-// 建议定级下限的职级 ID
-//
-// 示例值：6435238827342432
-func (builder *InterviewRecordBuilder) MinJobLevelId(minJobLevelId string) *InterviewRecordBuilder {
-	builder.minJobLevelId = minJobLevelId
-	builder.minJobLevelIdFlag = true
-	return builder
-}
-
-// 建议定级上限的职级 ID
-//
-// 示例值：643523885843573
-func (builder *InterviewRecordBuilder) MaxJobLevelId(maxJobLevelId string) *InterviewRecordBuilder {
-	builder.maxJobLevelId = maxJobLevelId
-	builder.maxJobLevelIdFlag = true
 	return builder
 }
 
@@ -14702,12 +17004,48 @@ func (builder *InterviewRecordBuilder) InterviewScore(interviewScore *InterviewS
 	return builder
 }
 
+// 面评打分题分数
+//
+// 示例值：
+func (builder *InterviewRecordBuilder) AssessmentScore(assessmentScore *AssessmentScoreInfo) *InterviewRecordBuilder {
+	builder.assessmentScore = assessmentScore
+	builder.assessmentScoreFlag = true
+	return builder
+}
+
+// 面试题目
+//
+// 示例值：
+func (builder *InterviewRecordBuilder) QuestionList(questionList []*InterviewQuestion) *InterviewRecordBuilder {
+	builder.questionList = questionList
+	builder.questionListFlag = true
+	return builder
+}
+
+// 在线编程题目
+//
+// 示例值：
+func (builder *InterviewRecordBuilder) CodeQuestionList(codeQuestionList []*InterviewQuestion) *InterviewRecordBuilder {
+	builder.codeQuestionList = codeQuestionList
+	builder.codeQuestionListFlag = true
+	return builder
+}
+
 // 面试官信息
 //
 // 示例值：
 func (builder *InterviewRecordBuilder) Interviewer(interviewer *IdNameObject) *InterviewRecordBuilder {
 	builder.interviewer = interviewer
 	builder.interviewerFlag = true
+	return builder
+}
+
+// 面试评价图片
+//
+// 示例值：
+func (builder *InterviewRecordBuilder) ImageList(imageList []*AttachmentV2) *InterviewRecordBuilder {
+	builder.imageList = imageList
+	builder.imageListFlag = true
 	return builder
 }
 
@@ -14734,14 +17072,7 @@ func (builder *InterviewRecordBuilder) Build() *InterviewRecord {
 		req.Content = &builder.content
 
 	}
-	if builder.minJobLevelIdFlag {
-		req.MinJobLevelId = &builder.minJobLevelId
 
-	}
-	if builder.maxJobLevelIdFlag {
-		req.MaxJobLevelId = &builder.maxJobLevelId
-
-	}
 	if builder.commitStatusFlag {
 		req.CommitStatus = &builder.commitStatus
 
@@ -14757,8 +17088,20 @@ func (builder *InterviewRecordBuilder) Build() *InterviewRecord {
 	if builder.interviewScoreFlag {
 		req.InterviewScore = builder.interviewScore
 	}
+	if builder.assessmentScoreFlag {
+		req.AssessmentScore = builder.assessmentScore
+	}
+	if builder.questionListFlag {
+		req.QuestionList = builder.questionList
+	}
+	if builder.codeQuestionListFlag {
+		req.CodeQuestionList = builder.codeQuestionList
+	}
 	if builder.interviewerFlag {
 		req.Interviewer = builder.interviewer
+	}
+	if builder.imageListFlag {
+		req.ImageList = builder.imageList
 	}
 	if builder.dimensionAssessmentListFlag {
 		req.DimensionAssessmentList = builder.dimensionAssessmentList
@@ -15293,6 +17636,7 @@ type Job struct {
 	CreateTimestamp    *string              `json:"create_timestamp,omitempty"`     // 创建时间戳
 	UpdateTimestamp    *string              `json:"update_timestamp,omitempty"`     // 更新时间戳
 	ExpiryTimestamp    *string              `json:"expiry_timestamp,omitempty"`     // 到期时间戳
+	TargetMajorList    []*TargetMajorInfo   `json:"target_major_list,omitempty"`    // 目标专业
 }
 
 type JobBuilder struct {
@@ -15366,6 +17710,8 @@ type JobBuilder struct {
 	updateTimestampFlag    bool
 	expiryTimestamp        string // 到期时间戳
 	expiryTimestampFlag    bool
+	targetMajorList        []*TargetMajorInfo // 目标专业
+	targetMajorListFlag    bool
 }
 
 func NewJobBuilder() *JobBuilder {
@@ -15688,6 +18034,15 @@ func (builder *JobBuilder) ExpiryTimestamp(expiryTimestamp string) *JobBuilder {
 	return builder
 }
 
+// 目标专业
+//
+// 示例值：
+func (builder *JobBuilder) TargetMajorList(targetMajorList []*TargetMajorInfo) *JobBuilder {
+	builder.targetMajorList = targetMajorList
+	builder.targetMajorListFlag = true
+	return builder
+}
+
 func (builder *JobBuilder) Build() *Job {
 	req := &Job{}
 	if builder.idFlag {
@@ -15817,6 +18172,9 @@ func (builder *JobBuilder) Build() *Job {
 	if builder.expiryTimestampFlag {
 		req.ExpiryTimestamp = &builder.expiryTimestamp
 
+	}
+	if builder.targetMajorListFlag {
+		req.TargetMajorList = builder.targetMajorList
 	}
 	return req
 }
@@ -16129,7 +18487,8 @@ type JobConfig struct {
 	AssessmentTemplateBizId       *string                        `json:"assessment_template_biz_id,omitempty"`       // 面试评价表，枚举通过接口「获取面试评价表列表」获取
 	InterviewRoundConfList        []*JobConfigInterviewRoundConf `json:"interview_round_conf_list,omitempty"`        // 建议面试官列表
 	JrIdList                      []string                       `json:"jr_id_list,omitempty"`                       // 关联招聘需求，支持关联多个，枚举通过接口「获取招聘需求」获取
-	InterviewRegistrationSchemaId *string                        `json:"interview_registration_schema_id,omitempty"` // 面试登记表 ID, 仅在面试登记表使用设置中开启按职位设置选项后生效
+	InterviewRegistrationSchemaId *string                        `json:"interview_registration_schema_id,omitempty"` // 面试登记表ID，当在飞书招聘「设置 - 信息登记表使用设置 - 面试登记表使用方式」中选择「HR 按职位选择登记表」时，该字段为必填；否则该字段不生效。
+	OnboardRegistrationSchemaId   *string                        `json:"onboard_registration_schema_id,omitempty"`   // 入职登记表ID，当在飞书招聘「设置 - 信息登记表使用设置 - 入职登记表使用方式」中选择「HR 按职位选择登记表」时，该字段为必填；否则该字段不生效。
 	InterviewRoundTypeConfList    []*JobConfigRoundType          `json:"interview_round_type_conf_list,omitempty"`   // 面试轮次类型 ID 列表
 	RelatedJobIdList              []string                       `json:"related_job_id_list,omitempty"`              // 关联职位列表，如职位为实体职位则关联虚拟职位id，如职位为虚拟职位则关联实体职位id
 	InterviewAppointmentConfig    *InterviewAppointmentConfig    `json:"interview_appointment_config,omitempty"`     // 自助约面配置
@@ -16150,8 +18509,10 @@ type JobConfigBuilder struct {
 	interviewRoundConfListFlag        bool
 	jrIdList                          []string // 关联招聘需求，支持关联多个，枚举通过接口「获取招聘需求」获取
 	jrIdListFlag                      bool
-	interviewRegistrationSchemaId     string // 面试登记表 ID, 仅在面试登记表使用设置中开启按职位设置选项后生效
+	interviewRegistrationSchemaId     string // 面试登记表ID，当在飞书招聘「设置 - 信息登记表使用设置 - 面试登记表使用方式」中选择「HR 按职位选择登记表」时，该字段为必填；否则该字段不生效。
 	interviewRegistrationSchemaIdFlag bool
+	onboardRegistrationSchemaId       string // 入职登记表ID，当在飞书招聘「设置 - 信息登记表使用设置 - 入职登记表使用方式」中选择「HR 按职位选择登记表」时，该字段为必填；否则该字段不生效。
+	onboardRegistrationSchemaIdFlag   bool
 	interviewRoundTypeConfList        []*JobConfigRoundType // 面试轮次类型 ID 列表
 	interviewRoundTypeConfListFlag    bool
 	relatedJobIdList                  []string // 关联职位列表，如职位为实体职位则关联虚拟职位id，如职位为虚拟职位则关联实体职位id
@@ -16228,12 +18589,21 @@ func (builder *JobConfigBuilder) JrIdList(jrIdList []string) *JobConfigBuilder {
 	return builder
 }
 
-// 面试登记表 ID, 仅在面试登记表使用设置中开启按职位设置选项后生效
+// 面试登记表ID，当在飞书招聘「设置 - 信息登记表使用设置 - 面试登记表使用方式」中选择「HR 按职位选择登记表」时，该字段为必填；否则该字段不生效。
 //
 // 示例值：6930815272790114324
 func (builder *JobConfigBuilder) InterviewRegistrationSchemaId(interviewRegistrationSchemaId string) *JobConfigBuilder {
 	builder.interviewRegistrationSchemaId = interviewRegistrationSchemaId
 	builder.interviewRegistrationSchemaIdFlag = true
+	return builder
+}
+
+// 入职登记表ID，当在飞书招聘「设置 - 信息登记表使用设置 - 入职登记表使用方式」中选择「HR 按职位选择登记表」时，该字段为必填；否则该字段不生效。
+//
+// 示例值：6930815272790114324
+func (builder *JobConfigBuilder) OnboardRegistrationSchemaId(onboardRegistrationSchemaId string) *JobConfigBuilder {
+	builder.onboardRegistrationSchemaId = onboardRegistrationSchemaId
+	builder.onboardRegistrationSchemaIdFlag = true
 	return builder
 }
 
@@ -16292,6 +18662,10 @@ func (builder *JobConfigBuilder) Build() *JobConfig {
 	}
 	if builder.interviewRegistrationSchemaIdFlag {
 		req.InterviewRegistrationSchemaId = &builder.interviewRegistrationSchemaId
+
+	}
+	if builder.onboardRegistrationSchemaIdFlag {
+		req.OnboardRegistrationSchemaId = &builder.onboardRegistrationSchemaId
 
 	}
 	if builder.interviewRoundTypeConfListFlag {
@@ -16401,42 +18775,48 @@ func (builder *JobConfigInterviewRoundConfBuilder) Build() *JobConfigInterviewRo
 }
 
 type JobConfigResult struct {
-	OfferApplySchema            *IdNameObject               `json:"offer_apply_schema,omitempty"`            // Offer 申请表
-	OfferProcessConf            *IdNameObject               `json:"offer_process_conf,omitempty"`            // Offer 审批流
-	RecommendedEvaluatorList    []*IdNameObject             `json:"recommended_evaluator_list,omitempty"`    // 建议评估人列表
-	AssessmentTemplate          *IdNameObject               `json:"assessment_template,omitempty"`           // 面试评价表
-	Id                          *string                     `json:"id,omitempty"`                            // 职位 ID
-	InterviewRoundList          []*JobConfigInterviewRound  `json:"interview_round_list,omitempty"`          // 建议面试官列表
-	JobRequirementList          []*IdNameObject             `json:"job_requirement_list,omitempty"`          // 招聘需求
-	InterviewRegistrationSchema *RegistrationInfo           `json:"interview_registration_schema,omitempty"` // 面试登记表
-	InterviewRoundTypeList      []*JobConfigRoundTypeResult `json:"interview_round_type_list,omitempty"`     // 面试轮次类型列表
-	RelatedJobList              []*IdNameObject             `json:"related_job_list,omitempty"`              // 关联职位列表
-	JobAttribute                *int                        `json:"job_attribute,omitempty"`                 // 职位属性，1是实体职位，2是虚拟职位
+	OfferApplySchema           *IdNameObject               `json:"offer_apply_schema,omitempty"`           // Offer 申请表
+	OfferProcessConf           *IdNameObject               `json:"offer_process_conf,omitempty"`           // Offer 审批流
+	RecommendedEvaluatorList   []*IdNameObject             `json:"recommended_evaluator_list,omitempty"`   // 建议评估人列表
+	AssessmentTemplate         *IdNameObject               `json:"assessment_template,omitempty"`          // 面试评价表
+	Id                         *string                     `json:"id,omitempty"`                           // 职位 ID
+	InterviewRoundList         []*JobConfigInterviewRound  `json:"interview_round_list,omitempty"`         // 建议面试官列表
+	JobRequirementList         []*IdNameObject             `json:"job_requirement_list,omitempty"`         // 招聘需求
+	InterviewRegistration      *RegistrationInfo           `json:"interview_registration,omitempty"`       // 面试登记表
+	OnboardRegistration        *RegistrationInfo           `json:"onboard_registration,omitempty"`         // 入职登记表
+	InterviewRoundTypeList     []*JobConfigRoundTypeResult `json:"interview_round_type_list,omitempty"`    // 面试轮次类型列表
+	RelatedJobList             []*IdNameObject             `json:"related_job_list,omitempty"`             // 关联职位列表
+	JobAttribute               *int                        `json:"job_attribute,omitempty"`                // 职位属性，1是实体职位，2是虚拟职位
+	InterviewAppointmentConfig *InterviewAppointmentConfig `json:"interview_appointment_config,omitempty"` // 面试官安排面试配置
 }
 
 type JobConfigResultBuilder struct {
-	offerApplySchema                *IdNameObject // Offer 申请表
-	offerApplySchemaFlag            bool
-	offerProcessConf                *IdNameObject // Offer 审批流
-	offerProcessConfFlag            bool
-	recommendedEvaluatorList        []*IdNameObject // 建议评估人列表
-	recommendedEvaluatorListFlag    bool
-	assessmentTemplate              *IdNameObject // 面试评价表
-	assessmentTemplateFlag          bool
-	id                              string // 职位 ID
-	idFlag                          bool
-	interviewRoundList              []*JobConfigInterviewRound // 建议面试官列表
-	interviewRoundListFlag          bool
-	jobRequirementList              []*IdNameObject // 招聘需求
-	jobRequirementListFlag          bool
-	interviewRegistrationSchema     *RegistrationInfo // 面试登记表
-	interviewRegistrationSchemaFlag bool
-	interviewRoundTypeList          []*JobConfigRoundTypeResult // 面试轮次类型列表
-	interviewRoundTypeListFlag      bool
-	relatedJobList                  []*IdNameObject // 关联职位列表
-	relatedJobListFlag              bool
-	jobAttribute                    int // 职位属性，1是实体职位，2是虚拟职位
-	jobAttributeFlag                bool
+	offerApplySchema               *IdNameObject // Offer 申请表
+	offerApplySchemaFlag           bool
+	offerProcessConf               *IdNameObject // Offer 审批流
+	offerProcessConfFlag           bool
+	recommendedEvaluatorList       []*IdNameObject // 建议评估人列表
+	recommendedEvaluatorListFlag   bool
+	assessmentTemplate             *IdNameObject // 面试评价表
+	assessmentTemplateFlag         bool
+	id                             string // 职位 ID
+	idFlag                         bool
+	interviewRoundList             []*JobConfigInterviewRound // 建议面试官列表
+	interviewRoundListFlag         bool
+	jobRequirementList             []*IdNameObject // 招聘需求
+	jobRequirementListFlag         bool
+	interviewRegistration          *RegistrationInfo // 面试登记表
+	interviewRegistrationFlag      bool
+	onboardRegistration            *RegistrationInfo // 入职登记表
+	onboardRegistrationFlag        bool
+	interviewRoundTypeList         []*JobConfigRoundTypeResult // 面试轮次类型列表
+	interviewRoundTypeListFlag     bool
+	relatedJobList                 []*IdNameObject // 关联职位列表
+	relatedJobListFlag             bool
+	jobAttribute                   int // 职位属性，1是实体职位，2是虚拟职位
+	jobAttributeFlag               bool
+	interviewAppointmentConfig     *InterviewAppointmentConfig // 面试官安排面试配置
+	interviewAppointmentConfigFlag bool
 }
 
 func NewJobConfigResultBuilder() *JobConfigResultBuilder {
@@ -16510,9 +18890,18 @@ func (builder *JobConfigResultBuilder) JobRequirementList(jobRequirementList []*
 // 面试登记表
 //
 // 示例值：
-func (builder *JobConfigResultBuilder) InterviewRegistrationSchema(interviewRegistrationSchema *RegistrationInfo) *JobConfigResultBuilder {
-	builder.interviewRegistrationSchema = interviewRegistrationSchema
-	builder.interviewRegistrationSchemaFlag = true
+func (builder *JobConfigResultBuilder) InterviewRegistration(interviewRegistration *RegistrationInfo) *JobConfigResultBuilder {
+	builder.interviewRegistration = interviewRegistration
+	builder.interviewRegistrationFlag = true
+	return builder
+}
+
+// 入职登记表
+//
+// 示例值：
+func (builder *JobConfigResultBuilder) OnboardRegistration(onboardRegistration *RegistrationInfo) *JobConfigResultBuilder {
+	builder.onboardRegistration = onboardRegistration
+	builder.onboardRegistrationFlag = true
 	return builder
 }
 
@@ -16543,6 +18932,15 @@ func (builder *JobConfigResultBuilder) JobAttribute(jobAttribute int) *JobConfig
 	return builder
 }
 
+// 面试官安排面试配置
+//
+// 示例值：
+func (builder *JobConfigResultBuilder) InterviewAppointmentConfig(interviewAppointmentConfig *InterviewAppointmentConfig) *JobConfigResultBuilder {
+	builder.interviewAppointmentConfig = interviewAppointmentConfig
+	builder.interviewAppointmentConfigFlag = true
+	return builder
+}
+
 func (builder *JobConfigResultBuilder) Build() *JobConfigResult {
 	req := &JobConfigResult{}
 	if builder.offerApplySchemaFlag {
@@ -16567,8 +18965,11 @@ func (builder *JobConfigResultBuilder) Build() *JobConfigResult {
 	if builder.jobRequirementListFlag {
 		req.JobRequirementList = builder.jobRequirementList
 	}
-	if builder.interviewRegistrationSchemaFlag {
-		req.InterviewRegistrationSchema = builder.interviewRegistrationSchema
+	if builder.interviewRegistrationFlag {
+		req.InterviewRegistration = builder.interviewRegistration
+	}
+	if builder.onboardRegistrationFlag {
+		req.OnboardRegistration = builder.onboardRegistration
 	}
 	if builder.interviewRoundTypeListFlag {
 		req.InterviewRoundTypeList = builder.interviewRoundTypeList
@@ -16579,6 +18980,9 @@ func (builder *JobConfigResultBuilder) Build() *JobConfigResult {
 	if builder.jobAttributeFlag {
 		req.JobAttribute = &builder.jobAttribute
 
+	}
+	if builder.interviewAppointmentConfigFlag {
+		req.InterviewAppointmentConfig = builder.interviewAppointmentConfig
 	}
 	return req
 }
@@ -17617,6 +20021,7 @@ type JobRequirement struct {
 	DisplayProgress       *int                            `json:"display_progress,omitempty"`          // 需求状态
 	HeadCount             *int                            `json:"head_count,omitempty"`                // 需求人数
 	RecruitmentTypeId     *string                         `json:"recruitment_type_id,omitempty"`       // 职位性质 ID，可在「招聘枚举常量」文档中查看枚举值
+	EmployeeTypeId        *string                         `json:"employee_type_id,omitempty"`          // 人员类型
 	MaxLevelId            *string                         `json:"max_level_id,omitempty"`              // 最高职级 ID
 	MinLevelId            *string                         `json:"min_level_id,omitempty"`              // 最低职级 ID
 	SequenceId            *string                         `json:"sequence_id,omitempty"`               // 职位序列 ID
@@ -17634,6 +20039,8 @@ type JobRequirement struct {
 	AddressId             *string                         `json:"address_id,omitempty"`                // 工作地点 ID，枚举值可通过「获取地址列表」接口查询获得
 	Description           *string                         `json:"description,omitempty"`               // 需求描述
 	CustomizedDataList    []*JobRequirementCustomizedData `json:"customized_data_list,omitempty"`      // 自定义字段
+	ProcessType           *int                            `json:"process_type,omitempty"`              // 支持的招聘类型列表
+	JobTypeId             *string                         `json:"job_type_id,omitempty"`               // 招聘需求中的职位类别
 }
 
 type JobRequirementBuilder struct {
@@ -17647,6 +20054,8 @@ type JobRequirementBuilder struct {
 	headCountFlag             bool
 	recruitmentTypeId         string // 职位性质 ID，可在「招聘枚举常量」文档中查看枚举值
 	recruitmentTypeIdFlag     bool
+	employeeTypeId            string // 人员类型
+	employeeTypeIdFlag        bool
 	maxLevelId                string // 最高职级 ID
 	maxLevelIdFlag            bool
 	minLevelId                string // 最低职级 ID
@@ -17681,6 +20090,10 @@ type JobRequirementBuilder struct {
 	descriptionFlag           bool
 	customizedDataList        []*JobRequirementCustomizedData // 自定义字段
 	customizedDataListFlag    bool
+	processType               int // 支持的招聘类型列表
+	processTypeFlag           bool
+	jobTypeId                 string // 招聘需求中的职位类别
+	jobTypeIdFlag             bool
 }
 
 func NewJobRequirementBuilder() *JobRequirementBuilder {
@@ -17730,6 +20143,15 @@ func (builder *JobRequirementBuilder) HeadCount(headCount int) *JobRequirementBu
 func (builder *JobRequirementBuilder) RecruitmentTypeId(recruitmentTypeId string) *JobRequirementBuilder {
 	builder.recruitmentTypeId = recruitmentTypeId
 	builder.recruitmentTypeIdFlag = true
+	return builder
+}
+
+// 人员类型
+//
+// 示例值：6807409776231254285
+func (builder *JobRequirementBuilder) EmployeeTypeId(employeeTypeId string) *JobRequirementBuilder {
+	builder.employeeTypeId = employeeTypeId
+	builder.employeeTypeIdFlag = true
 	return builder
 }
 
@@ -17886,6 +20308,24 @@ func (builder *JobRequirementBuilder) CustomizedDataList(customizedDataList []*J
 	return builder
 }
 
+// 支持的招聘类型列表
+//
+// 示例值：1
+func (builder *JobRequirementBuilder) ProcessType(processType int) *JobRequirementBuilder {
+	builder.processType = processType
+	builder.processTypeFlag = true
+	return builder
+}
+
+// 招聘需求中的职位类别
+//
+// 示例值：6930815272790114324
+func (builder *JobRequirementBuilder) JobTypeId(jobTypeId string) *JobRequirementBuilder {
+	builder.jobTypeId = jobTypeId
+	builder.jobTypeIdFlag = true
+	return builder
+}
+
 func (builder *JobRequirementBuilder) Build() *JobRequirement {
 	req := &JobRequirement{}
 	if builder.shortCodeFlag {
@@ -17906,6 +20346,10 @@ func (builder *JobRequirementBuilder) Build() *JobRequirement {
 	}
 	if builder.recruitmentTypeIdFlag {
 		req.RecruitmentTypeId = &builder.recruitmentTypeId
+
+	}
+	if builder.employeeTypeIdFlag {
+		req.EmployeeTypeId = &builder.employeeTypeId
 
 	}
 	if builder.maxLevelIdFlag {
@@ -17971,6 +20415,14 @@ func (builder *JobRequirementBuilder) Build() *JobRequirement {
 	}
 	if builder.customizedDataListFlag {
 		req.CustomizedDataList = builder.customizedDataList
+	}
+	if builder.processTypeFlag {
+		req.ProcessType = &builder.processType
+
+	}
+	if builder.jobTypeIdFlag {
+		req.JobTypeId = &builder.jobTypeId
+
 	}
 	return req
 }
@@ -18312,6 +20764,7 @@ type JobRequirementDto struct {
 	DisplayProgress    *int                               `json:"display_progress,omitempty"`     // 需求状态
 	HeadCount          *int                               `json:"head_count,omitempty"`           // 需求人数
 	RecruitmentType    *IdNameObject                      `json:"recruitment_type,omitempty"`     // 职位性质
+	EmployeeType       *IdNameObject                      `json:"employee_type,omitempty"`        // 人员类型
 	MaxLevel           *IdNameObject                      `json:"max_level,omitempty"`            // 最高职级
 	MinLevel           *IdNameObject                      `json:"min_level,omitempty"`            // 最低职级
 	Sequence           *IdNameObject                      `json:"sequence,omitempty"`             // 职位序列
@@ -18330,6 +20783,8 @@ type JobRequirementDto struct {
 	Description        *string                            `json:"description,omitempty"`          // 需求描述
 	CustomizedDataList []*JobRequirementCustomizedDataDto `json:"customized_data_list,omitempty"` // 自定义字段
 	JobIdList          []string                           `json:"job_id_list,omitempty"`          // 关联职位 ID
+	ProcessType        *int                               `json:"process_type,omitempty"`         // 招聘需求支持的招聘类型
+	JobType            *JobTypeInfo                       `json:"job_type,omitempty"`             // 职位类别
 }
 
 type JobRequirementDtoBuilder struct {
@@ -18345,6 +20800,8 @@ type JobRequirementDtoBuilder struct {
 	headCountFlag          bool
 	recruitmentType        *IdNameObject // 职位性质
 	recruitmentTypeFlag    bool
+	employeeType           *IdNameObject // 人员类型
+	employeeTypeFlag       bool
 	maxLevel               *IdNameObject // 最高职级
 	maxLevelFlag           bool
 	minLevel               *IdNameObject // 最低职级
@@ -18381,6 +20838,10 @@ type JobRequirementDtoBuilder struct {
 	customizedDataListFlag bool
 	jobIdList              []string // 关联职位 ID
 	jobIdListFlag          bool
+	processType            int // 招聘需求支持的招聘类型
+	processTypeFlag        bool
+	jobType                *JobTypeInfo // 职位类别
+	jobTypeFlag            bool
 }
 
 func NewJobRequirementDtoBuilder() *JobRequirementDtoBuilder {
@@ -18439,6 +20900,15 @@ func (builder *JobRequirementDtoBuilder) HeadCount(headCount int) *JobRequiremen
 func (builder *JobRequirementDtoBuilder) RecruitmentType(recruitmentType *IdNameObject) *JobRequirementDtoBuilder {
 	builder.recruitmentType = recruitmentType
 	builder.recruitmentTypeFlag = true
+	return builder
+}
+
+// 人员类型
+//
+// 示例值：
+func (builder *JobRequirementDtoBuilder) EmployeeType(employeeType *IdNameObject) *JobRequirementDtoBuilder {
+	builder.employeeType = employeeType
+	builder.employeeTypeFlag = true
 	return builder
 }
 
@@ -18604,6 +21074,24 @@ func (builder *JobRequirementDtoBuilder) JobIdList(jobIdList []string) *JobRequi
 	return builder
 }
 
+// 招聘需求支持的招聘类型
+//
+// 示例值：1
+func (builder *JobRequirementDtoBuilder) ProcessType(processType int) *JobRequirementDtoBuilder {
+	builder.processType = processType
+	builder.processTypeFlag = true
+	return builder
+}
+
+// 职位类别
+//
+// 示例值：
+func (builder *JobRequirementDtoBuilder) JobType(jobType *JobTypeInfo) *JobRequirementDtoBuilder {
+	builder.jobType = jobType
+	builder.jobTypeFlag = true
+	return builder
+}
+
 func (builder *JobRequirementDtoBuilder) Build() *JobRequirementDto {
 	req := &JobRequirementDto{}
 	if builder.idFlag {
@@ -18628,6 +21116,9 @@ func (builder *JobRequirementDtoBuilder) Build() *JobRequirementDto {
 	}
 	if builder.recruitmentTypeFlag {
 		req.RecruitmentType = builder.recruitmentType
+	}
+	if builder.employeeTypeFlag {
+		req.EmployeeType = builder.employeeType
 	}
 	if builder.maxLevelFlag {
 		req.MaxLevel = builder.maxLevel
@@ -18690,6 +21181,13 @@ func (builder *JobRequirementDtoBuilder) Build() *JobRequirementDto {
 	}
 	if builder.jobIdListFlag {
 		req.JobIdList = builder.jobIdList
+	}
+	if builder.processTypeFlag {
+		req.ProcessType = &builder.processType
+
+	}
+	if builder.jobTypeFlag {
+		req.JobType = builder.jobType
 	}
 	return req
 }
@@ -18893,6 +21391,69 @@ func (builder *JobTypeBuilder) Build() *JobType {
 	}
 	if builder.enNameFlag {
 		req.EnName = &builder.enName
+
+	}
+	return req
+}
+
+type JobTypeInfo struct {
+	Id       *string `json:"id,omitempty"`        // 职位类别ID
+	Name     *I18n   `json:"name,omitempty"`      // 职位类别名称
+	ParentId *string `json:"parent_id,omitempty"` // 父级职位类别ID
+}
+
+type JobTypeInfoBuilder struct {
+	id           string // 职位类别ID
+	idFlag       bool
+	name         *I18n // 职位类别名称
+	nameFlag     bool
+	parentId     string // 父级职位类别ID
+	parentIdFlag bool
+}
+
+func NewJobTypeInfoBuilder() *JobTypeInfoBuilder {
+	builder := &JobTypeInfoBuilder{}
+	return builder
+}
+
+// 职位类别ID
+//
+// 示例值：6930815272790114324
+func (builder *JobTypeInfoBuilder) Id(id string) *JobTypeInfoBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 职位类别名称
+//
+// 示例值：
+func (builder *JobTypeInfoBuilder) Name(name *I18n) *JobTypeInfoBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 父级职位类别ID
+//
+// 示例值：6930815272790114323
+func (builder *JobTypeInfoBuilder) ParentId(parentId string) *JobTypeInfoBuilder {
+	builder.parentId = parentId
+	builder.parentIdFlag = true
+	return builder
+}
+
+func (builder *JobTypeInfoBuilder) Build() *JobTypeInfo {
+	req := &JobTypeInfo{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.nameFlag {
+		req.Name = builder.name
+	}
+	if builder.parentIdFlag {
+		req.ParentId = &builder.parentId
 
 	}
 	return req
@@ -19245,6 +21806,164 @@ func (builder *LocationBaseInfoBuilder) Build() *LocationBaseInfo {
 	return req
 }
 
+type MasterLocationAddressInfo struct {
+	LocationInfo *MasterLocationInfo `json:"location_info,omitempty"` // 办公地点
+	AddressInfo  *MasterLocationInfo `json:"address_info,omitempty"`  // 办公地址
+}
+
+type MasterLocationAddressInfoBuilder struct {
+	locationInfo     *MasterLocationInfo // 办公地点
+	locationInfoFlag bool
+	addressInfo      *MasterLocationInfo // 办公地址
+	addressInfoFlag  bool
+}
+
+func NewMasterLocationAddressInfoBuilder() *MasterLocationAddressInfoBuilder {
+	builder := &MasterLocationAddressInfoBuilder{}
+	return builder
+}
+
+// 办公地点
+//
+// 示例值：
+func (builder *MasterLocationAddressInfoBuilder) LocationInfo(locationInfo *MasterLocationInfo) *MasterLocationAddressInfoBuilder {
+	builder.locationInfo = locationInfo
+	builder.locationInfoFlag = true
+	return builder
+}
+
+// 办公地址
+//
+// 示例值：
+func (builder *MasterLocationAddressInfoBuilder) AddressInfo(addressInfo *MasterLocationInfo) *MasterLocationAddressInfoBuilder {
+	builder.addressInfo = addressInfo
+	builder.addressInfoFlag = true
+	return builder
+}
+
+func (builder *MasterLocationAddressInfoBuilder) Build() *MasterLocationAddressInfo {
+	req := &MasterLocationAddressInfo{}
+	if builder.locationInfoFlag {
+		req.LocationInfo = builder.locationInfo
+	}
+	if builder.addressInfoFlag {
+		req.AddressInfo = builder.addressInfo
+	}
+	return req
+}
+
+type MasterLocationInfo struct {
+	Id     *string `json:"id,omitempty"`      // ID
+	ZhName *string `json:"zh_name,omitempty"` // 中文名称
+	EnName *string `json:"en_name,omitempty"` // 英文名称
+}
+
+type MasterLocationInfoBuilder struct {
+	id         string // ID
+	idFlag     bool
+	zhName     string // 中文名称
+	zhNameFlag bool
+	enName     string // 英文名称
+	enNameFlag bool
+}
+
+func NewMasterLocationInfoBuilder() *MasterLocationInfoBuilder {
+	builder := &MasterLocationInfoBuilder{}
+	return builder
+}
+
+// ID
+//
+// 示例值：6930815272790114324
+func (builder *MasterLocationInfoBuilder) Id(id string) *MasterLocationInfoBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 中文名称
+//
+// 示例值：北京
+func (builder *MasterLocationInfoBuilder) ZhName(zhName string) *MasterLocationInfoBuilder {
+	builder.zhName = zhName
+	builder.zhNameFlag = true
+	return builder
+}
+
+// 英文名称
+//
+// 示例值：Beijing
+func (builder *MasterLocationInfoBuilder) EnName(enName string) *MasterLocationInfoBuilder {
+	builder.enName = enName
+	builder.enNameFlag = true
+	return builder
+}
+
+func (builder *MasterLocationInfoBuilder) Build() *MasterLocationInfo {
+	req := &MasterLocationInfo{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.zhNameFlag {
+		req.ZhName = &builder.zhName
+
+	}
+	if builder.enNameFlag {
+		req.EnName = &builder.enName
+
+	}
+	return req
+}
+
+type Mobile struct {
+	Code   *string `json:"code,omitempty"`   // 国家代码
+	Number *string `json:"number,omitempty"` // 手机号码
+}
+
+type MobileBuilder struct {
+	code       string // 国家代码
+	codeFlag   bool
+	number     string // 手机号码
+	numberFlag bool
+}
+
+func NewMobileBuilder() *MobileBuilder {
+	builder := &MobileBuilder{}
+	return builder
+}
+
+// 国家代码
+//
+// 示例值：86
+func (builder *MobileBuilder) Code(code string) *MobileBuilder {
+	builder.code = code
+	builder.codeFlag = true
+	return builder
+}
+
+// 手机号码
+//
+// 示例值：18900001111
+func (builder *MobileBuilder) Number(number string) *MobileBuilder {
+	builder.number = number
+	builder.numberFlag = true
+	return builder
+}
+
+func (builder *MobileBuilder) Build() *Mobile {
+	req := &Mobile{}
+	if builder.codeFlag {
+		req.Code = &builder.code
+
+	}
+	if builder.numberFlag {
+		req.Number = &builder.number
+
+	}
+	return req
+}
+
 type Nationality struct {
 	NationalityCode *string `json:"nationality_code,omitempty"` // 国家编码
 	Name            *string `json:"name,omitempty"`             // 名字
@@ -19579,33 +22298,36 @@ func (builder *ObjectAttributeBuilder) Build() *ObjectAttribute {
 }
 
 type Offer struct {
-	Id            *string                     `json:"id,omitempty"`             // Offer ID
-	ApplicationId *string                     `json:"application_id,omitempty"` // 投递 ID
-	BasicInfo     *ApplicationOfferBasicInfo  `json:"basic_info,omitempty"`     // 基础信息
-	SalaryPlan    *ApplicationOfferSalaryPlan `json:"salary_plan,omitempty"`    // 薪酬计划
-	SchemaId      *string                     `json:"schema_id,omitempty"`      // 当前 Offer 使用的 Schema
-	OfferStatus   *int                        `json:"offer_status,omitempty"`   // Offer 状态
-	OfferType     *int                        `json:"offer_type,omitempty"`     // Offer 类型
-	JobInfo       *OfferJobInfo               `json:"job_info,omitempty"`       // 职位信息
+	Id                   *string                         `json:"id,omitempty"`                     // Offer ID
+	ApplicationId        *string                         `json:"application_id,omitempty"`         // 投递 ID
+	BasicInfo            *ApplicationOfferBasicInfo      `json:"basic_info,omitempty"`             // 基础信息
+	SalaryPlan           *ApplicationOfferSalaryPlan     `json:"salary_plan,omitempty"`            // 薪酬计划
+	SchemaId             *string                         `json:"schema_id,omitempty"`              // 当前 Offer 使用的 Schema
+	OfferStatus          *int                            `json:"offer_status,omitempty"`           // Offer 状态
+	OfferType            *int                            `json:"offer_type,omitempty"`             // Offer 类型
+	JobInfo              *OfferJobInfo                   `json:"job_info,omitempty"`               // 职位信息
+	CustomizedModuleList []*ApplicationOfferCustomModule `json:"customized_module_list,omitempty"` // offer自定义模块列表
 }
 
 type OfferBuilder struct {
-	id                string // Offer ID
-	idFlag            bool
-	applicationId     string // 投递 ID
-	applicationIdFlag bool
-	basicInfo         *ApplicationOfferBasicInfo // 基础信息
-	basicInfoFlag     bool
-	salaryPlan        *ApplicationOfferSalaryPlan // 薪酬计划
-	salaryPlanFlag    bool
-	schemaId          string // 当前 Offer 使用的 Schema
-	schemaIdFlag      bool
-	offerStatus       int // Offer 状态
-	offerStatusFlag   bool
-	offerType         int // Offer 类型
-	offerTypeFlag     bool
-	jobInfo           *OfferJobInfo // 职位信息
-	jobInfoFlag       bool
+	id                       string // Offer ID
+	idFlag                   bool
+	applicationId            string // 投递 ID
+	applicationIdFlag        bool
+	basicInfo                *ApplicationOfferBasicInfo // 基础信息
+	basicInfoFlag            bool
+	salaryPlan               *ApplicationOfferSalaryPlan // 薪酬计划
+	salaryPlanFlag           bool
+	schemaId                 string // 当前 Offer 使用的 Schema
+	schemaIdFlag             bool
+	offerStatus              int // Offer 状态
+	offerStatusFlag          bool
+	offerType                int // Offer 类型
+	offerTypeFlag            bool
+	jobInfo                  *OfferJobInfo // 职位信息
+	jobInfoFlag              bool
+	customizedModuleList     []*ApplicationOfferCustomModule // offer自定义模块列表
+	customizedModuleListFlag bool
 }
 
 func NewOfferBuilder() *OfferBuilder {
@@ -19685,6 +22407,15 @@ func (builder *OfferBuilder) JobInfo(jobInfo *OfferJobInfo) *OfferBuilder {
 	return builder
 }
 
+// offer自定义模块列表
+//
+// 示例值：
+func (builder *OfferBuilder) CustomizedModuleList(customizedModuleList []*ApplicationOfferCustomModule) *OfferBuilder {
+	builder.customizedModuleList = customizedModuleList
+	builder.customizedModuleListFlag = true
+	return builder
+}
+
 func (builder *OfferBuilder) Build() *Offer {
 	req := &Offer{}
 	if builder.idFlag {
@@ -19715,6 +22446,9 @@ func (builder *OfferBuilder) Build() *Offer {
 	}
 	if builder.jobInfoFlag {
 		req.JobInfo = builder.jobInfo
+	}
+	if builder.customizedModuleListFlag {
+		req.CustomizedModuleList = builder.customizedModuleList
 	}
 	return req
 }
@@ -20627,24 +23361,25 @@ func (builder *OfferApprovalTemplateBuilder) Build() *OfferApprovalTemplate {
 }
 
 type OfferBasicInfo struct {
-	DepartmentId          *string  `json:"department_id,omitempty"`          // 部门 ID
-	LeaderUserId          *string  `json:"leader_user_id,omitempty"`         // 直属上级 ID
-	EmploymentJobId       *string  `json:"employment_job_id,omitempty"`      // 职务 ID
-	EmployeeTypeId        *string  `json:"employee_type_id,omitempty"`       // 人员类型 ID
-	JobFamilyId           *string  `json:"job_family_id,omitempty"`          // 职位序列 ID
-	JobLevelId            *string  `json:"job_level_id,omitempty"`           // 职位级别 ID
-	ProbationMonth        *int     `json:"probation_month,omitempty"`        // 试用期
-	ContractYear          *int     `json:"contract_year,omitempty"`          // 合同期
-	ExpectedOnboardDate   *string  `json:"expected_onboard_date,omitempty"`  // 预计入职日期
-	OnboardAddressId      *string  `json:"onboard_address_id,omitempty"`     // 入职地点 ID
-	WorkAddressId         *string  `json:"work_address_id,omitempty"`        // 办公地点 ID
-	OwnerUserId           *string  `json:"owner_user_id,omitempty"`          // Offer负责人 ID
-	RecommendedWords      *string  `json:"recommended_words,omitempty"`      // Offer 推荐语
-	JobRequirementId      *string  `json:"job_requirement_id,omitempty"`     // 招聘需求 ID
-	JobProcessTypeId      *int     `json:"job_process_type_id,omitempty"`    // 招聘流程类型 ID
-	AttachmentIdList      []string `json:"attachment_id_list,omitempty"`     // 附件ID列表
-	AttachmentDescription *string  `json:"attachment_description,omitempty"` // 附件描述
-	OperatorUserId        *string  `json:"operator_user_id,omitempty"`       // Offer操作人 ID
+	DepartmentId          *string             `json:"department_id,omitempty"`          // 部门 ID
+	LeaderUserId          *string             `json:"leader_user_id,omitempty"`         // 直属上级 ID
+	EmploymentJobId       *string             `json:"employment_job_id,omitempty"`      // 职务 ID
+	EmployeeTypeId        *string             `json:"employee_type_id,omitempty"`       // 人员类型 ID
+	JobFamilyId           *string             `json:"job_family_id,omitempty"`          // 职位序列 ID
+	JobLevelId            *string             `json:"job_level_id,omitempty"`           // 职位级别 ID
+	ProbationMonth        *int                `json:"probation_month,omitempty"`        // 试用期
+	ContractYear          *int                `json:"contract_year,omitempty"`          // 合同期
+	ContractPeriod        *ContractPeriodInfo `json:"contract_period,omitempty"`        // 合同期（年/月）
+	ExpectedOnboardDate   *string             `json:"expected_onboard_date,omitempty"`  // 预计入职日期
+	OnboardAddressId      *string             `json:"onboard_address_id,omitempty"`     // 入职地点 ID
+	WorkAddressId         *string             `json:"work_address_id,omitempty"`        // 办公地点 ID
+	OwnerUserId           *string             `json:"owner_user_id,omitempty"`          // Offer负责人 ID
+	RecommendedWords      *string             `json:"recommended_words,omitempty"`      // Offer 推荐语
+	JobRequirementId      *string             `json:"job_requirement_id,omitempty"`     // 招聘需求 ID
+	JobProcessTypeId      *int                `json:"job_process_type_id,omitempty"`    // 招聘流程类型 ID
+	AttachmentIdList      []string            `json:"attachment_id_list,omitempty"`     // 附件ID列表
+	AttachmentDescription *string             `json:"attachment_description,omitempty"` // 附件描述
+	OperatorUserId        *string             `json:"operator_user_id,omitempty"`       // Offer操作人 ID
 }
 
 type OfferBasicInfoBuilder struct {
@@ -20664,6 +23399,8 @@ type OfferBasicInfoBuilder struct {
 	probationMonthFlag        bool
 	contractYear              int // 合同期
 	contractYearFlag          bool
+	contractPeriod            *ContractPeriodInfo // 合同期（年/月）
+	contractPeriodFlag        bool
 	expectedOnboardDate       string // 预计入职日期
 	expectedOnboardDateFlag   bool
 	onboardAddressId          string // 入职地点 ID
@@ -20760,6 +23497,15 @@ func (builder *OfferBasicInfoBuilder) ProbationMonth(probationMonth int) *OfferB
 func (builder *OfferBasicInfoBuilder) ContractYear(contractYear int) *OfferBasicInfoBuilder {
 	builder.contractYear = contractYear
 	builder.contractYearFlag = true
+	return builder
+}
+
+// 合同期（年/月）
+//
+// 示例值：
+func (builder *OfferBasicInfoBuilder) ContractPeriod(contractPeriod *ContractPeriodInfo) *OfferBasicInfoBuilder {
+	builder.contractPeriod = contractPeriod
+	builder.contractPeriodFlag = true
 	return builder
 }
 
@@ -20886,6 +23632,9 @@ func (builder *OfferBasicInfoBuilder) Build() *OfferBasicInfo {
 	if builder.contractYearFlag {
 		req.ContractYear = &builder.contractYear
 
+	}
+	if builder.contractPeriodFlag {
+		req.ContractPeriod = builder.contractPeriod
 	}
 	if builder.expectedOnboardDateFlag {
 		req.ExpectedOnboardDate = &builder.expectedOnboardDate
@@ -21969,6 +24718,38 @@ func (builder *OfferSelectionObjectBuilder) Build() *OfferSelectionObject {
 	return req
 }
 
+type Point struct {
+	Amount *int `json:"amount,omitempty"` // 数额
+}
+
+type PointBuilder struct {
+	amount     int // 数额
+	amountFlag bool
+}
+
+func NewPointBuilder() *PointBuilder {
+	builder := &PointBuilder{}
+	return builder
+}
+
+// 数额
+//
+// 示例值：100
+func (builder *PointBuilder) Amount(amount int) *PointBuilder {
+	builder.amount = amount
+	builder.amountFlag = true
+	return builder
+}
+
+func (builder *PointBuilder) Build() *Point {
+	req := &Point{}
+	if builder.amountFlag {
+		req.Amount = &builder.amount
+
+	}
+	return req
+}
+
 type PortalJobPost struct {
 	Id                 *string                         `json:"id,omitempty"`                   // 职位广告 ID
 	Title              *string                         `json:"title,omitempty"`                // 标题
@@ -21980,6 +24761,8 @@ type PortalJobPost struct {
 	JobRecruitmentType *IdNameObject                   `json:"job_recruitment_type,omitempty"` // 职位雇佣类型
 	JobDepartment      *IdNameObject                   `json:"job_department,omitempty"`       // 职位部门
 	JobType            *IdNameObject                   `json:"job_type,omitempty"`             // 职位类型
+	MinJobLevel        *IdNameObject                   `json:"min_job_level,omitempty"`        // 最低职级
+	MaxJobLevel        *IdNameObject                   `json:"max_job_level,omitempty"`        // 最高职级
 	Address            *CommonAddress                  `json:"address,omitempty"`              // 职位地址
 	MinSalary          *string                         `json:"min_salary,omitempty"`           // 月薪范围-最低薪资
 	MaxSalary          *string                         `json:"max_salary,omitempty"`           // 月薪范围-最高薪资
@@ -22019,6 +24802,10 @@ type PortalJobPostBuilder struct {
 	jobDepartmentFlag      bool
 	jobType                *IdNameObject // 职位类型
 	jobTypeFlag            bool
+	minJobLevel            *IdNameObject // 最低职级
+	minJobLevelFlag        bool
+	maxJobLevel            *IdNameObject // 最高职级
+	maxJobLevelFlag        bool
 	address                *CommonAddress // 职位地址
 	addressFlag            bool
 	minSalary              string // 月薪范围-最低薪资
@@ -22145,6 +24932,24 @@ func (builder *PortalJobPostBuilder) JobDepartment(jobDepartment *IdNameObject) 
 func (builder *PortalJobPostBuilder) JobType(jobType *IdNameObject) *PortalJobPostBuilder {
 	builder.jobType = jobType
 	builder.jobTypeFlag = true
+	return builder
+}
+
+// 最低职级
+//
+// 示例值：
+func (builder *PortalJobPostBuilder) MinJobLevel(minJobLevel *IdNameObject) *PortalJobPostBuilder {
+	builder.minJobLevel = minJobLevel
+	builder.minJobLevelFlag = true
+	return builder
+}
+
+// 最高职级
+//
+// 示例值：
+func (builder *PortalJobPostBuilder) MaxJobLevel(maxJobLevel *IdNameObject) *PortalJobPostBuilder {
+	builder.maxJobLevel = maxJobLevel
+	builder.maxJobLevelFlag = true
 	return builder
 }
 
@@ -22331,6 +25136,12 @@ func (builder *PortalJobPostBuilder) Build() *PortalJobPost {
 	if builder.jobTypeFlag {
 		req.JobType = builder.jobType
 	}
+	if builder.minJobLevelFlag {
+		req.MinJobLevel = builder.minJobLevel
+	}
+	if builder.maxJobLevelFlag {
+		req.MaxJobLevel = builder.maxJobLevel
+	}
 	if builder.addressFlag {
 		req.Address = builder.address
 	}
@@ -22499,6 +25310,53 @@ func (builder *ProjectInfoBuilder) Build() *ProjectInfo {
 	if builder.startTimeFlag {
 		req.StartTime = &builder.startTime
 
+	}
+	return req
+}
+
+type ProviderIdNameObject struct {
+	ProviderId   *string `json:"provider_id,omitempty"`   // 供应商ID
+	ProviderName *I18n   `json:"provider_name,omitempty"` // 供应商名称信息
+}
+
+type ProviderIdNameObjectBuilder struct {
+	providerId       string // 供应商ID
+	providerIdFlag   bool
+	providerName     *I18n // 供应商名称信息
+	providerNameFlag bool
+}
+
+func NewProviderIdNameObjectBuilder() *ProviderIdNameObjectBuilder {
+	builder := &ProviderIdNameObjectBuilder{}
+	return builder
+}
+
+// 供应商ID
+//
+// 示例值：6930815272790114324
+func (builder *ProviderIdNameObjectBuilder) ProviderId(providerId string) *ProviderIdNameObjectBuilder {
+	builder.providerId = providerId
+	builder.providerIdFlag = true
+	return builder
+}
+
+// 供应商名称信息
+//
+// 示例值：
+func (builder *ProviderIdNameObjectBuilder) ProviderName(providerName *I18n) *ProviderIdNameObjectBuilder {
+	builder.providerName = providerName
+	builder.providerNameFlag = true
+	return builder
+}
+
+func (builder *ProviderIdNameObjectBuilder) Build() *ProviderIdNameObject {
+	req := &ProviderIdNameObject{}
+	if builder.providerIdFlag {
+		req.ProviderId = &builder.providerId
+
+	}
+	if builder.providerNameFlag {
+		req.ProviderName = builder.providerName
 	}
 	return req
 }
@@ -22966,16 +25824,174 @@ func (builder *ReferralBuilder) Build() *Referral {
 	return req
 }
 
+type ReferralInfo struct {
+	Id             *string       `json:"id,omitempty"`              // 内推的 ID
+	ApplicationIds []string      `json:"application_ids,omitempty"` // 投递 ID 列表,包含：原始内推的投递 ID、转移到其他职位后的投递 ID、不包含被HR复捞(加入职位）的投递 ID，第一个投递就是原始投递ID
+	CreateTime     *string       `json:"create_time,omitempty"`     // 创建时间（ms）
+	ReferralUser   *IdNameObject `json:"referral_user,omitempty"`   // 内推人信息
+}
+
+type ReferralInfoBuilder struct {
+	id                 string // 内推的 ID
+	idFlag             bool
+	applicationIds     []string // 投递 ID 列表,包含：原始内推的投递 ID、转移到其他职位后的投递 ID、不包含被HR复捞(加入职位）的投递 ID，第一个投递就是原始投递ID
+	applicationIdsFlag bool
+	createTime         string // 创建时间（ms）
+	createTimeFlag     bool
+	referralUser       *IdNameObject // 内推人信息
+	referralUserFlag   bool
+}
+
+func NewReferralInfoBuilder() *ReferralInfoBuilder {
+	builder := &ReferralInfoBuilder{}
+	return builder
+}
+
+// 内推的 ID
+//
+// 示例值：6930815272790114322
+func (builder *ReferralInfoBuilder) Id(id string) *ReferralInfoBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 投递 ID 列表,包含：原始内推的投递 ID、转移到其他职位后的投递 ID、不包含被HR复捞(加入职位）的投递 ID，第一个投递就是原始投递ID
+//
+// 示例值：
+func (builder *ReferralInfoBuilder) ApplicationIds(applicationIds []string) *ReferralInfoBuilder {
+	builder.applicationIds = applicationIds
+	builder.applicationIdsFlag = true
+	return builder
+}
+
+// 创建时间（ms）
+//
+// 示例值：1618899376474
+func (builder *ReferralInfoBuilder) CreateTime(createTime string) *ReferralInfoBuilder {
+	builder.createTime = createTime
+	builder.createTimeFlag = true
+	return builder
+}
+
+// 内推人信息
+//
+// 示例值：
+func (builder *ReferralInfoBuilder) ReferralUser(referralUser *IdNameObject) *ReferralInfoBuilder {
+	builder.referralUser = referralUser
+	builder.referralUserFlag = true
+	return builder
+}
+
+func (builder *ReferralInfoBuilder) Build() *ReferralInfo {
+	req := &ReferralInfo{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.applicationIdsFlag {
+		req.ApplicationIds = builder.applicationIds
+	}
+	if builder.createTimeFlag {
+		req.CreateTime = &builder.createTime
+
+	}
+	if builder.referralUserFlag {
+		req.ReferralUser = builder.referralUser
+	}
+	return req
+}
+
+type RegistrationBasicInfo struct {
+	Id               *string `json:"id,omitempty"`                // ID
+	RegistrationTime *int    `json:"registration_time,omitempty"` // 创建时间
+	DownloadUrl      *string `json:"download_url,omitempty"`      // 下载链接
+	Scenario         *int    `json:"scenario,omitempty"`          // 登记表场景
+}
+
+type RegistrationBasicInfoBuilder struct {
+	id                   string // ID
+	idFlag               bool
+	registrationTime     int // 创建时间
+	registrationTimeFlag bool
+	downloadUrl          string // 下载链接
+	downloadUrlFlag      bool
+	scenario             int // 登记表场景
+	scenarioFlag         bool
+}
+
+func NewRegistrationBasicInfoBuilder() *RegistrationBasicInfoBuilder {
+	builder := &RegistrationBasicInfoBuilder{}
+	return builder
+}
+
+// ID
+//
+// 示例值：6833685612520950030
+func (builder *RegistrationBasicInfoBuilder) Id(id string) *RegistrationBasicInfoBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 创建时间
+//
+// 示例值：1618494330932
+func (builder *RegistrationBasicInfoBuilder) RegistrationTime(registrationTime int) *RegistrationBasicInfoBuilder {
+	builder.registrationTime = registrationTime
+	builder.registrationTimeFlag = true
+	return builder
+}
+
+// 下载链接
+//
+// 示例值：https://hire.feishu.cn/hire/file/blob/...token.../
+func (builder *RegistrationBasicInfoBuilder) DownloadUrl(downloadUrl string) *RegistrationBasicInfoBuilder {
+	builder.downloadUrl = downloadUrl
+	builder.downloadUrlFlag = true
+	return builder
+}
+
+// 登记表场景
+//
+// 示例值：5
+func (builder *RegistrationBasicInfoBuilder) Scenario(scenario int) *RegistrationBasicInfoBuilder {
+	builder.scenario = scenario
+	builder.scenarioFlag = true
+	return builder
+}
+
+func (builder *RegistrationBasicInfoBuilder) Build() *RegistrationBasicInfo {
+	req := &RegistrationBasicInfo{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.registrationTimeFlag {
+		req.RegistrationTime = &builder.registrationTime
+
+	}
+	if builder.downloadUrlFlag {
+		req.DownloadUrl = &builder.downloadUrl
+
+	}
+	if builder.scenarioFlag {
+		req.Scenario = &builder.scenario
+
+	}
+	return req
+}
+
 type RegistrationInfo struct {
-	Id   *string `json:"id,omitempty"`   // 面试登记表ID
-	Name *string `json:"name,omitempty"` // 面试登记表名称
+	SchemaId *string `json:"schema_id,omitempty"` // 面试登记表ID
+	Name     *string `json:"name,omitempty"`      // 面试登记表名称
 }
 
 type RegistrationInfoBuilder struct {
-	id       string // 面试登记表ID
-	idFlag   bool
-	name     string // 面试登记表名称
-	nameFlag bool
+	schemaId     string // 面试登记表ID
+	schemaIdFlag bool
+	name         string // 面试登记表名称
+	nameFlag     bool
 }
 
 func NewRegistrationInfoBuilder() *RegistrationInfoBuilder {
@@ -22986,9 +26002,9 @@ func NewRegistrationInfoBuilder() *RegistrationInfoBuilder {
 // 面试登记表ID
 //
 // 示例值：6930815272790114324
-func (builder *RegistrationInfoBuilder) Id(id string) *RegistrationInfoBuilder {
-	builder.id = id
-	builder.idFlag = true
+func (builder *RegistrationInfoBuilder) SchemaId(schemaId string) *RegistrationInfoBuilder {
+	builder.schemaId = schemaId
+	builder.schemaIdFlag = true
 	return builder
 }
 
@@ -23003,8 +26019,134 @@ func (builder *RegistrationInfoBuilder) Name(name string) *RegistrationInfoBuild
 
 func (builder *RegistrationInfoBuilder) Build() *RegistrationInfo {
 	req := &RegistrationInfo{}
+	if builder.schemaIdFlag {
+		req.SchemaId = &builder.schemaId
+
+	}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	return req
+}
+
+type RegistrationSchema struct {
+	Id        *string         `json:"id,omitempty"`        // 信息登记表模板 ID
+	Name      *string         `json:"name,omitempty"`      // 信息登记表模板名称
+	Scenarios []int           `json:"scenarios,omitempty"` // 登记表适用场景
+	Objects   []*CommonSchema `json:"objects,omitempty"`   // 模块列表
+}
+
+type RegistrationSchemaBuilder struct {
+	id            string // 信息登记表模板 ID
+	idFlag        bool
+	name          string // 信息登记表模板名称
+	nameFlag      bool
+	scenarios     []int // 登记表适用场景
+	scenariosFlag bool
+	objects       []*CommonSchema // 模块列表
+	objectsFlag   bool
+}
+
+func NewRegistrationSchemaBuilder() *RegistrationSchemaBuilder {
+	builder := &RegistrationSchemaBuilder{}
+	return builder
+}
+
+// 信息登记表模板 ID
+//
+// 示例值：7044739584859326764
+func (builder *RegistrationSchemaBuilder) Id(id string) *RegistrationSchemaBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 信息登记表模板名称
+//
+// 示例值：默认信息登记表
+func (builder *RegistrationSchemaBuilder) Name(name string) *RegistrationSchemaBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 登记表适用场景
+//
+// 示例值：
+func (builder *RegistrationSchemaBuilder) Scenarios(scenarios []int) *RegistrationSchemaBuilder {
+	builder.scenarios = scenarios
+	builder.scenariosFlag = true
+	return builder
+}
+
+// 模块列表
+//
+// 示例值：
+func (builder *RegistrationSchemaBuilder) Objects(objects []*CommonSchema) *RegistrationSchemaBuilder {
+	builder.objects = objects
+	builder.objectsFlag = true
+	return builder
+}
+
+func (builder *RegistrationSchemaBuilder) Build() *RegistrationSchema {
+	req := &RegistrationSchema{}
 	if builder.idFlag {
 		req.Id = &builder.id
+
+	}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	if builder.scenariosFlag {
+		req.Scenarios = builder.scenarios
+	}
+	if builder.objectsFlag {
+		req.Objects = builder.objects
+	}
+	return req
+}
+
+type RegistrationSchemaInfo struct {
+	SchemaId *string `json:"schema_id,omitempty"` // 信息登记表ID
+	Name     *string `json:"name,omitempty"`      // 信息登记表名称
+}
+
+type RegistrationSchemaInfoBuilder struct {
+	schemaId     string // 信息登记表ID
+	schemaIdFlag bool
+	name         string // 信息登记表名称
+	nameFlag     bool
+}
+
+func NewRegistrationSchemaInfoBuilder() *RegistrationSchemaInfoBuilder {
+	builder := &RegistrationSchemaInfoBuilder{}
+	return builder
+}
+
+// 信息登记表ID
+//
+// 示例值：6930815272790114324
+func (builder *RegistrationSchemaInfoBuilder) SchemaId(schemaId string) *RegistrationSchemaInfoBuilder {
+	builder.schemaId = schemaId
+	builder.schemaIdFlag = true
+	return builder
+}
+
+// 信息登记表名称
+//
+// 示例值：默认登记表
+func (builder *RegistrationSchemaInfoBuilder) Name(name string) *RegistrationSchemaInfoBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+func (builder *RegistrationSchemaInfoBuilder) Build() *RegistrationSchemaInfo {
+	req := &RegistrationSchemaInfo{}
+	if builder.schemaIdFlag {
+		req.SchemaId = &builder.schemaId
 
 	}
 	if builder.nameFlag {
@@ -25214,6 +28356,166 @@ func (builder *SnsInfoBuilder) Build() *SnsInfo {
 	return req
 }
 
+type Store struct {
+	Id           *string `json:"id,omitempty"`            // 门店ID
+	Name         *string `json:"name,omitempty"`          // 门店名称
+	NameEn       *string `json:"name_en,omitempty"`       // 门店名称（英文）
+	DepartmentId *string `json:"department_id,omitempty"` // 部门ID
+	ActiveStatus *int    `json:"active_status,omitempty"` // 启用状态
+	AddressId    *string `json:"address_id,omitempty"`    // 地理位置
+	ManagerId    *string `json:"manager_id,omitempty"`    // 门店负责人ID
+	Remark       *string `json:"remark,omitempty"`        // 备注
+	RemarkEn     *string `json:"remark_en,omitempty"`     // 备注（英文）
+}
+
+type StoreBuilder struct {
+	id               string // 门店ID
+	idFlag           bool
+	name             string // 门店名称
+	nameFlag         bool
+	nameEn           string // 门店名称（英文）
+	nameEnFlag       bool
+	departmentId     string // 部门ID
+	departmentIdFlag bool
+	activeStatus     int // 启用状态
+	activeStatusFlag bool
+	addressId        string // 地理位置
+	addressIdFlag    bool
+	managerId        string // 门店负责人ID
+	managerIdFlag    bool
+	remark           string // 备注
+	remarkFlag       bool
+	remarkEn         string // 备注（英文）
+	remarkEnFlag     bool
+}
+
+func NewStoreBuilder() *StoreBuilder {
+	builder := &StoreBuilder{}
+	return builder
+}
+
+// 门店ID
+//
+// 示例值：7244461012524337452
+func (builder *StoreBuilder) Id(id string) *StoreBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 门店名称
+//
+// 示例值：门店名称
+func (builder *StoreBuilder) Name(name string) *StoreBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 门店名称（英文）
+//
+// 示例值：Store Name
+func (builder *StoreBuilder) NameEn(nameEn string) *StoreBuilder {
+	builder.nameEn = nameEn
+	builder.nameEnFlag = true
+	return builder
+}
+
+// 部门ID
+//
+// 示例值：od-b2fafdce6fc5800b574ba5b0e2798b36
+func (builder *StoreBuilder) DepartmentId(departmentId string) *StoreBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+// 启用状态
+//
+// 示例值：1
+func (builder *StoreBuilder) ActiveStatus(activeStatus int) *StoreBuilder {
+	builder.activeStatus = activeStatus
+	builder.activeStatusFlag = true
+	return builder
+}
+
+// 地理位置
+//
+// 示例值：6936011864347134239
+func (builder *StoreBuilder) AddressId(addressId string) *StoreBuilder {
+	builder.addressId = addressId
+	builder.addressIdFlag = true
+	return builder
+}
+
+// 门店负责人ID
+//
+// 示例值：ou_efk39117c300506837def50545420c6a
+func (builder *StoreBuilder) ManagerId(managerId string) *StoreBuilder {
+	builder.managerId = managerId
+	builder.managerIdFlag = true
+	return builder
+}
+
+// 备注
+//
+// 示例值：备注
+func (builder *StoreBuilder) Remark(remark string) *StoreBuilder {
+	builder.remark = remark
+	builder.remarkFlag = true
+	return builder
+}
+
+// 备注（英文）
+//
+// 示例值：Remark
+func (builder *StoreBuilder) RemarkEn(remarkEn string) *StoreBuilder {
+	builder.remarkEn = remarkEn
+	builder.remarkEnFlag = true
+	return builder
+}
+
+func (builder *StoreBuilder) Build() *Store {
+	req := &Store{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	if builder.nameEnFlag {
+		req.NameEn = &builder.nameEn
+
+	}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.activeStatusFlag {
+		req.ActiveStatus = &builder.activeStatus
+
+	}
+	if builder.addressIdFlag {
+		req.AddressId = &builder.addressId
+
+	}
+	if builder.managerIdFlag {
+		req.ManagerId = &builder.managerId
+
+	}
+	if builder.remarkFlag {
+		req.Remark = &builder.remark
+
+	}
+	if builder.remarkEnFlag {
+		req.RemarkEn = &builder.remarkEn
+
+	}
+	return req
+}
+
 type Subject struct {
 	Id               *string       `json:"id,omitempty"`                // ID
 	Name             *I18n         `json:"name,omitempty"`              // 名称
@@ -25338,6 +28640,7 @@ type Talent struct {
 	SnsList                   []*TalentSnsInfo                     `json:"sns_list,omitempty"`                    // 社交账号
 	ResumeSourceList          []*TalentResumeSource                `json:"resume_source_list,omitempty"`          // 简历来源
 	InterviewRegistrationList []*TalentInterviewRegistrationSimple `json:"interview_registration_list,omitempty"` // 面试登记表
+	RegistrationList          []*RegistrationBasicInfo             `json:"registration_list,omitempty"`           // 登记表列表
 	ResumeAttachmentIdList    []string                             `json:"resume_attachment_id_list,omitempty"`   // 简历附件id列表（按照简历创建时间降序）
 	CustomizedDataList        []*TalentCustomizedData              `json:"customized_data_list,omitempty"`        // 自定义模块
 	TopDegree                 *int                                 `json:"top_degree,omitempty"`                  // 最高学历
@@ -25371,6 +28674,8 @@ type TalentBuilder struct {
 	resumeSourceListFlag          bool
 	interviewRegistrationList     []*TalentInterviewRegistrationSimple // 面试登记表
 	interviewRegistrationListFlag bool
+	registrationList              []*RegistrationBasicInfo // 登记表列表
+	registrationListFlag          bool
 	resumeAttachmentIdList        []string // 简历附件id列表（按照简历创建时间降序）
 	resumeAttachmentIdListFlag    bool
 	customizedDataList            []*TalentCustomizedData // 自定义模块
@@ -25503,6 +28808,15 @@ func (builder *TalentBuilder) InterviewRegistrationList(interviewRegistrationLis
 	return builder
 }
 
+// 登记表列表
+//
+// 示例值：
+func (builder *TalentBuilder) RegistrationList(registrationList []*RegistrationBasicInfo) *TalentBuilder {
+	builder.registrationList = registrationList
+	builder.registrationListFlag = true
+	return builder
+}
+
 // 简历附件id列表（按照简历创建时间降序）
 //
 // 示例值：
@@ -25582,6 +28896,9 @@ func (builder *TalentBuilder) Build() *Talent {
 	}
 	if builder.interviewRegistrationListFlag {
 		req.InterviewRegistrationList = builder.interviewRegistrationList
+	}
+	if builder.registrationListFlag {
+		req.RegistrationList = builder.registrationList
 	}
 	if builder.resumeAttachmentIdListFlag {
 		req.ResumeAttachmentIdList = builder.resumeAttachmentIdList
@@ -25699,27 +29016,28 @@ func (builder *TalentAwardInfoBuilder) Build() *TalentAwardInfo {
 }
 
 type TalentBasicInfo struct {
-	Name                 *string                      `json:"name,omitempty"`                  // 名字
-	Mobile               *string                      `json:"mobile,omitempty"`                // 手机
-	MobileCode           *string                      `json:"mobile_code,omitempty"`           // 手机国家区号
-	MobileCountryCode    *string                      `json:"mobile_country_code,omitempty"`   // 手机国家代码
-	Email                *string                      `json:"email,omitempty"`                 // 邮箱
-	ExperienceYears      *int                         `json:"experience_years,omitempty"`      // 工作年限
-	Age                  *int                         `json:"age,omitempty"`                   // 年龄
-	Nationality          *TalentNationality           `json:"nationality,omitempty"`           // 国籍
-	Gender               *int                         `json:"gender,omitempty"`                // 性别
-	CurrentCity          *TalentCityInfo              `json:"current_city,omitempty"`          // 所在地点
-	HometownCity         *TalentCityInfo              `json:"hometown_city,omitempty"`         // 家乡
-	PreferredCityList    []*TalentCityInfo            `json:"preferred_city_list,omitempty"`   // 意向地点
-	IdentificationType   *int                         `json:"identification_type,omitempty"`   // 证件类型
-	IdentificationNumber *string                      `json:"identification_number,omitempty"` // 证件号
-	Identification       *TalentIdentificationInfo    `json:"identification,omitempty"`        // 证件信息
-	Birthday             *int                         `json:"birthday,omitempty"`              // 生日
-	CreatorId            *string                      `json:"creator_id,omitempty"`            // 创建人
-	MaritalStatus        *int                         `json:"marital_status,omitempty"`        // 婚姻状况
-	CurrentHomeAddress   *string                      `json:"current_home_address,omitempty"`  // 家庭住址
-	CustomizedDataList   []*TalentCustomizedDataChild `json:"customized_data_list,omitempty"`  // 自定义字段
-	ModifyTime           *string                      `json:"modify_time,omitempty"`           // 修改时间
+	Name                 *string            `json:"name,omitempty"`                  // 名字
+	Mobile               *string            `json:"mobile,omitempty"`                // 手机
+	MobileCode           *string            `json:"mobile_code,omitempty"`           // 手机国家区号
+	MobileCountryCode    *string            `json:"mobile_country_code,omitempty"`   // 手机国家代码
+	Email                *string            `json:"email,omitempty"`                 // 邮箱
+	ExperienceYears      *int               `json:"experience_years,omitempty"`      // 工作年限
+	Age                  *int               `json:"age,omitempty"`                   // 年龄
+	Nationality          *TalentNationality `json:"nationality,omitempty"`           // 国籍
+	Gender               *int               `json:"gender,omitempty"`                // 性别
+	CurrentCity          *TalentCityInfo    `json:"current_city,omitempty"`          // 所在地点
+	HometownCity         *TalentCityInfo    `json:"hometown_city,omitempty"`         // 家乡
+	PreferredCityList    []*TalentCityInfo  `json:"preferred_city_list,omitempty"`   // 意向地点
+	IdentificationType   *int               `json:"identification_type,omitempty"`   // 证件类型
+	IdentificationNumber *string            `json:"identification_number,omitempty"` // 证件号
+
+	Birthday           *int                         `json:"birthday,omitempty"`             // 生日
+	CreatorId          *string                      `json:"creator_id,omitempty"`           // 创建人
+	MaritalStatus      *int                         `json:"marital_status,omitempty"`       // 婚姻状况
+	CurrentHomeAddress *string                      `json:"current_home_address,omitempty"` // 家庭住址
+	CustomizedDataList []*TalentCustomizedDataChild `json:"customized_data_list,omitempty"` // 自定义字段
+	ModifyTime         *string                      `json:"modify_time,omitempty"`          // 修改时间
+	HukouLocationCode  *string                      `json:"hukou_location_code,omitempty"`  // 户口所在地
 }
 
 type TalentBasicInfoBuilder struct {
@@ -25751,20 +29069,21 @@ type TalentBasicInfoBuilder struct {
 	identificationTypeFlag   bool
 	identificationNumber     string // 证件号
 	identificationNumberFlag bool
-	identification           *TalentIdentificationInfo // 证件信息
-	identificationFlag       bool
-	birthday                 int // 生日
-	birthdayFlag             bool
-	creatorId                string // 创建人
-	creatorIdFlag            bool
-	maritalStatus            int // 婚姻状况
-	maritalStatusFlag        bool
-	currentHomeAddress       string // 家庭住址
-	currentHomeAddressFlag   bool
-	customizedDataList       []*TalentCustomizedDataChild // 自定义字段
-	customizedDataListFlag   bool
-	modifyTime               string // 修改时间
-	modifyTimeFlag           bool
+
+	birthday               int // 生日
+	birthdayFlag           bool
+	creatorId              string // 创建人
+	creatorIdFlag          bool
+	maritalStatus          int // 婚姻状况
+	maritalStatusFlag      bool
+	currentHomeAddress     string // 家庭住址
+	currentHomeAddressFlag bool
+	customizedDataList     []*TalentCustomizedDataChild // 自定义字段
+	customizedDataListFlag bool
+	modifyTime             string // 修改时间
+	modifyTimeFlag         bool
+	hukouLocationCode      string // 户口所在地
+	hukouLocationCodeFlag  bool
 }
 
 func NewTalentBasicInfoBuilder() *TalentBasicInfoBuilder {
@@ -25898,15 +29217,6 @@ func (builder *TalentBasicInfoBuilder) IdentificationNumber(identificationNumber
 	return builder
 }
 
-// 证件信息
-//
-// 示例值：
-func (builder *TalentBasicInfoBuilder) Identification(identification *TalentIdentificationInfo) *TalentBasicInfoBuilder {
-	builder.identification = identification
-	builder.identificationFlag = true
-	return builder
-}
-
 // 生日
 //
 // 示例值：293016767159
@@ -25958,6 +29268,15 @@ func (builder *TalentBasicInfoBuilder) CustomizedDataList(customizedDataList []*
 func (builder *TalentBasicInfoBuilder) ModifyTime(modifyTime string) *TalentBasicInfoBuilder {
 	builder.modifyTime = modifyTime
 	builder.modifyTimeFlag = true
+	return builder
+}
+
+// 户口所在地
+//
+// 示例值：CN_1
+func (builder *TalentBasicInfoBuilder) HukouLocationCode(hukouLocationCode string) *TalentBasicInfoBuilder {
+	builder.hukouLocationCode = hukouLocationCode
+	builder.hukouLocationCodeFlag = true
 	return builder
 }
 
@@ -26015,9 +29334,7 @@ func (builder *TalentBasicInfoBuilder) Build() *TalentBasicInfo {
 		req.IdentificationNumber = &builder.identificationNumber
 
 	}
-	if builder.identificationFlag {
-		req.Identification = builder.identification
-	}
+
 	if builder.birthdayFlag {
 		req.Birthday = &builder.birthday
 
@@ -26039,6 +29356,10 @@ func (builder *TalentBasicInfoBuilder) Build() *TalentBasicInfo {
 	}
 	if builder.modifyTimeFlag {
 		req.ModifyTime = &builder.modifyTime
+
+	}
+	if builder.hukouLocationCodeFlag {
+		req.HukouLocationCode = &builder.hukouLocationCode
 
 	}
 	return req
@@ -27569,19 +30890,19 @@ func (builder *TalentCompetitionInfoBuilder) Build() *TalentCompetitionInfo {
 
 type TalentCustomizedAttachment struct {
 	FileId      *string `json:"file_id,omitempty"`      // 附件 ID
-	FileName    *string `json:"file_name,omitempty"`    // 附件名称
+	Name        *string `json:"name,omitempty"`         // 附件名称
 	ContentType *string `json:"content_type,omitempty"` // 附件类型
-	FileSize    *string `json:"file_size,omitempty"`    // 附件大小
+	FileSize    *int    `json:"file_size,omitempty"`    // 附件大小
 }
 
 type TalentCustomizedAttachmentBuilder struct {
 	fileId          string // 附件 ID
 	fileIdFlag      bool
-	fileName        string // 附件名称
-	fileNameFlag    bool
+	name            string // 附件名称
+	nameFlag        bool
 	contentType     string // 附件类型
 	contentTypeFlag bool
-	fileSize        string // 附件大小
+	fileSize        int // 附件大小
 	fileSizeFlag    bool
 }
 
@@ -27602,9 +30923,9 @@ func (builder *TalentCustomizedAttachmentBuilder) FileId(fileId string) *TalentC
 // 附件名称
 //
 // 示例值：1.13测试1的面试记录.pdf
-func (builder *TalentCustomizedAttachmentBuilder) FileName(fileName string) *TalentCustomizedAttachmentBuilder {
-	builder.fileName = fileName
-	builder.fileNameFlag = true
+func (builder *TalentCustomizedAttachmentBuilder) Name(name string) *TalentCustomizedAttachmentBuilder {
+	builder.name = name
+	builder.nameFlag = true
 	return builder
 }
 
@@ -27620,7 +30941,7 @@ func (builder *TalentCustomizedAttachmentBuilder) ContentType(contentType string
 // 附件大小
 //
 // 示例值：16615
-func (builder *TalentCustomizedAttachmentBuilder) FileSize(fileSize string) *TalentCustomizedAttachmentBuilder {
+func (builder *TalentCustomizedAttachmentBuilder) FileSize(fileSize int) *TalentCustomizedAttachmentBuilder {
 	builder.fileSize = fileSize
 	builder.fileSizeFlag = true
 	return builder
@@ -27632,8 +30953,8 @@ func (builder *TalentCustomizedAttachmentBuilder) Build() *TalentCustomizedAttac
 		req.FileId = &builder.fileId
 
 	}
-	if builder.fileNameFlag {
-		req.FileName = &builder.fileName
+	if builder.nameFlag {
+		req.Name = &builder.name
 
 	}
 	if builder.contentTypeFlag {
@@ -28442,6 +31763,70 @@ func (builder *TalentFolderBuilder) Build() *TalentFolder {
 	}
 	if builder.folderIdFlag {
 		req.FolderId = &builder.folderId
+
+	}
+	if builder.ownerIdFlag {
+		req.OwnerId = &builder.ownerId
+
+	}
+	return req
+}
+
+type TalentFolderForList struct {
+	FolderId   *string `json:"folder_id,omitempty"`   // 文件夹ID
+	FolderName *string `json:"folder_name,omitempty"` // 名字
+	OwnerId    *string `json:"owner_id,omitempty"`    // 所有者ID
+}
+
+type TalentFolderForListBuilder struct {
+	folderId       string // 文件夹ID
+	folderIdFlag   bool
+	folderName     string // 名字
+	folderNameFlag bool
+	ownerId        string // 所有者ID
+	ownerIdFlag    bool
+}
+
+func NewTalentFolderForListBuilder() *TalentFolderForListBuilder {
+	builder := &TalentFolderForListBuilder{}
+	return builder
+}
+
+// 文件夹ID
+//
+// 示例值：7041806543797995820
+func (builder *TalentFolderForListBuilder) FolderId(folderId string) *TalentFolderForListBuilder {
+	builder.folderId = folderId
+	builder.folderIdFlag = true
+	return builder
+}
+
+// 名字
+//
+// 示例值：人才文件夹A1
+func (builder *TalentFolderForListBuilder) FolderName(folderName string) *TalentFolderForListBuilder {
+	builder.folderName = folderName
+	builder.folderNameFlag = true
+	return builder
+}
+
+// 所有者ID
+//
+// 示例值：ou_85bb308c57f597471cd2bb5b4f580245
+func (builder *TalentFolderForListBuilder) OwnerId(ownerId string) *TalentFolderForListBuilder {
+	builder.ownerId = ownerId
+	builder.ownerIdFlag = true
+	return builder
+}
+
+func (builder *TalentFolderForListBuilder) Build() *TalentFolderForList {
+	req := &TalentFolderForList{}
+	if builder.folderIdFlag {
+		req.FolderId = &builder.folderId
+
+	}
+	if builder.folderNameFlag {
+		req.FolderName = &builder.folderName
 
 	}
 	if builder.ownerIdFlag {
@@ -29830,6 +33215,70 @@ func (builder *TalentWorksInfoBuilder) Build() *TalentWorksInfo {
 	return req
 }
 
+type TargetMajorInfo struct {
+	Id     *string `json:"id,omitempty"`      // 目标专业ID
+	ZhName *string `json:"zh_name,omitempty"` // 目标专业中文名称
+	EnName *string `json:"en_name,omitempty"` // 目标专业英文名称
+}
+
+type TargetMajorInfoBuilder struct {
+	id         string // 目标专业ID
+	idFlag     bool
+	zhName     string // 目标专业中文名称
+	zhNameFlag bool
+	enName     string // 目标专业英文名称
+	enNameFlag bool
+}
+
+func NewTargetMajorInfoBuilder() *TargetMajorInfoBuilder {
+	builder := &TargetMajorInfoBuilder{}
+	return builder
+}
+
+// 目标专业ID
+//
+// 示例值：6930815272790114324
+func (builder *TargetMajorInfoBuilder) Id(id string) *TargetMajorInfoBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 目标专业中文名称
+//
+// 示例值：考古
+func (builder *TargetMajorInfoBuilder) ZhName(zhName string) *TargetMajorInfoBuilder {
+	builder.zhName = zhName
+	builder.zhNameFlag = true
+	return builder
+}
+
+// 目标专业英文名称
+//
+// 示例值：archeology
+func (builder *TargetMajorInfoBuilder) EnName(enName string) *TargetMajorInfoBuilder {
+	builder.enName = enName
+	builder.enNameFlag = true
+	return builder
+}
+
+func (builder *TargetMajorInfoBuilder) Build() *TargetMajorInfo {
+	req := &TargetMajorInfo{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.zhNameFlag {
+		req.ZhName = &builder.zhName
+
+	}
+	if builder.enNameFlag {
+		req.EnName = &builder.enName
+
+	}
+	return req
+}
+
 type TerminationReason struct {
 	Id                 *string `json:"id,omitempty"`                    // 终止原因 ID
 	Name               *I18n   `json:"name,omitempty"`                  // 终止原因名称
@@ -30476,6 +33925,245 @@ func (builder *TodoCommonBuilder) Build() *TodoCommon {
 	return req
 }
 
+type TradeDetail struct {
+	AccountId               *string      `json:"account_id,omitempty"`                 // 账户ID
+	TotalRechargeRewardInfo *BonusAmount `json:"total_recharge_reward_info,omitempty"` // 时间段内该账户在积分商城的实际充值金额
+}
+
+type TradeDetailBuilder struct {
+	accountId                   string // 账户ID
+	accountIdFlag               bool
+	totalRechargeRewardInfo     *BonusAmount // 时间段内该账户在积分商城的实际充值金额
+	totalRechargeRewardInfoFlag bool
+}
+
+func NewTradeDetailBuilder() *TradeDetailBuilder {
+	builder := &TradeDetailBuilder{}
+	return builder
+}
+
+// 账户ID
+//
+// 示例值：6930815272790114324
+func (builder *TradeDetailBuilder) AccountId(accountId string) *TradeDetailBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+// 时间段内该账户在积分商城的实际充值金额
+//
+// 示例值：
+func (builder *TradeDetailBuilder) TotalRechargeRewardInfo(totalRechargeRewardInfo *BonusAmount) *TradeDetailBuilder {
+	builder.totalRechargeRewardInfo = totalRechargeRewardInfo
+	builder.totalRechargeRewardInfoFlag = true
+	return builder
+}
+
+func (builder *TradeDetailBuilder) Build() *TradeDetail {
+	req := &TradeDetail{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+
+	}
+	if builder.totalRechargeRewardInfoFlag {
+		req.TotalRechargeRewardInfo = builder.totalRechargeRewardInfo
+	}
+	return req
+}
+
+type TripartiteAgreementInfo struct {
+	Id            *string `json:"id,omitempty"`             // 三方协议 ID
+	ApplicationId *string `json:"application_id,omitempty"` // 投递ID
+	State         *int    `json:"state,omitempty"`          // 三方协议状态
+	CreateTime    *string `json:"create_time,omitempty"`    // 三方协议创建时间，毫秒时间戳
+	ModifyTime    *string `json:"modify_time,omitempty"`    // 三方协议修改时间，毫秒时间戳
+}
+
+type TripartiteAgreementInfoBuilder struct {
+	id                string // 三方协议 ID
+	idFlag            bool
+	applicationId     string // 投递ID
+	applicationIdFlag bool
+	state             int // 三方协议状态
+	stateFlag         bool
+	createTime        string // 三方协议创建时间，毫秒时间戳
+	createTimeFlag    bool
+	modifyTime        string // 三方协议修改时间，毫秒时间戳
+	modifyTimeFlag    bool
+}
+
+func NewTripartiteAgreementInfoBuilder() *TripartiteAgreementInfoBuilder {
+	builder := &TripartiteAgreementInfoBuilder{}
+	return builder
+}
+
+// 三方协议 ID
+//
+// 示例值：6930815272790114324
+func (builder *TripartiteAgreementInfoBuilder) Id(id string) *TripartiteAgreementInfoBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 投递ID
+//
+// 示例值：6930815272790114325
+func (builder *TripartiteAgreementInfoBuilder) ApplicationId(applicationId string) *TripartiteAgreementInfoBuilder {
+	builder.applicationId = applicationId
+	builder.applicationIdFlag = true
+	return builder
+}
+
+// 三方协议状态
+//
+// 示例值：1
+func (builder *TripartiteAgreementInfoBuilder) State(state int) *TripartiteAgreementInfoBuilder {
+	builder.state = state
+	builder.stateFlag = true
+	return builder
+}
+
+// 三方协议创建时间，毫秒时间戳
+//
+// 示例值：1698292282660
+func (builder *TripartiteAgreementInfoBuilder) CreateTime(createTime string) *TripartiteAgreementInfoBuilder {
+	builder.createTime = createTime
+	builder.createTimeFlag = true
+	return builder
+}
+
+// 三方协议修改时间，毫秒时间戳
+//
+// 示例值：1698292282661
+func (builder *TripartiteAgreementInfoBuilder) ModifyTime(modifyTime string) *TripartiteAgreementInfoBuilder {
+	builder.modifyTime = modifyTime
+	builder.modifyTimeFlag = true
+	return builder
+}
+
+func (builder *TripartiteAgreementInfoBuilder) Build() *TripartiteAgreementInfo {
+	req := &TripartiteAgreementInfo{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.applicationIdFlag {
+		req.ApplicationId = &builder.applicationId
+
+	}
+	if builder.stateFlag {
+		req.State = &builder.state
+
+	}
+	if builder.createTimeFlag {
+		req.CreateTime = &builder.createTime
+
+	}
+	if builder.modifyTimeFlag {
+		req.ModifyTime = &builder.modifyTime
+
+	}
+	return req
+}
+
+type UserContactInfo struct {
+	Name      *string `json:"name,omitempty"`       // 姓名
+	Mobile    *string `json:"mobile,omitempty"`     // 手机号
+	Email     *string `json:"email,omitempty"`      // 邮箱
+	FirstName *string `json:"first_name,omitempty"` // 名字
+	LastName  *string `json:"last_name,omitempty"`  // 姓氏
+}
+
+type UserContactInfoBuilder struct {
+	name          string // 姓名
+	nameFlag      bool
+	mobile        string // 手机号
+	mobileFlag    bool
+	email         string // 邮箱
+	emailFlag     bool
+	firstName     string // 名字
+	firstNameFlag bool
+	lastName      string // 姓氏
+	lastNameFlag  bool
+}
+
+func NewUserContactInfoBuilder() *UserContactInfoBuilder {
+	builder := &UserContactInfoBuilder{}
+	return builder
+}
+
+// 姓名
+//
+// 示例值：王二
+func (builder *UserContactInfoBuilder) Name(name string) *UserContactInfoBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 手机号
+//
+// 示例值：176xxxx1234
+func (builder *UserContactInfoBuilder) Mobile(mobile string) *UserContactInfoBuilder {
+	builder.mobile = mobile
+	builder.mobileFlag = true
+	return builder
+}
+
+// 邮箱
+//
+// 示例值：xxx@abc.vom
+func (builder *UserContactInfoBuilder) Email(email string) *UserContactInfoBuilder {
+	builder.email = email
+	builder.emailFlag = true
+	return builder
+}
+
+// 名字
+//
+// 示例值：Ming
+func (builder *UserContactInfoBuilder) FirstName(firstName string) *UserContactInfoBuilder {
+	builder.firstName = firstName
+	builder.firstNameFlag = true
+	return builder
+}
+
+// 姓氏
+//
+// 示例值：Lee
+func (builder *UserContactInfoBuilder) LastName(lastName string) *UserContactInfoBuilder {
+	builder.lastName = lastName
+	builder.lastNameFlag = true
+	return builder
+}
+
+func (builder *UserContactInfoBuilder) Build() *UserContactInfo {
+	req := &UserContactInfo{}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	if builder.mobileFlag {
+		req.Mobile = &builder.mobile
+
+	}
+	if builder.emailFlag {
+		req.Email = &builder.email
+
+	}
+	if builder.firstNameFlag {
+		req.FirstName = &builder.firstName
+
+	}
+	if builder.lastNameFlag {
+		req.LastName = &builder.lastName
+
+	}
+	return req
+}
+
 type UserId struct {
 	UserId  *string `json:"user_id,omitempty"`  //
 	OpenId  *string `json:"open_id,omitempty"`  //
@@ -30605,10 +34293,10 @@ func (builder *UserRoleBuilder) Build() *UserRole {
 }
 
 type Website struct {
-	Id              *string  `json:"id,omitempty"`                // ID
-	Name            *I18n    `json:"name,omitempty"`              // 名称
-	ProcessTypeList []string `json:"process_type_list,omitempty"` // 流程类型，1-社招，2-校招
-	JobChannelId    *string  `json:"job_channel_id,omitempty"`    // 职位渠道ID
+	Id              *string `json:"id,omitempty"`                // ID
+	Name            *I18n   `json:"name,omitempty"`              // 名称
+	ProcessTypeList []int   `json:"process_type_list,omitempty"` // 流程类型，1-社招，2-校招
+	JobChannelId    *string `json:"job_channel_id,omitempty"`    // 职位渠道ID
 }
 
 type WebsiteBuilder struct {
@@ -30616,7 +34304,7 @@ type WebsiteBuilder struct {
 	idFlag              bool
 	name                *I18n // 名称
 	nameFlag            bool
-	processTypeList     []string // 流程类型，1-社招，2-校招
+	processTypeList     []int // 流程类型，1-社招，2-校招
 	processTypeListFlag bool
 	jobChannelId        string // 职位渠道ID
 	jobChannelIdFlag    bool
@@ -30648,7 +34336,7 @@ func (builder *WebsiteBuilder) Name(name *I18n) *WebsiteBuilder {
 // 流程类型，1-社招，2-校招
 //
 // 示例值：
-func (builder *WebsiteBuilder) ProcessTypeList(processTypeList []string) *WebsiteBuilder {
+func (builder *WebsiteBuilder) ProcessTypeList(processTypeList []int) *WebsiteBuilder {
 	builder.processTypeList = processTypeList
 	builder.processTypeListFlag = true
 	return builder
@@ -31905,6 +35593,7 @@ func (builder *WebsiteDeliveryDtoBuilder) Build() *WebsiteDeliveryDto {
 type WebsiteDeliveryEducation struct {
 	EducationType   *int                             `json:"education_type,omitempty"`   // 学历类型
 	EndTime         *int                             `json:"end_time,omitempty"`         // 结束时间 ,如果是至今传值 -1
+	EndTimeV2       *int                             `json:"end_time_v2,omitempty"`      // 结束时间-新，无「至今」传值。建议使用此字段，避免模糊的毕业时间影响候选人筛选
 	FieldOfStudy    *string                          `json:"field_of_study,omitempty"`   // 专业
 	School          *string                          `json:"school,omitempty"`           // 学校
 	StartTime       *int                             `json:"start_time,omitempty"`       // 开始时间
@@ -31918,6 +35607,8 @@ type WebsiteDeliveryEducationBuilder struct {
 	educationTypeFlag   bool
 	endTime             int // 结束时间 ,如果是至今传值 -1
 	endTimeFlag         bool
+	endTimeV2           int // 结束时间-新，无「至今」传值。建议使用此字段，避免模糊的毕业时间影响候选人筛选
+	endTimeV2Flag       bool
 	fieldOfStudy        string // 专业
 	fieldOfStudyFlag    bool
 	school              string // 学校
@@ -31952,6 +35643,15 @@ func (builder *WebsiteDeliveryEducationBuilder) EducationType(educationType int)
 func (builder *WebsiteDeliveryEducationBuilder) EndTime(endTime int) *WebsiteDeliveryEducationBuilder {
 	builder.endTime = endTime
 	builder.endTimeFlag = true
+	return builder
+}
+
+// 结束时间-新，无「至今」传值。建议使用此字段，避免模糊的毕业时间影响候选人筛选
+//
+// 示例值：1618500278663
+func (builder *WebsiteDeliveryEducationBuilder) EndTimeV2(endTimeV2 int) *WebsiteDeliveryEducationBuilder {
+	builder.endTimeV2 = endTimeV2
+	builder.endTimeV2Flag = true
 	return builder
 }
 
@@ -32017,6 +35717,10 @@ func (builder *WebsiteDeliveryEducationBuilder) Build() *WebsiteDeliveryEducatio
 	}
 	if builder.endTimeFlag {
 		req.EndTime = &builder.endTime
+
+	}
+	if builder.endTimeV2Flag {
+		req.EndTimeV2 = &builder.endTimeV2
 
 	}
 	if builder.fieldOfStudyFlag {
@@ -32822,6 +36526,8 @@ type WebsiteJobPost struct {
 	JobRecruitmentType *IdNameObject                   `json:"job_recruitment_type,omitempty"` // 职位雇佣类型
 	JobDepartment      *IdNameObject                   `json:"job_department,omitempty"`       // 职位部门
 	JobType            *IdNameObject                   `json:"job_type,omitempty"`             // 职位类型
+	MinJobLevel        *IdNameObject                   `json:"min_job_level,omitempty"`        // 最低职级
+	MaxJobLevel        *IdNameObject                   `json:"max_job_level,omitempty"`        // 最高职级
 	Address            *CommonAddress                  `json:"address,omitempty"`              // 职位地址
 	MinSalary          *string                         `json:"min_salary,omitempty"`           // 月薪范围-最低薪资
 	MaxSalary          *string                         `json:"max_salary,omitempty"`           // 月薪范围-最高薪资
@@ -32834,11 +36540,12 @@ type WebsiteJobPost struct {
 	Creator            *IdNameObject                   `json:"creator,omitempty"`              // 创建人
 	CreateTime         *string                         `json:"create_time,omitempty"`          // 创建时间
 	ModifyTime         *string                         `json:"modify_time,omitempty"`          // 修改时间
-	PublishTime        *string                         `json:"publish_time,omitempty"`         // 发布时间
 	CustomizedDataList []*WebsiteJobPostCustomizedData `json:"customized_data_list,omitempty"` // 自定义字段
 	JobFunction        *IdNameObject                   `json:"job_function,omitempty"`         // 职能分类
 	Subject            *IdNameObject                   `json:"subject,omitempty"`              // 职位项目
 	AddressList        []*CommonAddress                `json:"address_list,omitempty"`         // 职位广告地址列表
+
+	TargetMajorList []*IdNameObject `json:"target_major_list,omitempty"` // 目标专业
 }
 
 type WebsiteJobPostBuilder struct {
@@ -32862,6 +36569,10 @@ type WebsiteJobPostBuilder struct {
 	jobDepartmentFlag      bool
 	jobType                *IdNameObject // 职位类型
 	jobTypeFlag            bool
+	minJobLevel            *IdNameObject // 最低职级
+	minJobLevelFlag        bool
+	maxJobLevel            *IdNameObject // 最高职级
+	maxJobLevelFlag        bool
 	address                *CommonAddress // 职位地址
 	addressFlag            bool
 	minSalary              string // 月薪范围-最低薪资
@@ -32886,8 +36597,6 @@ type WebsiteJobPostBuilder struct {
 	createTimeFlag         bool
 	modifyTime             string // 修改时间
 	modifyTimeFlag         bool
-	publishTime            string // 发布时间
-	publishTimeFlag        bool
 	customizedDataList     []*WebsiteJobPostCustomizedData // 自定义字段
 	customizedDataListFlag bool
 	jobFunction            *IdNameObject // 职能分类
@@ -32896,6 +36605,9 @@ type WebsiteJobPostBuilder struct {
 	subjectFlag            bool
 	addressList            []*CommonAddress // 职位广告地址列表
 	addressListFlag        bool
+
+	targetMajorList     []*IdNameObject // 目标专业
+	targetMajorListFlag bool
 }
 
 func NewWebsiteJobPostBuilder() *WebsiteJobPostBuilder {
@@ -32990,6 +36702,24 @@ func (builder *WebsiteJobPostBuilder) JobDepartment(jobDepartment *IdNameObject)
 func (builder *WebsiteJobPostBuilder) JobType(jobType *IdNameObject) *WebsiteJobPostBuilder {
 	builder.jobType = jobType
 	builder.jobTypeFlag = true
+	return builder
+}
+
+// 最低职级
+//
+// 示例值：
+func (builder *WebsiteJobPostBuilder) MinJobLevel(minJobLevel *IdNameObject) *WebsiteJobPostBuilder {
+	builder.minJobLevel = minJobLevel
+	builder.minJobLevelFlag = true
+	return builder
+}
+
+// 最高职级
+//
+// 示例值：
+func (builder *WebsiteJobPostBuilder) MaxJobLevel(maxJobLevel *IdNameObject) *WebsiteJobPostBuilder {
+	builder.maxJobLevel = maxJobLevel
+	builder.maxJobLevelFlag = true
 	return builder
 }
 
@@ -33101,15 +36831,6 @@ func (builder *WebsiteJobPostBuilder) ModifyTime(modifyTime string) *WebsiteJobP
 	return builder
 }
 
-// 发布时间
-//
-// 示例值：333
-func (builder *WebsiteJobPostBuilder) PublishTime(publishTime string) *WebsiteJobPostBuilder {
-	builder.publishTime = publishTime
-	builder.publishTimeFlag = true
-	return builder
-}
-
 // 自定义字段
 //
 // 示例值：
@@ -33143,6 +36864,15 @@ func (builder *WebsiteJobPostBuilder) Subject(subject *IdNameObject) *WebsiteJob
 func (builder *WebsiteJobPostBuilder) AddressList(addressList []*CommonAddress) *WebsiteJobPostBuilder {
 	builder.addressList = addressList
 	builder.addressListFlag = true
+	return builder
+}
+
+// 目标专业
+//
+// 示例值：
+func (builder *WebsiteJobPostBuilder) TargetMajorList(targetMajorList []*IdNameObject) *WebsiteJobPostBuilder {
+	builder.targetMajorList = targetMajorList
+	builder.targetMajorListFlag = true
 	return builder
 }
 
@@ -33184,6 +36914,12 @@ func (builder *WebsiteJobPostBuilder) Build() *WebsiteJobPost {
 	}
 	if builder.jobTypeFlag {
 		req.JobType = builder.jobType
+	}
+	if builder.minJobLevelFlag {
+		req.MinJobLevel = builder.minJobLevel
+	}
+	if builder.maxJobLevelFlag {
+		req.MaxJobLevel = builder.maxJobLevel
 	}
 	if builder.addressFlag {
 		req.Address = builder.address
@@ -33230,10 +36966,6 @@ func (builder *WebsiteJobPostBuilder) Build() *WebsiteJobPost {
 		req.ModifyTime = &builder.modifyTime
 
 	}
-	if builder.publishTimeFlag {
-		req.PublishTime = &builder.publishTime
-
-	}
 	if builder.customizedDataListFlag {
 		req.CustomizedDataList = builder.customizedDataList
 	}
@@ -33245,6 +36977,10 @@ func (builder *WebsiteJobPostBuilder) Build() *WebsiteJobPost {
 	}
 	if builder.addressListFlag {
 		req.AddressList = builder.addressList
+	}
+
+	if builder.targetMajorListFlag {
+		req.TargetMajorList = builder.targetMajorList
 	}
 	return req
 }
@@ -33532,7 +37268,7 @@ func (builder *WebsiteJobPostCustomizedValueBuilder) Build() *WebsiteJobPostCust
 }
 
 type WebsiteUser struct {
-	Id                *string `json:"id,omitempty"`                  // 用户 ID
+	UserId            *string `json:"user_id,omitempty"`             // 用户 ID
 	Name              *string `json:"name,omitempty"`                // 姓名
 	Email             *string `json:"email,omitempty"`               // 邮箱
 	ExternalId        *string `json:"external_id,omitempty"`         // 外部用户 ID
@@ -33541,8 +37277,8 @@ type WebsiteUser struct {
 }
 
 type WebsiteUserBuilder struct {
-	id                    string // 用户 ID
-	idFlag                bool
+	userId                string // 用户 ID
+	userIdFlag            bool
 	name                  string // 姓名
 	nameFlag              bool
 	email                 string // 邮箱
@@ -33563,9 +37299,9 @@ func NewWebsiteUserBuilder() *WebsiteUserBuilder {
 // 用户 ID
 //
 // 示例值：6960663240925956620
-func (builder *WebsiteUserBuilder) Id(id string) *WebsiteUserBuilder {
-	builder.id = id
-	builder.idFlag = true
+func (builder *WebsiteUserBuilder) UserId(userId string) *WebsiteUserBuilder {
+	builder.userId = userId
+	builder.userIdFlag = true
 	return builder
 }
 
@@ -33616,8 +37352,8 @@ func (builder *WebsiteUserBuilder) MobileCountryCode(mobileCountryCode string) *
 
 func (builder *WebsiteUserBuilder) Build() *WebsiteUser {
 	req := &WebsiteUser{}
-	if builder.idFlag {
-		req.Id = &builder.id
+	if builder.userIdFlag {
+		req.UserId = &builder.userId
 
 	}
 	if builder.nameFlag {
@@ -33777,13 +37513,13 @@ func (builder *CreateApplicationReqBodyBuilder) Build() *CreateApplicationReqBod
 }
 
 type CreateApplicationPathReqBodyBuilder struct {
-	talentId                             string // 人才ID
+	talentId                             string
 	talentIdFlag                         bool
-	jobId                                string // 职位ID
+	jobId                                string
 	jobIdFlag                            bool
-	resumeSourceId                       string // 简历来源 ID，可通过「获取简历来源」接口查询。若简历来源类型属于「员工转岗」或「实习生转正」，人才需处于已入职状态。
+	resumeSourceId                       string
 	resumeSourceIdFlag                   bool
-	applicationPreferredCityCodeList     []string // 意向投递城市列表，可从「获取职位信息」返回的工作地点列表获取
+	applicationPreferredCityCodeList     []string
 	applicationPreferredCityCodeListFlag bool
 }
 
@@ -33919,10 +37655,29 @@ func (builder *GetApplicationReqBuilder) ApplicationId(applicationId string) *Ge
 	return builder
 }
 
+// 此次调用中使用的用户ID的类型
+//
+// 示例值：
+func (builder *GetApplicationReqBuilder) UserIdType(userIdType string) *GetApplicationReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+// 请求控制参数，用于控制接口响应逻辑。如需一次查询多个用户ID，可通过将同一参数名多次传递，并且每次传递不同的参数值。
+//
+// 示例值：
+func (builder *GetApplicationReqBuilder) Options(options []string) *GetApplicationReqBuilder {
+	for _, v := range options {
+		builder.apiReq.QueryParams.Add("options", fmt.Sprint(v))
+	}
+	return builder
+}
+
 func (builder *GetApplicationReqBuilder) Build() *GetApplicationReq {
 	req := &GetApplicationReq{}
 	req.apiReq = &larkcore.ApiReq{}
 	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
 	return req
 }
 
@@ -34093,6 +37848,30 @@ func (builder *OfferApplicationReqBuilder) DepartmentIdType(departmentIdType str
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *OfferApplicationReqBuilder) JobLevelIdType(jobLevelIdType string) *OfferApplicationReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *OfferApplicationReqBuilder) JobFamilyIdType(jobFamilyIdType string) *OfferApplicationReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *OfferApplicationReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *OfferApplicationReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 func (builder *OfferApplicationReqBuilder) Build() *OfferApplicationReq {
 	req := &OfferApplicationReq{}
 	req.apiReq = &larkcore.ApiReq{}
@@ -34175,11 +37954,11 @@ func (builder *TerminateApplicationReqBodyBuilder) Build() *TerminateApplication
 }
 
 type TerminateApplicationPathReqBodyBuilder struct {
-	terminationType           int // 终止原因的类型
+	terminationType           int
 	terminationTypeFlag       bool
-	terminationReasonList     []string // 终止的具体原因的id列表
+	terminationReasonList     []string
 	terminationReasonListFlag bool
-	terminationReasonNote     string // 终止备注
+	terminationReasonNote     string
 	terminationReasonNoteFlag bool
 }
 
@@ -34439,25 +38218,25 @@ func (builder *TransferOnboardApplicationReqBodyBuilder) Build() *TransferOnboar
 }
 
 type TransferOnboardApplicationPathReqBodyBuilder struct {
-	actualOnboardTime          int // 实际入职时间
+	actualOnboardTime          int
 	actualOnboardTimeFlag      bool
-	expectedConversionTime     int // 预期转正时间
+	expectedConversionTime     int
 	expectedConversionTimeFlag bool
-	jobRequirementId           string // 招聘需求 ID
+	jobRequirementId           string
 	jobRequirementIdFlag       bool
-	operatorId                 string // 操作人 UserID
+	operatorId                 string
 	operatorIdFlag             bool
-	onboardCityCode            string // 候选人办公地点 ID ，枚举可通过接口「获取地址列表」获取，将用于候选人内推奖规则判断
+	onboardCityCode            string
 	onboardCityCodeFlag        bool
-	department                 string // 候选人入职部门 ID ，枚举可通过接口「获取部门信息列表」获取，将用于候选人内推奖规则判断
+	department                 string
 	departmentFlag             bool
-	leader                     string // 候选人直属上级 UserID ，将用于候选人内推奖规则判断
+	leader                     string
 	leaderFlag                 bool
-	sequence                   string // 候选人序列 ID ，枚举可通过接口「获取职务分类列表」获取，将用于候选人内推奖规则判断
+	sequence                   string
 	sequenceFlag               bool
-	level                      string // 候选人职级 ID ，枚举可通过接口「获取职级列表」获取，将用于候选人内推奖规则判断
+	level                      string
 	levelFlag                  bool
-	employeeType               string // 候选人入职人员类型 ID，可通过接口人力资源管理平台「获取员工类型列表」获取，将用于候选人内推奖规则判断
+	employeeType               string
 	employeeTypeFlag           bool
 }
 
@@ -34629,6 +38408,30 @@ func (builder *TransferOnboardApplicationReqBuilder) DepartmentIdType(department
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *TransferOnboardApplicationReqBuilder) JobLevelIdType(jobLevelIdType string) *TransferOnboardApplicationReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *TransferOnboardApplicationReqBuilder) JobFamilyIdType(jobFamilyIdType string) *TransferOnboardApplicationReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *TransferOnboardApplicationReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *TransferOnboardApplicationReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 // 根据投递 ID 操作候选人入职并创建员工。投递须处于「待入职」阶段，可通过「转移阶段」接口变更投递状态
 func (builder *TransferOnboardApplicationReqBuilder) Body(body *TransferOnboardApplicationReqBody) *TransferOnboardApplicationReqBuilder {
 	builder.body = body
@@ -34718,6 +38521,14 @@ func (builder *ListApplicationInterviewReqBuilder) PageToken(pageToken string) *
 // 示例值：open_id
 func (builder *ListApplicationInterviewReqBuilder) UserIdType(userIdType string) *ListApplicationInterviewReqBuilder {
 	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *ListApplicationInterviewReqBuilder) JobLevelIdType(jobLevelIdType string) *ListApplicationInterviewReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
 	return builder
 }
 
@@ -34850,6 +38661,1591 @@ func (resp *PreviewAttachmentResp) Success() bool {
 	return resp.Code == 0
 }
 
+type BatchDeleteEcoAccountCustomFieldReqBodyBuilder struct {
+	scope                  int // 适用范围
+	scopeFlag              bool
+	customFieldKeyList     []string // 要删除的自定义字段的 key 列表
+	customFieldKeyListFlag bool
+}
+
+func NewBatchDeleteEcoAccountCustomFieldReqBodyBuilder() *BatchDeleteEcoAccountCustomFieldReqBodyBuilder {
+	builder := &BatchDeleteEcoAccountCustomFieldReqBodyBuilder{}
+	return builder
+}
+
+// 适用范围
+//
+//示例值：1
+func (builder *BatchDeleteEcoAccountCustomFieldReqBodyBuilder) Scope(scope int) *BatchDeleteEcoAccountCustomFieldReqBodyBuilder {
+	builder.scope = scope
+	builder.scopeFlag = true
+	return builder
+}
+
+// 要删除的自定义字段的 key 列表
+//
+//示例值：123
+func (builder *BatchDeleteEcoAccountCustomFieldReqBodyBuilder) CustomFieldKeyList(customFieldKeyList []string) *BatchDeleteEcoAccountCustomFieldReqBodyBuilder {
+	builder.customFieldKeyList = customFieldKeyList
+	builder.customFieldKeyListFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteEcoAccountCustomFieldReqBodyBuilder) Build() *BatchDeleteEcoAccountCustomFieldReqBody {
+	req := &BatchDeleteEcoAccountCustomFieldReqBody{}
+	if builder.scopeFlag {
+		req.Scope = &builder.scope
+	}
+	if builder.customFieldKeyListFlag {
+		req.CustomFieldKeyList = builder.customFieldKeyList
+	}
+	return req
+}
+
+type BatchDeleteEcoAccountCustomFieldPathReqBodyBuilder struct {
+	scope                  int
+	scopeFlag              bool
+	customFieldKeyList     []string
+	customFieldKeyListFlag bool
+}
+
+func NewBatchDeleteEcoAccountCustomFieldPathReqBodyBuilder() *BatchDeleteEcoAccountCustomFieldPathReqBodyBuilder {
+	builder := &BatchDeleteEcoAccountCustomFieldPathReqBodyBuilder{}
+	return builder
+}
+
+// 适用范围
+//
+// 示例值：1
+func (builder *BatchDeleteEcoAccountCustomFieldPathReqBodyBuilder) Scope(scope int) *BatchDeleteEcoAccountCustomFieldPathReqBodyBuilder {
+	builder.scope = scope
+	builder.scopeFlag = true
+	return builder
+}
+
+// 要删除的自定义字段的 key 列表
+//
+// 示例值：123
+func (builder *BatchDeleteEcoAccountCustomFieldPathReqBodyBuilder) CustomFieldKeyList(customFieldKeyList []string) *BatchDeleteEcoAccountCustomFieldPathReqBodyBuilder {
+	builder.customFieldKeyList = customFieldKeyList
+	builder.customFieldKeyListFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteEcoAccountCustomFieldPathReqBodyBuilder) Build() (*BatchDeleteEcoAccountCustomFieldReqBody, error) {
+	req := &BatchDeleteEcoAccountCustomFieldReqBody{}
+	if builder.scopeFlag {
+		req.Scope = &builder.scope
+	}
+	if builder.customFieldKeyListFlag {
+		req.CustomFieldKeyList = builder.customFieldKeyList
+	}
+	return req, nil
+}
+
+type BatchDeleteEcoAccountCustomFieldReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *BatchDeleteEcoAccountCustomFieldReqBody
+}
+
+func NewBatchDeleteEcoAccountCustomFieldReqBuilder() *BatchDeleteEcoAccountCustomFieldReqBuilder {
+	builder := &BatchDeleteEcoAccountCustomFieldReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 删除用户在服务商处的身份标示字段（如用户在服务商处的租户 ID）。删除后，不影响已添加帐号对应的自定义字段的值。但在添加新帐号时，将不能再使用此自定义字段。删除不支持撤销，对应的 key 将无法再次复用。
+func (builder *BatchDeleteEcoAccountCustomFieldReqBuilder) Body(body *BatchDeleteEcoAccountCustomFieldReqBody) *BatchDeleteEcoAccountCustomFieldReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *BatchDeleteEcoAccountCustomFieldReqBuilder) Build() *BatchDeleteEcoAccountCustomFieldReq {
+	req := &BatchDeleteEcoAccountCustomFieldReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type BatchDeleteEcoAccountCustomFieldReqBody struct {
+	Scope              *int     `json:"scope,omitempty"`                 // 适用范围
+	CustomFieldKeyList []string `json:"custom_field_key_list,omitempty"` // 要删除的自定义字段的 key 列表
+}
+
+type BatchDeleteEcoAccountCustomFieldReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *BatchDeleteEcoAccountCustomFieldReqBody `body:""`
+}
+
+type BatchDeleteEcoAccountCustomFieldResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchDeleteEcoAccountCustomFieldResp) Success() bool {
+	return resp.Code == 0
+}
+
+type BatchUpdateEcoAccountCustomFieldReqBuilder struct {
+	apiReq                *larkcore.ApiReq
+	ecoAccountCustomField *EcoAccountCustomField
+}
+
+func NewBatchUpdateEcoAccountCustomFieldReqBuilder() *BatchUpdateEcoAccountCustomFieldReqBuilder {
+	builder := &BatchUpdateEcoAccountCustomFieldReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 更新用户在服务商处的身份标示字段（如用户在服务商处的租户 ID），此方法只会更新同一 scope 内 key 一致的自定义字段。
+func (builder *BatchUpdateEcoAccountCustomFieldReqBuilder) EcoAccountCustomField(ecoAccountCustomField *EcoAccountCustomField) *BatchUpdateEcoAccountCustomFieldReqBuilder {
+	builder.ecoAccountCustomField = ecoAccountCustomField
+	return builder
+}
+
+func (builder *BatchUpdateEcoAccountCustomFieldReqBuilder) Build() *BatchUpdateEcoAccountCustomFieldReq {
+	req := &BatchUpdateEcoAccountCustomFieldReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.ecoAccountCustomField
+	return req
+}
+
+type BatchUpdateEcoAccountCustomFieldReq struct {
+	apiReq                *larkcore.ApiReq
+	EcoAccountCustomField *EcoAccountCustomField `body:""`
+}
+
+type BatchUpdateEcoAccountCustomFieldResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchUpdateEcoAccountCustomFieldResp) Success() bool {
+	return resp.Code == 0
+}
+
+type CreateEcoAccountCustomFieldReqBuilder struct {
+	apiReq                *larkcore.ApiReq
+	ecoAccountCustomField *EcoAccountCustomField
+}
+
+func NewCreateEcoAccountCustomFieldReqBuilder() *CreateEcoAccountCustomFieldReqBuilder {
+	builder := &CreateEcoAccountCustomFieldReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 定制用户在服务商处的身份标示字段（如用户在服务商处的租户 ID）。用户在飞书招聘后台添加帐号后，系统会推送「帐号绑定」事件给开发者，事件将携带用户填写的自定义字段信息，开发者可根据此信息识别飞书招聘用户在服务商处的身份信息，完成飞书招聘用户和服务商帐号的绑定，并以此来推送对应的套餐或试卷列表等。
+func (builder *CreateEcoAccountCustomFieldReqBuilder) EcoAccountCustomField(ecoAccountCustomField *EcoAccountCustomField) *CreateEcoAccountCustomFieldReqBuilder {
+	builder.ecoAccountCustomField = ecoAccountCustomField
+	return builder
+}
+
+func (builder *CreateEcoAccountCustomFieldReqBuilder) Build() *CreateEcoAccountCustomFieldReq {
+	req := &CreateEcoAccountCustomFieldReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.ecoAccountCustomField
+	return req
+}
+
+type CreateEcoAccountCustomFieldReq struct {
+	apiReq                *larkcore.ApiReq
+	EcoAccountCustomField *EcoAccountCustomField `body:""`
+}
+
+type CreateEcoAccountCustomFieldResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *CreateEcoAccountCustomFieldResp) Success() bool {
+	return resp.Code == 0
+}
+
+type CancelEcoBackgroundCheckReqBodyBuilder struct {
+	backgroundCheckId     string // 背调 ID
+	backgroundCheckIdFlag bool
+}
+
+func NewCancelEcoBackgroundCheckReqBodyBuilder() *CancelEcoBackgroundCheckReqBodyBuilder {
+	builder := &CancelEcoBackgroundCheckReqBodyBuilder{}
+	return builder
+}
+
+// 背调 ID
+//
+//示例值：6931286400470354183
+func (builder *CancelEcoBackgroundCheckReqBodyBuilder) BackgroundCheckId(backgroundCheckId string) *CancelEcoBackgroundCheckReqBodyBuilder {
+	builder.backgroundCheckId = backgroundCheckId
+	builder.backgroundCheckIdFlag = true
+	return builder
+}
+
+func (builder *CancelEcoBackgroundCheckReqBodyBuilder) Build() *CancelEcoBackgroundCheckReqBody {
+	req := &CancelEcoBackgroundCheckReqBody{}
+	if builder.backgroundCheckIdFlag {
+		req.BackgroundCheckId = &builder.backgroundCheckId
+	}
+	return req
+}
+
+type CancelEcoBackgroundCheckPathReqBodyBuilder struct {
+	backgroundCheckId     string
+	backgroundCheckIdFlag bool
+}
+
+func NewCancelEcoBackgroundCheckPathReqBodyBuilder() *CancelEcoBackgroundCheckPathReqBodyBuilder {
+	builder := &CancelEcoBackgroundCheckPathReqBodyBuilder{}
+	return builder
+}
+
+// 背调 ID
+//
+// 示例值：6931286400470354183
+func (builder *CancelEcoBackgroundCheckPathReqBodyBuilder) BackgroundCheckId(backgroundCheckId string) *CancelEcoBackgroundCheckPathReqBodyBuilder {
+	builder.backgroundCheckId = backgroundCheckId
+	builder.backgroundCheckIdFlag = true
+	return builder
+}
+
+func (builder *CancelEcoBackgroundCheckPathReqBodyBuilder) Build() (*CancelEcoBackgroundCheckReqBody, error) {
+	req := &CancelEcoBackgroundCheckReqBody{}
+	if builder.backgroundCheckIdFlag {
+		req.BackgroundCheckId = &builder.backgroundCheckId
+	}
+	return req, nil
+}
+
+type CancelEcoBackgroundCheckReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *CancelEcoBackgroundCheckReqBody
+}
+
+func NewCancelEcoBackgroundCheckReqBuilder() *CancelEcoBackgroundCheckReqBuilder {
+	builder := &CancelEcoBackgroundCheckReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 终止背调订单
+func (builder *CancelEcoBackgroundCheckReqBuilder) Body(body *CancelEcoBackgroundCheckReqBody) *CancelEcoBackgroundCheckReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *CancelEcoBackgroundCheckReqBuilder) Build() *CancelEcoBackgroundCheckReq {
+	req := &CancelEcoBackgroundCheckReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type CancelEcoBackgroundCheckReqBody struct {
+	BackgroundCheckId *string `json:"background_check_id,omitempty"` // 背调 ID
+}
+
+type CancelEcoBackgroundCheckReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *CancelEcoBackgroundCheckReqBody `body:""`
+}
+
+type CancelEcoBackgroundCheckResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *CancelEcoBackgroundCheckResp) Success() bool {
+	return resp.Code == 0
+}
+
+type UpdateProgressEcoBackgroundCheckReqBodyBuilder struct {
+	backgroundCheckId     string // 背调 ID，招聘侧的 ID
+	backgroundCheckIdFlag bool
+	stageId               string // 阶段 ID，同一背调订单此 ID 不能重复
+	stageIdFlag           bool
+	stageEnName           string // 背调阶段英文名称
+	stageEnNameFlag       bool
+	stageName             string // 背调阶段名称
+	stageNameFlag         bool
+	stageTime             string // 进入到此背调阶段的时间
+	stageTimeFlag         bool
+	reportFileList        []*EcoBackgroundCheckReportFile // 报告列表
+	reportFileListFlag    bool
+}
+
+func NewUpdateProgressEcoBackgroundCheckReqBodyBuilder() *UpdateProgressEcoBackgroundCheckReqBodyBuilder {
+	builder := &UpdateProgressEcoBackgroundCheckReqBodyBuilder{}
+	return builder
+}
+
+// 背调 ID，招聘侧的 ID
+//
+//示例值：6931286400470354183
+func (builder *UpdateProgressEcoBackgroundCheckReqBodyBuilder) BackgroundCheckId(backgroundCheckId string) *UpdateProgressEcoBackgroundCheckReqBodyBuilder {
+	builder.backgroundCheckId = backgroundCheckId
+	builder.backgroundCheckIdFlag = true
+	return builder
+}
+
+// 阶段 ID，同一背调订单此 ID 不能重复
+//
+//示例值：6931286400470354183
+func (builder *UpdateProgressEcoBackgroundCheckReqBodyBuilder) StageId(stageId string) *UpdateProgressEcoBackgroundCheckReqBodyBuilder {
+	builder.stageId = stageId
+	builder.stageIdFlag = true
+	return builder
+}
+
+// 背调阶段英文名称
+//
+//示例值：stage report
+func (builder *UpdateProgressEcoBackgroundCheckReqBodyBuilder) StageEnName(stageEnName string) *UpdateProgressEcoBackgroundCheckReqBodyBuilder {
+	builder.stageEnName = stageEnName
+	builder.stageEnNameFlag = true
+	return builder
+}
+
+// 背调阶段名称
+//
+//示例值：阶段报告
+func (builder *UpdateProgressEcoBackgroundCheckReqBodyBuilder) StageName(stageName string) *UpdateProgressEcoBackgroundCheckReqBodyBuilder {
+	builder.stageName = stageName
+	builder.stageNameFlag = true
+	return builder
+}
+
+// 进入到此背调阶段的时间
+//
+//示例值：1660123456789
+func (builder *UpdateProgressEcoBackgroundCheckReqBodyBuilder) StageTime(stageTime string) *UpdateProgressEcoBackgroundCheckReqBodyBuilder {
+	builder.stageTime = stageTime
+	builder.stageTimeFlag = true
+	return builder
+}
+
+// 报告列表
+//
+//示例值：
+func (builder *UpdateProgressEcoBackgroundCheckReqBodyBuilder) ReportFileList(reportFileList []*EcoBackgroundCheckReportFile) *UpdateProgressEcoBackgroundCheckReqBodyBuilder {
+	builder.reportFileList = reportFileList
+	builder.reportFileListFlag = true
+	return builder
+}
+
+func (builder *UpdateProgressEcoBackgroundCheckReqBodyBuilder) Build() *UpdateProgressEcoBackgroundCheckReqBody {
+	req := &UpdateProgressEcoBackgroundCheckReqBody{}
+	if builder.backgroundCheckIdFlag {
+		req.BackgroundCheckId = &builder.backgroundCheckId
+	}
+	if builder.stageIdFlag {
+		req.StageId = &builder.stageId
+	}
+	if builder.stageEnNameFlag {
+		req.StageEnName = &builder.stageEnName
+	}
+	if builder.stageNameFlag {
+		req.StageName = &builder.stageName
+	}
+	if builder.stageTimeFlag {
+		req.StageTime = &builder.stageTime
+	}
+	if builder.reportFileListFlag {
+		req.ReportFileList = builder.reportFileList
+	}
+	return req
+}
+
+type UpdateProgressEcoBackgroundCheckPathReqBodyBuilder struct {
+	backgroundCheckId     string
+	backgroundCheckIdFlag bool
+	stageId               string
+	stageIdFlag           bool
+	stageEnName           string
+	stageEnNameFlag       bool
+	stageName             string
+	stageNameFlag         bool
+	stageTime             string
+	stageTimeFlag         bool
+	reportFileList        []*EcoBackgroundCheckReportFile
+	reportFileListFlag    bool
+}
+
+func NewUpdateProgressEcoBackgroundCheckPathReqBodyBuilder() *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder {
+	builder := &UpdateProgressEcoBackgroundCheckPathReqBodyBuilder{}
+	return builder
+}
+
+// 背调 ID，招聘侧的 ID
+//
+// 示例值：6931286400470354183
+func (builder *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder) BackgroundCheckId(backgroundCheckId string) *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder {
+	builder.backgroundCheckId = backgroundCheckId
+	builder.backgroundCheckIdFlag = true
+	return builder
+}
+
+// 阶段 ID，同一背调订单此 ID 不能重复
+//
+// 示例值：6931286400470354183
+func (builder *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder) StageId(stageId string) *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder {
+	builder.stageId = stageId
+	builder.stageIdFlag = true
+	return builder
+}
+
+// 背调阶段英文名称
+//
+// 示例值：stage report
+func (builder *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder) StageEnName(stageEnName string) *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder {
+	builder.stageEnName = stageEnName
+	builder.stageEnNameFlag = true
+	return builder
+}
+
+// 背调阶段名称
+//
+// 示例值：阶段报告
+func (builder *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder) StageName(stageName string) *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder {
+	builder.stageName = stageName
+	builder.stageNameFlag = true
+	return builder
+}
+
+// 进入到此背调阶段的时间
+//
+// 示例值：1660123456789
+func (builder *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder) StageTime(stageTime string) *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder {
+	builder.stageTime = stageTime
+	builder.stageTimeFlag = true
+	return builder
+}
+
+// 报告列表
+//
+// 示例值：
+func (builder *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder) ReportFileList(reportFileList []*EcoBackgroundCheckReportFile) *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder {
+	builder.reportFileList = reportFileList
+	builder.reportFileListFlag = true
+	return builder
+}
+
+func (builder *UpdateProgressEcoBackgroundCheckPathReqBodyBuilder) Build() (*UpdateProgressEcoBackgroundCheckReqBody, error) {
+	req := &UpdateProgressEcoBackgroundCheckReqBody{}
+	if builder.backgroundCheckIdFlag {
+		req.BackgroundCheckId = &builder.backgroundCheckId
+	}
+	if builder.stageIdFlag {
+		req.StageId = &builder.stageId
+	}
+	if builder.stageEnNameFlag {
+		req.StageEnName = &builder.stageEnName
+	}
+	if builder.stageNameFlag {
+		req.StageName = &builder.stageName
+	}
+	if builder.stageTimeFlag {
+		req.StageTime = &builder.stageTime
+	}
+	if builder.reportFileListFlag {
+		req.ReportFileList = builder.reportFileList
+	}
+	return req, nil
+}
+
+type UpdateProgressEcoBackgroundCheckReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *UpdateProgressEcoBackgroundCheckReqBody
+}
+
+func NewUpdateProgressEcoBackgroundCheckReqBuilder() *UpdateProgressEcoBackgroundCheckReqBuilder {
+	builder := &UpdateProgressEcoBackgroundCheckReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 更新指定背调的进度信息
+func (builder *UpdateProgressEcoBackgroundCheckReqBuilder) Body(body *UpdateProgressEcoBackgroundCheckReqBody) *UpdateProgressEcoBackgroundCheckReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *UpdateProgressEcoBackgroundCheckReqBuilder) Build() *UpdateProgressEcoBackgroundCheckReq {
+	req := &UpdateProgressEcoBackgroundCheckReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type UpdateProgressEcoBackgroundCheckReqBody struct {
+	BackgroundCheckId *string                         `json:"background_check_id,omitempty"` // 背调 ID，招聘侧的 ID
+	StageId           *string                         `json:"stage_id,omitempty"`            // 阶段 ID，同一背调订单此 ID 不能重复
+	StageEnName       *string                         `json:"stage_en_name,omitempty"`       // 背调阶段英文名称
+	StageName         *string                         `json:"stage_name,omitempty"`          // 背调阶段名称
+	StageTime         *string                         `json:"stage_time,omitempty"`          // 进入到此背调阶段的时间
+	ReportFileList    []*EcoBackgroundCheckReportFile `json:"report_file_list,omitempty"`    // 报告列表
+}
+
+type UpdateProgressEcoBackgroundCheckReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *UpdateProgressEcoBackgroundCheckReqBody `body:""`
+}
+
+type UpdateProgressEcoBackgroundCheckResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *UpdateProgressEcoBackgroundCheckResp) Success() bool {
+	return resp.Code == 0
+}
+
+type UpdateResultEcoBackgroundCheckReqBodyBuilder struct {
+	backgroundCheckId     string // 背调 ID
+	backgroundCheckIdFlag bool
+	result                string // 背调结果
+	resultFlag            bool
+	resultTime            string // 背调结果时间
+	resultTimeFlag        bool
+	reportFileList        []*EcoBackgroundCheckReportFile // 报告列表
+	reportFileListFlag    bool
+}
+
+func NewUpdateResultEcoBackgroundCheckReqBodyBuilder() *UpdateResultEcoBackgroundCheckReqBodyBuilder {
+	builder := &UpdateResultEcoBackgroundCheckReqBodyBuilder{}
+	return builder
+}
+
+// 背调 ID
+//
+//示例值：6931286400470354183
+func (builder *UpdateResultEcoBackgroundCheckReqBodyBuilder) BackgroundCheckId(backgroundCheckId string) *UpdateResultEcoBackgroundCheckReqBodyBuilder {
+	builder.backgroundCheckId = backgroundCheckId
+	builder.backgroundCheckIdFlag = true
+	return builder
+}
+
+// 背调结果
+//
+//示例值：无差异
+func (builder *UpdateResultEcoBackgroundCheckReqBodyBuilder) Result(result string) *UpdateResultEcoBackgroundCheckReqBodyBuilder {
+	builder.result = result
+	builder.resultFlag = true
+	return builder
+}
+
+// 背调结果时间
+//
+//示例值：1660123456789
+func (builder *UpdateResultEcoBackgroundCheckReqBodyBuilder) ResultTime(resultTime string) *UpdateResultEcoBackgroundCheckReqBodyBuilder {
+	builder.resultTime = resultTime
+	builder.resultTimeFlag = true
+	return builder
+}
+
+// 报告列表
+//
+//示例值：
+func (builder *UpdateResultEcoBackgroundCheckReqBodyBuilder) ReportFileList(reportFileList []*EcoBackgroundCheckReportFile) *UpdateResultEcoBackgroundCheckReqBodyBuilder {
+	builder.reportFileList = reportFileList
+	builder.reportFileListFlag = true
+	return builder
+}
+
+func (builder *UpdateResultEcoBackgroundCheckReqBodyBuilder) Build() *UpdateResultEcoBackgroundCheckReqBody {
+	req := &UpdateResultEcoBackgroundCheckReqBody{}
+	if builder.backgroundCheckIdFlag {
+		req.BackgroundCheckId = &builder.backgroundCheckId
+	}
+	if builder.resultFlag {
+		req.Result = &builder.result
+	}
+	if builder.resultTimeFlag {
+		req.ResultTime = &builder.resultTime
+	}
+	if builder.reportFileListFlag {
+		req.ReportFileList = builder.reportFileList
+	}
+	return req
+}
+
+type UpdateResultEcoBackgroundCheckPathReqBodyBuilder struct {
+	backgroundCheckId     string
+	backgroundCheckIdFlag bool
+	result                string
+	resultFlag            bool
+	resultTime            string
+	resultTimeFlag        bool
+	reportFileList        []*EcoBackgroundCheckReportFile
+	reportFileListFlag    bool
+}
+
+func NewUpdateResultEcoBackgroundCheckPathReqBodyBuilder() *UpdateResultEcoBackgroundCheckPathReqBodyBuilder {
+	builder := &UpdateResultEcoBackgroundCheckPathReqBodyBuilder{}
+	return builder
+}
+
+// 背调 ID
+//
+// 示例值：6931286400470354183
+func (builder *UpdateResultEcoBackgroundCheckPathReqBodyBuilder) BackgroundCheckId(backgroundCheckId string) *UpdateResultEcoBackgroundCheckPathReqBodyBuilder {
+	builder.backgroundCheckId = backgroundCheckId
+	builder.backgroundCheckIdFlag = true
+	return builder
+}
+
+// 背调结果
+//
+// 示例值：无差异
+func (builder *UpdateResultEcoBackgroundCheckPathReqBodyBuilder) Result(result string) *UpdateResultEcoBackgroundCheckPathReqBodyBuilder {
+	builder.result = result
+	builder.resultFlag = true
+	return builder
+}
+
+// 背调结果时间
+//
+// 示例值：1660123456789
+func (builder *UpdateResultEcoBackgroundCheckPathReqBodyBuilder) ResultTime(resultTime string) *UpdateResultEcoBackgroundCheckPathReqBodyBuilder {
+	builder.resultTime = resultTime
+	builder.resultTimeFlag = true
+	return builder
+}
+
+// 报告列表
+//
+// 示例值：
+func (builder *UpdateResultEcoBackgroundCheckPathReqBodyBuilder) ReportFileList(reportFileList []*EcoBackgroundCheckReportFile) *UpdateResultEcoBackgroundCheckPathReqBodyBuilder {
+	builder.reportFileList = reportFileList
+	builder.reportFileListFlag = true
+	return builder
+}
+
+func (builder *UpdateResultEcoBackgroundCheckPathReqBodyBuilder) Build() (*UpdateResultEcoBackgroundCheckReqBody, error) {
+	req := &UpdateResultEcoBackgroundCheckReqBody{}
+	if builder.backgroundCheckIdFlag {
+		req.BackgroundCheckId = &builder.backgroundCheckId
+	}
+	if builder.resultFlag {
+		req.Result = &builder.result
+	}
+	if builder.resultTimeFlag {
+		req.ResultTime = &builder.resultTime
+	}
+	if builder.reportFileListFlag {
+		req.ReportFileList = builder.reportFileList
+	}
+	return req, nil
+}
+
+type UpdateResultEcoBackgroundCheckReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *UpdateResultEcoBackgroundCheckReqBody
+}
+
+func NewUpdateResultEcoBackgroundCheckReqBuilder() *UpdateResultEcoBackgroundCheckReqBuilder {
+	builder := &UpdateResultEcoBackgroundCheckReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 回传背调的最终结果
+func (builder *UpdateResultEcoBackgroundCheckReqBuilder) Body(body *UpdateResultEcoBackgroundCheckReqBody) *UpdateResultEcoBackgroundCheckReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *UpdateResultEcoBackgroundCheckReqBuilder) Build() *UpdateResultEcoBackgroundCheckReq {
+	req := &UpdateResultEcoBackgroundCheckReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type UpdateResultEcoBackgroundCheckReqBody struct {
+	BackgroundCheckId *string                         `json:"background_check_id,omitempty"` // 背调 ID
+	Result            *string                         `json:"result,omitempty"`              // 背调结果
+	ResultTime        *string                         `json:"result_time,omitempty"`         // 背调结果时间
+	ReportFileList    []*EcoBackgroundCheckReportFile `json:"report_file_list,omitempty"`    // 报告列表
+}
+
+type UpdateResultEcoBackgroundCheckReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *UpdateResultEcoBackgroundCheckReqBody `body:""`
+}
+
+type UpdateResultEcoBackgroundCheckResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *UpdateResultEcoBackgroundCheckResp) Success() bool {
+	return resp.Code == 0
+}
+
+type BatchDeleteEcoBackgroundCheckCustomFieldReqBodyBuilder struct {
+	accountId     string // 背调账号 ID，可在「账号绑定」事件中获取
+	accountIdFlag bool
+}
+
+func NewBatchDeleteEcoBackgroundCheckCustomFieldReqBodyBuilder() *BatchDeleteEcoBackgroundCheckCustomFieldReqBodyBuilder {
+	builder := &BatchDeleteEcoBackgroundCheckCustomFieldReqBodyBuilder{}
+	return builder
+}
+
+// 背调账号 ID，可在「账号绑定」事件中获取
+//
+//示例值：a001
+func (builder *BatchDeleteEcoBackgroundCheckCustomFieldReqBodyBuilder) AccountId(accountId string) *BatchDeleteEcoBackgroundCheckCustomFieldReqBodyBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteEcoBackgroundCheckCustomFieldReqBodyBuilder) Build() *BatchDeleteEcoBackgroundCheckCustomFieldReqBody {
+	req := &BatchDeleteEcoBackgroundCheckCustomFieldReqBody{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+	}
+	return req
+}
+
+type BatchDeleteEcoBackgroundCheckCustomFieldPathReqBodyBuilder struct {
+	accountId     string
+	accountIdFlag bool
+}
+
+func NewBatchDeleteEcoBackgroundCheckCustomFieldPathReqBodyBuilder() *BatchDeleteEcoBackgroundCheckCustomFieldPathReqBodyBuilder {
+	builder := &BatchDeleteEcoBackgroundCheckCustomFieldPathReqBodyBuilder{}
+	return builder
+}
+
+// 背调账号 ID，可在「账号绑定」事件中获取
+//
+// 示例值：a001
+func (builder *BatchDeleteEcoBackgroundCheckCustomFieldPathReqBodyBuilder) AccountId(accountId string) *BatchDeleteEcoBackgroundCheckCustomFieldPathReqBodyBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteEcoBackgroundCheckCustomFieldPathReqBodyBuilder) Build() (*BatchDeleteEcoBackgroundCheckCustomFieldReqBody, error) {
+	req := &BatchDeleteEcoBackgroundCheckCustomFieldReqBody{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+	}
+	return req, nil
+}
+
+type BatchDeleteEcoBackgroundCheckCustomFieldReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *BatchDeleteEcoBackgroundCheckCustomFieldReqBody
+}
+
+func NewBatchDeleteEcoBackgroundCheckCustomFieldReqBuilder() *BatchDeleteEcoBackgroundCheckCustomFieldReqBuilder {
+	builder := &BatchDeleteEcoBackgroundCheckCustomFieldReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 删除用户在发起背调时的自定义字段，删除不影响已创建的背调，删除后对应的自定义字段的 key 不能再复用。
+func (builder *BatchDeleteEcoBackgroundCheckCustomFieldReqBuilder) Body(body *BatchDeleteEcoBackgroundCheckCustomFieldReqBody) *BatchDeleteEcoBackgroundCheckCustomFieldReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *BatchDeleteEcoBackgroundCheckCustomFieldReqBuilder) Build() *BatchDeleteEcoBackgroundCheckCustomFieldReq {
+	req := &BatchDeleteEcoBackgroundCheckCustomFieldReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type BatchDeleteEcoBackgroundCheckCustomFieldReqBody struct {
+	AccountId *string `json:"account_id,omitempty"` // 背调账号 ID，可在「账号绑定」事件中获取
+}
+
+type BatchDeleteEcoBackgroundCheckCustomFieldReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *BatchDeleteEcoBackgroundCheckCustomFieldReqBody `body:""`
+}
+
+type BatchDeleteEcoBackgroundCheckCustomFieldResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchDeleteEcoBackgroundCheckCustomFieldResp) Success() bool {
+	return resp.Code == 0
+}
+
+type BatchUpdateEcoBackgroundCheckCustomFieldReqBuilder struct {
+	apiReq                        *larkcore.ApiReq
+	ecoBackgroundCheckCustomField *EcoBackgroundCheckCustomField
+}
+
+func NewBatchUpdateEcoBackgroundCheckCustomFieldReqBuilder() *BatchUpdateEcoBackgroundCheckCustomFieldReqBuilder {
+	builder := &BatchUpdateEcoBackgroundCheckCustomFieldReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 更新用户在发起背调时的自定义字段。更新操作不支持更新自定义字段类型，且将影响已发起的背调表单展示。
+func (builder *BatchUpdateEcoBackgroundCheckCustomFieldReqBuilder) EcoBackgroundCheckCustomField(ecoBackgroundCheckCustomField *EcoBackgroundCheckCustomField) *BatchUpdateEcoBackgroundCheckCustomFieldReqBuilder {
+	builder.ecoBackgroundCheckCustomField = ecoBackgroundCheckCustomField
+	return builder
+}
+
+func (builder *BatchUpdateEcoBackgroundCheckCustomFieldReqBuilder) Build() *BatchUpdateEcoBackgroundCheckCustomFieldReq {
+	req := &BatchUpdateEcoBackgroundCheckCustomFieldReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.ecoBackgroundCheckCustomField
+	return req
+}
+
+type BatchUpdateEcoBackgroundCheckCustomFieldReq struct {
+	apiReq                        *larkcore.ApiReq
+	EcoBackgroundCheckCustomField *EcoBackgroundCheckCustomField `body:""`
+}
+
+type BatchUpdateEcoBackgroundCheckCustomFieldResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchUpdateEcoBackgroundCheckCustomFieldResp) Success() bool {
+	return resp.Code == 0
+}
+
+type CreateEcoBackgroundCheckCustomFieldReqBuilder struct {
+	apiReq                        *larkcore.ApiReq
+	ecoBackgroundCheckCustomField *EcoBackgroundCheckCustomField
+}
+
+func NewCreateEcoBackgroundCheckCustomFieldReqBuilder() *CreateEcoBackgroundCheckCustomFieldReqBuilder {
+	builder := &CreateEcoBackgroundCheckCustomFieldReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 定制用户在发起背调时的自定义字段
+func (builder *CreateEcoBackgroundCheckCustomFieldReqBuilder) EcoBackgroundCheckCustomField(ecoBackgroundCheckCustomField *EcoBackgroundCheckCustomField) *CreateEcoBackgroundCheckCustomFieldReqBuilder {
+	builder.ecoBackgroundCheckCustomField = ecoBackgroundCheckCustomField
+	return builder
+}
+
+func (builder *CreateEcoBackgroundCheckCustomFieldReqBuilder) Build() *CreateEcoBackgroundCheckCustomFieldReq {
+	req := &CreateEcoBackgroundCheckCustomFieldReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.ecoBackgroundCheckCustomField
+	return req
+}
+
+type CreateEcoBackgroundCheckCustomFieldReq struct {
+	apiReq                        *larkcore.ApiReq
+	EcoBackgroundCheckCustomField *EcoBackgroundCheckCustomField `body:""`
+}
+
+type CreateEcoBackgroundCheckCustomFieldResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *CreateEcoBackgroundCheckCustomFieldResp) Success() bool {
+	return resp.Code == 0
+}
+
+type BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder struct {
+	accountId                string // 背调账号 ID，可在「账号绑定」事件中获取
+	accountIdFlag            bool
+	packageIdList            []string // 要删除的套餐 ID 列表，删除套餐不影响已安排的背调
+	packageIdListFlag        bool
+	additionalItemIdList     []string // 要删除的附加调查项 ID 列表，删除附加调查项不影响已安排的背调
+	additionalItemIdListFlag bool
+}
+
+func NewBatchDeleteEcoBackgroundCheckPackageReqBodyBuilder() *BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder {
+	builder := &BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder{}
+	return builder
+}
+
+// 背调账号 ID，可在「账号绑定」事件中获取
+//
+//示例值：xd_bc_001
+func (builder *BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder) AccountId(accountId string) *BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+// 要删除的套餐 ID 列表，删除套餐不影响已安排的背调
+//
+//示例值：6996920667635566881
+func (builder *BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder) PackageIdList(packageIdList []string) *BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder {
+	builder.packageIdList = packageIdList
+	builder.packageIdListFlag = true
+	return builder
+}
+
+// 要删除的附加调查项 ID 列表，删除附加调查项不影响已安排的背调
+//
+//示例值：6996920667635566881
+func (builder *BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder) AdditionalItemIdList(additionalItemIdList []string) *BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder {
+	builder.additionalItemIdList = additionalItemIdList
+	builder.additionalItemIdListFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteEcoBackgroundCheckPackageReqBodyBuilder) Build() *BatchDeleteEcoBackgroundCheckPackageReqBody {
+	req := &BatchDeleteEcoBackgroundCheckPackageReqBody{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+	}
+	if builder.packageIdListFlag {
+		req.PackageIdList = builder.packageIdList
+	}
+	if builder.additionalItemIdListFlag {
+		req.AdditionalItemIdList = builder.additionalItemIdList
+	}
+	return req
+}
+
+type BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder struct {
+	accountId                string
+	accountIdFlag            bool
+	packageIdList            []string
+	packageIdListFlag        bool
+	additionalItemIdList     []string
+	additionalItemIdListFlag bool
+}
+
+func NewBatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder() *BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder {
+	builder := &BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder{}
+	return builder
+}
+
+// 背调账号 ID，可在「账号绑定」事件中获取
+//
+// 示例值：xd_bc_001
+func (builder *BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder) AccountId(accountId string) *BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+// 要删除的套餐 ID 列表，删除套餐不影响已安排的背调
+//
+// 示例值：6996920667635566881
+func (builder *BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder) PackageIdList(packageIdList []string) *BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder {
+	builder.packageIdList = packageIdList
+	builder.packageIdListFlag = true
+	return builder
+}
+
+// 要删除的附加调查项 ID 列表，删除附加调查项不影响已安排的背调
+//
+// 示例值：6996920667635566881
+func (builder *BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder) AdditionalItemIdList(additionalItemIdList []string) *BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder {
+	builder.additionalItemIdList = additionalItemIdList
+	builder.additionalItemIdListFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteEcoBackgroundCheckPackagePathReqBodyBuilder) Build() (*BatchDeleteEcoBackgroundCheckPackageReqBody, error) {
+	req := &BatchDeleteEcoBackgroundCheckPackageReqBody{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+	}
+	if builder.packageIdListFlag {
+		req.PackageIdList = builder.packageIdList
+	}
+	if builder.additionalItemIdListFlag {
+		req.AdditionalItemIdList = builder.additionalItemIdList
+	}
+	return req, nil
+}
+
+type BatchDeleteEcoBackgroundCheckPackageReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *BatchDeleteEcoBackgroundCheckPackageReqBody
+}
+
+func NewBatchDeleteEcoBackgroundCheckPackageReqBuilder() *BatchDeleteEcoBackgroundCheckPackageReqBuilder {
+	builder := &BatchDeleteEcoBackgroundCheckPackageReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 删除指定帐号的指定背调套餐和附加调查项信息，删除不会影响已创建的背调。
+func (builder *BatchDeleteEcoBackgroundCheckPackageReqBuilder) Body(body *BatchDeleteEcoBackgroundCheckPackageReqBody) *BatchDeleteEcoBackgroundCheckPackageReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *BatchDeleteEcoBackgroundCheckPackageReqBuilder) Build() *BatchDeleteEcoBackgroundCheckPackageReq {
+	req := &BatchDeleteEcoBackgroundCheckPackageReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type BatchDeleteEcoBackgroundCheckPackageReqBody struct {
+	AccountId            *string  `json:"account_id,omitempty"`              // 背调账号 ID，可在「账号绑定」事件中获取
+	PackageIdList        []string `json:"package_id_list,omitempty"`         // 要删除的套餐 ID 列表，删除套餐不影响已安排的背调
+	AdditionalItemIdList []string `json:"additional_item_id_list,omitempty"` // 要删除的附加调查项 ID 列表，删除附加调查项不影响已安排的背调
+}
+
+type BatchDeleteEcoBackgroundCheckPackageReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *BatchDeleteEcoBackgroundCheckPackageReqBody `body:""`
+}
+
+type BatchDeleteEcoBackgroundCheckPackageResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchDeleteEcoBackgroundCheckPackageResp) Success() bool {
+	return resp.Code == 0
+}
+
+type BatchUpdateEcoBackgroundCheckPackageReqBuilder struct {
+	apiReq                    *larkcore.ApiReq
+	ecoBackgroundCheckPackage *EcoBackgroundCheckPackage
+}
+
+func NewBatchUpdateEcoBackgroundCheckPackageReqBuilder() *BatchUpdateEcoBackgroundCheckPackageReqBuilder {
+	builder := &BatchUpdateEcoBackgroundCheckPackageReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 更新指定帐号可用的背调套餐和附加调查项信息，更新将影响已发起背调的表单项展示
+func (builder *BatchUpdateEcoBackgroundCheckPackageReqBuilder) EcoBackgroundCheckPackage(ecoBackgroundCheckPackage *EcoBackgroundCheckPackage) *BatchUpdateEcoBackgroundCheckPackageReqBuilder {
+	builder.ecoBackgroundCheckPackage = ecoBackgroundCheckPackage
+	return builder
+}
+
+func (builder *BatchUpdateEcoBackgroundCheckPackageReqBuilder) Build() *BatchUpdateEcoBackgroundCheckPackageReq {
+	req := &BatchUpdateEcoBackgroundCheckPackageReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.ecoBackgroundCheckPackage
+	return req
+}
+
+type BatchUpdateEcoBackgroundCheckPackageReq struct {
+	apiReq                    *larkcore.ApiReq
+	EcoBackgroundCheckPackage *EcoBackgroundCheckPackage `body:""`
+}
+
+type BatchUpdateEcoBackgroundCheckPackageResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchUpdateEcoBackgroundCheckPackageResp) Success() bool {
+	return resp.Code == 0
+}
+
+type CreateEcoBackgroundCheckPackageReqBuilder struct {
+	apiReq                    *larkcore.ApiReq
+	ecoBackgroundCheckPackage *EcoBackgroundCheckPackage
+}
+
+func NewCreateEcoBackgroundCheckPackageReqBuilder() *CreateEcoBackgroundCheckPackageReqBuilder {
+	builder := &CreateEcoBackgroundCheckPackageReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 定制指定帐号可用的背调套餐和附加调查项信息
+func (builder *CreateEcoBackgroundCheckPackageReqBuilder) EcoBackgroundCheckPackage(ecoBackgroundCheckPackage *EcoBackgroundCheckPackage) *CreateEcoBackgroundCheckPackageReqBuilder {
+	builder.ecoBackgroundCheckPackage = ecoBackgroundCheckPackage
+	return builder
+}
+
+func (builder *CreateEcoBackgroundCheckPackageReqBuilder) Build() *CreateEcoBackgroundCheckPackageReq {
+	req := &CreateEcoBackgroundCheckPackageReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.ecoBackgroundCheckPackage
+	return req
+}
+
+type CreateEcoBackgroundCheckPackageReq struct {
+	apiReq                    *larkcore.ApiReq
+	EcoBackgroundCheckPackage *EcoBackgroundCheckPackage `body:""`
+}
+
+type CreateEcoBackgroundCheckPackageResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *CreateEcoBackgroundCheckPackageResp) Success() bool {
+	return resp.Code == 0
+}
+
+type LoginInfoEcoExamReqBodyBuilder struct {
+	result            int // 状态码，0-成功 非零-错误码
+	resultFlag        bool
+	msg               string // 成功或失败的描述信息
+	msgFlag           bool
+	examLoginInfo     *EcoExamLoginInfo // 笔试作答信息
+	examLoginInfoFlag bool
+}
+
+func NewLoginInfoEcoExamReqBodyBuilder() *LoginInfoEcoExamReqBodyBuilder {
+	builder := &LoginInfoEcoExamReqBodyBuilder{}
+	return builder
+}
+
+// 状态码，0-成功 非零-错误码
+//
+//示例值：0
+func (builder *LoginInfoEcoExamReqBodyBuilder) Result(result int) *LoginInfoEcoExamReqBodyBuilder {
+	builder.result = result
+	builder.resultFlag = true
+	return builder
+}
+
+// 成功或失败的描述信息
+//
+//示例值：success
+func (builder *LoginInfoEcoExamReqBodyBuilder) Msg(msg string) *LoginInfoEcoExamReqBodyBuilder {
+	builder.msg = msg
+	builder.msgFlag = true
+	return builder
+}
+
+// 笔试作答信息
+//
+//示例值：
+func (builder *LoginInfoEcoExamReqBodyBuilder) ExamLoginInfo(examLoginInfo *EcoExamLoginInfo) *LoginInfoEcoExamReqBodyBuilder {
+	builder.examLoginInfo = examLoginInfo
+	builder.examLoginInfoFlag = true
+	return builder
+}
+
+func (builder *LoginInfoEcoExamReqBodyBuilder) Build() *LoginInfoEcoExamReqBody {
+	req := &LoginInfoEcoExamReqBody{}
+	if builder.resultFlag {
+		req.Result = &builder.result
+	}
+	if builder.msgFlag {
+		req.Msg = &builder.msg
+	}
+	if builder.examLoginInfoFlag {
+		req.ExamLoginInfo = builder.examLoginInfo
+	}
+	return req
+}
+
+type LoginInfoEcoExamPathReqBodyBuilder struct {
+	result            int
+	resultFlag        bool
+	msg               string
+	msgFlag           bool
+	examLoginInfo     *EcoExamLoginInfo
+	examLoginInfoFlag bool
+}
+
+func NewLoginInfoEcoExamPathReqBodyBuilder() *LoginInfoEcoExamPathReqBodyBuilder {
+	builder := &LoginInfoEcoExamPathReqBodyBuilder{}
+	return builder
+}
+
+// 状态码，0-成功 非零-错误码
+//
+// 示例值：0
+func (builder *LoginInfoEcoExamPathReqBodyBuilder) Result(result int) *LoginInfoEcoExamPathReqBodyBuilder {
+	builder.result = result
+	builder.resultFlag = true
+	return builder
+}
+
+// 成功或失败的描述信息
+//
+// 示例值：success
+func (builder *LoginInfoEcoExamPathReqBodyBuilder) Msg(msg string) *LoginInfoEcoExamPathReqBodyBuilder {
+	builder.msg = msg
+	builder.msgFlag = true
+	return builder
+}
+
+// 笔试作答信息
+//
+// 示例值：
+func (builder *LoginInfoEcoExamPathReqBodyBuilder) ExamLoginInfo(examLoginInfo *EcoExamLoginInfo) *LoginInfoEcoExamPathReqBodyBuilder {
+	builder.examLoginInfo = examLoginInfo
+	builder.examLoginInfoFlag = true
+	return builder
+}
+
+func (builder *LoginInfoEcoExamPathReqBodyBuilder) Build() (*LoginInfoEcoExamReqBody, error) {
+	req := &LoginInfoEcoExamReqBody{}
+	if builder.resultFlag {
+		req.Result = &builder.result
+	}
+	if builder.msgFlag {
+		req.Msg = &builder.msg
+	}
+	if builder.examLoginInfoFlag {
+		req.ExamLoginInfo = builder.examLoginInfo
+	}
+	return req, nil
+}
+
+type LoginInfoEcoExamReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *LoginInfoEcoExamReqBody
+}
+
+func NewLoginInfoEcoExamReqBuilder() *LoginInfoEcoExamReqBuilder {
+	builder := &LoginInfoEcoExamReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// exam id
+//
+// 示例值：7178536692385679677
+func (builder *LoginInfoEcoExamReqBuilder) ExamId(examId string) *LoginInfoEcoExamReqBuilder {
+	builder.apiReq.PathParams.Set("exam_id", fmt.Sprint(examId))
+	return builder
+}
+
+//
+func (builder *LoginInfoEcoExamReqBuilder) Body(body *LoginInfoEcoExamReqBody) *LoginInfoEcoExamReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *LoginInfoEcoExamReqBuilder) Build() *LoginInfoEcoExamReq {
+	req := &LoginInfoEcoExamReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type LoginInfoEcoExamReqBody struct {
+	Result        *int              `json:"result,omitempty"`          // 状态码，0-成功 非零-错误码
+	Msg           *string           `json:"msg,omitempty"`             // 成功或失败的描述信息
+	ExamLoginInfo *EcoExamLoginInfo `json:"exam_login_info,omitempty"` // 笔试作答信息
+}
+
+type LoginInfoEcoExamReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *LoginInfoEcoExamReqBody `body:""`
+}
+
+type LoginInfoEcoExamResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *LoginInfoEcoExamResp) Success() bool {
+	return resp.Code == 0
+}
+
+type UpdateResultEcoExamReqBuilder struct {
+	apiReq        *larkcore.ApiReq
+	ecoExamResult *EcoExamResult
+}
+
+func NewUpdateResultEcoExamReqBuilder() *UpdateResultEcoExamReqBuilder {
+	builder := &UpdateResultEcoExamReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// exam id
+//
+// 示例值：7178536692385679677
+func (builder *UpdateResultEcoExamReqBuilder) ExamId(examId string) *UpdateResultEcoExamReqBuilder {
+	builder.apiReq.PathParams.Set("exam_id", fmt.Sprint(examId))
+	return builder
+}
+
+//
+func (builder *UpdateResultEcoExamReqBuilder) EcoExamResult(ecoExamResult *EcoExamResult) *UpdateResultEcoExamReqBuilder {
+	builder.ecoExamResult = ecoExamResult
+	return builder
+}
+
+func (builder *UpdateResultEcoExamReqBuilder) Build() *UpdateResultEcoExamReq {
+	req := &UpdateResultEcoExamReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.Body = builder.ecoExamResult
+	return req
+}
+
+type UpdateResultEcoExamReq struct {
+	apiReq        *larkcore.ApiReq
+	EcoExamResult *EcoExamResult `body:""`
+}
+
+type UpdateResultEcoExamResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *UpdateResultEcoExamResp) Success() bool {
+	return resp.Code == 0
+}
+
+type BatchDeleteEcoExamPaperReqBodyBuilder struct {
+	accountId       string // 背调账号 ID，可在「账号绑定」事件中获取
+	accountIdFlag   bool
+	paperIdList     []string // 试卷 ID 列表
+	paperIdListFlag bool
+}
+
+func NewBatchDeleteEcoExamPaperReqBodyBuilder() *BatchDeleteEcoExamPaperReqBodyBuilder {
+	builder := &BatchDeleteEcoExamPaperReqBodyBuilder{}
+	return builder
+}
+
+// 背调账号 ID，可在「账号绑定」事件中获取
+//
+//示例值：7147998241542539527
+func (builder *BatchDeleteEcoExamPaperReqBodyBuilder) AccountId(accountId string) *BatchDeleteEcoExamPaperReqBodyBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+// 试卷 ID 列表
+//
+//示例值：
+func (builder *BatchDeleteEcoExamPaperReqBodyBuilder) PaperIdList(paperIdList []string) *BatchDeleteEcoExamPaperReqBodyBuilder {
+	builder.paperIdList = paperIdList
+	builder.paperIdListFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteEcoExamPaperReqBodyBuilder) Build() *BatchDeleteEcoExamPaperReqBody {
+	req := &BatchDeleteEcoExamPaperReqBody{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+	}
+	if builder.paperIdListFlag {
+		req.PaperIdList = builder.paperIdList
+	}
+	return req
+}
+
+type BatchDeleteEcoExamPaperPathReqBodyBuilder struct {
+	accountId       string
+	accountIdFlag   bool
+	paperIdList     []string
+	paperIdListFlag bool
+}
+
+func NewBatchDeleteEcoExamPaperPathReqBodyBuilder() *BatchDeleteEcoExamPaperPathReqBodyBuilder {
+	builder := &BatchDeleteEcoExamPaperPathReqBodyBuilder{}
+	return builder
+}
+
+// 背调账号 ID，可在「账号绑定」事件中获取
+//
+// 示例值：7147998241542539527
+func (builder *BatchDeleteEcoExamPaperPathReqBodyBuilder) AccountId(accountId string) *BatchDeleteEcoExamPaperPathReqBodyBuilder {
+	builder.accountId = accountId
+	builder.accountIdFlag = true
+	return builder
+}
+
+// 试卷 ID 列表
+//
+// 示例值：
+func (builder *BatchDeleteEcoExamPaperPathReqBodyBuilder) PaperIdList(paperIdList []string) *BatchDeleteEcoExamPaperPathReqBodyBuilder {
+	builder.paperIdList = paperIdList
+	builder.paperIdListFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteEcoExamPaperPathReqBodyBuilder) Build() (*BatchDeleteEcoExamPaperReqBody, error) {
+	req := &BatchDeleteEcoExamPaperReqBody{}
+	if builder.accountIdFlag {
+		req.AccountId = &builder.accountId
+	}
+	if builder.paperIdListFlag {
+		req.PaperIdList = builder.paperIdList
+	}
+	return req, nil
+}
+
+type BatchDeleteEcoExamPaperReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *BatchDeleteEcoExamPaperReqBody
+}
+
+func NewBatchDeleteEcoExamPaperReqBuilder() *BatchDeleteEcoExamPaperReqBuilder {
+	builder := &BatchDeleteEcoExamPaperReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+//
+func (builder *BatchDeleteEcoExamPaperReqBuilder) Body(body *BatchDeleteEcoExamPaperReqBody) *BatchDeleteEcoExamPaperReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *BatchDeleteEcoExamPaperReqBuilder) Build() *BatchDeleteEcoExamPaperReq {
+	req := &BatchDeleteEcoExamPaperReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type BatchDeleteEcoExamPaperReqBody struct {
+	AccountId   *string  `json:"account_id,omitempty"`    // 背调账号 ID，可在「账号绑定」事件中获取
+	PaperIdList []string `json:"paper_id_list,omitempty"` // 试卷 ID 列表
+}
+
+type BatchDeleteEcoExamPaperReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *BatchDeleteEcoExamPaperReqBody `body:""`
+}
+
+type BatchDeleteEcoExamPaperResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchDeleteEcoExamPaperResp) Success() bool {
+	return resp.Code == 0
+}
+
+type BatchUpdateEcoExamPaperReqBuilder struct {
+	apiReq       *larkcore.ApiReq
+	ecoExamPaper *EcoExamPaper
+}
+
+func NewBatchUpdateEcoExamPaperReqBuilder() *BatchUpdateEcoExamPaperReqBuilder {
+	builder := &BatchUpdateEcoExamPaperReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+//
+func (builder *BatchUpdateEcoExamPaperReqBuilder) EcoExamPaper(ecoExamPaper *EcoExamPaper) *BatchUpdateEcoExamPaperReqBuilder {
+	builder.ecoExamPaper = ecoExamPaper
+	return builder
+}
+
+func (builder *BatchUpdateEcoExamPaperReqBuilder) Build() *BatchUpdateEcoExamPaperReq {
+	req := &BatchUpdateEcoExamPaperReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.ecoExamPaper
+	return req
+}
+
+type BatchUpdateEcoExamPaperReq struct {
+	apiReq       *larkcore.ApiReq
+	EcoExamPaper *EcoExamPaper `body:""`
+}
+
+type BatchUpdateEcoExamPaperResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchUpdateEcoExamPaperResp) Success() bool {
+	return resp.Code == 0
+}
+
+type CreateEcoExamPaperReqBuilder struct {
+	apiReq       *larkcore.ApiReq
+	ecoExamPaper *EcoExamPaper
+}
+
+func NewCreateEcoExamPaperReqBuilder() *CreateEcoExamPaperReqBuilder {
+	builder := &CreateEcoExamPaperReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+//
+func (builder *CreateEcoExamPaperReqBuilder) EcoExamPaper(ecoExamPaper *EcoExamPaper) *CreateEcoExamPaperReqBuilder {
+	builder.ecoExamPaper = ecoExamPaper
+	return builder
+}
+
+func (builder *CreateEcoExamPaperReqBuilder) Build() *CreateEcoExamPaperReq {
+	req := &CreateEcoExamPaperReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.ecoExamPaper
+	return req
+}
+
+type CreateEcoExamPaperReq struct {
+	apiReq       *larkcore.ApiReq
+	EcoExamPaper *EcoExamPaper `body:""`
+}
+
+type CreateEcoExamPaperResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *CreateEcoExamPaperResp) Success() bool {
+	return resp.Code == 0
+}
+
 type PatchEhrImportTaskReqBuilder struct {
 	apiReq        *larkcore.ApiReq
 	ehrImportTask *EhrImportTask
@@ -34937,6 +40333,30 @@ func (builder *GetEmployeeReqBuilder) DepartmentIdType(departmentIdType string) 
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *GetEmployeeReqBuilder) JobLevelIdType(jobLevelIdType string) *GetEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *GetEmployeeReqBuilder) JobFamilyIdType(jobFamilyIdType string) *GetEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *GetEmployeeReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *GetEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 func (builder *GetEmployeeReqBuilder) Build() *GetEmployeeReq {
 	req := &GetEmployeeReq{}
 	req.apiReq = &larkcore.ApiReq{}
@@ -35000,6 +40420,30 @@ func (builder *GetByApplicationEmployeeReqBuilder) DepartmentIdType(departmentId
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *GetByApplicationEmployeeReqBuilder) JobLevelIdType(jobLevelIdType string) *GetByApplicationEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *GetByApplicationEmployeeReqBuilder) JobFamilyIdType(jobFamilyIdType string) *GetByApplicationEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *GetByApplicationEmployeeReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *GetByApplicationEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 func (builder *GetByApplicationEmployeeReqBuilder) Build() *GetByApplicationEmployeeReq {
 	req := &GetByApplicationEmployeeReq{}
 	req.apiReq = &larkcore.ApiReq{}
@@ -35060,6 +40504,30 @@ func (builder *PatchEmployeeReqBuilder) UserIdType(userIdType string) *PatchEmpl
 // 示例值：department_id
 func (builder *PatchEmployeeReqBuilder) DepartmentIdType(departmentIdType string) *PatchEmployeeReqBuilder {
 	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *PatchEmployeeReqBuilder) JobLevelIdType(jobLevelIdType string) *PatchEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *PatchEmployeeReqBuilder) JobFamilyIdType(jobFamilyIdType string) *PatchEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *PatchEmployeeReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *PatchEmployeeReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
 	return builder
 }
 
@@ -35550,6 +41018,14 @@ func (builder *ListInterviewReqBuilder) EndTime(endTime string) *ListInterviewRe
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *ListInterviewReqBuilder) JobLevelIdType(jobLevelIdType string) *ListInterviewReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
 // 此次调用中使用的用户ID的类型
 //
 // 示例值：
@@ -35615,6 +41091,22 @@ func (builder *CombinedCreateJobReqBuilder) DepartmentIdType(departmentIdType st
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *CombinedCreateJobReqBuilder) JobLevelIdType(jobLevelIdType string) *CombinedCreateJobReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *CombinedCreateJobReqBuilder) JobFamilyIdType(jobFamilyIdType string) *CombinedCreateJobReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
 // 新建职位，字段的是否必填，以系统中的「职位字段管理」中的设置为准。
 func (builder *CombinedCreateJobReqBuilder) CombinedJob(combinedJob *CombinedJob) *CombinedCreateJobReqBuilder {
 	builder.combinedJob = combinedJob
@@ -35638,7 +41130,9 @@ type CombinedCreateJobRespData struct {
 	DefaultJobPost                  *CombinedJobResultDefaultJobPost `json:"default_job_post,omitempty"`                   // 职位广告
 	Job                             *Job                             `json:"job,omitempty"`                                // 职位
 	JobManager                      *JobManager                      `json:"job_manager,omitempty"`                        // 职位负责人
-	InterviewRegistrationSchemaInfo *RegistrationInfo                `json:"interview_registration_schema_info,omitempty"` // 面试登记表
+	InterviewRegistrationSchemaInfo *RegistrationSchemaInfo          `json:"interview_registration_schema_info,omitempty"` // 面试登记表
+	OnboardRegistrationSchemaInfo   *RegistrationSchemaInfo          `json:"onboard_registration_schema_info,omitempty"`   // 入职登记表
+	TargetMajorList                 []*TargetMajorInfo               `json:"target_major_list,omitempty"`                  // 目标专业
 }
 
 type CombinedCreateJobResp struct {
@@ -35689,6 +41183,22 @@ func (builder *CombinedUpdateJobReqBuilder) DepartmentIdType(departmentIdType st
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *CombinedUpdateJobReqBuilder) JobLevelIdType(jobLevelIdType string) *CombinedUpdateJobReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *CombinedUpdateJobReqBuilder) JobFamilyIdType(jobFamilyIdType string) *CombinedUpdateJobReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
 // 更新职位信息，该接口为全量更新，若字段没有返回值，则原有值将会被清空。字段的是否必填，将以系统中的「职位字段管理」中的设置为准。
 func (builder *CombinedUpdateJobReqBuilder) CombinedJob(combinedJob *CombinedJob) *CombinedUpdateJobReqBuilder {
 	builder.combinedJob = combinedJob
@@ -35713,7 +41223,9 @@ type CombinedUpdateJobRespData struct {
 	DefaultJobPost                  *CombinedJobResultDefaultJobPost `json:"default_job_post,omitempty"`                   // 职位广告
 	Job                             *Job                             `json:"job,omitempty"`                                // 职位
 	JobManager                      *JobManager                      `json:"job_manager,omitempty"`                        // 职位负责人
-	InterviewRegistrationSchemaInfo *RegistrationInfo                `json:"interview_registration_schema_info,omitempty"` // 面试登记表
+	InterviewRegistrationSchemaInfo *RegistrationSchemaInfo          `json:"interview_registration_schema_info,omitempty"` // 面试登记表
+	OnboardRegistrationSchemaInfo   *RegistrationSchemaInfo          `json:"onboard_registration_schema_info,omitempty"`   // 入职登记表
+	TargetMajorList                 []*TargetMajorInfo               `json:"target_major_list,omitempty"`                  // 目标专业
 }
 
 type CombinedUpdateJobResp struct {
@@ -35818,6 +41330,22 @@ func (builder *GetJobReqBuilder) DepartmentIdType(departmentIdType string) *GetJ
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *GetJobReqBuilder) JobLevelIdType(jobLevelIdType string) *GetJobReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *GetJobReqBuilder) JobFamilyIdType(jobFamilyIdType string) *GetJobReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
 func (builder *GetJobReqBuilder) Build() *GetJobReq {
 	req := &GetJobReq{}
 	req.apiReq = &larkcore.ApiReq{}
@@ -35841,6 +41369,165 @@ type GetJobResp struct {
 }
 
 func (resp *GetJobResp) Success() bool {
+	return resp.Code == 0
+}
+
+type ListJobReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewListJobReqBuilder() *ListJobReqBuilder {
+	builder := &ListJobReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 最早更新时间，毫秒级时间戳
+//
+// 示例值：1618500278663
+func (builder *ListJobReqBuilder) UpdateStartTime(updateStartTime string) *ListJobReqBuilder {
+	builder.apiReq.QueryParams.Set("update_start_time", fmt.Sprint(updateStartTime))
+	return builder
+}
+
+// 最晚更新时间，毫秒级时间戳
+//
+// 示例值：1618500278663
+func (builder *ListJobReqBuilder) UpdateEndTime(updateEndTime string) *ListJobReqBuilder {
+	builder.apiReq.QueryParams.Set("update_end_time", fmt.Sprint(updateEndTime))
+	return builder
+}
+
+// 分页大小, 不能超过 20
+//
+// 示例值：10
+func (builder *ListJobReqBuilder) PageSize(pageSize int) *ListJobReqBuilder {
+	builder.apiReq.QueryParams.Set("page_size", fmt.Sprint(pageSize))
+	return builder
+}
+
+// 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果
+//
+// 示例值：eyJvZmZzZXQiOjEwLCJ0aW1lc3RhbXAiOjE2Mjc1NTUyMjM2NzIsImlkIjpudWxsfQ==
+func (builder *ListJobReqBuilder) PageToken(pageToken string) *ListJobReqBuilder {
+	builder.apiReq.QueryParams.Set("page_token", fmt.Sprint(pageToken))
+	return builder
+}
+
+// 用户 ID 类型
+//
+// 示例值：open_id
+func (builder *ListJobReqBuilder) UserIdType(userIdType string) *ListJobReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+// 此次调用中使用的部门 ID 的类型
+//
+// 示例值：
+func (builder *ListJobReqBuilder) DepartmentIdType(departmentIdType string) *ListJobReqBuilder {
+	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *ListJobReqBuilder) JobLevelIdType(jobLevelIdType string) *ListJobReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *ListJobReqBuilder) JobFamilyIdType(jobFamilyIdType string) *ListJobReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+func (builder *ListJobReqBuilder) Build() *ListJobReq {
+	req := &ListJobReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type ListJobReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type ListJobRespData struct {
+	HasMore   *bool   `json:"has_more,omitempty"`   // 是否还有更多项
+	PageToken *string `json:"page_token,omitempty"` // 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
+	Items     []*Job  `json:"items,omitempty"`      // 列表
+}
+
+type ListJobResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *ListJobRespData `json:"data"` // 业务数据
+}
+
+func (resp *ListJobResp) Success() bool {
+	return resp.Code == 0
+}
+
+type RecruiterJobReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewRecruiterJobReqBuilder() *RecruiterJobReqBuilder {
+	builder := &RecruiterJobReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 职位 ID
+//
+// 示例值：6960663240925956555
+func (builder *RecruiterJobReqBuilder) JobId(jobId string) *RecruiterJobReqBuilder {
+	builder.apiReq.PathParams.Set("job_id", fmt.Sprint(jobId))
+	return builder
+}
+
+// 此次调用中使用的用户ID的类型
+//
+// 示例值：
+func (builder *RecruiterJobReqBuilder) UserIdType(userIdType string) *RecruiterJobReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+func (builder *RecruiterJobReqBuilder) Build() *RecruiterJobReq {
+	req := &RecruiterJobReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type RecruiterJobReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type RecruiterJobRespData struct {
+	Info *JobRecruiter2 `json:"info,omitempty"` // 职位负责人
+}
+
+type RecruiterJobResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *RecruiterJobRespData `json:"data"` // 业务数据
+}
+
+func (resp *RecruiterJobResp) Success() bool {
 	return resp.Code == 0
 }
 
@@ -36057,6 +41744,30 @@ func (builder *CreateJobRequirementReqBuilder) DepartmentIdType(departmentIdType
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *CreateJobRequirementReqBuilder) JobLevelIdType(jobLevelIdType string) *CreateJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *CreateJobRequirementReqBuilder) JobFamilyIdType(jobFamilyIdType string) *CreateJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *CreateJobRequirementReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *CreateJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 // 创建招聘需求，除招聘需求编号为必填外，其他字段是否必填与飞书招聘「招聘需求字段管理」内设置一致
 func (builder *CreateJobRequirementReqBuilder) JobRequirement(jobRequirement *JobRequirement) *CreateJobRequirementReqBuilder {
 	builder.jobRequirement = jobRequirement
@@ -36216,6 +41927,30 @@ func (builder *ListJobRequirementReqBuilder) DepartmentIdType(departmentIdType s
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *ListJobRequirementReqBuilder) JobLevelIdType(jobLevelIdType string) *ListJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *ListJobRequirementReqBuilder) JobFamilyIdType(jobFamilyIdType string) *ListJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *ListJobRequirementReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *ListJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 func (builder *ListJobRequirementReqBuilder) Build() *ListJobRequirementReq {
 	req := &ListJobRequirementReq{}
 	req.apiReq = &larkcore.ApiReq{}
@@ -36271,7 +42006,7 @@ func (builder *ListByIdJobRequirementReqBodyBuilder) Build() *ListByIdJobRequire
 }
 
 type ListByIdJobRequirementPathReqBodyBuilder struct {
-	idList     []string // 招聘需求ID列表
+	idList     []string
 	idListFlag bool
 }
 
@@ -36324,6 +42059,30 @@ func (builder *ListByIdJobRequirementReqBuilder) UserIdType(userIdType string) *
 // 示例值：
 func (builder *ListByIdJobRequirementReqBuilder) DepartmentIdType(departmentIdType string) *ListByIdJobRequirementReqBuilder {
 	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *ListByIdJobRequirementReqBuilder) JobLevelIdType(jobLevelIdType string) *ListByIdJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *ListByIdJobRequirementReqBuilder) JobFamilyIdType(jobFamilyIdType string) *ListByIdJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *ListByIdJobRequirementReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *ListByIdJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
 	return builder
 }
 
@@ -36399,6 +42158,30 @@ func (builder *UpdateJobRequirementReqBuilder) UserIdType(userIdType string) *Up
 // 示例值：
 func (builder *UpdateJobRequirementReqBuilder) DepartmentIdType(departmentIdType string) *UpdateJobRequirementReqBuilder {
 	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *UpdateJobRequirementReqBuilder) JobLevelIdType(jobLevelIdType string) *UpdateJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *UpdateJobRequirementReqBuilder) JobFamilyIdType(jobFamilyIdType string) *UpdateJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *UpdateJobRequirementReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *UpdateJobRequirementReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
 	return builder
 }
 
@@ -36484,6 +42267,72 @@ type ListJobRequirementSchemaResp struct {
 }
 
 func (resp *ListJobRequirementSchemaResp) Success() bool {
+	return resp.Code == 0
+}
+
+type ListJobTypeReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	limit  int // 最大返回多少记录，当使用迭代器访问时才有效
+}
+
+func NewListJobTypeReqBuilder() *ListJobTypeReqBuilder {
+	builder := &ListJobTypeReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 最大返回多少记录，当使用迭代器访问时才有效
+func (builder *ListJobTypeReqBuilder) Limit(limit int) *ListJobTypeReqBuilder {
+	builder.limit = limit
+	return builder
+}
+
+// 分页大小
+//
+// 示例值：
+func (builder *ListJobTypeReqBuilder) PageSize(pageSize int) *ListJobTypeReqBuilder {
+	builder.apiReq.QueryParams.Set("page_size", fmt.Sprint(pageSize))
+	return builder
+}
+
+// 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果
+//
+// 示例值：
+func (builder *ListJobTypeReqBuilder) PageToken(pageToken string) *ListJobTypeReqBuilder {
+	builder.apiReq.QueryParams.Set("page_token", fmt.Sprint(pageToken))
+	return builder
+}
+
+func (builder *ListJobTypeReqBuilder) Build() *ListJobTypeReq {
+	req := &ListJobTypeReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.Limit = builder.limit
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type ListJobTypeReq struct {
+	apiReq *larkcore.ApiReq
+	Limit  int // 最多返回多少记录，只有在使用迭代器访问时，才有效
+
+}
+
+type ListJobTypeRespData struct {
+	Items     []*JobTypeInfo `json:"items,omitempty"`      // 职位类别列表
+	PageToken *string        `json:"page_token,omitempty"` //
+	HasMore   *bool          `json:"has_more,omitempty"`   //
+}
+
+type ListJobTypeResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *ListJobTypeRespData `json:"data"` // 业务数据
+}
+
+func (resp *ListJobTypeResp) Success() bool {
 	return resp.Code == 0
 }
 
@@ -36697,7 +42546,7 @@ func (builder *PatchNoteReqBodyBuilder) Build() *PatchNoteReqBody {
 }
 
 type PatchNotePathReqBodyBuilder struct {
-	content     string // 备注内容
+	content     string
 	contentFlag bool
 }
 
@@ -36821,6 +42670,30 @@ func (builder *CreateOfferReqBuilder) DepartmentIdType(departmentIdType string) 
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *CreateOfferReqBuilder) JobLevelIdType(jobLevelIdType string) *CreateOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *CreateOfferReqBuilder) JobFamilyIdType(jobFamilyIdType string) *CreateOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *CreateOfferReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *CreateOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 // 创建 Offer 时，需传入本文档中标注为必传的参数，其余参数是否必传参考「获取 Offer 申请表模板信息」的参数定义
 func (builder *CreateOfferReqBuilder) OfferInfo(offerInfo *OfferInfo) *CreateOfferReqBuilder {
 	builder.offerInfo = offerInfo
@@ -36894,6 +42767,30 @@ func (builder *GetOfferReqBuilder) UserIdType(userIdType string) *GetOfferReqBui
 // 示例值：
 func (builder *GetOfferReqBuilder) DepartmentIdType(departmentIdType string) *GetOfferReqBuilder {
 	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *GetOfferReqBuilder) JobLevelIdType(jobLevelIdType string) *GetOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *GetOfferReqBuilder) JobFamilyIdType(jobFamilyIdType string) *GetOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *GetOfferReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *GetOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
 	return builder
 }
 
@@ -37026,6 +42923,14 @@ func (builder *ListOfferReqBuilder) UserIdType(userIdType string) *ListOfferReqB
 	return builder
 }
 
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *ListOfferReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *ListOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 func (builder *ListOfferReqBuilder) Build() *ListOfferReq {
 	req := &ListOfferReq{}
 	req.apiReq = &larkcore.ApiReq{}
@@ -37123,13 +43028,13 @@ func (builder *OfferStatusOfferReqBodyBuilder) Build() *OfferStatusOfferReqBody 
 }
 
 type OfferStatusOfferPathReqBodyBuilder struct {
-	offerStatus                 int // offer状态
+	offerStatus                 int
 	offerStatusFlag             bool
-	expirationDate              string // offer 失效时间，当反馈状态是「offer已发出」时为必填项
+	expirationDate              string
 	expirationDateFlag          bool
-	terminationReasonIdList     []string // 终止原因列表，当反馈状态是「候选人已拒绝」时为必填项；最多传入50个
+	terminationReasonIdList     []string
 	terminationReasonIdListFlag bool
-	terminationReasonNote       string // 终止备注
+	terminationReasonNote       string
 	terminationReasonNoteFlag   bool
 }
 
@@ -37286,6 +43191,30 @@ func (builder *UpdateOfferReqBuilder) DepartmentIdType(departmentIdType string) 
 	return builder
 }
 
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *UpdateOfferReqBuilder) JobLevelIdType(jobLevelIdType string) *UpdateOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+// 此次调用中使用的「序列 ID」的类型
+//
+// 示例值：
+func (builder *UpdateOfferReqBuilder) JobFamilyIdType(jobFamilyIdType string) *UpdateOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("job_family_id_type", fmt.Sprint(jobFamilyIdType))
+	return builder
+}
+
+// 此次调用中使用的「人员类型 ID」的类型
+//
+// 示例值：
+func (builder *UpdateOfferReqBuilder) EmployeeTypeIdType(employeeTypeIdType string) *UpdateOfferReqBuilder {
+	builder.apiReq.QueryParams.Set("employee_type_id_type", fmt.Sprint(employeeTypeIdType))
+	return builder
+}
+
 // 1. 更新 Offer 时，需传入本文档中标注为必传的参数，其余参数是否必传参考「获取 Offer 申请表模板信息」的参数定义；;2. 对系统中已存在的 offer 进行更新的，若更新 offer 中含有「修改需审批」的字段，更新后原 Offer 的审批会自动撤回，需要重新发起审批
 func (builder *UpdateOfferReqBuilder) OfferInfo(offerInfo *OfferInfo) *UpdateOfferReqBuilder {
 	builder.offerInfo = offerInfo
@@ -37306,9 +43235,18 @@ type UpdateOfferReq struct {
 	OfferInfo *OfferInfo `body:""`
 }
 
+type UpdateOfferRespData struct {
+	OfferId            *string                `json:"offer_id,omitempty"`             // Offer ID
+	SchemaId           *string                `json:"schema_id,omitempty"`            // 模板 ID
+	BasicInfo          *OfferBasicInfo        `json:"basic_info,omitempty"`           // Offer 基本信息
+	SalaryInfo         *OfferSalaryInfo       `json:"salary_info,omitempty"`          // Offer 薪资信息
+	CustomizedInfoList []*OfferCustomizedInfo `json:"customized_info_list,omitempty"` // 自定义信息
+}
+
 type UpdateOfferResp struct {
 	*larkcore.ApiResp `json:"-"`
 	larkcore.CodeError
+	Data *UpdateOfferRespData `json:"data"` // 业务数据
 }
 
 func (resp *UpdateOfferResp) Success() bool {
@@ -37506,6 +43444,734 @@ func (resp *GetByApplicationReferralResp) Success() bool {
 	return resp.Code == 0
 }
 
+type CreateReferralAccountReqBodyBuilder struct {
+	mobile     *Mobile // 电话
+	mobileFlag bool
+	email      string // 邮箱
+	emailFlag  bool
+}
+
+func NewCreateReferralAccountReqBodyBuilder() *CreateReferralAccountReqBodyBuilder {
+	builder := &CreateReferralAccountReqBodyBuilder{}
+	return builder
+}
+
+// 电话
+//
+//示例值：
+func (builder *CreateReferralAccountReqBodyBuilder) Mobile(mobile *Mobile) *CreateReferralAccountReqBodyBuilder {
+	builder.mobile = mobile
+	builder.mobileFlag = true
+	return builder
+}
+
+// 邮箱
+//
+//示例值：hire@open.com
+func (builder *CreateReferralAccountReqBodyBuilder) Email(email string) *CreateReferralAccountReqBodyBuilder {
+	builder.email = email
+	builder.emailFlag = true
+	return builder
+}
+
+func (builder *CreateReferralAccountReqBodyBuilder) Build() *CreateReferralAccountReqBody {
+	req := &CreateReferralAccountReqBody{}
+	if builder.mobileFlag {
+		req.Mobile = builder.mobile
+	}
+	if builder.emailFlag {
+		req.Email = &builder.email
+	}
+	return req
+}
+
+type CreateReferralAccountPathReqBodyBuilder struct {
+	mobile     *Mobile
+	mobileFlag bool
+	email      string
+	emailFlag  bool
+}
+
+func NewCreateReferralAccountPathReqBodyBuilder() *CreateReferralAccountPathReqBodyBuilder {
+	builder := &CreateReferralAccountPathReqBodyBuilder{}
+	return builder
+}
+
+// 电话
+//
+// 示例值：
+func (builder *CreateReferralAccountPathReqBodyBuilder) Mobile(mobile *Mobile) *CreateReferralAccountPathReqBodyBuilder {
+	builder.mobile = mobile
+	builder.mobileFlag = true
+	return builder
+}
+
+// 邮箱
+//
+// 示例值：hire@open.com
+func (builder *CreateReferralAccountPathReqBodyBuilder) Email(email string) *CreateReferralAccountPathReqBodyBuilder {
+	builder.email = email
+	builder.emailFlag = true
+	return builder
+}
+
+func (builder *CreateReferralAccountPathReqBodyBuilder) Build() (*CreateReferralAccountReqBody, error) {
+	req := &CreateReferralAccountReqBody{}
+	if builder.mobileFlag {
+		req.Mobile = builder.mobile
+	}
+	if builder.emailFlag {
+		req.Email = &builder.email
+	}
+	return req, nil
+}
+
+type CreateReferralAccountReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *CreateReferralAccountReqBody
+}
+
+func NewCreateReferralAccountReqBuilder() *CreateReferralAccountReqBuilder {
+	builder := &CreateReferralAccountReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+//
+func (builder *CreateReferralAccountReqBuilder) Body(body *CreateReferralAccountReqBody) *CreateReferralAccountReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *CreateReferralAccountReqBuilder) Build() *CreateReferralAccountReq {
+	req := &CreateReferralAccountReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type CreateReferralAccountReqBody struct {
+	Mobile *Mobile `json:"mobile,omitempty"` // 电话
+	Email  *string `json:"email,omitempty"`  // 邮箱
+}
+
+type CreateReferralAccountReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *CreateReferralAccountReqBody `body:""`
+}
+
+type CreateReferralAccountRespData struct {
+	Account *Account `json:"account,omitempty"` // 账号信息
+}
+
+type CreateReferralAccountResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *CreateReferralAccountRespData `json:"data"` // 业务数据
+}
+
+func (resp *CreateReferralAccountResp) Success() bool {
+	return resp.Code == 0
+}
+
+type DeactivateReferralAccountReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewDeactivateReferralAccountReqBuilder() *DeactivateReferralAccountReqBuilder {
+	builder := &DeactivateReferralAccountReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 账户ID
+//
+// 示例值：6942778198054125570
+func (builder *DeactivateReferralAccountReqBuilder) ReferralAccountId(referralAccountId string) *DeactivateReferralAccountReqBuilder {
+	builder.apiReq.PathParams.Set("referral_account_id", fmt.Sprint(referralAccountId))
+	return builder
+}
+
+func (builder *DeactivateReferralAccountReqBuilder) Build() *DeactivateReferralAccountReq {
+	req := &DeactivateReferralAccountReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	return req
+}
+
+type DeactivateReferralAccountReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type DeactivateReferralAccountRespData struct {
+	Account *Account `json:"account,omitempty"` // 账号信息
+}
+
+type DeactivateReferralAccountResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *DeactivateReferralAccountRespData `json:"data"` // 业务数据
+}
+
+func (resp *DeactivateReferralAccountResp) Success() bool {
+	return resp.Code == 0
+}
+
+type ReconciliationReferralAccountReqBodyBuilder struct {
+	startTransTime     string // 按时间范围进行对账时 时间段的起始交易时间
+	startTransTimeFlag bool
+	endTransTime       string // 按时间范围进行对账时 时间段的截止交易时间
+	endTransTimeFlag   bool
+	tradeDetails       []*TradeDetail // 交易信息
+	tradeDetailsFlag   bool
+}
+
+func NewReconciliationReferralAccountReqBodyBuilder() *ReconciliationReferralAccountReqBodyBuilder {
+	builder := &ReconciliationReferralAccountReqBodyBuilder{}
+	return builder
+}
+
+// 按时间范围进行对账时 时间段的起始交易时间
+//
+//示例值：1685416831621
+func (builder *ReconciliationReferralAccountReqBodyBuilder) StartTransTime(startTransTime string) *ReconciliationReferralAccountReqBodyBuilder {
+	builder.startTransTime = startTransTime
+	builder.startTransTimeFlag = true
+	return builder
+}
+
+// 按时间范围进行对账时 时间段的截止交易时间
+//
+//示例值：1685416831622
+func (builder *ReconciliationReferralAccountReqBodyBuilder) EndTransTime(endTransTime string) *ReconciliationReferralAccountReqBodyBuilder {
+	builder.endTransTime = endTransTime
+	builder.endTransTimeFlag = true
+	return builder
+}
+
+// 交易信息
+//
+//示例值：
+func (builder *ReconciliationReferralAccountReqBodyBuilder) TradeDetails(tradeDetails []*TradeDetail) *ReconciliationReferralAccountReqBodyBuilder {
+	builder.tradeDetails = tradeDetails
+	builder.tradeDetailsFlag = true
+	return builder
+}
+
+func (builder *ReconciliationReferralAccountReqBodyBuilder) Build() *ReconciliationReferralAccountReqBody {
+	req := &ReconciliationReferralAccountReqBody{}
+	if builder.startTransTimeFlag {
+		req.StartTransTime = &builder.startTransTime
+	}
+	if builder.endTransTimeFlag {
+		req.EndTransTime = &builder.endTransTime
+	}
+	if builder.tradeDetailsFlag {
+		req.TradeDetails = builder.tradeDetails
+	}
+	return req
+}
+
+type ReconciliationReferralAccountPathReqBodyBuilder struct {
+	startTransTime     string
+	startTransTimeFlag bool
+	endTransTime       string
+	endTransTimeFlag   bool
+	tradeDetails       []*TradeDetail
+	tradeDetailsFlag   bool
+}
+
+func NewReconciliationReferralAccountPathReqBodyBuilder() *ReconciliationReferralAccountPathReqBodyBuilder {
+	builder := &ReconciliationReferralAccountPathReqBodyBuilder{}
+	return builder
+}
+
+// 按时间范围进行对账时 时间段的起始交易时间
+//
+// 示例值：1685416831621
+func (builder *ReconciliationReferralAccountPathReqBodyBuilder) StartTransTime(startTransTime string) *ReconciliationReferralAccountPathReqBodyBuilder {
+	builder.startTransTime = startTransTime
+	builder.startTransTimeFlag = true
+	return builder
+}
+
+// 按时间范围进行对账时 时间段的截止交易时间
+//
+// 示例值：1685416831622
+func (builder *ReconciliationReferralAccountPathReqBodyBuilder) EndTransTime(endTransTime string) *ReconciliationReferralAccountPathReqBodyBuilder {
+	builder.endTransTime = endTransTime
+	builder.endTransTimeFlag = true
+	return builder
+}
+
+// 交易信息
+//
+// 示例值：
+func (builder *ReconciliationReferralAccountPathReqBodyBuilder) TradeDetails(tradeDetails []*TradeDetail) *ReconciliationReferralAccountPathReqBodyBuilder {
+	builder.tradeDetails = tradeDetails
+	builder.tradeDetailsFlag = true
+	return builder
+}
+
+func (builder *ReconciliationReferralAccountPathReqBodyBuilder) Build() (*ReconciliationReferralAccountReqBody, error) {
+	req := &ReconciliationReferralAccountReqBody{}
+	if builder.startTransTimeFlag {
+		req.StartTransTime = &builder.startTransTime
+	}
+	if builder.endTransTimeFlag {
+		req.EndTransTime = &builder.endTransTime
+	}
+	if builder.tradeDetailsFlag {
+		req.TradeDetails = builder.tradeDetails
+	}
+	return req, nil
+}
+
+type ReconciliationReferralAccountReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *ReconciliationReferralAccountReqBody
+}
+
+func NewReconciliationReferralAccountReqBuilder() *ReconciliationReferralAccountReqBuilder {
+	builder := &ReconciliationReferralAccountReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+//
+func (builder *ReconciliationReferralAccountReqBuilder) Body(body *ReconciliationReferralAccountReqBody) *ReconciliationReferralAccountReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *ReconciliationReferralAccountReqBuilder) Build() *ReconciliationReferralAccountReq {
+	req := &ReconciliationReferralAccountReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type ReconciliationReferralAccountReqBody struct {
+	StartTransTime *string        `json:"start_trans_time,omitempty"` // 按时间范围进行对账时 时间段的起始交易时间
+	EndTransTime   *string        `json:"end_trans_time,omitempty"`   // 按时间范围进行对账时 时间段的截止交易时间
+	TradeDetails   []*TradeDetail `json:"trade_details,omitempty"`    // 交易信息
+}
+
+type ReconciliationReferralAccountReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *ReconciliationReferralAccountReqBody `body:""`
+}
+
+type ReconciliationReferralAccountRespData struct {
+	CheckFailedList []*CheckFailedAccountInfo `json:"check_failed_list,omitempty"` // 核对失败的信息
+}
+
+type ReconciliationReferralAccountResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *ReconciliationReferralAccountRespData `json:"data"` // 业务数据
+}
+
+func (resp *ReconciliationReferralAccountResp) Success() bool {
+	return resp.Code == 0
+}
+
+type WithdrawReferralAccountReqBodyBuilder struct {
+	withdrawBonusType     []int // 请求提现的奖励类型
+	withdrawBonusTypeFlag bool
+	externalOrderId       string // 提现单ID，请求时由请求方提供，后续关于本次提现操作的交互都以此提现单ID为标识进行，需要保证唯一,用于保证提现的幂等性，传入重复ID会返回对应提现单提取的金额明细
+	externalOrderIdFlag   bool
+}
+
+func NewWithdrawReferralAccountReqBodyBuilder() *WithdrawReferralAccountReqBodyBuilder {
+	builder := &WithdrawReferralAccountReqBodyBuilder{}
+	return builder
+}
+
+// 请求提现的奖励类型
+//
+//示例值：
+func (builder *WithdrawReferralAccountReqBodyBuilder) WithdrawBonusType(withdrawBonusType []int) *WithdrawReferralAccountReqBodyBuilder {
+	builder.withdrawBonusType = withdrawBonusType
+	builder.withdrawBonusTypeFlag = true
+	return builder
+}
+
+// 提现单ID，请求时由请求方提供，后续关于本次提现操作的交互都以此提现单ID为标识进行，需要保证唯一,用于保证提现的幂等性，传入重复ID会返回对应提现单提取的金额明细
+//
+//示例值：6942778198054125570
+func (builder *WithdrawReferralAccountReqBodyBuilder) ExternalOrderId(externalOrderId string) *WithdrawReferralAccountReqBodyBuilder {
+	builder.externalOrderId = externalOrderId
+	builder.externalOrderIdFlag = true
+	return builder
+}
+
+func (builder *WithdrawReferralAccountReqBodyBuilder) Build() *WithdrawReferralAccountReqBody {
+	req := &WithdrawReferralAccountReqBody{}
+	if builder.withdrawBonusTypeFlag {
+		req.WithdrawBonusType = builder.withdrawBonusType
+	}
+	if builder.externalOrderIdFlag {
+		req.ExternalOrderId = &builder.externalOrderId
+	}
+	return req
+}
+
+type WithdrawReferralAccountPathReqBodyBuilder struct {
+	withdrawBonusType     []int
+	withdrawBonusTypeFlag bool
+	externalOrderId       string
+	externalOrderIdFlag   bool
+}
+
+func NewWithdrawReferralAccountPathReqBodyBuilder() *WithdrawReferralAccountPathReqBodyBuilder {
+	builder := &WithdrawReferralAccountPathReqBodyBuilder{}
+	return builder
+}
+
+// 请求提现的奖励类型
+//
+// 示例值：
+func (builder *WithdrawReferralAccountPathReqBodyBuilder) WithdrawBonusType(withdrawBonusType []int) *WithdrawReferralAccountPathReqBodyBuilder {
+	builder.withdrawBonusType = withdrawBonusType
+	builder.withdrawBonusTypeFlag = true
+	return builder
+}
+
+// 提现单ID，请求时由请求方提供，后续关于本次提现操作的交互都以此提现单ID为标识进行，需要保证唯一,用于保证提现的幂等性，传入重复ID会返回对应提现单提取的金额明细
+//
+// 示例值：6942778198054125570
+func (builder *WithdrawReferralAccountPathReqBodyBuilder) ExternalOrderId(externalOrderId string) *WithdrawReferralAccountPathReqBodyBuilder {
+	builder.externalOrderId = externalOrderId
+	builder.externalOrderIdFlag = true
+	return builder
+}
+
+func (builder *WithdrawReferralAccountPathReqBodyBuilder) Build() (*WithdrawReferralAccountReqBody, error) {
+	req := &WithdrawReferralAccountReqBody{}
+	if builder.withdrawBonusTypeFlag {
+		req.WithdrawBonusType = builder.withdrawBonusType
+	}
+	if builder.externalOrderIdFlag {
+		req.ExternalOrderId = &builder.externalOrderId
+	}
+	return req, nil
+}
+
+type WithdrawReferralAccountReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *WithdrawReferralAccountReqBody
+}
+
+func NewWithdrawReferralAccountReqBuilder() *WithdrawReferralAccountReqBuilder {
+	builder := &WithdrawReferralAccountReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 账户ID
+//
+// 示例值：6942778198054125570
+func (builder *WithdrawReferralAccountReqBuilder) ReferralAccountId(referralAccountId string) *WithdrawReferralAccountReqBuilder {
+	builder.apiReq.PathParams.Set("referral_account_id", fmt.Sprint(referralAccountId))
+	return builder
+}
+
+//
+func (builder *WithdrawReferralAccountReqBuilder) Body(body *WithdrawReferralAccountReqBody) *WithdrawReferralAccountReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *WithdrawReferralAccountReqBuilder) Build() *WithdrawReferralAccountReq {
+	req := &WithdrawReferralAccountReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type WithdrawReferralAccountReqBody struct {
+	WithdrawBonusType []int   `json:"withdraw_bonus_type,omitempty"` // 请求提现的奖励类型
+	ExternalOrderId   *string `json:"external_order_id,omitempty"`   // 提现单ID，请求时由请求方提供，后续关于本次提现操作的交互都以此提现单ID为标识进行，需要保证唯一,用于保证提现的幂等性，传入重复ID会返回对应提现单提取的金额明细
+}
+
+type WithdrawReferralAccountReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *WithdrawReferralAccountReqBody `body:""`
+}
+
+type WithdrawReferralAccountRespData struct {
+	ExternalOrderId   *string      `json:"external_order_id,omitempty"`  // 请求时传入的提现单ID
+	TransTime         *string      `json:"trans_time,omitempty"`         // 交易时间戳，需要保存，用于统一交易时间，方便对账
+	WithdrawalDetails *BonusAmount `json:"withdrawal_details,omitempty"` // 本次提现金额明细
+}
+
+type WithdrawReferralAccountResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *WithdrawReferralAccountRespData `json:"data"` // 业务数据
+}
+
+func (resp *WithdrawReferralAccountResp) Success() bool {
+	return resp.Code == 0
+}
+
+type GetReferralWebsiteJobPostReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewGetReferralWebsiteJobPostReqBuilder() *GetReferralWebsiteJobPostReqBuilder {
+	builder := &GetReferralWebsiteJobPostReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 职位广告 ID
+//
+// 示例值：6701528341100366094
+func (builder *GetReferralWebsiteJobPostReqBuilder) JobPostId(jobPostId string) *GetReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.PathParams.Set("job_post_id", fmt.Sprint(jobPostId))
+	return builder
+}
+
+// 用户 ID 类型
+//
+// 示例值：open_id
+func (builder *GetReferralWebsiteJobPostReqBuilder) UserIdType(userIdType string) *GetReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+// 此次调用中使用的部门 ID 的类型
+//
+// 示例值：
+func (builder *GetReferralWebsiteJobPostReqBuilder) DepartmentIdType(departmentIdType string) *GetReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *GetReferralWebsiteJobPostReqBuilder) JobLevelIdType(jobLevelIdType string) *GetReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+func (builder *GetReferralWebsiteJobPostReqBuilder) Build() *GetReferralWebsiteJobPostReq {
+	req := &GetReferralWebsiteJobPostReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type GetReferralWebsiteJobPostReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type GetReferralWebsiteJobPostRespData struct {
+	JobPost *PortalJobPost `json:"job_post,omitempty"` //
+}
+
+type GetReferralWebsiteJobPostResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *GetReferralWebsiteJobPostRespData `json:"data"` // 业务数据
+}
+
+func (resp *GetReferralWebsiteJobPostResp) Success() bool {
+	return resp.Code == 0
+}
+
+type ListReferralWebsiteJobPostReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	limit  int // 最大返回多少记录，当使用迭代器访问时才有效
+}
+
+func NewListReferralWebsiteJobPostReqBuilder() *ListReferralWebsiteJobPostReqBuilder {
+	builder := &ListReferralWebsiteJobPostReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 最大返回多少记录，当使用迭代器访问时才有效
+func (builder *ListReferralWebsiteJobPostReqBuilder) Limit(limit int) *ListReferralWebsiteJobPostReqBuilder {
+	builder.limit = limit
+	return builder
+}
+
+// 招聘流程类型
+//
+// 示例值：1
+func (builder *ListReferralWebsiteJobPostReqBuilder) ProcessType(processType int) *ListReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("process_type", fmt.Sprint(processType))
+	return builder
+}
+
+// 下一页页码
+//
+// 示例值：eyJvZmZzZXQiOjEwLCJ0aW1lc3RhbXAiOjE2Mjc1NTUyMjM2NzIsImlkIjpudWxsfQ==
+func (builder *ListReferralWebsiteJobPostReqBuilder) PageToken(pageToken string) *ListReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("page_token", fmt.Sprint(pageToken))
+	return builder
+}
+
+// 每页获取记录数量，最大10
+//
+// 示例值：10
+func (builder *ListReferralWebsiteJobPostReqBuilder) PageSize(pageSize int) *ListReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("page_size", fmt.Sprint(pageSize))
+	return builder
+}
+
+// 用户 ID 类型
+//
+// 示例值：open_id
+func (builder *ListReferralWebsiteJobPostReqBuilder) UserIdType(userIdType string) *ListReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+// 此次调用中使用的部门 ID 的类型
+//
+// 示例值：
+func (builder *ListReferralWebsiteJobPostReqBuilder) DepartmentIdType(departmentIdType string) *ListReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+// 此次调用中使用的「职级 ID」的类型
+//
+// 示例值：
+func (builder *ListReferralWebsiteJobPostReqBuilder) JobLevelIdType(jobLevelIdType string) *ListReferralWebsiteJobPostReqBuilder {
+	builder.apiReq.QueryParams.Set("job_level_id_type", fmt.Sprint(jobLevelIdType))
+	return builder
+}
+
+func (builder *ListReferralWebsiteJobPostReqBuilder) Build() *ListReferralWebsiteJobPostReq {
+	req := &ListReferralWebsiteJobPostReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.Limit = builder.limit
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type ListReferralWebsiteJobPostReq struct {
+	apiReq *larkcore.ApiReq
+	Limit  int // 最多返回多少记录，只有在使用迭代器访问时，才有效
+
+}
+
+type ListReferralWebsiteJobPostRespData struct {
+	Items     []*PortalJobPost `json:"items,omitempty"`      // 列表
+	HasMore   *bool            `json:"has_more,omitempty"`   // 是否还有下一页数据
+	PageToken *string          `json:"page_token,omitempty"` // 下一页页码
+}
+
+type ListReferralWebsiteJobPostResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *ListReferralWebsiteJobPostRespData `json:"data"` // 业务数据
+}
+
+func (resp *ListReferralWebsiteJobPostResp) Success() bool {
+	return resp.Code == 0
+}
+
+type ListRegistrationSchemaReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	limit  int // 最大返回多少记录，当使用迭代器访问时才有效
+}
+
+func NewListRegistrationSchemaReqBuilder() *ListRegistrationSchemaReqBuilder {
+	builder := &ListRegistrationSchemaReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 最大返回多少记录，当使用迭代器访问时才有效
+func (builder *ListRegistrationSchemaReqBuilder) Limit(limit int) *ListRegistrationSchemaReqBuilder {
+	builder.limit = limit
+	return builder
+}
+
+// 分页大小
+//
+// 示例值：20
+func (builder *ListRegistrationSchemaReqBuilder) PageSize(pageSize int) *ListRegistrationSchemaReqBuilder {
+	builder.apiReq.QueryParams.Set("page_size", fmt.Sprint(pageSize))
+	return builder
+}
+
+// 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果
+//
+// 示例值：6930815272790114324
+func (builder *ListRegistrationSchemaReqBuilder) PageToken(pageToken string) *ListRegistrationSchemaReqBuilder {
+	builder.apiReq.QueryParams.Set("page_token", fmt.Sprint(pageToken))
+	return builder
+}
+
+// 登记表适用场景；不填表示获取全部类型信息登记表
+//
+// 示例值：5
+func (builder *ListRegistrationSchemaReqBuilder) Scenario(scenario int) *ListRegistrationSchemaReqBuilder {
+	builder.apiReq.QueryParams.Set("scenario", fmt.Sprint(scenario))
+	return builder
+}
+
+func (builder *ListRegistrationSchemaReqBuilder) Build() *ListRegistrationSchemaReq {
+	req := &ListRegistrationSchemaReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.Limit = builder.limit
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type ListRegistrationSchemaReq struct {
+	apiReq *larkcore.ApiReq
+	Limit  int // 最多返回多少记录，只有在使用迭代器访问时，才有效
+
+}
+
+type ListRegistrationSchemaRespData struct {
+	Items     []*RegistrationSchema `json:"items,omitempty"`      // 信息登记表列表
+	PageToken *string               `json:"page_token,omitempty"` // 分页标记
+	HasMore   *bool                 `json:"has_more,omitempty"`   // 是否仍有数据
+}
+
+type ListRegistrationSchemaResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *ListRegistrationSchemaRespData `json:"data"` // 业务数据
+}
+
+func (resp *ListRegistrationSchemaResp) Success() bool {
+	return resp.Code == 0
+}
+
 type ListResumeSourceReqBuilder struct {
 	apiReq *larkcore.ApiReq
 	limit  int // 最大返回多少记录，当使用迭代器访问时才有效
@@ -37614,9 +44280,9 @@ func (builder *AddToFolderTalentReqBodyBuilder) Build() *AddToFolderTalentReqBod
 }
 
 type AddToFolderTalentPathReqBodyBuilder struct {
-	talentIdList     []string // 人才 ID 列表
+	talentIdList     []string
 	talentIdListFlag bool
-	folderId         string // 文件夹 ID
+	folderId         string
 	folderIdFlag     bool
 }
 
@@ -37790,15 +44456,15 @@ func (builder *BatchGetIdTalentReqBodyBuilder) Build() *BatchGetIdTalentReqBody 
 }
 
 type BatchGetIdTalentPathReqBodyBuilder struct {
-	mobileCode                   string // 手机国家区号，默认值：86，即中国大陆地区
+	mobileCode                   string
 	mobileCodeFlag               bool
-	mobileNumberList             []string // 手机号，区号均采用 mobile_code 参数的值，最多 100 个
+	mobileNumberList             []string
 	mobileNumberListFlag         bool
-	emailList                    []string // 邮箱信息列表，最多 100 个
+	emailList                    []string
 	emailListFlag                bool
-	identificationType           int // 证件类型，可参考招聘枚举常量文档下的 IdentificationType 枚举定义
+	identificationType           int
 	identificationTypeFlag       bool
-	identificationNumberList     []string // 证件号
+	identificationNumberList     []string
 	identificationNumberListFlag bool
 }
 
@@ -37913,7 +44579,7 @@ type BatchGetIdTalentReq struct {
 }
 
 type BatchGetIdTalentRespData struct {
-	Talent []*TalentBatchInfo `json:"talent,omitempty"` // 人才信息列表
+	TalentList []*TalentBatchInfo `json:"talent_list,omitempty"` // 人才信息列表
 }
 
 type BatchGetIdTalentResp struct {
@@ -38040,9 +44706,9 @@ type ListTalentFolderReq struct {
 }
 
 type ListTalentFolderRespData struct {
-	HasMore   *bool           `json:"has_more,omitempty"`   // 是否有下一页
-	PageToken *string         `json:"page_token,omitempty"` // 下一页页码
-	Items     []*TalentFolder `json:"items,omitempty"`      // 文件夹列表
+	HasMore   *bool                  `json:"has_more,omitempty"`   // 是否有下一页
+	PageToken *string                `json:"page_token,omitempty"` // 下一页页码
+	Items     []*TalentFolderForList `json:"items,omitempty"`      // 文件夹列表
 }
 
 type ListTalentFolderResp struct {
@@ -38053,6 +44719,34 @@ type ListTalentFolderResp struct {
 
 func (resp *ListTalentFolderResp) Success() bool {
 	return resp.Code == 0
+}
+
+type QueryTalentObjectRespData struct {
+	Items []*CommonSchema `json:"items,omitempty"` // 数据列表
+}
+
+type QueryTalentObjectResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *QueryTalentObjectRespData `json:"data"` // 业务数据
+}
+
+func (resp *QueryTalentObjectResp) Success() bool {
+	return resp.Code == 0
+}
+
+type P2ApplicationDeletedV1Data struct {
+	ApplicationIds []string `json:"application_ids,omitempty"` // 投递 ID 列表
+}
+
+type P2ApplicationDeletedV1 struct {
+	*larkevent.EventV2Base                             // 事件基础数据
+	*larkevent.EventReq                                // 请求原生数据
+	Event                  *P2ApplicationDeletedV1Data `json:"event"` // 事件内容
+}
+
+func (m *P2ApplicationDeletedV1) RawReq(req *larkevent.EventReq) {
+	m.EventReq = req
 }
 
 type P2ApplicationStageChangedV1Data struct {
@@ -38072,13 +44766,85 @@ func (m *P2ApplicationStageChangedV1) RawReq(req *larkevent.EventReq) {
 	m.EventReq = req
 }
 
+type P2EcoAccountCreatedV1Data struct {
+	Scope           *int                              `json:"scope,omitempty"`             // 账号类型
+	AccountId       *string                           `json:"account_id,omitempty"`        // 账号 ID，招聘系统内唯一
+	AccountName     *string                           `json:"account_name,omitempty"`      // 账号名称
+	UsageList       []int                             `json:"usage_list,omitempty"`        // 账号适用范围，1-社招，2-校招
+	CustomFieldList []*EcoAccountCustomFieldEventData `json:"custom_field_list,omitempty"` // 自定义字段键值对
+}
+
+type P2EcoAccountCreatedV1 struct {
+	*larkevent.EventV2Base                            // 事件基础数据
+	*larkevent.EventReq                               // 请求原生数据
+	Event                  *P2EcoAccountCreatedV1Data `json:"event"` // 事件内容
+}
+
+func (m *P2EcoAccountCreatedV1) RawReq(req *larkevent.EventReq) {
+	m.EventReq = req
+}
+
+type P2EcoBackgroundCheckCanceledV1Data struct {
+	BackgroundCheckId *string `json:"background_check_id,omitempty"` // 背调 ID，招聘系统内唯一
+	TerminationReason *string `json:"termination_reason,omitempty"`  // 终止原因
+}
+
+type P2EcoBackgroundCheckCanceledV1 struct {
+	*larkevent.EventV2Base                                     // 事件基础数据
+	*larkevent.EventReq                                        // 请求原生数据
+	Event                  *P2EcoBackgroundCheckCanceledV1Data `json:"event"` // 事件内容
+}
+
+func (m *P2EcoBackgroundCheckCanceledV1) RawReq(req *larkevent.EventReq) {
+	m.EventReq = req
+}
+
+type P2EcoBackgroundCheckCreatedV1Data struct {
+	BackgroundCheckId    *string                                     `json:"background_check_id,omitempty"`     // 背调 ID，招聘系统内唯一
+	AccountId            *string                                     `json:"account_id,omitempty"`              // 账号 ID，招聘系统内唯一
+	PackageId            *string                                     `json:"package_id,omitempty"`              // 套餐 ID
+	AdditionalItemIdList []string                                    `json:"additional_item_id_list,omitempty"` // 附件调查项 ID 列表
+	Comment              *string                                     `json:"comment,omitempty"`                 // 备注
+	CandidateInfo        *EcoBackgroundCheckCreateEventCandidateInfo `json:"candidate_info,omitempty"`          // 候选人信息
+	ClientContactInfo    *EcoBackgroundCheckCreateEventContactInfo   `json:"client_contact_info,omitempty"`     // 联系人（委托人）信息
+	CustomFieldList      []*EcoBackgroundCheckCreateEventCustomKv    `json:"custom_field_list,omitempty"`       // 自定义字段键值对
+}
+
+type P2EcoBackgroundCheckCreatedV1 struct {
+	*larkevent.EventV2Base                                    // 事件基础数据
+	*larkevent.EventReq                                       // 请求原生数据
+	Event                  *P2EcoBackgroundCheckCreatedV1Data `json:"event"` // 事件内容
+}
+
+func (m *P2EcoBackgroundCheckCreatedV1) RawReq(req *larkevent.EventReq) {
+	m.EventReq = req
+}
+
+type P2EcoExamCreatedV1Data struct {
+	ExamId        *string                          `json:"exam_id,omitempty"`        // 笔试 ID，招聘系统内唯一
+	AccountId     *string                          `json:"account_id,omitempty"`     // 账号 ID，招聘系统内唯一
+	PaperId       *string                          `json:"paper_id,omitempty"`       // 试卷 ID
+	CandidateInfo *EcoExamCreateEventCandidateInfo `json:"candidate_info,omitempty"` // 候选人信息
+}
+
+type P2EcoExamCreatedV1 struct {
+	*larkevent.EventV2Base                         // 事件基础数据
+	*larkevent.EventReq                            // 请求原生数据
+	Event                  *P2EcoExamCreatedV1Data `json:"event"` // 事件内容
+}
+
+func (m *P2EcoExamCreatedV1) RawReq(req *larkevent.EventReq) {
+	m.EventReq = req
+}
+
 type P2EhrImportTaskImportedV1Data struct {
-	TaskId           *string `json:"task_id,omitempty"`            // 导入任务 ID
-	ApplicationId    *string `json:"application_id,omitempty"`     // 投递 ID
-	EhrDepartmentId  *string `json:"ehr_department_id,omitempty"`  // 导入部门 ID
-	EhrRequirementId *string `json:"ehr_requirement_id,omitempty"` // 招聘需求 ID
-	OperatorId       *string `json:"operator_id,omitempty"`        // 操作人的飞书招聘 user_id
-	OperatorUserId   *UserId `json:"operator_user_id,omitempty"`   // 操作人的飞书 user_id
+	TaskId           *string       `json:"task_id,omitempty"`            // 导入任务 ID
+	ApplicationId    *string       `json:"application_id,omitempty"`     // 投递 ID
+	EhrDepartmentId  *string       `json:"ehr_department_id,omitempty"`  // 导入部门 ID
+	EhrRequirementId *string       `json:"ehr_requirement_id,omitempty"` // 招聘需求 ID
+	OperatorId       *string       `json:"operator_id,omitempty"`        // 操作人的飞书招聘 user_id
+	OperatorUserId   *UserId       `json:"operator_user_id,omitempty"`   // 操作人的飞书 user_id
+	EhrDepartment    *DepartmentId `json:"ehr_department,omitempty"`     // 部门ID
 }
 
 type P2EhrImportTaskImportedV1 struct {
@@ -38092,13 +44858,14 @@ func (m *P2EhrImportTaskImportedV1) RawReq(req *larkevent.EventReq) {
 }
 
 type P2EhrImportTaskForInternshipOfferImportedV1Data struct {
-	TaskId          *string `json:"task_id,omitempty"`           // 导入任务 ID
-	ApplicationId   *string `json:"application_id,omitempty"`    // 投递 ID
-	OfferId         *string `json:"offer_id,omitempty"`          // Offer ID
-	PreOnboardId    *string `json:"pre_onboard_id,omitempty"`    // 实习 ID
-	EhrDepartmentId *string `json:"ehr_department_id,omitempty"` // 导入部门 ID
-	OperatorId      *string `json:"operator_id,omitempty"`       // 操作人的飞书招聘 user_id
-	OperatorUserId  *UserId `json:"operator_user_id,omitempty"`  // 操作人的飞书 user_id
+	TaskId          *string       `json:"task_id,omitempty"`           // 导入任务 ID
+	ApplicationId   *string       `json:"application_id,omitempty"`    // 投递 ID
+	OfferId         *string       `json:"offer_id,omitempty"`          // Offer ID
+	PreOnboardId    *string       `json:"pre_onboard_id,omitempty"`    // 实习 ID
+	EhrDepartmentId *string       `json:"ehr_department_id,omitempty"` // 导入部门 ID
+	OperatorId      *string       `json:"operator_id,omitempty"`       // 操作人的飞书招聘 user_id
+	OperatorUserId  *UserId       `json:"operator_user_id,omitempty"`  // 操作人的飞书 user_id
+	EhrDepartment   *DepartmentId `json:"ehr_department,omitempty"`    // 部门ID
 }
 
 type P2EhrImportTaskForInternshipOfferImportedV1 struct {
@@ -38112,7 +44879,8 @@ func (m *P2EhrImportTaskForInternshipOfferImportedV1) RawReq(req *larkevent.Even
 }
 
 type P2OfferStatusChangedV1Data struct {
-	OfferId *string `json:"offer_id,omitempty"` // 发生状态变更的 OfferID
+	OfferId     *string `json:"offer_id,omitempty"`     // 发生状态变更的 OfferID
+	OfferStatus *int    `json:"offer_status,omitempty"` // Offer 状态
 }
 
 type P2OfferStatusChangedV1 struct {
@@ -38122,6 +44890,22 @@ type P2OfferStatusChangedV1 struct {
 }
 
 func (m *P2OfferStatusChangedV1) RawReq(req *larkevent.EventReq) {
+	m.EventReq = req
+}
+
+type P2ReferralAccountAssetsUpdateV1Data struct {
+	AccountId  *string `json:"account_id,omitempty"`  // 账户ID， 同一用户在同一租户同一应用中账户唯一
+	Assets     *Assets `json:"assets,omitempty"`      // 账户余额信息
+	ModifyTime *string `json:"modify_time,omitempty"` // 变更时间
+}
+
+type P2ReferralAccountAssetsUpdateV1 struct {
+	*larkevent.EventV2Base                                      // 事件基础数据
+	*larkevent.EventReq                                         // 请求原生数据
+	Event                  *P2ReferralAccountAssetsUpdateV1Data `json:"event"` // 事件内容
+}
+
+func (m *P2ReferralAccountAssetsUpdateV1) RawReq(req *larkevent.EventReq) {
 	m.EventReq = req
 }
 
@@ -38176,6 +44960,168 @@ func (iterator *ListEvaluationIterator) Next() (bool, *Evaluation, error) {
 }
 
 func (iterator *ListEvaluationIterator) NextPageToken() *string {
+	return iterator.nextPageToken
+}
+
+type ListJobTypeIterator struct {
+	nextPageToken *string
+	items         []*JobTypeInfo
+	index         int
+	limit         int
+	ctx           context.Context
+	req           *ListJobTypeReq
+	listFunc      func(ctx context.Context, req *ListJobTypeReq, options ...larkcore.RequestOptionFunc) (*ListJobTypeResp, error)
+	options       []larkcore.RequestOptionFunc
+	curlNum       int
+}
+
+func (iterator *ListJobTypeIterator) Next() (bool, *JobTypeInfo, error) {
+	// 达到最大量，则返回
+	if iterator.limit > 0 && iterator.curlNum >= iterator.limit {
+		return false, nil, nil
+	}
+
+	// 为0则拉取数据
+	if iterator.index == 0 || iterator.index >= len(iterator.items) {
+		if iterator.index != 0 && iterator.nextPageToken == nil {
+			return false, nil, nil
+		}
+		if iterator.nextPageToken != nil {
+			iterator.req.apiReq.QueryParams.Set("page_token", *iterator.nextPageToken)
+		}
+		resp, err := iterator.listFunc(iterator.ctx, iterator.req, iterator.options...)
+		if err != nil {
+			return false, nil, err
+		}
+
+		if resp.Code != 0 {
+			return false, nil, errors.New(fmt.Sprintf("Code:%d,Msg:%s", resp.Code, resp.Msg))
+		}
+
+		if len(resp.Data.Items) == 0 {
+			return false, nil, nil
+		}
+
+		iterator.nextPageToken = resp.Data.PageToken
+		iterator.items = resp.Data.Items
+		iterator.index = 0
+	}
+
+	block := iterator.items[iterator.index]
+	iterator.index++
+	iterator.curlNum++
+	return true, block, nil
+}
+
+func (iterator *ListJobTypeIterator) NextPageToken() *string {
+	return iterator.nextPageToken
+}
+
+type ListReferralWebsiteJobPostIterator struct {
+	nextPageToken *string
+	items         []*PortalJobPost
+	index         int
+	limit         int
+	ctx           context.Context
+	req           *ListReferralWebsiteJobPostReq
+	listFunc      func(ctx context.Context, req *ListReferralWebsiteJobPostReq, options ...larkcore.RequestOptionFunc) (*ListReferralWebsiteJobPostResp, error)
+	options       []larkcore.RequestOptionFunc
+	curlNum       int
+}
+
+func (iterator *ListReferralWebsiteJobPostIterator) Next() (bool, *PortalJobPost, error) {
+	// 达到最大量，则返回
+	if iterator.limit > 0 && iterator.curlNum >= iterator.limit {
+		return false, nil, nil
+	}
+
+	// 为0则拉取数据
+	if iterator.index == 0 || iterator.index >= len(iterator.items) {
+		if iterator.index != 0 && iterator.nextPageToken == nil {
+			return false, nil, nil
+		}
+		if iterator.nextPageToken != nil {
+			iterator.req.apiReq.QueryParams.Set("page_token", *iterator.nextPageToken)
+		}
+		resp, err := iterator.listFunc(iterator.ctx, iterator.req, iterator.options...)
+		if err != nil {
+			return false, nil, err
+		}
+
+		if resp.Code != 0 {
+			return false, nil, errors.New(fmt.Sprintf("Code:%d,Msg:%s", resp.Code, resp.Msg))
+		}
+
+		if len(resp.Data.Items) == 0 {
+			return false, nil, nil
+		}
+
+		iterator.nextPageToken = resp.Data.PageToken
+		iterator.items = resp.Data.Items
+		iterator.index = 0
+	}
+
+	block := iterator.items[iterator.index]
+	iterator.index++
+	iterator.curlNum++
+	return true, block, nil
+}
+
+func (iterator *ListReferralWebsiteJobPostIterator) NextPageToken() *string {
+	return iterator.nextPageToken
+}
+
+type ListRegistrationSchemaIterator struct {
+	nextPageToken *string
+	items         []*RegistrationSchema
+	index         int
+	limit         int
+	ctx           context.Context
+	req           *ListRegistrationSchemaReq
+	listFunc      func(ctx context.Context, req *ListRegistrationSchemaReq, options ...larkcore.RequestOptionFunc) (*ListRegistrationSchemaResp, error)
+	options       []larkcore.RequestOptionFunc
+	curlNum       int
+}
+
+func (iterator *ListRegistrationSchemaIterator) Next() (bool, *RegistrationSchema, error) {
+	// 达到最大量，则返回
+	if iterator.limit > 0 && iterator.curlNum >= iterator.limit {
+		return false, nil, nil
+	}
+
+	// 为0则拉取数据
+	if iterator.index == 0 || iterator.index >= len(iterator.items) {
+		if iterator.index != 0 && iterator.nextPageToken == nil {
+			return false, nil, nil
+		}
+		if iterator.nextPageToken != nil {
+			iterator.req.apiReq.QueryParams.Set("page_token", *iterator.nextPageToken)
+		}
+		resp, err := iterator.listFunc(iterator.ctx, iterator.req, iterator.options...)
+		if err != nil {
+			return false, nil, err
+		}
+
+		if resp.Code != 0 {
+			return false, nil, errors.New(fmt.Sprintf("Code:%d,Msg:%s", resp.Code, resp.Msg))
+		}
+
+		if len(resp.Data.Items) == 0 {
+			return false, nil, nil
+		}
+
+		iterator.nextPageToken = resp.Data.PageToken
+		iterator.items = resp.Data.Items
+		iterator.index = 0
+	}
+
+	block := iterator.items[iterator.index]
+	iterator.index++
+	iterator.curlNum++
+	return true, block, nil
+}
+
+func (iterator *ListRegistrationSchemaIterator) NextPageToken() *string {
 	return iterator.nextPageToken
 }
 
@@ -38235,7 +45181,7 @@ func (iterator *ListResumeSourceIterator) NextPageToken() *string {
 
 type ListTalentFolderIterator struct {
 	nextPageToken *string
-	items         []*TalentFolder
+	items         []*TalentFolderForList
 	index         int
 	limit         int
 	ctx           context.Context
@@ -38245,7 +45191,7 @@ type ListTalentFolderIterator struct {
 	curlNum       int
 }
 
-func (iterator *ListTalentFolderIterator) Next() (bool, *TalentFolder, error) {
+func (iterator *ListTalentFolderIterator) Next() (bool, *TalentFolderForList, error) {
 	// 达到最大量，则返回
 	if iterator.limit > 0 && iterator.curlNum >= iterator.limit {
 		return false, nil, nil

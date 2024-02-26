@@ -27,11 +27,13 @@ func main() {
 	client := lark.NewClient("appID", "appSecret")
 	// 创建请求对象
 	req := larkmail.NewListPublicMailboxReqBuilder().
+		UserId("").
+		UserIdType("user_id").
 		PageToken("xxx").
 		PageSize(20).
 		Build()
 	// 发起请求
-	resp, err := client.Mail.PublicMailbox.List(context.Background(), req)
+	resp, err := client.Mail.V1.PublicMailbox.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

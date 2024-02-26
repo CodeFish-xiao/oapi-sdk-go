@@ -30,7 +30,7 @@ func main() {
 		PublicMailboxId("xxxxxx@abc.com").
 		Build()
 	// 发起请求
-	resp, err := client.Mail.PublicMailbox.Delete(context.Background(), req)
+	resp, err := client.Mail.V1.PublicMailbox.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -35,7 +35,7 @@ func main() {
 		Name("激励勋章的授予名单").
 		Build()
 	// 发起请求
-	resp, err := client.Admin.BadgeGrant.List(context.Background(), req)
+	resp, err := client.Admin.V1.BadgeGrant.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

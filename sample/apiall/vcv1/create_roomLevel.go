@@ -34,7 +34,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Vc.RoomLevel.Create(context.Background(), req)
+	resp, err := client.Vc.V1.RoomLevel.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

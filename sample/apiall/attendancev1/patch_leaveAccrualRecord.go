@@ -28,6 +28,7 @@ func main() {
 	// 创建请求对象
 	req := larkattendance.NewPatchLeaveAccrualRecordReqBuilder().
 		LeaveId("1").
+		UserIdType("open_id").
 		Body(larkattendance.NewPatchLeaveAccrualRecordReqBodyBuilder().
 			LeaveGrantingRecordId("1").
 			EmploymentId("1").
@@ -39,7 +40,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.LeaveAccrualRecord.Patch(context.Background(), req)
+	resp, err := client.Attendance.V1.LeaveAccrualRecord.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

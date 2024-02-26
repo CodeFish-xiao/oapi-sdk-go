@@ -17,6 +17,54 @@ import (
 	"github.com/larksuite/oapi-sdk-go/v3/core"
 )
 
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
+
+	}
+	return req
+}
+
 type Term struct {
 	From *string `json:"from,omitempty"` // 原文
 	To   *string `json:"to,omitempty"`   // 译文
@@ -96,7 +144,7 @@ func (builder *DetectTextReqBodyBuilder) Build() *DetectTextReqBody {
 }
 
 type DetectTextPathReqBodyBuilder struct {
-	text     string // 需要被识别语种的文本
+	text     string
 	textFlag bool
 }
 
@@ -242,13 +290,13 @@ func (builder *TranslateTextReqBodyBuilder) Build() *TranslateTextReqBody {
 }
 
 type TranslateTextPathReqBodyBuilder struct {
-	sourceLanguage     string // 源语言
+	sourceLanguage     string
 	sourceLanguageFlag bool
-	text               string // 源文本
+	text               string
 	textFlag           bool
-	targetLanguage     string // 目标语言
+	targetLanguage     string
 	targetLanguageFlag bool
-	glossary           []*Term // 请求级术语表，携带术语，仅在本次翻译中生效（最多能携带 128个术语词）
+	glossary           []*Term
 	glossaryFlag       bool
 }
 

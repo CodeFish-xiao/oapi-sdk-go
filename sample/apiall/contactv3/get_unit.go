@@ -30,7 +30,7 @@ func main() {
 		UnitId("BU121").
 		Build()
 	// 发起请求
-	resp, err := client.Contact.Unit.Get(context.Background(), req)
+	resp, err := client.Contact.V3.Unit.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

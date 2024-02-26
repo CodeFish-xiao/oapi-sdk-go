@@ -33,7 +33,7 @@ func main() {
 		PageSize(50).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.Scope.List(context.Background(), req)
+	resp, err := client.Contact.V3.Scope.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		FileType("doc").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.File.Subscribe(context.Background(), req)
+	resp, err := client.Drive.V1.File.Subscribe(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

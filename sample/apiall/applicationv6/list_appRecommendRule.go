@@ -32,7 +32,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Application.AppRecommendRule.List(context.Background(), req)
+	resp, err := client.Application.V6.AppRecommendRule.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

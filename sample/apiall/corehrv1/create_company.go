@@ -40,10 +40,13 @@ func main() {
 			BranchCompany(true).
 			PrimaryManager([]*larkcorehr.I18n{larkcorehr.NewI18nBuilder().Build()}).
 			CustomFields([]*larkcorehr.ObjectFieldData{larkcorehr.NewObjectFieldDataBuilder().Build()}).
+			Currency(larkcorehr.NewCurrencyBuilder().Build()).
+			Phone(larkcorehr.NewPhoneNumberAndAreaCodeBuilder().Build()).
+			Fax(larkcorehr.NewPhoneNumberAndAreaCodeBuilder().Build()).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Company.Create(context.Background(), req)
+	resp, err := client.Corehr.V1.Company.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

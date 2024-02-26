@@ -31,7 +31,7 @@ func main() {
 		MemberId("xxxxxxxxxxxxxxx").
 		Build()
 	// 发起请求
-	resp, err := client.Mail.MailgroupMember.Delete(context.Background(), req)
+	resp, err := client.Mail.V1.MailgroupMember.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

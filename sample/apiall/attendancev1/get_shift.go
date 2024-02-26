@@ -30,7 +30,7 @@ func main() {
 		ShiftId("6919358778597097404").
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.Shift.Get(context.Background(), req)
+	resp, err := client.Attendance.V1.Shift.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		PageToken("408ecac018b2e3518db37275e812aad7bb8ad3e755fc886f322ac6c430ba").
 		Build()
 	// 发起请求
-	resp, err := client.Baike.Classification.List(context.Background(), req)
+	resp, err := client.Baike.V1.Classification.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

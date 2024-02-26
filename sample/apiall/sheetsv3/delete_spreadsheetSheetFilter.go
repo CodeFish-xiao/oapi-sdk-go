@@ -31,7 +31,7 @@ func main() {
 		SheetId("0b**12").
 		Build()
 	// 发起请求
-	resp, err := client.Sheets.SpreadsheetSheetFilter.Delete(context.Background(), req)
+	resp, err := client.Sheets.V3.SpreadsheetSheetFilter.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

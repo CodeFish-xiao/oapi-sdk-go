@@ -37,7 +37,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.UserTaskRemedy.Query(context.Background(), req)
+	resp, err := client.Attendance.V1.UserTaskRemedy.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

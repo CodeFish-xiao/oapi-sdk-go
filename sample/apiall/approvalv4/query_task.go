@@ -34,7 +34,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Approval.Task.Query(context.Background(), req)
+	resp, err := client.Approval.V4.Task.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

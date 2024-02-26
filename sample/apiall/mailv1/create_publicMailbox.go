@@ -30,10 +30,11 @@ func main() {
 		PublicMailbox(larkmail.NewPublicMailboxBuilder().
 			Email("test_public_mailbox@xxx.xx").
 			Name("test public mailbox").
+			Geo("cn").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Mail.PublicMailbox.Create(context.Background(), req)
+	resp, err := client.Mail.V1.PublicMailbox.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

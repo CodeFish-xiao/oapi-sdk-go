@@ -36,7 +36,7 @@ func main() {
 		PageToken("2").
 		Build()
 	// 发起请求
-	resp, err := client.Admin.AdminDeptStat.List(context.Background(), req)
+	resp, err := client.Admin.V1.AdminDeptStat.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

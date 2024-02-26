@@ -46,7 +46,7 @@ func main() {
 		UpdateTimeEnd(1616920429000).
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.Ticket.List(context.Background(), req)
+	resp, err := client.Helpdesk.V1.Ticket.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		Type("file").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.File.Delete(context.Background(), req)
+	resp, err := client.Drive.V1.File.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

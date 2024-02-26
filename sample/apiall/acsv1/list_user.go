@@ -32,7 +32,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Acs.User.List(context.Background(), req)
+	resp, err := client.Acs.V1.User.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

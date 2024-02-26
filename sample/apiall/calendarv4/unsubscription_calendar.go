@@ -25,7 +25,7 @@ func main() {
 	// 创建 Client
 	client := lark.NewClient("appID", "appSecret")
 	// 发起请求
-	resp, err := client.Calendar.Calendar.Unsubscription(context.Background())
+	resp, err := client.Calendar.V4.Calendar.Unsubscription(context.Background())
 
 	// 处理错误
 	if err != nil {

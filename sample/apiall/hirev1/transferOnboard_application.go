@@ -30,6 +30,9 @@ func main() {
 		ApplicationId("7073372582620416300").
 		UserIdType("open_id").
 		DepartmentIdType("people_admin_department_id").
+		JobLevelIdType("people_admin_job_level_id").
+		JobFamilyIdType("people_admin_job_category_id").
+		EmployeeTypeIdType("people_admin_employee_type_id").
 		Body(larkhire.NewTransferOnboardApplicationReqBodyBuilder().
 			ActualOnboardTime(1616428800000).
 			ExpectedConversionTime(1616428800000).
@@ -44,7 +47,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.Application.TransferOnboard(context.Background(), req)
+	resp, err := client.Hire.V1.Application.TransferOnboard(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

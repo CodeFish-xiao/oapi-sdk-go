@@ -30,7 +30,7 @@ func main() {
 		BadgeId("m_DjMzaK").
 		Build()
 	// 发起请求
-	resp, err := client.Admin.Badge.Get(context.Background(), req)
+	resp, err := client.Admin.V1.Badge.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

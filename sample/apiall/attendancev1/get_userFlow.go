@@ -31,7 +31,7 @@ func main() {
 		EmployeeType("employee_id").
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.UserFlow.Get(context.Background(), req)
+	resp, err := client.Attendance.V1.UserFlow.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

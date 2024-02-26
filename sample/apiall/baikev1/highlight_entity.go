@@ -32,7 +32,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Baike.Entity.Highlight(context.Background(), req)
+	resp, err := client.Baike.V1.Entity.Highlight(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

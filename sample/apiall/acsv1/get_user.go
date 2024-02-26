@@ -31,7 +31,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Acs.User.Get(context.Background(), req)
+	resp, err := client.Acs.V1.User.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

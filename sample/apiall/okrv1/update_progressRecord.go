@@ -34,7 +34,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Okr.ProgressRecord.Update(context.Background(), req)
+	resp, err := client.Okr.V1.ProgressRecord.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

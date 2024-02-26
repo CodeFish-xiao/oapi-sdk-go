@@ -31,7 +31,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Im.Chat.Get(context.Background(), req)
+	resp, err := client.Im.V1.Chat.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

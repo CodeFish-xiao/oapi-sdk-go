@@ -35,10 +35,12 @@ func main() {
 			IconUrl("https://www.xxx.com/open.jpg").
 			I18nName(larksearch.NewI18nMetaBuilder().Build()).
 			I18nDescription(larksearch.NewI18nMetaBuilder().Build()).
+			ConnectorParam(larksearch.NewConnectorParamBuilder().Build()).
+			EnableAnswer(false).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Search.DataSource.Patch(context.Background(), req)
+	resp, err := client.Search.V2.DataSource.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

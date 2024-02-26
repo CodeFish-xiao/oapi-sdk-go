@@ -42,7 +42,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Acs.UserFace.Update(context.Background(), req)
+	resp, err := client.Acs.V1.UserFace.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

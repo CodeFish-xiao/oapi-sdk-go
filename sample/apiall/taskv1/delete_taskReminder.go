@@ -31,7 +31,7 @@ func main() {
 		ReminderId("1").
 		Build()
 	// 发起请求
-	resp, err := client.Task.TaskReminder.Delete(context.Background(), req)
+	resp, err := client.Task.V1.TaskReminder.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

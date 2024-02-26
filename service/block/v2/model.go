@@ -19,6 +19,54 @@ import (
 	"github.com/larksuite/oapi-sdk-go/v3/core"
 )
 
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
+
+	}
+	return req
+}
+
 type Entity struct {
 	BlockId     *string `json:"block_id,omitempty"`      // block 唯一标识
 	Title       *string `json:"title,omitempty"`         // 标题
@@ -520,29 +568,29 @@ func (builder *CreateEntityReqBodyBuilder) Build() *CreateEntityReqBody {
 }
 
 type CreateEntityPathReqBodyBuilder struct {
-	title           string // 标题
+	title           string
 	titleFlag       bool
-	blockTypeId     string // block 类型ID
+	blockTypeId     string
 	blockTypeIdFlag bool
-	sourceData      string // 内容
+	sourceData      string
 	sourceDataFlag  bool
-	sourceMeta      string // 元数据
+	sourceMeta      string
 	sourceMetaFlag  bool
-	version         string // 版本号(自增值)
+	version         string
 	versionFlag     bool
-	sourceLink      string // block原链接
+	sourceLink      string
 	sourceLinkFlag  bool
-	owner           string // 所有者
+	owner           string
 	ownerFlag       bool
-	extra           string // 扩展字段
+	extra           string
 	extraFlag       bool
-	i18nSummary     string // 国际化概括
+	i18nSummary     string
 	i18nSummaryFlag bool
-	i18nPreview     string // 国际化预览
+	i18nPreview     string
 	i18nPreviewFlag bool
-	summary         string // 概括
+	summary         string
 	summaryFlag     bool
-	preview         string // 预览
+	preview         string
 	previewFlag     bool
 }
 

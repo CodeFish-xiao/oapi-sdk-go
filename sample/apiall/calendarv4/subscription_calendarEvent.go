@@ -30,7 +30,7 @@ func main() {
 		CalendarId("feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn").
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.CalendarEvent.Subscription(context.Background(), req)
+	resp, err := client.Calendar.V4.CalendarEvent.Subscription(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -34,7 +34,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Docx.DocumentBlock.List(context.Background(), req)
+	resp, err := client.Docx.V1.DocumentBlock.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

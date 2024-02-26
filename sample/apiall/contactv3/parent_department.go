@@ -34,7 +34,7 @@ func main() {
 		PageSize(20).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.Department.Parent(context.Background(), req)
+	resp, err := client.Contact.V3.Department.Parent(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

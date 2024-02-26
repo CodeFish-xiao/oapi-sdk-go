@@ -29,15 +29,12 @@ func main() {
 	req := larkdrive.NewGetFileSubscriptionReqBuilder().
 		FileToken("doxcnxxxxxxxxxxxxxxxxxxxxxx").
 		SubscriptionId("1234567890987654321").
-		FileSubscription(larkdrive.NewFileSubscriptionBuilder().
-			SubscriptionId("1234567890987654321").
-			SubscriptionType("comment_update").
-			IsSubcribe(true).
+		Body(larkdrive.NewGetFileSubscriptionReqBodyBuilder().
 			FileType("doc").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Drive.FileSubscription.Get(context.Background(), req)
+	resp, err := client.Drive.V1.FileSubscription.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

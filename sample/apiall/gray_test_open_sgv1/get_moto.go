@@ -31,7 +31,7 @@ func main() {
 		BodyLevel("1234").
 		Build()
 	// 发起请求
-	resp, err := client.GrayTestOpenSg.Moto.Get(context.Background(), req)
+	resp, err := client.GrayTestOpenSg.V1.Moto.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

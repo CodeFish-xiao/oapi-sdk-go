@@ -31,7 +31,7 @@ func main() {
 		PageSize(100).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.JobRequirementSchema.List(context.Background(), req)
+	resp, err := client.Hire.V1.JobRequirementSchema.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

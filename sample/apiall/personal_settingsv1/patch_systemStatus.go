@@ -34,7 +34,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.PersonalSettings.SystemStatus.Patch(context.Background(), req)
+	resp, err := client.PersonalSettings.V1.SystemStatus.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

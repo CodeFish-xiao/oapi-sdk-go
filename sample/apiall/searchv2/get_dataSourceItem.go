@@ -31,7 +31,7 @@ func main() {
 		ItemId("01010111").
 		Build()
 	// 发起请求
-	resp, err := client.Search.DataSourceItem.Get(context.Background(), req)
+	resp, err := client.Search.V2.DataSourceItem.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

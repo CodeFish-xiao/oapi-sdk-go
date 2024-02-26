@@ -32,7 +32,7 @@ func main() {
 		FilterViewId("pH9hbVcCXA").
 		Build()
 	// 发起请求
-	resp, err := client.Sheets.SpreadsheetSheetFilterView.Delete(context.Background(), req)
+	resp, err := client.Sheets.V3.SpreadsheetSheetFilterView.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

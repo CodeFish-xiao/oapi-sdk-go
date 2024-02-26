@@ -34,7 +34,7 @@ func main() {
 		EndTime("1567690398020").
 		Build()
 	// 发起请求
-	resp, err := client.Approval.Instance.List(context.Background(), req)
+	resp, err := client.Approval.V4.Instance.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

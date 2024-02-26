@@ -14,16 +14,12 @@
 package larkattendance
 
 import (
-	"io"
-
 	"bytes"
-
-	"io/ioutil"
-
-	"fmt"
-
 	"context"
 	"errors"
+	"fmt"
+	"io"
+	"io/ioutil"
 
 	"github.com/larksuite/oapi-sdk-go/v3/core"
 )
@@ -44,6 +40,20 @@ const (
 
 const (
 	DeptTypeGetGroupOpenId = "open_id" // 开放openID
+)
+
+const (
+	UserIdTypeLeaveBalancesLeaveUserIDTypeOpenID         = "open_id"          // 标识一个用户在某个应用中的身份。同一个用户在不同应用中的 Open ID 不同。
+	UserIdTypeLeaveBalancesLeaveUserIDTypePeopleCorehrID = "people_corehr_id" // 以飞书人事的 ID 来识别用户
+	UserIdTypeLeaveBalancesLeaveUserIDTypeUnionID        = "union_id"         // 标识一个用户在某个应用开发商下的身份。同一用户在同一开发商下的应用中的 Union ID 是相同的，在不同开发商下的应用中的 Union ID 是不同的。通过 Union ID，应用开发商可以把同个用户在多个应用中的身份关联起来。
+	UserIdTypeLeaveBalancesLeaveUserIDTypeUserID         = "user_id"          // 标识一个用户在某个租户内的身份。同一个用户在租户 A 和租户 B 内的 User ID 是不同的。在同一个租户内，一个用户的 User ID 在所有应用（包括商店应用）中都保持一致。User ID 主要用于在不同的应用间打通用户数据。
+)
+
+const (
+	UserIdTypeGetLeaveEmployExpireRecordLeaveBalancesLeaveUserIDTypeOpenID         = "open_id"          // 标识一个用户在某个应用中的身份。同一个用户在不同应用中的 Open ID 不同。
+	UserIdTypeGetLeaveEmployExpireRecordLeaveBalancesLeaveUserIDTypePeopleCorehrID = "people_corehr_id" // 以飞书人事的ID来识别用户
+	UserIdTypeGetLeaveEmployExpireRecordLeaveBalancesLeaveUserIDTypeUnionID        = "union_id"         // 标识一个用户在某个应用开发商下的身份。同一用户在同一开发商下的应用中的 Union ID 是相同的，在不同开发商下的应用中的 Union ID 是不同的。通过 Union ID，应用开发商可以把同个用户在多个应用中的身份关联起来。
+	UserIdTypeGetLeaveEmployExpireRecordLeaveBalancesLeaveUserIDTypeUserID         = "user_id"          // 标识一个用户在某个租户内的身份。同一个用户在租户 A 和租户 B 内的 User ID 是不同的。在同一个租户内，一个用户的 User ID 在所有应用（包括商店应用）中都保持一致。User ID 主要用于在不同的应用间打通用户数据。
 )
 
 const (
@@ -337,6 +347,70 @@ func (builder *AreaBuilder) Build() *Area {
 	return req
 }
 
+type ArrangeShiftGroup struct {
+	ShiftGroupId   *string `json:"shift_group_id,omitempty"`   // 班组id
+	GroupId        *string `json:"group_id,omitempty"`         // 考勤组id
+	ShiftGroupName *string `json:"shift_group_name,omitempty"` // 班组名称
+}
+
+type ArrangeShiftGroupBuilder struct {
+	shiftGroupId       string // 班组id
+	shiftGroupIdFlag   bool
+	groupId            string // 考勤组id
+	groupIdFlag        bool
+	shiftGroupName     string // 班组名称
+	shiftGroupNameFlag bool
+}
+
+func NewArrangeShiftGroupBuilder() *ArrangeShiftGroupBuilder {
+	builder := &ArrangeShiftGroupBuilder{}
+	return builder
+}
+
+// 班组id
+//
+// 示例值：7071200888781537300
+func (builder *ArrangeShiftGroupBuilder) ShiftGroupId(shiftGroupId string) *ArrangeShiftGroupBuilder {
+	builder.shiftGroupId = shiftGroupId
+	builder.shiftGroupIdFlag = true
+	return builder
+}
+
+// 考勤组id
+//
+// 示例值：7171200888781537301
+func (builder *ArrangeShiftGroupBuilder) GroupId(groupId string) *ArrangeShiftGroupBuilder {
+	builder.groupId = groupId
+	builder.groupIdFlag = true
+	return builder
+}
+
+// 班组名称
+//
+// 示例值：班组-测试班组
+func (builder *ArrangeShiftGroupBuilder) ShiftGroupName(shiftGroupName string) *ArrangeShiftGroupBuilder {
+	builder.shiftGroupName = shiftGroupName
+	builder.shiftGroupNameFlag = true
+	return builder
+}
+
+func (builder *ArrangeShiftGroupBuilder) Build() *ArrangeShiftGroup {
+	req := &ArrangeShiftGroup{}
+	if builder.shiftGroupIdFlag {
+		req.ShiftGroupId = &builder.shiftGroupId
+
+	}
+	if builder.groupIdFlag {
+		req.GroupId = &builder.groupId
+
+	}
+	if builder.shiftGroupNameFlag {
+		req.ShiftGroupName = &builder.shiftGroupName
+
+	}
+	return req
+}
+
 type ChildField struct {
 	Code     *string `json:"code,omitempty"`      // 子字段编号
 	Title    *string `json:"title,omitempty"`     // 子字段名称
@@ -588,6 +662,134 @@ func (builder *CoordinateBuilder) Build() *Coordinate {
 	}
 	if builder.accuracyFlag {
 		req.Accuracy = &builder.accuracy
+
+	}
+	return req
+}
+
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
+
+	}
+	return req
+}
+
+type DurationItem struct {
+	Date           *string  `json:"date,omitempty"`            // 日期
+	Duration       *float64 `json:"duration,omitempty"`        // 加班时长
+	Unit           *int     `json:"unit,omitempty"`            // 加班单位
+	SettlementType *int     `json:"settlement_type,omitempty"` // 加班类型
+}
+
+type DurationItemBuilder struct {
+	date               string // 日期
+	dateFlag           bool
+	duration           float64 // 加班时长
+	durationFlag       bool
+	unit               int // 加班单位
+	unitFlag           bool
+	settlementType     int // 加班类型
+	settlementTypeFlag bool
+}
+
+func NewDurationItemBuilder() *DurationItemBuilder {
+	builder := &DurationItemBuilder{}
+	return builder
+}
+
+// 日期
+//
+// 示例值：20231010
+func (builder *DurationItemBuilder) Date(date string) *DurationItemBuilder {
+	builder.date = date
+	builder.dateFlag = true
+	return builder
+}
+
+// 加班时长
+//
+// 示例值：20.0
+func (builder *DurationItemBuilder) Duration(duration float64) *DurationItemBuilder {
+	builder.duration = duration
+	builder.durationFlag = true
+	return builder
+}
+
+// 加班单位
+//
+// 示例值：1
+func (builder *DurationItemBuilder) Unit(unit int) *DurationItemBuilder {
+	builder.unit = unit
+	builder.unitFlag = true
+	return builder
+}
+
+// 加班类型
+//
+// 示例值：1
+func (builder *DurationItemBuilder) SettlementType(settlementType int) *DurationItemBuilder {
+	builder.settlementType = settlementType
+	builder.settlementTypeFlag = true
+	return builder
+}
+
+func (builder *DurationItemBuilder) Build() *DurationItem {
+	req := &DurationItem{}
+	if builder.dateFlag {
+		req.Date = &builder.date
+
+	}
+	if builder.durationFlag {
+		req.Duration = &builder.duration
+
+	}
+	if builder.unitFlag {
+		req.Unit = &builder.unit
+
+	}
+	if builder.settlementTypeFlag {
+		req.SettlementType = &builder.settlementType
 
 	}
 	return req
@@ -849,189 +1051,219 @@ func (builder *FreePunchCfgBuilder) Build() *FreePunchCfg {
 }
 
 type Group struct {
-	GroupId                 *string                  `json:"group_id,omitempty"`                    // 考勤组 ID（仅修改时提供）， 需要从“获取打卡结果”的接口中获取 groupId
-	GroupName               *string                  `json:"group_name,omitempty"`                  // 考勤组名称
-	TimeZone                *string                  `json:"time_zone,omitempty"`                   // 时区
-	BindDeptIds             []string                 `json:"bind_dept_ids,omitempty"`               // 绑定的部门 ID
-	ExceptDeptIds           []string                 `json:"except_dept_ids,omitempty"`             // 排除的部门 ID
-	BindUserIds             []string                 `json:"bind_user_ids,omitempty"`               // 绑定的用户 ID
-	ExceptUserIds           []string                 `json:"except_user_ids,omitempty"`             // 排除的用户 ID
-	GroupLeaderIds          []string                 `json:"group_leader_ids,omitempty"`            // 考勤主负责人 ID 列表，必选字段（需至少拥有考勤组管理员权限）
-	SubGroupLeaderIds       []string                 `json:"sub_group_leader_ids,omitempty"`        // 考勤子负责人 ID 列表
-	AllowOutPunch           *bool                    `json:"allow_out_punch,omitempty"`             // 是否允许外勤打卡
-	OutPunchNeedApproval    *bool                    `json:"out_punch_need_approval,omitempty"`     // 外勤打卡需审批（需要允许外勤打卡才能设置生效）
-	OutPunchNeedRemark      *bool                    `json:"out_punch_need_remark,omitempty"`       // 外勤打卡需填写备注（需要允许外勤打卡才能设置生效）
-	OutPunchNeedPhoto       *bool                    `json:"out_punch_need_photo,omitempty"`        // 外勤打卡需拍照（需要允许外勤打卡才能设置生效）
-	OutPunchAllowedHideAddr *bool                    `json:"out_punch_allowed_hide_addr,omitempty"` // 外勤打卡允许员工隐藏详细地址（需要允许外勤打卡才能设置生效）
-	AllowPcPunch            *bool                    `json:"allow_pc_punch,omitempty"`              // 是否允许 PC 端打卡
-	AllowRemedy             *bool                    `json:"allow_remedy,omitempty"`                // 是否限制补卡
-	RemedyLimit             *bool                    `json:"remedy_limit,omitempty"`                // 是否限制补卡次数
-	RemedyLimitCount        *int                     `json:"remedy_limit_count,omitempty"`          // 补卡次数
-	RemedyDateLimit         *bool                    `json:"remedy_date_limit,omitempty"`           // 是否限制补卡时间
-	RemedyDateNum           *int                     `json:"remedy_date_num,omitempty"`             // 补卡时间，几天内补卡
-	AllowRemedyTypeLack     *bool                    `json:"allow_remedy_type_lack,omitempty"`      // 允许缺卡补卡（需要允许补卡才能设置生效）
-	AllowRemedyTypeLate     *bool                    `json:"allow_remedy_type_late,omitempty"`      // 允许迟到补卡（需要允许补卡才能设置生效）
-	AllowRemedyTypeEarly    *bool                    `json:"allow_remedy_type_early,omitempty"`     // 允许早退补卡（需要允许补卡才能设置生效）
-	AllowRemedyTypeNormal   *bool                    `json:"allow_remedy_type_normal,omitempty"`    // 允许正常补卡（需要允许补卡才能设置生效）
-	ShowCumulativeTime      *bool                    `json:"show_cumulative_time,omitempty"`        // 是否展示累计时长
-	ShowOverTime            *bool                    `json:"show_over_time,omitempty"`              // 是否展示加班时长
-	HideStaffPunchTime      *bool                    `json:"hide_staff_punch_time,omitempty"`       // 是否隐藏员工打卡详情
-	FacePunch               *bool                    `json:"face_punch,omitempty"`                  // 是否开启人脸识别打卡
-	FacePunchCfg            *int                     `json:"face_punch_cfg,omitempty"`              // 人脸识别打卡规则，1：每次打卡均需人脸识别，2：疑似作弊打卡时需要人脸识别
-	FaceLiveNeedAction      *bool                    `json:"face_live_need_action,omitempty"`       // 人脸打卡规则， false：开启活体验证 true：0动作验证，仅在 face_punch_cfg = 1 时有效
-	FaceDowngrade           *bool                    `json:"face_downgrade,omitempty"`              // 人脸识别失败时是否允许普通拍照打卡
-	ReplaceBasicPic         *bool                    `json:"replace_basic_pic,omitempty"`           // 人脸识别失败时是否允许替换基准图片
-	Machines                []*Machine               `json:"machines,omitempty"`                    // 考勤机列表
-	GpsRange                *int                     `json:"gps_range,omitempty"`                   // GPS 打卡的有效范围（不建议使用）
-	Locations               []*Location              `json:"locations,omitempty"`                   // 地址列表
-	GroupType               *int                     `json:"group_type,omitempty"`                  // 考勤类型，0：固定班制，2：排班制， 3：自由班制
-	PunchDayShiftIds        []string                 `json:"punch_day_shift_ids,omitempty"`         // 固定班制必须填
-	FreePunchCfg            *FreePunchCfg            `json:"free_punch_cfg,omitempty"`              // 配置自由班制
-	CalendarId              *int                     `json:"calendar_id,omitempty"`                 // 国家日历  ID，0：不根据国家日历排休，1：中国大陆，2：美国，3：日本，4：印度，5：新加坡，默认 1
-	NeedPunchSpecialDays    []*PunchSpecialDateShift `json:"need_punch_special_days,omitempty"`     // 必须打卡的特殊日期
-	NoNeedPunchSpecialDays  []*PunchSpecialDateShift `json:"no_need_punch_special_days,omitempty"`  // 无需打卡的特殊日期
-	WorkDayNoPunchAsLack    *bool                    `json:"work_day_no_punch_as_lack,omitempty"`   // 自由班制下工作日不打卡是否记为缺卡
-	EffectNow               *bool                    `json:"effect_now,omitempty"`                  // 是否立即生效，默认 false
-	RemedyPeriodType        *int                     `json:"remedy_period_type,omitempty"`          // 补卡周期类型
-	RemedyPeriodCustomDate  *int                     `json:"remedy_period_custom_date,omitempty"`   // 补卡自定义周期起始日期
-	PunchType               *int                     `json:"punch_type,omitempty"`                  // 打卡类型，位运算。1：GPS 打卡，2：Wi-Fi 打卡，4：考勤机打卡，8：IP 打卡
-	EffectTime              *string                  `json:"effect_time,omitempty"`                 // 生效时间，精确到秒的时间戳
-	FixshiftEffectTime      *string                  `json:"fixshift_effect_time,omitempty"`        // 固定班次生效时间，精确到秒的时间戳
-	MemberEffectTime        *string                  `json:"member_effect_time,omitempty"`          // 参加考勤的人员、部门变动生效时间，精确到秒的时间戳
-	RestClockInNeedApproval *bool                    `json:"rest_clockIn_need_approval,omitempty"`  // 休息日打卡需审批
-	ClockInNeedPhoto        *bool                    `json:"clockIn_need_photo,omitempty"`          // 每次打卡均需拍照
-	MemberStatusChange      *MemberStatusChange      `json:"member_status_change,omitempty"`        // 人员异动打卡设置
-	LeaveNeedPunch          *bool                    `json:"leave_need_punch,omitempty"`            // 请假离岗或返岗是否需打卡
-	LeaveNeedPunchCfg       *LeaveNeedPunchCfg       `json:"leave_need_punch_cfg,omitempty"`        // 请假离岗或返岗打卡规则
-	GoOutNeedPunch          *int                     `json:"go_out_need_punch,omitempty"`           // 外出期间是否需打卡
-	GoOutNeedPunchCfg       *LeaveNeedPunchCfg       `json:"go_out_need_punch_cfg,omitempty"`       // 外出期间打卡规则
-	TravelNeedPunch         *int                     `json:"travel_need_punch,omitempty"`           // 出差期间是否需打卡
-	TravelNeedPunchCfg      *LeaveNeedPunchCfg       `json:"travel_need_punch_cfg,omitempty"`       // 出差期间打卡规则
-	NeedPunchMembers        []*PunchMember           `json:"need_punch_members,omitempty"`          // 需要打卡的人员配置（新）
-	NoNeedPunchMembers      []*PunchMember           `json:"no_need_punch_members,omitempty"`       // 无需打卡的人员配置（新）
+	GroupId                   *string                  `json:"group_id,omitempty"`                      // 考勤组 ID（仅修改时提供）， 需要从“获取打卡结果”的接口中获取 groupId
+	GroupName                 *string                  `json:"group_name,omitempty"`                    // 考勤组名称
+	TimeZone                  *string                  `json:"time_zone,omitempty"`                     // 时区
+	BindDeptIds               []string                 `json:"bind_dept_ids,omitempty"`                 // 绑定的部门 ID
+	ExceptDeptIds             []string                 `json:"except_dept_ids,omitempty"`               // 排除的部门 ID
+	BindUserIds               []string                 `json:"bind_user_ids,omitempty"`                 // 绑定的用户 ID
+	ExceptUserIds             []string                 `json:"except_user_ids,omitempty"`               // 排除的用户 ID
+	GroupLeaderIds            []string                 `json:"group_leader_ids,omitempty"`              // 考勤主负责人 ID 列表，必选字段（需至少拥有考勤组管理员权限）
+	SubGroupLeaderIds         []string                 `json:"sub_group_leader_ids,omitempty"`          // 考勤子负责人 ID 列表
+	AllowOutPunch             *bool                    `json:"allow_out_punch,omitempty"`               // 是否允许外勤打卡
+	OutPunchNeedApproval      *bool                    `json:"out_punch_need_approval,omitempty"`       // 外勤打卡需审批（需要允许外勤打卡才能设置生效）
+	OutPunchNeedPostApproval  *bool                    `json:"out_punch_need_post_approval,omitempty"`  // 外勤打卡需审批，先打卡后审批（需要允许外勤打卡才能设置生效）
+	OutPunchNeedRemark        *bool                    `json:"out_punch_need_remark,omitempty"`         // 外勤打卡需填写备注（需要允许外勤打卡才能设置生效）
+	OutPunchNeedPhoto         *bool                    `json:"out_punch_need_photo,omitempty"`          // 外勤打卡需拍照（需要允许外勤打卡才能设置生效）
+	OutPunchAllowedHideAddr   *bool                    `json:"out_punch_allowed_hide_addr,omitempty"`   // 外勤打卡允许员工隐藏详细地址（需要允许外勤打卡才能设置生效）
+	OutPunchAllowedAdjustAddr *bool                    `json:"out_punch_allowed_adjust_addr,omitempty"` // 外勤打卡允许微调地址（需要允许外勤打卡才能设置生效）
+	AdjustRange               *int                     `json:"adjust_range,omitempty"`                  // 微调范围，默认为 50 米
+	AllowPcPunch              *bool                    `json:"allow_pc_punch,omitempty"`                // 是否允许 PC 端打卡
+	AllowRemedy               *bool                    `json:"allow_remedy,omitempty"`                  // 是否限制补卡
+	RemedyLimit               *bool                    `json:"remedy_limit,omitempty"`                  // 是否限制补卡次数
+	RemedyLimitCount          *int                     `json:"remedy_limit_count,omitempty"`            // 补卡次数
+	RemedyDateLimit           *bool                    `json:"remedy_date_limit,omitempty"`             // 是否限制补卡时间
+	RemedyDateNum             *int                     `json:"remedy_date_num,omitempty"`               // 补卡时间，几天内补卡
+	AllowRemedyTypeLack       *bool                    `json:"allow_remedy_type_lack,omitempty"`        // 允许缺卡补卡（需要允许补卡才能设置生效）
+	AllowRemedyTypeLate       *bool                    `json:"allow_remedy_type_late,omitempty"`        // 允许迟到补卡（需要允许补卡才能设置生效）
+	AllowRemedyTypeEarly      *bool                    `json:"allow_remedy_type_early,omitempty"`       // 允许早退补卡（需要允许补卡才能设置生效）
+	AllowRemedyTypeNormal     *bool                    `json:"allow_remedy_type_normal,omitempty"`      // 允许正常补卡（需要允许补卡才能设置生效）
+	ShowCumulativeTime        *bool                    `json:"show_cumulative_time,omitempty"`          // 是否展示累计时长
+	ShowOverTime              *bool                    `json:"show_over_time,omitempty"`                // 是否展示加班时长
+	HideStaffPunchTime        *bool                    `json:"hide_staff_punch_time,omitempty"`         // 是否隐藏员工打卡详情
+	FacePunch                 *bool                    `json:"face_punch,omitempty"`                    // 是否开启人脸识别打卡
+	FacePunchCfg              *int                     `json:"face_punch_cfg,omitempty"`                // 人脸识别打卡规则，1：每次打卡均需人脸识别，2：疑似作弊打卡时需要人脸识别
+	FaceLiveNeedAction        *bool                    `json:"face_live_need_action,omitempty"`         // 人脸打卡规则， false：开启活体验证 true：0动作验证，仅在 face_punch_cfg = 1 时有效
+	FaceDowngrade             *bool                    `json:"face_downgrade,omitempty"`                // 人脸识别失败时是否允许普通拍照打卡
+	ReplaceBasicPic           *bool                    `json:"replace_basic_pic,omitempty"`             // 人脸识别失败时是否允许替换基准图片
+	Machines                  []*Machine               `json:"machines,omitempty"`                      // 考勤机列表
+	GpsRange                  *int                     `json:"gps_range,omitempty"`                     // GPS 打卡的有效范围（不建议使用）
+	Locations                 []*Location              `json:"locations,omitempty"`                     // 地址列表
+	GroupType                 *int                     `json:"group_type,omitempty"`                    // 考勤类型，0：固定班制，2：排班制， 3：自由班制
+	PunchDayShiftIds          []string                 `json:"punch_day_shift_ids,omitempty"`           // 固定班制必须填
+	FreePunchCfg              *FreePunchCfg            `json:"free_punch_cfg,omitempty"`                // 配置自由班制
+	CalendarId                *int                     `json:"calendar_id,omitempty"`                   // 国家日历  ID，0：不根据国家日历排休，1：中国大陆，2：美国，3：日本，4：印度，5：新加坡，默认 1
+	NeedPunchSpecialDays      []*PunchSpecialDateShift `json:"need_punch_special_days,omitempty"`       // 必须打卡的特殊日期
+	NoNeedPunchSpecialDays    []*PunchSpecialDateShift `json:"no_need_punch_special_days,omitempty"`    // 无需打卡的特殊日期
+	WorkDayNoPunchAsLack      *bool                    `json:"work_day_no_punch_as_lack,omitempty"`     // 自由班制下工作日不打卡是否记为缺卡
+	EffectNow                 *bool                    `json:"effect_now,omitempty"`                    // 是否立即生效，默认 false
+	RemedyPeriodType          *int                     `json:"remedy_period_type,omitempty"`            // 补卡周期类型
+	RemedyPeriodCustomDate    *int                     `json:"remedy_period_custom_date,omitempty"`     // 补卡自定义周期起始日期
+	PunchType                 *int                     `json:"punch_type,omitempty"`                    // 打卡类型，位运算。1：GPS 打卡，2：Wi-Fi 打卡，4：考勤机打卡，8：IP 打卡
+	EffectTime                *string                  `json:"effect_time,omitempty"`                   // 生效时间，精确到秒的时间戳
+	FixshiftEffectTime        *string                  `json:"fixshift_effect_time,omitempty"`          // 固定班次生效时间，精确到秒的时间戳
+	MemberEffectTime          *string                  `json:"member_effect_time,omitempty"`            // 参加考勤的人员、部门变动生效时间，精确到秒的时间戳
+	RestClockInNeedApproval   *bool                    `json:"rest_clockIn_need_approval,omitempty"`    // 休息日打卡需审批
+	ClockInNeedPhoto          *bool                    `json:"clockIn_need_photo,omitempty"`            // 每次打卡均需拍照
+	MemberStatusChange        *MemberStatusChange      `json:"member_status_change,omitempty"`          // 人员异动打卡设置
+	LeaveNeedPunch            *bool                    `json:"leave_need_punch,omitempty"`              // 请假离岗或返岗是否需打卡
+	LeaveNeedPunchCfg         *LeaveNeedPunchCfg       `json:"leave_need_punch_cfg,omitempty"`          // 请假离岗或返岗打卡规则
+	GoOutNeedPunch            *int                     `json:"go_out_need_punch,omitempty"`             // 外出期间是否需打卡
+	GoOutNeedPunchCfg         *LeaveNeedPunchCfg       `json:"go_out_need_punch_cfg,omitempty"`         // 外出期间打卡规则
+	TravelNeedPunch           *int                     `json:"travel_need_punch,omitempty"`             // 出差期间是否需打卡
+	TravelNeedPunchCfg        *LeaveNeedPunchCfg       `json:"travel_need_punch_cfg,omitempty"`         // 出差期间打卡规则
+	NeedPunchMembers          []*PunchMember           `json:"need_punch_members,omitempty"`            // 需要打卡的人员配置（新）
+	NoNeedPunchMembers        []*PunchMember           `json:"no_need_punch_members,omitempty"`         // 无需打卡的人员配置（新）
+	SaveAutoChanges           *bool                    `json:"save_auto_changes,omitempty"`             // 是否直接保存可以自动变更的冲突规则
+	OrgChangeAutoAdjust       *bool                    `json:"org_change_auto_adjust,omitempty"`        // 人员异动开关（人员组织架构变更后是否允许自动调整到该考勤组）
+	BindDefaultDeptIds        []string                 `json:"bind_default_dept_ids,omitempty"`         // 默认出勤的部门id列表
+	BindDefaultUserIds        []string                 `json:"bind_default_user_ids,omitempty"`         // 默认出勤的用户ID列表
+	OvertimeClockCfg          *OvertimeClockCfg        `json:"overtime_clock_cfg,omitempty"`            // 加班打卡规则
+	NewCalendarId             *string                  `json:"new_calendar_id,omitempty"`               // 节假日id，（如果考勤组使用了自定义节假日，请用此参数传入节假日id）
+	AllowApplyPunch           *bool                    `json:"allow_apply_punch,omitempty"`             // 定位不准时是否允许申请打卡
 }
 
 type GroupBuilder struct {
-	groupId                     string // 考勤组 ID（仅修改时提供）， 需要从“获取打卡结果”的接口中获取 groupId
-	groupIdFlag                 bool
-	groupName                   string // 考勤组名称
-	groupNameFlag               bool
-	timeZone                    string // 时区
-	timeZoneFlag                bool
-	bindDeptIds                 []string // 绑定的部门 ID
-	bindDeptIdsFlag             bool
-	exceptDeptIds               []string // 排除的部门 ID
-	exceptDeptIdsFlag           bool
-	bindUserIds                 []string // 绑定的用户 ID
-	bindUserIdsFlag             bool
-	exceptUserIds               []string // 排除的用户 ID
-	exceptUserIdsFlag           bool
-	groupLeaderIds              []string // 考勤主负责人 ID 列表，必选字段（需至少拥有考勤组管理员权限）
-	groupLeaderIdsFlag          bool
-	subGroupLeaderIds           []string // 考勤子负责人 ID 列表
-	subGroupLeaderIdsFlag       bool
-	allowOutPunch               bool // 是否允许外勤打卡
-	allowOutPunchFlag           bool
-	outPunchNeedApproval        bool // 外勤打卡需审批（需要允许外勤打卡才能设置生效）
-	outPunchNeedApprovalFlag    bool
-	outPunchNeedRemark          bool // 外勤打卡需填写备注（需要允许外勤打卡才能设置生效）
-	outPunchNeedRemarkFlag      bool
-	outPunchNeedPhoto           bool // 外勤打卡需拍照（需要允许外勤打卡才能设置生效）
-	outPunchNeedPhotoFlag       bool
-	outPunchAllowedHideAddr     bool // 外勤打卡允许员工隐藏详细地址（需要允许外勤打卡才能设置生效）
-	outPunchAllowedHideAddrFlag bool
-	allowPcPunch                bool // 是否允许 PC 端打卡
-	allowPcPunchFlag            bool
-	allowRemedy                 bool // 是否限制补卡
-	allowRemedyFlag             bool
-	remedyLimit                 bool // 是否限制补卡次数
-	remedyLimitFlag             bool
-	remedyLimitCount            int // 补卡次数
-	remedyLimitCountFlag        bool
-	remedyDateLimit             bool // 是否限制补卡时间
-	remedyDateLimitFlag         bool
-	remedyDateNum               int // 补卡时间，几天内补卡
-	remedyDateNumFlag           bool
-	allowRemedyTypeLack         bool // 允许缺卡补卡（需要允许补卡才能设置生效）
-	allowRemedyTypeLackFlag     bool
-	allowRemedyTypeLate         bool // 允许迟到补卡（需要允许补卡才能设置生效）
-	allowRemedyTypeLateFlag     bool
-	allowRemedyTypeEarly        bool // 允许早退补卡（需要允许补卡才能设置生效）
-	allowRemedyTypeEarlyFlag    bool
-	allowRemedyTypeNormal       bool // 允许正常补卡（需要允许补卡才能设置生效）
-	allowRemedyTypeNormalFlag   bool
-	showCumulativeTime          bool // 是否展示累计时长
-	showCumulativeTimeFlag      bool
-	showOverTime                bool // 是否展示加班时长
-	showOverTimeFlag            bool
-	hideStaffPunchTime          bool // 是否隐藏员工打卡详情
-	hideStaffPunchTimeFlag      bool
-	facePunch                   bool // 是否开启人脸识别打卡
-	facePunchFlag               bool
-	facePunchCfg                int // 人脸识别打卡规则，1：每次打卡均需人脸识别，2：疑似作弊打卡时需要人脸识别
-	facePunchCfgFlag            bool
-	faceLiveNeedAction          bool // 人脸打卡规则， false：开启活体验证 true：0动作验证，仅在 face_punch_cfg = 1 时有效
-	faceLiveNeedActionFlag      bool
-	faceDowngrade               bool // 人脸识别失败时是否允许普通拍照打卡
-	faceDowngradeFlag           bool
-	replaceBasicPic             bool // 人脸识别失败时是否允许替换基准图片
-	replaceBasicPicFlag         bool
-	machines                    []*Machine // 考勤机列表
-	machinesFlag                bool
-	gpsRange                    int // GPS 打卡的有效范围（不建议使用）
-	gpsRangeFlag                bool
-	locations                   []*Location // 地址列表
-	locationsFlag               bool
-	groupType                   int // 考勤类型，0：固定班制，2：排班制， 3：自由班制
-	groupTypeFlag               bool
-	punchDayShiftIds            []string // 固定班制必须填
-	punchDayShiftIdsFlag        bool
-	freePunchCfg                *FreePunchCfg // 配置自由班制
-	freePunchCfgFlag            bool
-	calendarId                  int // 国家日历  ID，0：不根据国家日历排休，1：中国大陆，2：美国，3：日本，4：印度，5：新加坡，默认 1
-	calendarIdFlag              bool
-	needPunchSpecialDays        []*PunchSpecialDateShift // 必须打卡的特殊日期
-	needPunchSpecialDaysFlag    bool
-	noNeedPunchSpecialDays      []*PunchSpecialDateShift // 无需打卡的特殊日期
-	noNeedPunchSpecialDaysFlag  bool
-	workDayNoPunchAsLack        bool // 自由班制下工作日不打卡是否记为缺卡
-	workDayNoPunchAsLackFlag    bool
-	effectNow                   bool // 是否立即生效，默认 false
-	effectNowFlag               bool
-	remedyPeriodType            int // 补卡周期类型
-	remedyPeriodTypeFlag        bool
-	remedyPeriodCustomDate      int // 补卡自定义周期起始日期
-	remedyPeriodCustomDateFlag  bool
-	punchType                   int // 打卡类型，位运算。1：GPS 打卡，2：Wi-Fi 打卡，4：考勤机打卡，8：IP 打卡
-	punchTypeFlag               bool
-	effectTime                  string // 生效时间，精确到秒的时间戳
-	effectTimeFlag              bool
-	fixshiftEffectTime          string // 固定班次生效时间，精确到秒的时间戳
-	fixshiftEffectTimeFlag      bool
-	memberEffectTime            string // 参加考勤的人员、部门变动生效时间，精确到秒的时间戳
-	memberEffectTimeFlag        bool
-	restClockInNeedApproval     bool // 休息日打卡需审批
-	restClockInNeedApprovalFlag bool
-	clockInNeedPhoto            bool // 每次打卡均需拍照
-	clockInNeedPhotoFlag        bool
-	memberStatusChange          *MemberStatusChange // 人员异动打卡设置
-	memberStatusChangeFlag      bool
-	leaveNeedPunch              bool // 请假离岗或返岗是否需打卡
-	leaveNeedPunchFlag          bool
-	leaveNeedPunchCfg           *LeaveNeedPunchCfg // 请假离岗或返岗打卡规则
-	leaveNeedPunchCfgFlag       bool
-	goOutNeedPunch              int // 外出期间是否需打卡
-	goOutNeedPunchFlag          bool
-	goOutNeedPunchCfg           *LeaveNeedPunchCfg // 外出期间打卡规则
-	goOutNeedPunchCfgFlag       bool
-	travelNeedPunch             int // 出差期间是否需打卡
-	travelNeedPunchFlag         bool
-	travelNeedPunchCfg          *LeaveNeedPunchCfg // 出差期间打卡规则
-	travelNeedPunchCfgFlag      bool
-	needPunchMembers            []*PunchMember // 需要打卡的人员配置（新）
-	needPunchMembersFlag        bool
-	noNeedPunchMembers          []*PunchMember // 无需打卡的人员配置（新）
-	noNeedPunchMembersFlag      bool
+	groupId                       string // 考勤组 ID（仅修改时提供）， 需要从“获取打卡结果”的接口中获取 groupId
+	groupIdFlag                   bool
+	groupName                     string // 考勤组名称
+	groupNameFlag                 bool
+	timeZone                      string // 时区
+	timeZoneFlag                  bool
+	bindDeptIds                   []string // 绑定的部门 ID
+	bindDeptIdsFlag               bool
+	exceptDeptIds                 []string // 排除的部门 ID
+	exceptDeptIdsFlag             bool
+	bindUserIds                   []string // 绑定的用户 ID
+	bindUserIdsFlag               bool
+	exceptUserIds                 []string // 排除的用户 ID
+	exceptUserIdsFlag             bool
+	groupLeaderIds                []string // 考勤主负责人 ID 列表，必选字段（需至少拥有考勤组管理员权限）
+	groupLeaderIdsFlag            bool
+	subGroupLeaderIds             []string // 考勤子负责人 ID 列表
+	subGroupLeaderIdsFlag         bool
+	allowOutPunch                 bool // 是否允许外勤打卡
+	allowOutPunchFlag             bool
+	outPunchNeedApproval          bool // 外勤打卡需审批（需要允许外勤打卡才能设置生效）
+	outPunchNeedApprovalFlag      bool
+	outPunchNeedPostApproval      bool // 外勤打卡需审批，先打卡后审批（需要允许外勤打卡才能设置生效）
+	outPunchNeedPostApprovalFlag  bool
+	outPunchNeedRemark            bool // 外勤打卡需填写备注（需要允许外勤打卡才能设置生效）
+	outPunchNeedRemarkFlag        bool
+	outPunchNeedPhoto             bool // 外勤打卡需拍照（需要允许外勤打卡才能设置生效）
+	outPunchNeedPhotoFlag         bool
+	outPunchAllowedHideAddr       bool // 外勤打卡允许员工隐藏详细地址（需要允许外勤打卡才能设置生效）
+	outPunchAllowedHideAddrFlag   bool
+	outPunchAllowedAdjustAddr     bool // 外勤打卡允许微调地址（需要允许外勤打卡才能设置生效）
+	outPunchAllowedAdjustAddrFlag bool
+	adjustRange                   int // 微调范围，默认为 50 米
+	adjustRangeFlag               bool
+	allowPcPunch                  bool // 是否允许 PC 端打卡
+	allowPcPunchFlag              bool
+	allowRemedy                   bool // 是否限制补卡
+	allowRemedyFlag               bool
+	remedyLimit                   bool // 是否限制补卡次数
+	remedyLimitFlag               bool
+	remedyLimitCount              int // 补卡次数
+	remedyLimitCountFlag          bool
+	remedyDateLimit               bool // 是否限制补卡时间
+	remedyDateLimitFlag           bool
+	remedyDateNum                 int // 补卡时间，几天内补卡
+	remedyDateNumFlag             bool
+	allowRemedyTypeLack           bool // 允许缺卡补卡（需要允许补卡才能设置生效）
+	allowRemedyTypeLackFlag       bool
+	allowRemedyTypeLate           bool // 允许迟到补卡（需要允许补卡才能设置生效）
+	allowRemedyTypeLateFlag       bool
+	allowRemedyTypeEarly          bool // 允许早退补卡（需要允许补卡才能设置生效）
+	allowRemedyTypeEarlyFlag      bool
+	allowRemedyTypeNormal         bool // 允许正常补卡（需要允许补卡才能设置生效）
+	allowRemedyTypeNormalFlag     bool
+	showCumulativeTime            bool // 是否展示累计时长
+	showCumulativeTimeFlag        bool
+	showOverTime                  bool // 是否展示加班时长
+	showOverTimeFlag              bool
+	hideStaffPunchTime            bool // 是否隐藏员工打卡详情
+	hideStaffPunchTimeFlag        bool
+	facePunch                     bool // 是否开启人脸识别打卡
+	facePunchFlag                 bool
+	facePunchCfg                  int // 人脸识别打卡规则，1：每次打卡均需人脸识别，2：疑似作弊打卡时需要人脸识别
+	facePunchCfgFlag              bool
+	faceLiveNeedAction            bool // 人脸打卡规则， false：开启活体验证 true：0动作验证，仅在 face_punch_cfg = 1 时有效
+	faceLiveNeedActionFlag        bool
+	faceDowngrade                 bool // 人脸识别失败时是否允许普通拍照打卡
+	faceDowngradeFlag             bool
+	replaceBasicPic               bool // 人脸识别失败时是否允许替换基准图片
+	replaceBasicPicFlag           bool
+	machines                      []*Machine // 考勤机列表
+	machinesFlag                  bool
+	gpsRange                      int // GPS 打卡的有效范围（不建议使用）
+	gpsRangeFlag                  bool
+	locations                     []*Location // 地址列表
+	locationsFlag                 bool
+	groupType                     int // 考勤类型，0：固定班制，2：排班制， 3：自由班制
+	groupTypeFlag                 bool
+	punchDayShiftIds              []string // 固定班制必须填
+	punchDayShiftIdsFlag          bool
+	freePunchCfg                  *FreePunchCfg // 配置自由班制
+	freePunchCfgFlag              bool
+	calendarId                    int // 国家日历  ID，0：不根据国家日历排休，1：中国大陆，2：美国，3：日本，4：印度，5：新加坡，默认 1
+	calendarIdFlag                bool
+	needPunchSpecialDays          []*PunchSpecialDateShift // 必须打卡的特殊日期
+	needPunchSpecialDaysFlag      bool
+	noNeedPunchSpecialDays        []*PunchSpecialDateShift // 无需打卡的特殊日期
+	noNeedPunchSpecialDaysFlag    bool
+	workDayNoPunchAsLack          bool // 自由班制下工作日不打卡是否记为缺卡
+	workDayNoPunchAsLackFlag      bool
+	effectNow                     bool // 是否立即生效，默认 false
+	effectNowFlag                 bool
+	remedyPeriodType              int // 补卡周期类型
+	remedyPeriodTypeFlag          bool
+	remedyPeriodCustomDate        int // 补卡自定义周期起始日期
+	remedyPeriodCustomDateFlag    bool
+	punchType                     int // 打卡类型，位运算。1：GPS 打卡，2：Wi-Fi 打卡，4：考勤机打卡，8：IP 打卡
+	punchTypeFlag                 bool
+	effectTime                    string // 生效时间，精确到秒的时间戳
+	effectTimeFlag                bool
+	fixshiftEffectTime            string // 固定班次生效时间，精确到秒的时间戳
+	fixshiftEffectTimeFlag        bool
+	memberEffectTime              string // 参加考勤的人员、部门变动生效时间，精确到秒的时间戳
+	memberEffectTimeFlag          bool
+	restClockInNeedApproval       bool // 休息日打卡需审批
+	restClockInNeedApprovalFlag   bool
+	clockInNeedPhoto              bool // 每次打卡均需拍照
+	clockInNeedPhotoFlag          bool
+	memberStatusChange            *MemberStatusChange // 人员异动打卡设置
+	memberStatusChangeFlag        bool
+	leaveNeedPunch                bool // 请假离岗或返岗是否需打卡
+	leaveNeedPunchFlag            bool
+	leaveNeedPunchCfg             *LeaveNeedPunchCfg // 请假离岗或返岗打卡规则
+	leaveNeedPunchCfgFlag         bool
+	goOutNeedPunch                int // 外出期间是否需打卡
+	goOutNeedPunchFlag            bool
+	goOutNeedPunchCfg             *LeaveNeedPunchCfg // 外出期间打卡规则
+	goOutNeedPunchCfgFlag         bool
+	travelNeedPunch               int // 出差期间是否需打卡
+	travelNeedPunchFlag           bool
+	travelNeedPunchCfg            *LeaveNeedPunchCfg // 出差期间打卡规则
+	travelNeedPunchCfgFlag        bool
+	needPunchMembers              []*PunchMember // 需要打卡的人员配置（新）
+	needPunchMembersFlag          bool
+	noNeedPunchMembers            []*PunchMember // 无需打卡的人员配置（新）
+	noNeedPunchMembersFlag        bool
+	saveAutoChanges               bool // 是否直接保存可以自动变更的冲突规则
+	saveAutoChangesFlag           bool
+	orgChangeAutoAdjust           bool // 人员异动开关（人员组织架构变更后是否允许自动调整到该考勤组）
+	orgChangeAutoAdjustFlag       bool
+	bindDefaultDeptIds            []string // 默认出勤的部门id列表
+	bindDefaultDeptIdsFlag        bool
+	bindDefaultUserIds            []string // 默认出勤的用户ID列表
+	bindDefaultUserIdsFlag        bool
+	overtimeClockCfg              *OvertimeClockCfg // 加班打卡规则
+	overtimeClockCfgFlag          bool
+	newCalendarId                 string // 节假日id，（如果考勤组使用了自定义节假日，请用此参数传入节假日id）
+	newCalendarIdFlag             bool
+	allowApplyPunch               bool // 定位不准时是否允许申请打卡
+	allowApplyPunchFlag           bool
 }
 
 func NewGroupBuilder() *GroupBuilder {
@@ -1138,6 +1370,15 @@ func (builder *GroupBuilder) OutPunchNeedApproval(outPunchNeedApproval bool) *Gr
 	return builder
 }
 
+// 外勤打卡需审批，先打卡后审批（需要允许外勤打卡才能设置生效）
+//
+// 示例值：true
+func (builder *GroupBuilder) OutPunchNeedPostApproval(outPunchNeedPostApproval bool) *GroupBuilder {
+	builder.outPunchNeedPostApproval = outPunchNeedPostApproval
+	builder.outPunchNeedPostApprovalFlag = true
+	return builder
+}
+
 // 外勤打卡需填写备注（需要允许外勤打卡才能设置生效）
 //
 // 示例值：true
@@ -1162,6 +1403,24 @@ func (builder *GroupBuilder) OutPunchNeedPhoto(outPunchNeedPhoto bool) *GroupBui
 func (builder *GroupBuilder) OutPunchAllowedHideAddr(outPunchAllowedHideAddr bool) *GroupBuilder {
 	builder.outPunchAllowedHideAddr = outPunchAllowedHideAddr
 	builder.outPunchAllowedHideAddrFlag = true
+	return builder
+}
+
+// 外勤打卡允许微调地址（需要允许外勤打卡才能设置生效）
+//
+// 示例值：true
+func (builder *GroupBuilder) OutPunchAllowedAdjustAddr(outPunchAllowedAdjustAddr bool) *GroupBuilder {
+	builder.outPunchAllowedAdjustAddr = outPunchAllowedAdjustAddr
+	builder.outPunchAllowedAdjustAddrFlag = true
+	return builder
+}
+
+// 微调范围，默认为 50 米
+//
+// 示例值：50
+func (builder *GroupBuilder) AdjustRange(adjustRange int) *GroupBuilder {
+	builder.adjustRange = adjustRange
+	builder.adjustRangeFlag = true
 	return builder
 }
 
@@ -1579,6 +1838,69 @@ func (builder *GroupBuilder) NoNeedPunchMembers(noNeedPunchMembers []*PunchMembe
 	return builder
 }
 
+// 是否直接保存可以自动变更的冲突规则
+//
+// 示例值：false
+func (builder *GroupBuilder) SaveAutoChanges(saveAutoChanges bool) *GroupBuilder {
+	builder.saveAutoChanges = saveAutoChanges
+	builder.saveAutoChangesFlag = true
+	return builder
+}
+
+// 人员异动开关（人员组织架构变更后是否允许自动调整到该考勤组）
+//
+// 示例值：false
+func (builder *GroupBuilder) OrgChangeAutoAdjust(orgChangeAutoAdjust bool) *GroupBuilder {
+	builder.orgChangeAutoAdjust = orgChangeAutoAdjust
+	builder.orgChangeAutoAdjustFlag = true
+	return builder
+}
+
+// 默认出勤的部门id列表
+//
+// 示例值：
+func (builder *GroupBuilder) BindDefaultDeptIds(bindDefaultDeptIds []string) *GroupBuilder {
+	builder.bindDefaultDeptIds = bindDefaultDeptIds
+	builder.bindDefaultDeptIdsFlag = true
+	return builder
+}
+
+// 默认出勤的用户ID列表
+//
+// 示例值：
+func (builder *GroupBuilder) BindDefaultUserIds(bindDefaultUserIds []string) *GroupBuilder {
+	builder.bindDefaultUserIds = bindDefaultUserIds
+	builder.bindDefaultUserIdsFlag = true
+	return builder
+}
+
+// 加班打卡规则
+//
+// 示例值：
+func (builder *GroupBuilder) OvertimeClockCfg(overtimeClockCfg *OvertimeClockCfg) *GroupBuilder {
+	builder.overtimeClockCfg = overtimeClockCfg
+	builder.overtimeClockCfgFlag = true
+	return builder
+}
+
+// 节假日id，（如果考勤组使用了自定义节假日，请用此参数传入节假日id）
+//
+// 示例值：通过查询考勤组接口获取的new_calendar_id，例如7302191700771358252
+func (builder *GroupBuilder) NewCalendarId(newCalendarId string) *GroupBuilder {
+	builder.newCalendarId = newCalendarId
+	builder.newCalendarIdFlag = true
+	return builder
+}
+
+// 定位不准时是否允许申请打卡
+//
+// 示例值：true
+func (builder *GroupBuilder) AllowApplyPunch(allowApplyPunch bool) *GroupBuilder {
+	builder.allowApplyPunch = allowApplyPunch
+	builder.allowApplyPunchFlag = true
+	return builder
+}
+
 func (builder *GroupBuilder) Build() *Group {
 	req := &Group{}
 	if builder.groupIdFlag {
@@ -1619,6 +1941,10 @@ func (builder *GroupBuilder) Build() *Group {
 		req.OutPunchNeedApproval = &builder.outPunchNeedApproval
 
 	}
+	if builder.outPunchNeedPostApprovalFlag {
+		req.OutPunchNeedPostApproval = &builder.outPunchNeedPostApproval
+
+	}
 	if builder.outPunchNeedRemarkFlag {
 		req.OutPunchNeedRemark = &builder.outPunchNeedRemark
 
@@ -1629,6 +1955,14 @@ func (builder *GroupBuilder) Build() *Group {
 	}
 	if builder.outPunchAllowedHideAddrFlag {
 		req.OutPunchAllowedHideAddr = &builder.outPunchAllowedHideAddr
+
+	}
+	if builder.outPunchAllowedAdjustAddrFlag {
+		req.OutPunchAllowedAdjustAddr = &builder.outPunchAllowedAdjustAddr
+
+	}
+	if builder.adjustRangeFlag {
+		req.AdjustRange = &builder.adjustRange
 
 	}
 	if builder.allowPcPunchFlag {
@@ -1802,6 +2136,31 @@ func (builder *GroupBuilder) Build() *Group {
 	}
 	if builder.noNeedPunchMembersFlag {
 		req.NoNeedPunchMembers = builder.noNeedPunchMembers
+	}
+	if builder.saveAutoChangesFlag {
+		req.SaveAutoChanges = &builder.saveAutoChanges
+
+	}
+	if builder.orgChangeAutoAdjustFlag {
+		req.OrgChangeAutoAdjust = &builder.orgChangeAutoAdjust
+
+	}
+	if builder.bindDefaultDeptIdsFlag {
+		req.BindDefaultDeptIds = builder.bindDefaultDeptIds
+	}
+	if builder.bindDefaultUserIdsFlag {
+		req.BindDefaultUserIds = builder.bindDefaultUserIds
+	}
+	if builder.overtimeClockCfgFlag {
+		req.OvertimeClockCfg = builder.overtimeClockCfg
+	}
+	if builder.newCalendarIdFlag {
+		req.NewCalendarId = &builder.newCalendarId
+
+	}
+	if builder.allowApplyPunchFlag {
+		req.AllowApplyPunch = &builder.allowApplyPunch
+
 	}
 	return req
 }
@@ -2165,7 +2524,7 @@ func (builder *LeaveAccrualRecordBuilder) GrantingQuantity(grantingQuantity stri
 
 // 授予单位，1表示天，2表示小时
 //
-// 示例值：1表示天，2表示小时
+// 示例值：1
 func (builder *LeaveAccrualRecordBuilder) GrantingUnit(grantingUnit int) *LeaveAccrualRecordBuilder {
 	builder.grantingUnit = grantingUnit
 	builder.grantingUnitFlag = true
@@ -2394,7 +2753,7 @@ func (builder *LeaveEmployExpireRecordBuilder) LeftGrantingQuantity(leftGranting
 
 // 授予单位，1表示天，2表示小时
 //
-// 示例值：1表示天，2表示小时
+// 示例值：1
 func (builder *LeaveEmployExpireRecordBuilder) GrantingUnit(grantingUnit int) *LeaveEmployExpireRecordBuilder {
 	builder.grantingUnit = grantingUnit
 	builder.grantingUnitFlag = true
@@ -3219,6 +3578,549 @@ func (builder *MemberStatusChangeBuilder) Build() *MemberStatusChange {
 	return req
 }
 
+type OpenApplyTimeRange struct {
+	OvertimeAttributionDate *string            `json:"overtime_attribution_date,omitempty"` // 加班所属日期
+	TimeRange               *OvertimeTimeRange `json:"time_range,omitempty"`                // 时段信息
+}
+
+type OpenApplyTimeRangeBuilder struct {
+	overtimeAttributionDate     string // 加班所属日期
+	overtimeAttributionDateFlag bool
+	timeRange                   *OvertimeTimeRange // 时段信息
+	timeRangeFlag               bool
+}
+
+func NewOpenApplyTimeRangeBuilder() *OpenApplyTimeRangeBuilder {
+	builder := &OpenApplyTimeRangeBuilder{}
+	return builder
+}
+
+// 加班所属日期
+//
+// 示例值：2023-09-25
+func (builder *OpenApplyTimeRangeBuilder) OvertimeAttributionDate(overtimeAttributionDate string) *OpenApplyTimeRangeBuilder {
+	builder.overtimeAttributionDate = overtimeAttributionDate
+	builder.overtimeAttributionDateFlag = true
+	return builder
+}
+
+// 时段信息
+//
+// 示例值：
+func (builder *OpenApplyTimeRangeBuilder) TimeRange(timeRange *OvertimeTimeRange) *OpenApplyTimeRangeBuilder {
+	builder.timeRange = timeRange
+	builder.timeRangeFlag = true
+	return builder
+}
+
+func (builder *OpenApplyTimeRangeBuilder) Build() *OpenApplyTimeRange {
+	req := &OpenApplyTimeRange{}
+	if builder.overtimeAttributionDateFlag {
+		req.OvertimeAttributionDate = &builder.overtimeAttributionDate
+
+	}
+	if builder.timeRangeFlag {
+		req.TimeRange = builder.timeRange
+	}
+	return req
+}
+
+type OvertimeApplyDetail struct {
+	UserId     *string `json:"user_id,omitempty"`      // 加班明细用户ID(根据date_type_id)
+	Date       *string `json:"date,omitempty"`         // 加班日期
+	DateType   *int    `json:"date_type,omitempty"`    // 日期类型
+	Duration   *string `json:"duration,omitempty"`     // 加班时长，两位小数
+	Unit       *int    `json:"unit,omitempty"`         // 加班单位
+	IsTimeBank *bool   `json:"is_time_bank,omitempty"` // 是否是综合工时
+	UpdateTime *string `json:"update_time,omitempty"`  // 添加更新数据时间
+}
+
+type OvertimeApplyDetailBuilder struct {
+	userId         string // 加班明细用户ID(根据date_type_id)
+	userIdFlag     bool
+	date           string // 加班日期
+	dateFlag       bool
+	dateType       int // 日期类型
+	dateTypeFlag   bool
+	duration       string // 加班时长，两位小数
+	durationFlag   bool
+	unit           int // 加班单位
+	unitFlag       bool
+	isTimeBank     bool // 是否是综合工时
+	isTimeBankFlag bool
+	updateTime     string // 添加更新数据时间
+	updateTimeFlag bool
+}
+
+func NewOvertimeApplyDetailBuilder() *OvertimeApplyDetailBuilder {
+	builder := &OvertimeApplyDetailBuilder{}
+	return builder
+}
+
+// 加班明细用户ID(根据date_type_id)
+//
+// 示例值：7271137794704015379
+func (builder *OvertimeApplyDetailBuilder) UserId(userId string) *OvertimeApplyDetailBuilder {
+	builder.userId = userId
+	builder.userIdFlag = true
+	return builder
+}
+
+// 加班日期
+//
+// 示例值：2006-01-02
+func (builder *OvertimeApplyDetailBuilder) Date(date string) *OvertimeApplyDetailBuilder {
+	builder.date = date
+	builder.dateFlag = true
+	return builder
+}
+
+// 日期类型
+//
+// 示例值：1
+func (builder *OvertimeApplyDetailBuilder) DateType(dateType int) *OvertimeApplyDetailBuilder {
+	builder.dateType = dateType
+	builder.dateTypeFlag = true
+	return builder
+}
+
+// 加班时长，两位小数
+//
+// 示例值：0.5
+func (builder *OvertimeApplyDetailBuilder) Duration(duration string) *OvertimeApplyDetailBuilder {
+	builder.duration = duration
+	builder.durationFlag = true
+	return builder
+}
+
+// 加班单位
+//
+// 示例值：1
+func (builder *OvertimeApplyDetailBuilder) Unit(unit int) *OvertimeApplyDetailBuilder {
+	builder.unit = unit
+	builder.unitFlag = true
+	return builder
+}
+
+// 是否是综合工时
+//
+// 示例值：false
+func (builder *OvertimeApplyDetailBuilder) IsTimeBank(isTimeBank bool) *OvertimeApplyDetailBuilder {
+	builder.isTimeBank = isTimeBank
+	builder.isTimeBankFlag = true
+	return builder
+}
+
+// 添加更新数据时间
+//
+// 示例值：2023-12-31 12:00:00
+func (builder *OvertimeApplyDetailBuilder) UpdateTime(updateTime string) *OvertimeApplyDetailBuilder {
+	builder.updateTime = updateTime
+	builder.updateTimeFlag = true
+	return builder
+}
+
+func (builder *OvertimeApplyDetailBuilder) Build() *OvertimeApplyDetail {
+	req := &OvertimeApplyDetail{}
+	if builder.userIdFlag {
+		req.UserId = &builder.userId
+
+	}
+	if builder.dateFlag {
+		req.Date = &builder.date
+
+	}
+	if builder.dateTypeFlag {
+		req.DateType = &builder.dateType
+
+	}
+	if builder.durationFlag {
+		req.Duration = &builder.duration
+
+	}
+	if builder.unitFlag {
+		req.Unit = &builder.unit
+
+	}
+	if builder.isTimeBankFlag {
+		req.IsTimeBank = &builder.isTimeBank
+
+	}
+	if builder.updateTimeFlag {
+		req.UpdateTime = &builder.updateTime
+
+	}
+	return req
+}
+
+type OvertimeClockCfg struct {
+	AllowPunchApproval *bool `json:"allow_punch_approval,omitempty"` // 是否允许在非打卡时段申请打卡（仅灰度租户可用）
+}
+
+type OvertimeClockCfgBuilder struct {
+	allowPunchApproval     bool // 是否允许在非打卡时段申请打卡（仅灰度租户可用）
+	allowPunchApprovalFlag bool
+}
+
+func NewOvertimeClockCfgBuilder() *OvertimeClockCfgBuilder {
+	builder := &OvertimeClockCfgBuilder{}
+	return builder
+}
+
+// 是否允许在非打卡时段申请打卡（仅灰度租户可用）
+//
+// 示例值：false
+func (builder *OvertimeClockCfgBuilder) AllowPunchApproval(allowPunchApproval bool) *OvertimeClockCfgBuilder {
+	builder.allowPunchApproval = allowPunchApproval
+	builder.allowPunchApprovalFlag = true
+	return builder
+}
+
+func (builder *OvertimeClockCfgBuilder) Build() *OvertimeClockCfg {
+	req := &OvertimeClockCfg{}
+	if builder.allowPunchApprovalFlag {
+		req.AllowPunchApproval = &builder.allowPunchApproval
+
+	}
+	return req
+}
+
+type OvertimeDetail struct {
+	Id                *string `json:"id,omitempty"`                  // 加班明细ID
+	UserId            *string `json:"user_id,omitempty"`             // 加班明细用户ID(根据date_type_id)
+	StartTime         *string `json:"start_time,omitempty"`          // 加班开始时间格式（2006-01-02 00:00:00,无时区信息，参照时区是提交时候的时区）
+	EndTime           *string `json:"end_time,omitempty"`            // 加班结束时间（2006-01-02 00:00:00,无时区信息，参照时区是提交时候的时区）
+	Duration          *string `json:"duration,omitempty"`            // 加班时长，两位小数
+	Unit              *int    `json:"unit,omitempty"`                // 加班单位
+	DateType          *int    `json:"date_type,omitempty"`           // 日期类型
+	SettleType        *int    `json:"settle_type,omitempty"`         // 结算方式
+	EffectiveTime     *string `json:"effective_time,omitempty"`      // 生效时间时间戳
+	ProgressStartTime *string `json:"progress_start_time,omitempty"` // 流程开始时间戳
+	Date              *string `json:"date,omitempty"`                // 加班日期
+	UpdateTime        *string `json:"update_time,omitempty"`         // 数据更新时间
+	IsTimeBank        *bool   `json:"is_time_bank,omitempty"`        // 是否是综合工时产生的加班明细
+	InstanceId        *string `json:"instance_id,omitempty"`         // 加班明细对应的审批单ID，如果为空代表改加班明细不是审批转入的
+}
+
+type OvertimeDetailBuilder struct {
+	id                    string // 加班明细ID
+	idFlag                bool
+	userId                string // 加班明细用户ID(根据date_type_id)
+	userIdFlag            bool
+	startTime             string // 加班开始时间格式（2006-01-02 00:00:00,无时区信息，参照时区是提交时候的时区）
+	startTimeFlag         bool
+	endTime               string // 加班结束时间（2006-01-02 00:00:00,无时区信息，参照时区是提交时候的时区）
+	endTimeFlag           bool
+	duration              string // 加班时长，两位小数
+	durationFlag          bool
+	unit                  int // 加班单位
+	unitFlag              bool
+	dateType              int // 日期类型
+	dateTypeFlag          bool
+	settleType            int // 结算方式
+	settleTypeFlag        bool
+	effectiveTime         string // 生效时间时间戳
+	effectiveTimeFlag     bool
+	progressStartTime     string // 流程开始时间戳
+	progressStartTimeFlag bool
+	date                  string // 加班日期
+	dateFlag              bool
+	updateTime            string // 数据更新时间
+	updateTimeFlag        bool
+	isTimeBank            bool // 是否是综合工时产生的加班明细
+	isTimeBankFlag        bool
+	instanceId            string // 加班明细对应的审批单ID，如果为空代表改加班明细不是审批转入的
+	instanceIdFlag        bool
+}
+
+func NewOvertimeDetailBuilder() *OvertimeDetailBuilder {
+	builder := &OvertimeDetailBuilder{}
+	return builder
+}
+
+// 加班明细ID
+//
+// 示例值：1
+func (builder *OvertimeDetailBuilder) Id(id string) *OvertimeDetailBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 加班明细用户ID(根据date_type_id)
+//
+// 示例值：7271137794704015379
+func (builder *OvertimeDetailBuilder) UserId(userId string) *OvertimeDetailBuilder {
+	builder.userId = userId
+	builder.userIdFlag = true
+	return builder
+}
+
+// 加班开始时间格式（2006-01-02 00:00:00,无时区信息，参照时区是提交时候的时区）
+//
+// 示例值：2006-01-02 00:00:00
+func (builder *OvertimeDetailBuilder) StartTime(startTime string) *OvertimeDetailBuilder {
+	builder.startTime = startTime
+	builder.startTimeFlag = true
+	return builder
+}
+
+// 加班结束时间（2006-01-02 00:00:00,无时区信息，参照时区是提交时候的时区）
+//
+// 示例值：2006-01-02 00:00:00
+func (builder *OvertimeDetailBuilder) EndTime(endTime string) *OvertimeDetailBuilder {
+	builder.endTime = endTime
+	builder.endTimeFlag = true
+	return builder
+}
+
+// 加班时长，两位小数
+//
+// 示例值：0.5
+func (builder *OvertimeDetailBuilder) Duration(duration string) *OvertimeDetailBuilder {
+	builder.duration = duration
+	builder.durationFlag = true
+	return builder
+}
+
+// 加班单位
+//
+// 示例值：1
+func (builder *OvertimeDetailBuilder) Unit(unit int) *OvertimeDetailBuilder {
+	builder.unit = unit
+	builder.unitFlag = true
+	return builder
+}
+
+// 日期类型
+//
+// 示例值：1
+func (builder *OvertimeDetailBuilder) DateType(dateType int) *OvertimeDetailBuilder {
+	builder.dateType = dateType
+	builder.dateTypeFlag = true
+	return builder
+}
+
+// 结算方式
+//
+// 示例值：1
+func (builder *OvertimeDetailBuilder) SettleType(settleType int) *OvertimeDetailBuilder {
+	builder.settleType = settleType
+	builder.settleTypeFlag = true
+	return builder
+}
+
+// 生效时间时间戳
+//
+// 示例值：1694592064
+func (builder *OvertimeDetailBuilder) EffectiveTime(effectiveTime string) *OvertimeDetailBuilder {
+	builder.effectiveTime = effectiveTime
+	builder.effectiveTimeFlag = true
+	return builder
+}
+
+// 流程开始时间戳
+//
+// 示例值：1694592064
+func (builder *OvertimeDetailBuilder) ProgressStartTime(progressStartTime string) *OvertimeDetailBuilder {
+	builder.progressStartTime = progressStartTime
+	builder.progressStartTimeFlag = true
+	return builder
+}
+
+// 加班日期
+//
+// 示例值：2006-01-02
+func (builder *OvertimeDetailBuilder) Date(date string) *OvertimeDetailBuilder {
+	builder.date = date
+	builder.dateFlag = true
+	return builder
+}
+
+// 数据更新时间
+//
+// 示例值：2023-12-31
+func (builder *OvertimeDetailBuilder) UpdateTime(updateTime string) *OvertimeDetailBuilder {
+	builder.updateTime = updateTime
+	builder.updateTimeFlag = true
+	return builder
+}
+
+// 是否是综合工时产生的加班明细
+//
+// 示例值：false
+func (builder *OvertimeDetailBuilder) IsTimeBank(isTimeBank bool) *OvertimeDetailBuilder {
+	builder.isTimeBank = isTimeBank
+	builder.isTimeBankFlag = true
+	return builder
+}
+
+// 加班明细对应的审批单ID，如果为空代表改加班明细不是审批转入的
+//
+// 示例值：1234
+func (builder *OvertimeDetailBuilder) InstanceId(instanceId string) *OvertimeDetailBuilder {
+	builder.instanceId = instanceId
+	builder.instanceIdFlag = true
+	return builder
+}
+
+func (builder *OvertimeDetailBuilder) Build() *OvertimeDetail {
+	req := &OvertimeDetail{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.userIdFlag {
+		req.UserId = &builder.userId
+
+	}
+	if builder.startTimeFlag {
+		req.StartTime = &builder.startTime
+
+	}
+	if builder.endTimeFlag {
+		req.EndTime = &builder.endTime
+
+	}
+	if builder.durationFlag {
+		req.Duration = &builder.duration
+
+	}
+	if builder.unitFlag {
+		req.Unit = &builder.unit
+
+	}
+	if builder.dateTypeFlag {
+		req.DateType = &builder.dateType
+
+	}
+	if builder.settleTypeFlag {
+		req.SettleType = &builder.settleType
+
+	}
+	if builder.effectiveTimeFlag {
+		req.EffectiveTime = &builder.effectiveTime
+
+	}
+	if builder.progressStartTimeFlag {
+		req.ProgressStartTime = &builder.progressStartTime
+
+	}
+	if builder.dateFlag {
+		req.Date = &builder.date
+
+	}
+	if builder.updateTimeFlag {
+		req.UpdateTime = &builder.updateTime
+
+	}
+	if builder.isTimeBankFlag {
+		req.IsTimeBank = &builder.isTimeBank
+
+	}
+	if builder.instanceIdFlag {
+		req.InstanceId = &builder.instanceId
+
+	}
+	return req
+}
+
+type OvertimeRule struct {
+	OnOvertime  *string `json:"on_overtime,omitempty"`  // 加班上班时间
+	OffOvertime *string `json:"off_overtime,omitempty"` // 加班下班时间
+}
+
+type OvertimeRuleBuilder struct {
+	onOvertime      string // 加班上班时间
+	onOvertimeFlag  bool
+	offOvertime     string // 加班下班时间
+	offOvertimeFlag bool
+}
+
+func NewOvertimeRuleBuilder() *OvertimeRuleBuilder {
+	builder := &OvertimeRuleBuilder{}
+	return builder
+}
+
+// 加班上班时间
+//
+// 示例值：9：00
+func (builder *OvertimeRuleBuilder) OnOvertime(onOvertime string) *OvertimeRuleBuilder {
+	builder.onOvertime = onOvertime
+	builder.onOvertimeFlag = true
+	return builder
+}
+
+// 加班下班时间
+//
+// 示例值：18：00， 第二天凌晨2点， 26：00
+func (builder *OvertimeRuleBuilder) OffOvertime(offOvertime string) *OvertimeRuleBuilder {
+	builder.offOvertime = offOvertime
+	builder.offOvertimeFlag = true
+	return builder
+}
+
+func (builder *OvertimeRuleBuilder) Build() *OvertimeRule {
+	req := &OvertimeRule{}
+	if builder.onOvertimeFlag {
+		req.OnOvertime = &builder.onOvertime
+
+	}
+	if builder.offOvertimeFlag {
+		req.OffOvertime = &builder.offOvertime
+
+	}
+	return req
+}
+
+type OvertimeTimeRange struct {
+	StartTime *string `json:"start_time,omitempty"` // 开始时间
+	EndTime   *string `json:"end_time,omitempty"`   // 结束时间
+}
+
+type OvertimeTimeRangeBuilder struct {
+	startTime     string // 开始时间
+	startTimeFlag bool
+	endTime       string // 结束时间
+	endTimeFlag   bool
+}
+
+func NewOvertimeTimeRangeBuilder() *OvertimeTimeRangeBuilder {
+	builder := &OvertimeTimeRangeBuilder{}
+	return builder
+}
+
+// 开始时间
+//
+// 示例值：2023-09-25 07:00:00
+func (builder *OvertimeTimeRangeBuilder) StartTime(startTime string) *OvertimeTimeRangeBuilder {
+	builder.startTime = startTime
+	builder.startTimeFlag = true
+	return builder
+}
+
+// 结束时间
+//
+// 示例值：2023-09-25 23:30:00
+func (builder *OvertimeTimeRangeBuilder) EndTime(endTime string) *OvertimeTimeRangeBuilder {
+	builder.endTime = endTime
+	builder.endTimeFlag = true
+	return builder
+}
+
+func (builder *OvertimeTimeRangeBuilder) Build() *OvertimeTimeRange {
+	req := &OvertimeTimeRange{}
+	if builder.startTimeFlag {
+		req.StartTime = &builder.startTime
+
+	}
+	if builder.endTimeFlag {
+		req.EndTime = &builder.endTime
+
+	}
+	return req
+}
+
 type PunchMember struct {
 	RuleScopeType  *int        `json:"rule_scope_type,omitempty"`  // 圈人方式：0 无 1全部 2自定义
 	ScopeGroupList *ScopeGroup `json:"scope_group_list,omitempty"` // 圈人规则列表
@@ -3618,21 +4520,27 @@ func (builder *ScheduleBuilder) Build() *Schedule {
 }
 
 type ScopeGroup struct {
-	ScopeValueType *int          `json:"scope_value_type,omitempty"` // 类型： 1: 部门 2：人员 3:国家地区 4:员工类型 5:性别 6:工作城市
-	OperationType  *int          `json:"operation_type,omitempty"`   // 范围类型（是否包含）
-	Right          []*ScopeValue `json:"right,omitempty"`            // 如果是人员/部门类型 不需要使用该字段
-	MemberIds      []string      `json:"member_ids,omitempty"`       // 部门/人员id列表
+	ScopeValueType     *int          `json:"scope_value_type,omitempty"`      // 类型： 1: 部门 2：人员 3:国家地区 4:员工类型 5:工作城市 6:职级 7:序列 8:职务（企业版）9:工时制度（企业版） 100:自定义字段（企业版）
+	OperationType      *int          `json:"operation_type,omitempty"`        // 范围类型（是否包含）
+	Right              []*ScopeValue `json:"right,omitempty"`                 // 如果是人员/部门类型 不需要使用该字段
+	MemberIds          []string      `json:"member_ids,omitempty"`            // 部门/人员id列表（具体类型根据scope_value_type判断）
+	CustomFieldID      *string       `json:"custom_field_ID,omitempty"`       // 企业版自定义字段唯一键 ID, 需要从飞书人事那边获取
+	CustomFieldObjType *string       `json:"custom_field_obj_type,omitempty"` // 企业版自定义字段对象类型  "employment":主数据对象，员工雇佣信息 , "person":主数据对象，个人
 }
 
 type ScopeGroupBuilder struct {
-	scopeValueType     int // 类型： 1: 部门 2：人员 3:国家地区 4:员工类型 5:性别 6:工作城市
-	scopeValueTypeFlag bool
-	operationType      int // 范围类型（是否包含）
-	operationTypeFlag  bool
-	right              []*ScopeValue // 如果是人员/部门类型 不需要使用该字段
-	rightFlag          bool
-	memberIds          []string // 部门/人员id列表
-	memberIdsFlag      bool
+	scopeValueType         int // 类型： 1: 部门 2：人员 3:国家地区 4:员工类型 5:工作城市 6:职级 7:序列 8:职务（企业版）9:工时制度（企业版） 100:自定义字段（企业版）
+	scopeValueTypeFlag     bool
+	operationType          int // 范围类型（是否包含）
+	operationTypeFlag      bool
+	right                  []*ScopeValue // 如果是人员/部门类型 不需要使用该字段
+	rightFlag              bool
+	memberIds              []string // 部门/人员id列表（具体类型根据scope_value_type判断）
+	memberIdsFlag          bool
+	customFieldID          string // 企业版自定义字段唯一键 ID, 需要从飞书人事那边获取
+	customFieldIDFlag      bool
+	customFieldObjType     string // 企业版自定义字段对象类型  "employment":主数据对象，员工雇佣信息 , "person":主数据对象，个人
+	customFieldObjTypeFlag bool
 }
 
 func NewScopeGroupBuilder() *ScopeGroupBuilder {
@@ -3640,7 +4548,7 @@ func NewScopeGroupBuilder() *ScopeGroupBuilder {
 	return builder
 }
 
-// 类型： 1: 部门 2：人员 3:国家地区 4:员工类型 5:性别 6:工作城市
+// 类型： 1: 部门 2：人员 3:国家地区 4:员工类型 5:工作城市 6:职级 7:序列 8:职务（企业版）9:工时制度（企业版） 100:自定义字段（企业版）
 //
 // 示例值：1
 func (builder *ScopeGroupBuilder) ScopeValueType(scopeValueType int) *ScopeGroupBuilder {
@@ -3667,12 +4575,30 @@ func (builder *ScopeGroupBuilder) Right(right []*ScopeValue) *ScopeGroupBuilder 
 	return builder
 }
 
-// 部门/人员id列表
+// 部门/人员id列表（具体类型根据scope_value_type判断）
 //
 // 示例值：
 func (builder *ScopeGroupBuilder) MemberIds(memberIds []string) *ScopeGroupBuilder {
 	builder.memberIds = memberIds
 	builder.memberIdsFlag = true
+	return builder
+}
+
+// 企业版自定义字段唯一键 ID, 需要从飞书人事那边获取
+//
+// 示例值：123213123
+func (builder *ScopeGroupBuilder) CustomFieldID(customFieldID string) *ScopeGroupBuilder {
+	builder.customFieldID = customFieldID
+	builder.customFieldIDFlag = true
+	return builder
+}
+
+// 企业版自定义字段对象类型  "employment":主数据对象，员工雇佣信息 , "person":主数据对象，个人
+//
+// 示例值：employment
+func (builder *ScopeGroupBuilder) CustomFieldObjType(customFieldObjType string) *ScopeGroupBuilder {
+	builder.customFieldObjType = customFieldObjType
+	builder.customFieldObjTypeFlag = true
 	return builder
 }
 
@@ -3691,6 +4617,14 @@ func (builder *ScopeGroupBuilder) Build() *ScopeGroup {
 	}
 	if builder.memberIdsFlag {
 		req.MemberIds = builder.memberIds
+	}
+	if builder.customFieldIDFlag {
+		req.CustomFieldID = &builder.customFieldID
+
+	}
+	if builder.customFieldObjTypeFlag {
+		req.CustomFieldObjType = &builder.customFieldObjType
+
 	}
 	return req
 }
@@ -3747,6 +4681,7 @@ type Shift struct {
 	ShiftId           *string              `json:"shift_id,omitempty"`              // 班次 ID
 	ShiftName         *string              `json:"shift_name,omitempty"`            // 班次名称
 	PunchTimes        *int                 `json:"punch_times,omitempty"`           // 打卡次数
+	SubShiftLeaderIds []string             `json:"sub_shift_leader_ids,omitempty"`  // 排班组子负责人id列表
 	IsFlexible        *bool                `json:"is_flexible,omitempty"`           // 是否弹性打卡
 	FlexibleMinutes   *int                 `json:"flexible_minutes,omitempty"`      // 弹性打卡时间，设置【上班最多可晚到】与【下班最多可早走】时间，如果不设置flexible_rule则生效
 	FlexibleRule      []*FlexibleRule      `json:"flexible_rule,omitempty"`         // 弹性打卡时间设置
@@ -3754,6 +4689,7 @@ type Shift struct {
 	PunchTimeRule     []*PunchTimeRule     `json:"punch_time_rule,omitempty"`       // 打卡规则
 	LateOffLateOnRule []*LateOffLateOnRule `json:"late_off_late_on_rule,omitempty"` // 晚走晚到规则
 	RestTimeRule      []*RestRule          `json:"rest_time_rule,omitempty"`        // 休息规则
+	OvertimeRule      []*OvertimeRule      `json:"overtime_rule,omitempty"`         // 打卡规则
 }
 
 type ShiftBuilder struct {
@@ -3763,6 +4699,8 @@ type ShiftBuilder struct {
 	shiftNameFlag         bool
 	punchTimes            int // 打卡次数
 	punchTimesFlag        bool
+	subShiftLeaderIds     []string // 排班组子负责人id列表
+	subShiftLeaderIdsFlag bool
 	isFlexible            bool // 是否弹性打卡
 	isFlexibleFlag        bool
 	flexibleMinutes       int // 弹性打卡时间，设置【上班最多可晚到】与【下班最多可早走】时间，如果不设置flexible_rule则生效
@@ -3777,6 +4715,8 @@ type ShiftBuilder struct {
 	lateOffLateOnRuleFlag bool
 	restTimeRule          []*RestRule // 休息规则
 	restTimeRuleFlag      bool
+	overtimeRule          []*OvertimeRule // 打卡规则
+	overtimeRuleFlag      bool
 }
 
 func NewShiftBuilder() *ShiftBuilder {
@@ -3808,6 +4748,15 @@ func (builder *ShiftBuilder) ShiftName(shiftName string) *ShiftBuilder {
 func (builder *ShiftBuilder) PunchTimes(punchTimes int) *ShiftBuilder {
 	builder.punchTimes = punchTimes
 	builder.punchTimesFlag = true
+	return builder
+}
+
+// 排班组子负责人id列表
+//
+// 示例值：
+func (builder *ShiftBuilder) SubShiftLeaderIds(subShiftLeaderIds []string) *ShiftBuilder {
+	builder.subShiftLeaderIds = subShiftLeaderIds
+	builder.subShiftLeaderIdsFlag = true
 	return builder
 }
 
@@ -3874,6 +4823,15 @@ func (builder *ShiftBuilder) RestTimeRule(restTimeRule []*RestRule) *ShiftBuilde
 	return builder
 }
 
+// 打卡规则
+//
+// 示例值：
+func (builder *ShiftBuilder) OvertimeRule(overtimeRule []*OvertimeRule) *ShiftBuilder {
+	builder.overtimeRule = overtimeRule
+	builder.overtimeRuleFlag = true
+	return builder
+}
+
 func (builder *ShiftBuilder) Build() *Shift {
 	req := &Shift{}
 	if builder.shiftIdFlag {
@@ -3887,6 +4845,9 @@ func (builder *ShiftBuilder) Build() *Shift {
 	if builder.punchTimesFlag {
 		req.PunchTimes = &builder.punchTimes
 
+	}
+	if builder.subShiftLeaderIdsFlag {
+		req.SubShiftLeaderIds = builder.subShiftLeaderIds
 	}
 	if builder.isFlexibleFlag {
 		req.IsFlexible = &builder.isFlexible
@@ -3911,6 +4872,57 @@ func (builder *ShiftBuilder) Build() *Shift {
 	}
 	if builder.restTimeRuleFlag {
 		req.RestTimeRule = builder.restTimeRule
+	}
+	if builder.overtimeRuleFlag {
+		req.OvertimeRule = builder.overtimeRule
+	}
+	return req
+}
+
+type ShiftGroupUser struct {
+	ShiftGroupId *string `json:"shift_group_id,omitempty"` // 班组ID
+	UserId       *string `json:"user_id,omitempty"`        // 用户ID，根据传参user_id_type确定
+}
+
+type ShiftGroupUserBuilder struct {
+	shiftGroupId     string // 班组ID
+	shiftGroupIdFlag bool
+	userId           string // 用户ID，根据传参user_id_type确定
+	userIdFlag       bool
+}
+
+func NewShiftGroupUserBuilder() *ShiftGroupUserBuilder {
+	builder := &ShiftGroupUserBuilder{}
+	return builder
+}
+
+// 班组ID
+//
+// 示例值：7275180303583281171
+func (builder *ShiftGroupUserBuilder) ShiftGroupId(shiftGroupId string) *ShiftGroupUserBuilder {
+	builder.shiftGroupId = shiftGroupId
+	builder.shiftGroupIdFlag = true
+	return builder
+}
+
+// 用户ID，根据传参user_id_type确定
+//
+// 示例值：52aa1fa1
+func (builder *ShiftGroupUserBuilder) UserId(userId string) *ShiftGroupUserBuilder {
+	builder.userId = userId
+	builder.userIdFlag = true
+	return builder
+}
+
+func (builder *ShiftGroupUserBuilder) Build() *ShiftGroupUser {
+	req := &ShiftGroupUser{}
+	if builder.shiftGroupIdFlag {
+		req.ShiftGroupId = &builder.shiftGroupId
+
+	}
+	if builder.userIdFlag {
+		req.UserId = &builder.userId
+
 	}
 	return req
 }
@@ -4038,6 +5050,7 @@ type TaskResult struct {
 	CheckOutResultSupplement *string   `json:"check_out_result_supplement,omitempty"` // 下班打卡结果补充
 	CheckInShiftTime         *string   `json:"check_in_shift_time,omitempty"`         // 上班打卡时间
 	CheckOutShiftTime        *string   `json:"check_out_shift_time,omitempty"`        // 下班打卡时间
+	TaskShiftType            *int      `json:"task_shift_type,omitempty"`             // 班次类型，0正常，1加班班次
 }
 
 type TaskResultBuilder struct {
@@ -4061,6 +5074,8 @@ type TaskResultBuilder struct {
 	checkInShiftTimeFlag         bool
 	checkOutShiftTime            string // 下班打卡时间
 	checkOutShiftTimeFlag        bool
+	taskShiftType                int // 班次类型，0正常，1加班班次
+	taskShiftTypeFlag            bool
 }
 
 func NewTaskResultBuilder() *TaskResultBuilder {
@@ -4158,6 +5173,15 @@ func (builder *TaskResultBuilder) CheckOutShiftTime(checkOutShiftTime string) *T
 	return builder
 }
 
+// 班次类型，0正常，1加班班次
+//
+// 示例值：0
+func (builder *TaskResultBuilder) TaskShiftType(taskShiftType int) *TaskResultBuilder {
+	builder.taskShiftType = taskShiftType
+	builder.taskShiftTypeFlag = true
+	return builder
+}
+
 func (builder *TaskResultBuilder) Build() *TaskResult {
 	req := &TaskResult{}
 	if builder.checkInRecordIdFlag {
@@ -4196,6 +5220,10 @@ func (builder *TaskResultBuilder) Build() *TaskResult {
 	}
 	if builder.checkOutShiftTimeFlag {
 		req.CheckOutShiftTime = &builder.checkOutShiftTime
+
+	}
+	if builder.taskShiftTypeFlag {
+		req.TaskShiftType = &builder.taskShiftType
 
 	}
 	return req
@@ -4485,6 +5513,53 @@ func (builder *UserApprovalBuilder) Build() *UserApproval {
 	return req
 }
 
+type UserArrangeShiftGroup struct {
+	UserId     *string            `json:"user_id,omitempty"`     // 用户id
+	ShiftGroup *ArrangeShiftGroup `json:"shift_group,omitempty"` // 班组
+}
+
+type UserArrangeShiftGroupBuilder struct {
+	userId         string // 用户id
+	userIdFlag     bool
+	shiftGroup     *ArrangeShiftGroup // 班组
+	shiftGroupFlag bool
+}
+
+func NewUserArrangeShiftGroupBuilder() *UserArrangeShiftGroupBuilder {
+	builder := &UserArrangeShiftGroupBuilder{}
+	return builder
+}
+
+// 用户id
+//
+// 示例值：e1234123
+func (builder *UserArrangeShiftGroupBuilder) UserId(userId string) *UserArrangeShiftGroupBuilder {
+	builder.userId = userId
+	builder.userIdFlag = true
+	return builder
+}
+
+// 班组
+//
+// 示例值：
+func (builder *UserArrangeShiftGroupBuilder) ShiftGroup(shiftGroup *ArrangeShiftGroup) *UserArrangeShiftGroupBuilder {
+	builder.shiftGroup = shiftGroup
+	builder.shiftGroupFlag = true
+	return builder
+}
+
+func (builder *UserArrangeShiftGroupBuilder) Build() *UserArrangeShiftGroup {
+	req := &UserArrangeShiftGroup{}
+	if builder.userIdFlag {
+		req.UserId = &builder.userId
+
+	}
+	if builder.shiftGroupFlag {
+		req.ShiftGroup = builder.shiftGroup
+	}
+	return req
+}
+
 type UserDailyShift struct {
 	GroupId *string `json:"group_id,omitempty"` // 考勤组 ID，获取方式：1）[创建或修改考勤组](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/group/create) 2）[按名称查询考勤组](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/group/search) 3）[获取打卡结果](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/user_task/query)
 	ShiftId *string `json:"shift_id,omitempty"` // 班次 ID，获取方式：1）[按名称查询班次](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/shift/query) 2）[创建班次](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/shift/create)
@@ -4589,14 +5664,15 @@ type UserFlow struct {
 	Comment      *string `json:"comment,omitempty"`       // 打卡备注
 	RecordId     *string `json:"record_id,omitempty"`     // 打卡记录 ID
 
-	Ssid      *string  `json:"ssid,omitempty"`       // 打卡 Wi-Fi 的 SSID
-	Bssid     *string  `json:"bssid,omitempty"`      // 打卡 Wi-Fi 的 MAC 地址
-	IsField   *bool    `json:"is_field,omitempty"`   // 是否为外勤打卡
-	IsWifi    *bool    `json:"is_wifi,omitempty"`    // 是否为 Wi-Fi 打卡
-	Type      *int     `json:"type,omitempty"`       // 记录生成方式
-	PhotoUrls []string `json:"photo_urls,omitempty"` // 打卡照片列表
-
-	CheckResult *string `json:"check_result,omitempty"` // 打卡结果
+	Ssid        *string  `json:"ssid,omitempty"`         // 打卡 Wi-Fi 的 SSID
+	Bssid       *string  `json:"bssid,omitempty"`        // 打卡 Wi-Fi 的 MAC 地址
+	IsField     *bool    `json:"is_field,omitempty"`     // 是否为外勤打卡
+	IsWifi      *bool    `json:"is_wifi,omitempty"`      // 是否为 Wi-Fi 打卡
+	Type        *int     `json:"type,omitempty"`         // 记录生成方式
+	PhotoUrls   []string `json:"photo_urls,omitempty"`   // 打卡照片列表
+	DeviceId    *string  `json:"device_id,omitempty"`    // 打卡设备ID
+	CheckResult *string  `json:"check_result,omitempty"` // 打卡结果
+	ExternalId  *string  `json:"external_id,omitempty"`  // 用户导入的外部打卡记录ID
 }
 
 type UserFlowBuilder struct {
@@ -4613,21 +5689,24 @@ type UserFlowBuilder struct {
 	recordId         string // 打卡记录 ID
 	recordIdFlag     bool
 
-	ssid          string // 打卡 Wi-Fi 的 SSID
-	ssidFlag      bool
-	bssid         string // 打卡 Wi-Fi 的 MAC 地址
-	bssidFlag     bool
-	isField       bool // 是否为外勤打卡
-	isFieldFlag   bool
-	isWifi        bool // 是否为 Wi-Fi 打卡
-	isWifiFlag    bool
-	type_         int // 记录生成方式
-	typeFlag      bool
-	photoUrls     []string // 打卡照片列表
-	photoUrlsFlag bool
-
+	ssid            string // 打卡 Wi-Fi 的 SSID
+	ssidFlag        bool
+	bssid           string // 打卡 Wi-Fi 的 MAC 地址
+	bssidFlag       bool
+	isField         bool // 是否为外勤打卡
+	isFieldFlag     bool
+	isWifi          bool // 是否为 Wi-Fi 打卡
+	isWifiFlag      bool
+	type_           int // 记录生成方式
+	typeFlag        bool
+	photoUrls       []string // 打卡照片列表
+	photoUrlsFlag   bool
+	deviceId        string // 打卡设备ID
+	deviceIdFlag    bool
 	checkResult     string // 打卡结果
 	checkResultFlag bool
+	externalId      string // 用户导入的外部打卡记录ID
+	externalIdFlag  bool
 }
 
 func NewUserFlowBuilder() *UserFlowBuilder {
@@ -4743,12 +5822,30 @@ func (builder *UserFlowBuilder) PhotoUrls(photoUrls []string) *UserFlowBuilder {
 	return builder
 }
 
+// 打卡设备ID
+//
+// 示例值：（只支持小程序打卡，导入时无效）99e0609ee053448596502691a81428654d7ded64c7bd85acd982d26b3636c37d
+func (builder *UserFlowBuilder) DeviceId(deviceId string) *UserFlowBuilder {
+	builder.deviceId = deviceId
+	builder.deviceIdFlag = true
+	return builder
+}
+
 // 打卡结果
 //
 // 示例值：Invalid
 func (builder *UserFlowBuilder) CheckResult(checkResult string) *UserFlowBuilder {
 	builder.checkResult = checkResult
 	builder.checkResultFlag = true
+	return builder
+}
+
+// 用户导入的外部打卡记录ID
+//
+// 示例值：record_123
+func (builder *UserFlowBuilder) ExternalId(externalId string) *UserFlowBuilder {
+	builder.externalId = externalId
+	builder.externalIdFlag = true
 	return builder
 }
 
@@ -4802,9 +5899,16 @@ func (builder *UserFlowBuilder) Build() *UserFlow {
 	if builder.photoUrlsFlag {
 		req.PhotoUrls = builder.photoUrls
 	}
+	if builder.deviceIdFlag {
+		req.DeviceId = &builder.deviceId
 
+	}
 	if builder.checkResultFlag {
 		req.CheckResult = &builder.checkResult
+
+	}
+	if builder.externalIdFlag {
+		req.ExternalId = &builder.externalId
 
 	}
 	return req
@@ -5264,6 +6368,7 @@ type UserOvertimeWork struct {
 	Type       *int     `json:"type,omitempty"`        // 加班规则类型
 	StartTime  *string  `json:"start_time,omitempty"`  // 开始时间，时间格式为 yyyy-MM-dd HH:mm:ss
 	EndTime    *string  `json:"end_time,omitempty"`    // 结束时间，时间格式为 yyyy-MM-dd HH:mm:ss
+	Reason     *string  `json:"reason,omitempty"`      // 加班事由
 }
 
 type UserOvertimeWorkBuilder struct {
@@ -5281,6 +6386,8 @@ type UserOvertimeWorkBuilder struct {
 	startTimeFlag  bool
 	endTime        string // 结束时间，时间格式为 yyyy-MM-dd HH:mm:ss
 	endTimeFlag    bool
+	reason         string // 加班事由
+	reasonFlag     bool
 }
 
 func NewUserOvertimeWorkBuilder() *UserOvertimeWorkBuilder {
@@ -5351,6 +6458,15 @@ func (builder *UserOvertimeWorkBuilder) EndTime(endTime string) *UserOvertimeWor
 	return builder
 }
 
+// 加班事由
+//
+// 示例值：推进项目进度
+func (builder *UserOvertimeWorkBuilder) Reason(reason string) *UserOvertimeWorkBuilder {
+	builder.reason = reason
+	builder.reasonFlag = true
+	return builder
+}
+
 func (builder *UserOvertimeWorkBuilder) Build() *UserOvertimeWork {
 	req := &UserOvertimeWork{}
 	if builder.approvalIdFlag {
@@ -5379,6 +6495,10 @@ func (builder *UserOvertimeWorkBuilder) Build() *UserOvertimeWork {
 	}
 	if builder.endTimeFlag {
 		req.EndTime = &builder.endTime
+
+	}
+	if builder.reasonFlag {
+		req.Reason = &builder.reason
 
 	}
 	return req
@@ -5443,6 +6563,86 @@ func (builder *UserSettingBuilder) Build() *UserSetting {
 	}
 	if builder.faceKeyUpdateTimeFlag {
 		req.FaceKeyUpdateTime = &builder.faceKeyUpdateTime
+
+	}
+	return req
+}
+
+type UserShiftGroupsList struct {
+	ShiftGroupId   *string `json:"shift_group_id,omitempty"`   // 班组ID
+	ShiftGroupName *string `json:"shift_group_name,omitempty"` // 班组名称
+	GroupId        *string `json:"group_id,omitempty"`         // 考勤组ID
+	UpdateTime     *string `json:"update_time,omitempty"`      // 班组的最后更新时间
+}
+
+type UserShiftGroupsListBuilder struct {
+	shiftGroupId       string // 班组ID
+	shiftGroupIdFlag   bool
+	shiftGroupName     string // 班组名称
+	shiftGroupNameFlag bool
+	groupId            string // 考勤组ID
+	groupIdFlag        bool
+	updateTime         string // 班组的最后更新时间
+	updateTimeFlag     bool
+}
+
+func NewUserShiftGroupsListBuilder() *UserShiftGroupsListBuilder {
+	builder := &UserShiftGroupsListBuilder{}
+	return builder
+}
+
+// 班组ID
+//
+// 示例值：7301693071333261331
+func (builder *UserShiftGroupsListBuilder) ShiftGroupId(shiftGroupId string) *UserShiftGroupsListBuilder {
+	builder.shiftGroupId = shiftGroupId
+	builder.shiftGroupIdFlag = true
+	return builder
+}
+
+// 班组名称
+//
+// 示例值：飞书考勤班组
+func (builder *UserShiftGroupsListBuilder) ShiftGroupName(shiftGroupName string) *UserShiftGroupsListBuilder {
+	builder.shiftGroupName = shiftGroupName
+	builder.shiftGroupNameFlag = true
+	return builder
+}
+
+// 考勤组ID
+//
+// 示例值：7299769369813319699
+func (builder *UserShiftGroupsListBuilder) GroupId(groupId string) *UserShiftGroupsListBuilder {
+	builder.groupId = groupId
+	builder.groupIdFlag = true
+	return builder
+}
+
+// 班组的最后更新时间
+//
+// 示例值：2023-11-15 09:00:00
+func (builder *UserShiftGroupsListBuilder) UpdateTime(updateTime string) *UserShiftGroupsListBuilder {
+	builder.updateTime = updateTime
+	builder.updateTimeFlag = true
+	return builder
+}
+
+func (builder *UserShiftGroupsListBuilder) Build() *UserShiftGroupsList {
+	req := &UserShiftGroupsList{}
+	if builder.shiftGroupIdFlag {
+		req.ShiftGroupId = &builder.shiftGroupId
+
+	}
+	if builder.shiftGroupNameFlag {
+		req.ShiftGroupName = &builder.shiftGroupName
+
+	}
+	if builder.groupIdFlag {
+		req.GroupId = &builder.groupId
+
+	}
+	if builder.updateTimeFlag {
+		req.UpdateTime = &builder.updateTime
 
 	}
 	return req
@@ -6395,11 +7595,11 @@ func (builder *ProcessApprovalInfoReqBodyBuilder) Build() *ProcessApprovalInfoRe
 }
 
 type ProcessApprovalInfoPathReqBodyBuilder struct {
-	approvalId       string // 审批实例 ID，获取方式：1）[获取审批通过数据](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/user_approval/query) 2）[写入审批结果](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/user_approval/create) 3）[通知补卡审批发起（补卡情况下）](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/user_task_remedy/create)
+	approvalId       string
 	approvalIdFlag   bool
-	approvalType     string // 审批类型，leave：请假，out：外出，overtime：加班，trip：出差，remedy：补卡
+	approvalType     string
 	approvalTypeFlag bool
-	status           int // 审批状态，1：不通过，2：通过，4：撤销
+	status           int
 	statusFlag       bool
 }
 
@@ -6716,9 +7916,9 @@ func (builder *CreateGroupReqBodyBuilder) Build() *CreateGroupReqBody {
 }
 
 type CreateGroupPathReqBodyBuilder struct {
-	group          *Group // 6921319402260496386
+	group          *Group
 	groupFlag      bool
-	operatorId     string // 操作人uid，如果您未操作[考勤管理后台“API 接入”流程](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/attendance-development-guidelines)，则此字段为必填字段
+	operatorId     string
 	operatorIdFlag bool
 }
 
@@ -6915,65 +8115,75 @@ type GetGroupReq struct {
 }
 
 type GetGroupRespData struct {
-	GroupId                 *string                  `json:"group_id,omitempty"`                    // 考勤组的Id， 需要从获取用户打卡结果信息的接口中获取groupId，修改考勤组时必填
-	GroupName               *string                  `json:"group_name,omitempty"`                  // 考勤组名称
-	TimeZone                *string                  `json:"time_zone,omitempty"`                   // 考勤组时区
-	BindDeptIds             []string                 `json:"bind_dept_ids,omitempty"`               // 参加考勤的部门id列表
-	ExceptDeptIds           []string                 `json:"except_dept_ids,omitempty"`             // 无需考勤的部门id列表
-	BindUserIds             []string                 `json:"bind_user_ids,omitempty"`               // 参加考勤的人员id列表
-	ExceptUserIds           []string                 `json:"except_user_ids,omitempty"`             // 参加考勤的人员id列表
-	GroupLeaderIds          []string                 `json:"group_leader_ids,omitempty"`            // 考勤组主负责人id列表
-	SubGroupLeaderIds       []string                 `json:"sub_group_leader_ids,omitempty"`        // 考勤组子负责人id列表
-	AllowOutPunch           *bool                    `json:"allow_out_punch,omitempty"`             // 是否允许外勤打卡
-	OutPunchNeedApproval    *bool                    `json:"out_punch_need_approval,omitempty"`     // 外勤打卡需审批（需要允许外勤打卡才能设置生效）
-	OutPunchNeedRemark      *bool                    `json:"out_punch_need_remark,omitempty"`       // 外勤打卡需填写备注（需要允许外勤打卡才能设置生效）
-	OutPunchNeedPhoto       *bool                    `json:"out_punch_need_photo,omitempty"`        // 外勤打卡需拍照（需要允许外勤打卡才能设置生效）
-	OutPunchAllowedHideAddr *bool                    `json:"out_punch_allowed_hide_addr,omitempty"` // 外勤打卡允许员工隐藏详细地址（需要允许外勤打卡才能设置生效）
-	AllowPcPunch            *bool                    `json:"allow_pc_punch,omitempty"`              // 是否允许pc打卡
-	AllowRemedy             *bool                    `json:"allow_remedy,omitempty"`                // 是否允许补卡
-	RemedyLimit             *bool                    `json:"remedy_limit,omitempty"`                // 补卡次数是否限制（需要允许补卡才能设置生效）
-	RemedyLimitCount        *int                     `json:"remedy_limit_count,omitempty"`          // 补卡次数（需要允许补卡才能设置生效）
-	RemedyDateLimit         *bool                    `json:"remedy_date_limit,omitempty"`           // 补卡时间是否限制（需要允许补卡才能设置生效）
-	RemedyDateNum           *int                     `json:"remedy_date_num,omitempty"`             // 补卡时间,几天内可以发起补卡（需要允许补卡才能设置生效）
-	AllowRemedyTypeLack     *bool                    `json:"allow_remedy_type_lack,omitempty"`      // 允许缺卡补卡（需要允许补卡才能设置生效）
-	AllowRemedyTypeLate     *bool                    `json:"allow_remedy_type_late,omitempty"`      // 允许迟到补卡（需要允许补卡才能设置生效）
-	AllowRemedyTypeEarly    *bool                    `json:"allow_remedy_type_early,omitempty"`     // 允许早退补卡（需要允许补卡才能设置生效）
-	AllowRemedyTypeNormal   *bool                    `json:"allow_remedy_type_normal,omitempty"`    // 允许正常补卡（需要允许补卡才能设置生效）
-	ShowCumulativeTime      *bool                    `json:"show_cumulative_time,omitempty"`        // 是否展示累计时长
-	ShowOverTime            *bool                    `json:"show_over_time,omitempty"`              // 是否展示加班时长
-	HideStaffPunchTime      *bool                    `json:"hide_staff_punch_time,omitempty"`       // 是否隐藏员工打卡详情
-	FacePunch               *bool                    `json:"face_punch,omitempty"`                  // 是否开启人脸打卡
-	FacePunchCfg            *int                     `json:"face_punch_cfg,omitempty"`              // 人脸打卡规则， 1：每次打卡均需人脸识别 2：疑似需要
-	FaceLiveNeedAction      *bool                    `json:"face_live_need_action,omitempty"`       // 人脸打卡规则， false：开启活体验证 true：0动作验证，仅在 face_punch_cfg = 1 时有效
-	FaceDowngrade           *bool                    `json:"face_downgrade,omitempty"`              // 脸识别失败时允许普通拍照打卡
-	ReplaceBasicPic         *bool                    `json:"replace_basic_pic,omitempty"`           // 是否允许替换基准图片
-	Machines                []*Machine               `json:"machines,omitempty"`                    // 考勤机信息
-	GpsRange                *int                     `json:"gps_range,omitempty"`                   // GPS打卡的地址范围
-	Locations               []*Location              `json:"locations,omitempty"`                   // GPS打卡的地址信息
-	GroupType               *int                     `json:"group_type,omitempty"`                  // 考勤类型 0：固定考勤  2：排班考勤， 3：自由班次
-	PunchDayShiftIds        []string                 `json:"punch_day_shift_ids,omitempty"`         // 固定班次必需填
-	FreePunchCfg            *FreePunchCfg            `json:"free_punch_cfg,omitempty"`              //
-	CalendarId              *int                     `json:"calendar_id,omitempty"`                 // 国家日历 id，（0：不根据国家日历休息, 1：中国，2：美国，3：日本，4：印度，5：新加坡），默认 1
-	NeedPunchSpecialDays    []*PunchSpecialDateShift `json:"need_punch_special_days,omitempty"`     // 强制需要打卡的日期
-	NoNeedPunchSpecialDays  []*PunchSpecialDateShift `json:"no_need_punch_special_days,omitempty"`  // 强制不需要打卡的日期
-	WorkDayNoPunchAsLack    *bool                    `json:"work_day_no_punch_as_lack,omitempty"`   // 自由班次下工作日不打卡是否记为缺卡
-	RemedyPeriodType        *int                     `json:"remedy_period_type,omitempty"`          // 补卡周期类型
-	RemedyPeriodCustomDate  *int                     `json:"remedy_period_custom_date,omitempty"`   // 补卡自定义周期起始日期
-	PunchType               *int                     `json:"punch_type,omitempty"`                  // 打卡类型，位运算。1:GPS打卡；2:wifi打卡；4:考勤机打卡；8:IP打卡
-	EffectTime              *string                  `json:"effect_time,omitempty"`                 // 生效时间，精确到秒的时间戳
-	FixshiftEffectTime      *string                  `json:"fixshift_effect_time,omitempty"`        // 固定班次生效时间，精确到秒的时间戳
-	MemberEffectTime        *string                  `json:"member_effect_time,omitempty"`          // 参加考勤的人员、部门变动生效时间，精确到秒的时间戳
-	RestClockInNeedApproval *bool                    `json:"rest_clockIn_need_approval,omitempty"`  // 休息日打卡需审批
-	ClockInNeedPhoto        *bool                    `json:"clockIn_need_photo,omitempty"`          // 每次打卡均需拍照
-	MemberStatusChange      *MemberStatusChange      `json:"member_status_change,omitempty"`        // 人员异动打卡设置
-	LeaveNeedPunch          *bool                    `json:"leave_need_punch,omitempty"`            // 请假离岗或返岗是否需打卡
-	LeaveNeedPunchCfg       *LeaveNeedPunchCfg       `json:"leave_need_punch_cfg,omitempty"`        // 请假离岗或返岗打卡规则
-	GoOutNeedPunch          *int                     `json:"go_out_need_punch,omitempty"`           // 外出期间是否需打卡
-	GoOutNeedPunchCfg       *LeaveNeedPunchCfg       `json:"go_out_need_punch_cfg,omitempty"`       // 外出期间打卡规则
-	TravelNeedPunch         *int                     `json:"travel_need_punch,omitempty"`           // 出差期间是否需打卡
-	TravelNeedPunchCfg      *LeaveNeedPunchCfg       `json:"travel_need_punch_cfg,omitempty"`       // 出差期间打卡规则
-	NeedPunchMembers        []*PunchMember           `json:"need_punch_members,omitempty"`          // 需要打卡的人员配置（新）
-	NoNeedPunchMembers      []*PunchMember           `json:"no_need_punch_members,omitempty"`       // 无需打卡的人员配置（新）
+	GroupId                   *string                  `json:"group_id,omitempty"`                      // 考勤组的Id， 需要从获取用户打卡结果信息的接口中获取groupId，修改考勤组时必填
+	GroupName                 *string                  `json:"group_name,omitempty"`                    // 考勤组名称
+	TimeZone                  *string                  `json:"time_zone,omitempty"`                     // 考勤组时区
+	BindDeptIds               []string                 `json:"bind_dept_ids,omitempty"`                 // 参加考勤的部门id列表
+	ExceptDeptIds             []string                 `json:"except_dept_ids,omitempty"`               // 无需考勤的部门id列表
+	BindUserIds               []string                 `json:"bind_user_ids,omitempty"`                 // 参加考勤的人员id列表
+	ExceptUserIds             []string                 `json:"except_user_ids,omitempty"`               // 参加考勤的人员id列表
+	GroupLeaderIds            []string                 `json:"group_leader_ids,omitempty"`              // 考勤组主负责人id列表
+	SubGroupLeaderIds         []string                 `json:"sub_group_leader_ids,omitempty"`          // 考勤组子负责人id列表
+	AllowOutPunch             *bool                    `json:"allow_out_punch,omitempty"`               // 是否允许外勤打卡
+	OutPunchNeedApproval      *bool                    `json:"out_punch_need_approval,omitempty"`       // 外勤打卡需审批，先审批后打卡（需要允许外勤打卡才能设置生效）
+	OutPunchNeedPostApproval  *bool                    `json:"out_punch_need_post_approval,omitempty"`  // 外勤打卡需审批，先打卡后审批（需要允许外勤打卡才能设置生效）
+	OutPunchNeedRemark        *bool                    `json:"out_punch_need_remark,omitempty"`         // 外勤打卡需填写备注（需要允许外勤打卡才能设置生效）
+	OutPunchNeedPhoto         *bool                    `json:"out_punch_need_photo,omitempty"`          // 外勤打卡需拍照（需要允许外勤打卡才能设置生效）
+	OutPunchAllowedHideAddr   *bool                    `json:"out_punch_allowed_hide_addr,omitempty"`   // 外勤打卡允许员工隐藏详细地址（需要允许外勤打卡才能设置生效）
+	OutPunchAllowedAdjustAddr *bool                    `json:"out_punch_allowed_adjust_addr,omitempty"` // 外勤打卡允许微调地址（需要允许外勤打卡才能设置生效）
+	AdjustRange               *int                     `json:"adjust_range,omitempty"`                  // 微调范围，默认为 50 米
+	AllowPcPunch              *bool                    `json:"allow_pc_punch,omitempty"`                // 是否允许pc打卡
+	AllowRemedy               *bool                    `json:"allow_remedy,omitempty"`                  // 是否允许补卡
+	RemedyLimit               *bool                    `json:"remedy_limit,omitempty"`                  // 补卡次数是否限制（需要允许补卡才能设置生效）
+	RemedyLimitCount          *int                     `json:"remedy_limit_count,omitempty"`            // 补卡次数（需要允许补卡才能设置生效）
+	RemedyDateLimit           *bool                    `json:"remedy_date_limit,omitempty"`             // 补卡时间是否限制（需要允许补卡才能设置生效）
+	RemedyDateNum             *int                     `json:"remedy_date_num,omitempty"`               // 补卡时间,几天内可以发起补卡（需要允许补卡才能设置生效）
+	AllowRemedyTypeLack       *bool                    `json:"allow_remedy_type_lack,omitempty"`        // 允许缺卡补卡（需要允许补卡才能设置生效）
+	AllowRemedyTypeLate       *bool                    `json:"allow_remedy_type_late,omitempty"`        // 允许迟到补卡（需要允许补卡才能设置生效）
+	AllowRemedyTypeEarly      *bool                    `json:"allow_remedy_type_early,omitempty"`       // 允许早退补卡（需要允许补卡才能设置生效）
+	AllowRemedyTypeNormal     *bool                    `json:"allow_remedy_type_normal,omitempty"`      // 允许正常补卡（需要允许补卡才能设置生效）
+	ShowCumulativeTime        *bool                    `json:"show_cumulative_time,omitempty"`          // 是否展示累计时长
+	ShowOverTime              *bool                    `json:"show_over_time,omitempty"`                // 是否展示加班时长
+	HideStaffPunchTime        *bool                    `json:"hide_staff_punch_time,omitempty"`         // 是否隐藏员工打卡详情
+	FacePunch                 *bool                    `json:"face_punch,omitempty"`                    // 是否开启人脸打卡
+	FacePunchCfg              *int                     `json:"face_punch_cfg,omitempty"`                // 人脸打卡规则， 1：每次打卡均需人脸识别 2：疑似需要
+	FaceLiveNeedAction        *bool                    `json:"face_live_need_action,omitempty"`         // 人脸打卡规则， false：开启活体验证 true：0动作验证，仅在 face_punch_cfg = 1 时有效
+	FaceDowngrade             *bool                    `json:"face_downgrade,omitempty"`                // 脸识别失败时允许普通拍照打卡
+	ReplaceBasicPic           *bool                    `json:"replace_basic_pic,omitempty"`             // 是否允许替换基准图片
+	Machines                  []*Machine               `json:"machines,omitempty"`                      // 考勤机信息
+	GpsRange                  *int                     `json:"gps_range,omitempty"`                     // GPS打卡的地址范围
+	Locations                 []*Location              `json:"locations,omitempty"`                     // GPS打卡的地址信息
+	GroupType                 *int                     `json:"group_type,omitempty"`                    // 考勤类型 0：固定考勤  2：排班考勤， 3：自由班次
+	PunchDayShiftIds          []string                 `json:"punch_day_shift_ids,omitempty"`           // 固定班次必需填
+	FreePunchCfg              *FreePunchCfg            `json:"free_punch_cfg,omitempty"`                //
+	CalendarId                *int                     `json:"calendar_id,omitempty"`                   // 国家日历 id，（0：不根据国家日历休息, 1：中国，2：美国，3：日本，4：印度，5：新加坡），默认 1
+	NeedPunchSpecialDays      []*PunchSpecialDateShift `json:"need_punch_special_days,omitempty"`       // 强制需要打卡的日期
+	NoNeedPunchSpecialDays    []*PunchSpecialDateShift `json:"no_need_punch_special_days,omitempty"`    // 强制不需要打卡的日期
+	WorkDayNoPunchAsLack      *bool                    `json:"work_day_no_punch_as_lack,omitempty"`     // 自由班次下工作日不打卡是否记为缺卡
+	RemedyPeriodType          *int                     `json:"remedy_period_type,omitempty"`            // 补卡周期类型
+	RemedyPeriodCustomDate    *int                     `json:"remedy_period_custom_date,omitempty"`     // 补卡自定义周期起始日期
+	PunchType                 *int                     `json:"punch_type,omitempty"`                    // 打卡类型，位运算。1:GPS打卡；2:wifi打卡；4:考勤机打卡；8:IP打卡
+	EffectTime                *string                  `json:"effect_time,omitempty"`                   // 生效时间，精确到秒的时间戳
+	FixshiftEffectTime        *string                  `json:"fixshift_effect_time,omitempty"`          // 固定班次生效时间，精确到秒的时间戳
+	MemberEffectTime          *string                  `json:"member_effect_time,omitempty"`            // 参加考勤的人员、部门变动生效时间，精确到秒的时间戳
+	RestClockInNeedApproval   *bool                    `json:"rest_clockIn_need_approval,omitempty"`    // 休息日打卡需审批
+	ClockInNeedPhoto          *bool                    `json:"clockIn_need_photo,omitempty"`            // 每次打卡均需拍照
+	MemberStatusChange        *MemberStatusChange      `json:"member_status_change,omitempty"`          // 人员异动打卡设置
+	LeaveNeedPunch            *bool                    `json:"leave_need_punch,omitempty"`              // 请假离岗或返岗是否需打卡
+	LeaveNeedPunchCfg         *LeaveNeedPunchCfg       `json:"leave_need_punch_cfg,omitempty"`          // 请假离岗或返岗打卡规则
+	GoOutNeedPunch            *int                     `json:"go_out_need_punch,omitempty"`             // 外出期间是否需打卡
+	GoOutNeedPunchCfg         *LeaveNeedPunchCfg       `json:"go_out_need_punch_cfg,omitempty"`         // 外出期间打卡规则
+	TravelNeedPunch           *int                     `json:"travel_need_punch,omitempty"`             // 出差期间是否需打卡
+	TravelNeedPunchCfg        *LeaveNeedPunchCfg       `json:"travel_need_punch_cfg,omitempty"`         // 出差期间打卡规则
+	NeedPunchMembers          []*PunchMember           `json:"need_punch_members,omitempty"`            // 需要打卡的人员配置（新）
+	NoNeedPunchMembers        []*PunchMember           `json:"no_need_punch_members,omitempty"`         // 无需打卡的人员配置（新）
+	SaveAutoChanges           *bool                    `json:"save_auto_changes,omitempty"`             // 是否直接保存可以自动变更的冲突规则
+	OrgChangeAutoAdjust       *bool                    `json:"org_change_auto_adjust,omitempty"`        // 人员异动开关（人员组织架构变更后是否允许自动调整到该考勤组）
+	BindDefaultDeptIds        []string                 `json:"bind_default_dept_ids,omitempty"`         // 默认出勤的部门id列表
+	BindDefaultUserIds        []string                 `json:"bind_default_user_ids,omitempty"`         // 默认出勤的用户ID列表
+	OvertimeClockCfg          *OvertimeClockCfg        `json:"overtime_clock_cfg,omitempty"`            // 加班打卡规则
+	NewCalendarId             *string                  `json:"new_calendar_id,omitempty"`               // 节假日id，（如果考勤组使用了自定义节假日，请用此参数传入节假日id）
+	AllowApplyPunch           *bool                    `json:"allow_apply_punch,omitempty"`             // 定位不准时是否允许申请打卡
 }
 
 type GetGroupResp struct {
@@ -7080,9 +8290,9 @@ func (builder *SearchGroupReqBodyBuilder) Build() *SearchGroupReqBody {
 }
 
 type SearchGroupPathReqBodyBuilder struct {
-	groupName          string // 考勤组名称
+	groupName          string
 	groupNameFlag      bool
-	exactlyMatched     bool // 是否精准匹配，默认为false:模糊匹配; true:精准匹配
+	exactlyMatched     bool
 	exactlyMatchedFlag bool
 }
 
@@ -7271,19 +8481,19 @@ func (builder *PatchLeaveAccrualRecordReqBodyBuilder) Build() *PatchLeaveAccrual
 }
 
 type PatchLeaveAccrualRecordPathReqBodyBuilder struct {
-	leaveGrantingRecordId     string // 授予记录的唯一ID
+	leaveGrantingRecordId     string
 	leaveGrantingRecordIdFlag bool
-	employmentId              string // 员工ID
+	employmentId              string
 	employmentIdFlag          bool
-	leaveTypeId               string // 假期类型ID
+	leaveTypeId               string
 	leaveTypeIdFlag           bool
-	reason                    []*LangText // 修改授予记录原因
+	reason                    []*LangText
 	reasonFlag                bool
-	timeOffset                int // 时间偏移，东八区：480	8*60
+	timeOffset                int
 	timeOffsetFlag            bool
-	expirationDate            string // 失效日期，格式"2020-01-01"
+	expirationDate            string
 	expirationDateFlag        bool
-	quantity                  string // 修改source 余额
+	quantity                  string
 	quantityFlag              bool
 }
 
@@ -7403,6 +8613,14 @@ func (builder *PatchLeaveAccrualRecordReqBuilder) LeaveId(leaveId string) *Patch
 	return builder
 }
 
+// 用户 ID 类型
+//
+// 示例值：open_id
+func (builder *PatchLeaveAccrualRecordReqBuilder) UserIdType(userIdType string) *PatchLeaveAccrualRecordReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
 //
 func (builder *PatchLeaveAccrualRecordReqBuilder) Body(body *PatchLeaveAccrualRecordReqBody) *PatchLeaveAccrualRecordReqBuilder {
 	builder.body = body
@@ -7413,6 +8631,7 @@ func (builder *PatchLeaveAccrualRecordReqBuilder) Build() *PatchLeaveAccrualReco
 	req := &PatchLeaveAccrualRecordReq{}
 	req.apiReq = &larkcore.ApiReq{}
 	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
 	req.apiReq.Body = builder.body
 	return req
 }
@@ -7530,15 +8749,15 @@ func (builder *GetLeaveEmployExpireRecordReqBodyBuilder) Build() *GetLeaveEmploy
 }
 
 type GetLeaveEmployExpireRecordPathReqBodyBuilder struct {
-	employmentId            string // 员工ID
+	employmentId            string
 	employmentIdFlag        bool
-	leaveTypeId             string // 假期类型ID
+	leaveTypeId             string
 	leaveTypeIdFlag         bool
-	startExpirationDate     string // 失效最早日期  2023-04-10 格式
+	startExpirationDate     string
 	startExpirationDateFlag bool
-	endExpirationDate       string // 失效最晚日期 2023-05-10 格式
+	endExpirationDate       string
 	endExpirationDateFlag   bool
-	timeOffset              int // 时间偏移，东八区：480	8*60， 如果没有这个参数，默认东八区
+	timeOffset              int
 	timeOffsetFlag          bool
 }
 
@@ -7634,6 +8853,14 @@ func (builder *GetLeaveEmployExpireRecordReqBuilder) LeaveId(leaveId string) *Ge
 	return builder
 }
 
+// 用户 ID 类型
+//
+// 示例值：open_id
+func (builder *GetLeaveEmployExpireRecordReqBuilder) UserIdType(userIdType string) *GetLeaveEmployExpireRecordReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
 //
 func (builder *GetLeaveEmployExpireRecordReqBuilder) Body(body *GetLeaveEmployExpireRecordReqBody) *GetLeaveEmployExpireRecordReqBuilder {
 	builder.body = body
@@ -7644,6 +8871,7 @@ func (builder *GetLeaveEmployExpireRecordReqBuilder) Build() *GetLeaveEmployExpi
 	req := &GetLeaveEmployExpireRecordReq{}
 	req.apiReq = &larkcore.ApiReq{}
 	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
 	req.apiReq.Body = builder.body
 	return req
 }
@@ -7798,6 +9026,7 @@ type GetShiftRespData struct {
 	ShiftId           *string              `json:"shift_id,omitempty"`              // 班次Id
 	ShiftName         *string              `json:"shift_name,omitempty"`            // 班次名称
 	PunchTimes        *int                 `json:"punch_times,omitempty"`           // 打卡次数
+	SubShiftLeaderIds []string             `json:"sub_shift_leader_ids,omitempty"`  // 排班组子负责人id列表
 	IsFlexible        *bool                `json:"is_flexible,omitempty"`           // 是否弹性打卡
 	FlexibleMinutes   *int                 `json:"flexible_minutes,omitempty"`      // 弹性打卡时间，设置【上班最多可晚到】与【下班最多可早走】时间，如果不设置flexible_rule则生效
 	FlexibleRule      []*FlexibleRule      `json:"flexible_rule,omitempty"`         // 弹性打卡时间设置
@@ -7805,6 +9034,7 @@ type GetShiftRespData struct {
 	PunchTimeRule     []*PunchTimeRule     `json:"punch_time_rule,omitempty"`       // 打卡规则
 	LateOffLateOnRule []*LateOffLateOnRule `json:"late_off_late_on_rule,omitempty"` // 晚走晚到规则
 	RestTimeRule      []*RestRule          `json:"rest_time_rule,omitempty"`        // 休息规则
+	OvertimeRule      []*OvertimeRule      `json:"overtime_rule,omitempty"`         // 打卡规则
 }
 
 type GetShiftResp struct {
@@ -7869,8 +9099,8 @@ type ListShiftReq struct {
 
 type ListShiftRespData struct {
 	ShiftList []*Shift `json:"shift_list,omitempty"` // 班次列表
-	PageToken *string  `json:"page_token,omitempty"` //
-	HasMore   *bool    `json:"has_more,omitempty"`   //
+	PageToken *string  `json:"page_token,omitempty"` // 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
+	HasMore   *bool    `json:"has_more,omitempty"`   // 是否还有更多项
 }
 
 type ListShiftResp struct {
@@ -7919,6 +9149,7 @@ type QueryShiftRespData struct {
 	ShiftId           *string              `json:"shift_id,omitempty"`              // 班次Id
 	ShiftName         *string              `json:"shift_name,omitempty"`            // 班次名称
 	PunchTimes        *int                 `json:"punch_times,omitempty"`           // 打卡次数
+	SubShiftLeaderIds []string             `json:"sub_shift_leader_ids,omitempty"`  // 排班组子负责人id列表
 	IsFlexible        *bool                `json:"is_flexible,omitempty"`           // 是否弹性打卡
 	FlexibleMinutes   *int                 `json:"flexible_minutes,omitempty"`      // 弹性打卡时间，设置【上班最多可晚到】与【下班最多可早走】时间，如果不设置flexible_rule则生效
 	FlexibleRule      []*FlexibleRule      `json:"flexible_rule,omitempty"`         // 弹性打卡时间设置
@@ -7926,6 +9157,7 @@ type QueryShiftRespData struct {
 	PunchTimeRule     []*PunchTimeRule     `json:"punch_time_rule,omitempty"`       // 打卡规则
 	LateOffLateOnRule []*LateOffLateOnRule `json:"late_off_late_on_rule,omitempty"` // 晚走晚到规则
 	RestTimeRule      []*RestRule          `json:"rest_time_rule,omitempty"`        // 休息规则
+	OvertimeRule      []*OvertimeRule      `json:"overtime_rule,omitempty"`         // 打卡规则
 }
 
 type QueryShiftResp struct {
@@ -7966,7 +9198,7 @@ func (builder *CreateUserApprovalReqBodyBuilder) Build() *CreateUserApprovalReqB
 }
 
 type CreateUserApprovalPathReqBodyBuilder struct {
-	userApproval     *UserApproval // 审批信息
+	userApproval     *UserApproval
 	userApprovalFlag bool
 }
 
@@ -8163,19 +9395,19 @@ func (builder *QueryUserApprovalReqBodyBuilder) Build() *QueryUserApprovalReqBod
 }
 
 type QueryUserApprovalPathReqBodyBuilder struct {
-	userIds           []string // employee_no 或 employee_id 列表
+	userIds           []string
 	userIdsFlag       bool
-	checkDateFrom     int // 查询的起始工作日
+	checkDateFrom     int
 	checkDateFromFlag bool
-	checkDateTo       int // 查询的结束工作日，与 check_date_from 的时间间隔不超过 30 天
+	checkDateTo       int
 	checkDateToFlag   bool
-	checkDateType     string // 查询依据的时间类型（不填默认依据PeriodTime）
+	checkDateType     string
 	checkDateTypeFlag bool
-	status            int // 查询状态（不填默认查询已通过状态）
+	status            int
 	statusFlag        bool
-	checkTimeFrom     string // 查询的起始时间，精确到秒的时间戳
+	checkTimeFrom     string
 	checkTimeFromFlag bool
-	checkTimeTo       string // 查询的结束时间，精确到秒的时间戳
+	checkTimeTo       string
 	checkTimeToFlag   bool
 }
 
@@ -8380,9 +9612,9 @@ func (builder *BatchCreateUserDailyShiftReqBodyBuilder) Build() *BatchCreateUser
 }
 
 type BatchCreateUserDailyShiftPathReqBodyBuilder struct {
-	userDailyShifts     []*UserDailyShift // 班表信息列表（数量限制50以内）
+	userDailyShifts     []*UserDailyShift
 	userDailyShiftsFlag bool
-	operatorId          string // 操作人uid，如果您未操作[考勤管理后台“API 接入”流程](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/attendance-v1/attendance-development-guidelines)，则此字段为必填字段
+	operatorId          string
 	operatorIdFlag      bool
 }
 
@@ -8536,11 +9768,11 @@ func (builder *QueryUserDailyShiftReqBodyBuilder) Build() *QueryUserDailyShiftRe
 }
 
 type QueryUserDailyShiftPathReqBodyBuilder struct {
-	userIds           []string // employee_no 或 employee_id 列表
+	userIds           []string
 	userIdsFlag       bool
-	checkDateFrom     int // 查询的起始工作日
+	checkDateFrom     int
 	checkDateFromFlag bool
-	checkDateTo       int // 查询的结束工作日
+	checkDateTo       int
 	checkDateToFlag   bool
 }
 
@@ -8679,7 +9911,7 @@ func (builder *BatchCreateUserFlowReqBodyBuilder) Build() *BatchCreateUserFlowRe
 }
 
 type BatchCreateUserFlowPathReqBodyBuilder struct {
-	flowRecords     []*UserFlow // 打卡流水记录列表(数量限制50)
+	flowRecords     []*UserFlow
 	flowRecordsFlag bool
 }
 
@@ -8813,14 +10045,15 @@ type GetUserFlowRespData struct {
 	Comment      *string `json:"comment,omitempty"`       // 打卡备注
 	RecordId     *string `json:"record_id,omitempty"`     // 打卡记录ID
 
-	Ssid      *string  `json:"ssid,omitempty"`       // 打卡wifi ssid
-	Bssid     *string  `json:"bssid,omitempty"`      // 打卡wifi MAC地址
-	IsField   *bool    `json:"is_field,omitempty"`   // 是否为外勤打卡
-	IsWifi    *bool    `json:"is_wifi,omitempty"`    // 是否为wifi打卡
-	Type      *int     `json:"type,omitempty"`       // 记录生成方式
-	PhotoUrls []string `json:"photo_urls,omitempty"` // 打卡照片列表
-
-	CheckResult *string `json:"check_result,omitempty"` // 打卡结果
+	Ssid        *string  `json:"ssid,omitempty"`         // 打卡wifi ssid
+	Bssid       *string  `json:"bssid,omitempty"`        // 打卡wifi MAC地址
+	IsField     *bool    `json:"is_field,omitempty"`     // 是否为外勤打卡
+	IsWifi      *bool    `json:"is_wifi,omitempty"`      // 是否为wifi打卡
+	Type        *int     `json:"type,omitempty"`         // 记录生成方式
+	PhotoUrls   []string `json:"photo_urls,omitempty"`   // 打卡照片列表
+	DeviceId    *string  `json:"device_id,omitempty"`    // 打卡设备ID
+	CheckResult *string  `json:"check_result,omitempty"` // 打卡结果
+	ExternalId  *string  `json:"external_id,omitempty"`  // 用户导入的外部打卡记录ID
 }
 
 type GetUserFlowResp struct {
@@ -8889,11 +10122,11 @@ func (builder *QueryUserFlowReqBodyBuilder) Build() *QueryUserFlowReqBody {
 }
 
 type QueryUserFlowPathReqBodyBuilder struct {
-	userIds           []string // employee_no 或 employee_id 列表，长度不超过 50
+	userIds           []string
 	userIdsFlag       bool
-	checkTimeFrom     string // 查询的起始时间，时间戳
+	checkTimeFrom     string
 	checkTimeFromFlag bool
-	checkTimeTo       string // 查询的结束时间，时间戳
+	checkTimeTo       string
 	checkTimeToFlag   bool
 }
 
@@ -9040,7 +10273,7 @@ func (builder *ModifyUserSettingReqBodyBuilder) Build() *ModifyUserSettingReqBod
 }
 
 type ModifyUserSettingPathReqBodyBuilder struct {
-	userSetting     *UserSetting // 用户设置
+	userSetting     *UserSetting
 	userSettingFlag bool
 }
 
@@ -9153,7 +10386,7 @@ func (builder *QueryUserSettingReqBodyBuilder) Build() *QueryUserSettingReqBody 
 }
 
 type QueryUserSettingPathReqBodyBuilder struct {
-	userIds     []string // employee_no 或 employee_id 列表
+	userIds     []string
 	userIdsFlag bool
 }
 
@@ -9364,21 +10597,21 @@ func (builder *QueryUserStatsDataReqBodyBuilder) Build() *QueryUserStatsDataReqB
 }
 
 type QueryUserStatsDataPathReqBodyBuilder struct {
-	locale               string // 语言类型
+	locale               string
 	localeFlag           bool
-	statsType            string // 统计类型
+	statsType            string
 	statsTypeFlag        bool
-	startDate            int // 开始时间
+	startDate            int
 	startDateFlag        bool
-	endDate              int // 结束时间;（时间间隔不超过 31 天）
+	endDate              int
 	endDateFlag          bool
-	userIds              []string // 查询的用户 ID 列表;（用户数量不超过 200）
+	userIds              []string
 	userIdsFlag          bool
-	needHistory          bool // 是否需要历史数据
+	needHistory          bool
 	needHistoryFlag      bool
-	currentGroupOnly     bool // 只展示当前考勤组
+	currentGroupOnly     bool
 	currentGroupOnlyFlag bool
-	userId               string // 查询用户id，同【更新统计设置】、【查询统计设置】user_id（新系统用户必填，否则会报错）
+	userId               string
 	userIdFlag           bool
 }
 
@@ -9625,13 +10858,13 @@ func (builder *QueryUserStatsFieldReqBodyBuilder) Build() *QueryUserStatsFieldRe
 }
 
 type QueryUserStatsFieldPathReqBodyBuilder struct {
-	locale        string // 语言类型
+	locale        string
 	localeFlag    bool
-	statsType     string // 统计类型
+	statsType     string
 	statsTypeFlag bool
-	startDate     int // 开始时间
+	startDate     int
 	startDateFlag bool
-	endDate       int // 结束时间（时间间隔不超过 40 天）
+	endDate       int
 	endDateFlag   bool
 }
 
@@ -9811,11 +11044,11 @@ func (builder *QueryUserStatsViewReqBodyBuilder) Build() *QueryUserStatsViewReqB
 }
 
 type QueryUserStatsViewPathReqBodyBuilder struct {
-	locale        string // 语言类型
+	locale        string
 	localeFlag    bool
-	statsType     string // 统计类型
+	statsType     string
 	statsTypeFlag bool
-	userId        string // 查询用户id，同【查询统计数据】、【更新统计设置】user_id
+	userId        string
 	userIdFlag    bool
 }
 
@@ -9954,7 +11187,7 @@ func (builder *UpdateUserStatsViewReqBodyBuilder) Build() *UpdateUserStatsViewRe
 }
 
 type UpdateUserStatsViewPathReqBodyBuilder struct {
-	view     *UserStatsView // 统计设置
+	view     *UserStatsView
 	viewFlag bool
 }
 
@@ -10049,12 +11282,14 @@ func (resp *UpdateUserStatsViewResp) Success() bool {
 }
 
 type QueryUserTaskReqBodyBuilder struct {
-	userIds           []string // employee_no 或 employee_id 列表，长度不超过 50
-	userIdsFlag       bool
-	checkDateFrom     int // 查询的起始工作日
-	checkDateFromFlag bool
-	checkDateTo       int // 查询的结束工作日
-	checkDateToFlag   bool
+	userIds                []string // employee_no 或 employee_id 列表，长度不超过 50
+	userIdsFlag            bool
+	checkDateFrom          int // 查询的起始工作日
+	checkDateFromFlag      bool
+	checkDateTo            int // 查询的结束工作日
+	checkDateToFlag        bool
+	needOvertimeResult     bool // 是否需要加班班段打卡结果
+	needOvertimeResultFlag bool
 }
 
 func NewQueryUserTaskReqBodyBuilder() *QueryUserTaskReqBodyBuilder {
@@ -10089,6 +11324,15 @@ func (builder *QueryUserTaskReqBodyBuilder) CheckDateTo(checkDateTo int) *QueryU
 	return builder
 }
 
+// 是否需要加班班段打卡结果
+//
+//示例值：true
+func (builder *QueryUserTaskReqBodyBuilder) NeedOvertimeResult(needOvertimeResult bool) *QueryUserTaskReqBodyBuilder {
+	builder.needOvertimeResult = needOvertimeResult
+	builder.needOvertimeResultFlag = true
+	return builder
+}
+
 func (builder *QueryUserTaskReqBodyBuilder) Build() *QueryUserTaskReqBody {
 	req := &QueryUserTaskReqBody{}
 	if builder.userIdsFlag {
@@ -10100,16 +11344,21 @@ func (builder *QueryUserTaskReqBodyBuilder) Build() *QueryUserTaskReqBody {
 	if builder.checkDateToFlag {
 		req.CheckDateTo = &builder.checkDateTo
 	}
+	if builder.needOvertimeResultFlag {
+		req.NeedOvertimeResult = &builder.needOvertimeResult
+	}
 	return req
 }
 
 type QueryUserTaskPathReqBodyBuilder struct {
-	userIds           []string // employee_no 或 employee_id 列表，长度不超过 50
-	userIdsFlag       bool
-	checkDateFrom     int // 查询的起始工作日
-	checkDateFromFlag bool
-	checkDateTo       int // 查询的结束工作日
-	checkDateToFlag   bool
+	userIds                []string
+	userIdsFlag            bool
+	checkDateFrom          int
+	checkDateFromFlag      bool
+	checkDateTo            int
+	checkDateToFlag        bool
+	needOvertimeResult     bool
+	needOvertimeResultFlag bool
 }
 
 func NewQueryUserTaskPathReqBodyBuilder() *QueryUserTaskPathReqBodyBuilder {
@@ -10144,6 +11393,15 @@ func (builder *QueryUserTaskPathReqBodyBuilder) CheckDateTo(checkDateTo int) *Qu
 	return builder
 }
 
+// 是否需要加班班段打卡结果
+//
+// 示例值：true
+func (builder *QueryUserTaskPathReqBodyBuilder) NeedOvertimeResult(needOvertimeResult bool) *QueryUserTaskPathReqBodyBuilder {
+	builder.needOvertimeResult = needOvertimeResult
+	builder.needOvertimeResultFlag = true
+	return builder
+}
+
 func (builder *QueryUserTaskPathReqBodyBuilder) Build() (*QueryUserTaskReqBody, error) {
 	req := &QueryUserTaskReqBody{}
 	if builder.userIdsFlag {
@@ -10154,6 +11412,9 @@ func (builder *QueryUserTaskPathReqBodyBuilder) Build() (*QueryUserTaskReqBody, 
 	}
 	if builder.checkDateToFlag {
 		req.CheckDateTo = &builder.checkDateTo
+	}
+	if builder.needOvertimeResultFlag {
+		req.NeedOvertimeResult = &builder.needOvertimeResult
 	}
 	return req, nil
 }
@@ -10211,9 +11472,10 @@ func (builder *QueryUserTaskReqBuilder) Build() *QueryUserTaskReq {
 }
 
 type QueryUserTaskReqBody struct {
-	UserIds       []string `json:"user_ids,omitempty"`        // employee_no 或 employee_id 列表，长度不超过 50
-	CheckDateFrom *int     `json:"check_date_from,omitempty"` // 查询的起始工作日
-	CheckDateTo   *int     `json:"check_date_to,omitempty"`   // 查询的结束工作日
+	UserIds            []string `json:"user_ids,omitempty"`             // employee_no 或 employee_id 列表，长度不超过 50
+	CheckDateFrom      *int     `json:"check_date_from,omitempty"`      // 查询的起始工作日
+	CheckDateTo        *int     `json:"check_date_to,omitempty"`        // 查询的结束工作日
+	NeedOvertimeResult *bool    `json:"need_overtime_result,omitempty"` // 是否需要加班班段打卡结果
 }
 
 type QueryUserTaskReq struct {
@@ -10376,15 +11638,15 @@ func (builder *QueryUserTaskRemedyReqBodyBuilder) Build() *QueryUserTaskRemedyRe
 }
 
 type QueryUserTaskRemedyPathReqBodyBuilder struct {
-	userIds           []string // employee_no 或 employee_id 列表
+	userIds           []string
 	userIdsFlag       bool
-	checkTimeFrom     string // 查询的起始时间，精确到秒的时间戳
+	checkTimeFrom     string
 	checkTimeFromFlag bool
-	checkTimeTo       string // 查询的结束时间，精确到秒的时间戳
+	checkTimeTo       string
 	checkTimeToFlag   bool
-	checkDateType     string // 查询依据的时间类型（默认依据PeriodTime，如果使用非默认的，非特定租户不支持）
+	checkDateType     string
 	checkDateTypeFlag bool
-	status            int // 查询状态（不填默认查询已通过状态）
+	status            int
 	statusFlag        bool
 }
 
@@ -10563,9 +11825,9 @@ func (builder *QueryUserAllowedRemedysUserTaskRemedyReqBodyBuilder) Build() *Que
 }
 
 type QueryUserAllowedRemedysUserTaskRemedyPathReqBodyBuilder struct {
-	userId         string // 用户 ID
+	userId         string
 	userIdFlag     bool
-	remedyDate     int // 补卡日期
+	remedyDate     int
 	remedyDateFlag bool
 }
 

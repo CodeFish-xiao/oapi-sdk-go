@@ -30,7 +30,7 @@ func main() {
 		CalendarId("feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn").
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.CalendarAcl.Unsubscription(context.Background(), req)
+	resp, err := client.Calendar.V4.CalendarAcl.Unsubscription(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

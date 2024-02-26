@@ -32,7 +32,7 @@ func main() {
 		Name("2-2").
 		Build()
 	// 发起请求
-	resp, err := client.Contact.JobFamily.List(context.Background(), req)
+	resp, err := client.Contact.V3.JobFamily.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

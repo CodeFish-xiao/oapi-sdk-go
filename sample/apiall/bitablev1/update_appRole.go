@@ -36,7 +36,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppRole.Update(context.Background(), req)
+	resp, err := client.Bitable.V1.AppRole.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -35,11 +35,14 @@ func main() {
 			OffboardingReasonUniqueIdentifier("reason_for_offboarding_option8").
 			OffboardingReasonExplanation("离职原因说明").
 			InitiatorId("6982509313466189341").
+			AddBlockList(false).
+			BlockReason("红线").
+			BlockReasonExplanation("xx 年 xx 月 xx 日因 xx 原因红线").
 			CustomFields([]*larkcorehr.ObjectFieldData{larkcorehr.NewObjectFieldDataBuilder().Build()}).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Offboarding.Submit(context.Background(), req)
+	resp, err := client.Corehr.V1.Offboarding.Submit(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

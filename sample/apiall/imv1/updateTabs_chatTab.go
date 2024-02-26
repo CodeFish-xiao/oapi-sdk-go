@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Im.ChatTab.UpdateTabs(context.Background(), req)
+	resp, err := client.Im.V1.ChatTab.UpdateTabs(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		PageToken("1").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.JobProcess.List(context.Background(), req)
+	resp, err := client.Hire.V1.JobProcess.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

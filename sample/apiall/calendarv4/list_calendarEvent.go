@@ -34,9 +34,10 @@ func main() {
 		SyncToken("ListCalendarsSyncToken_1632452910").
 		StartTime("1631777271").
 		EndTime("1631777271").
+		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.CalendarEvent.List(context.Background(), req)
+	resp, err := client.Calendar.V4.CalendarEvent.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

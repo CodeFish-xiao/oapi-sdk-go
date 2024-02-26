@@ -30,7 +30,7 @@ func main() {
 		GroupId("6919358128597097404").
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.Group.Delete(context.Background(), req)
+	resp, err := client.Attendance.V1.Group.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

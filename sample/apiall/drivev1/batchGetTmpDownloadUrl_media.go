@@ -31,7 +31,7 @@ func main() {
 		Extra("[请参考-上传点类型及对应Extra说明](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/drive-v1/media/introduction)").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.Media.BatchGetTmpDownloadUrl(context.Background(), req)
+	resp, err := client.Drive.V1.Media.BatchGetTmpDownloadUrl(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

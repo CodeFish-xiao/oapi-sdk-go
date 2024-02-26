@@ -23,81 +23,97 @@ import (
 	"time"
 
 	"github.com/larksuite/oapi-sdk-go/v3/core"
-	"github.com/larksuite/oapi-sdk-go/v3/service/acs/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/admin/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/application/v6"
-	"github.com/larksuite/oapi-sdk-go/v3/service/approval/v4"
-	"github.com/larksuite/oapi-sdk-go/v3/service/attendance/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/auth/v3"
-	"github.com/larksuite/oapi-sdk-go/v3/service/authen/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/baike/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/bitable/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/block/v2"
-	"github.com/larksuite/oapi-sdk-go/v3/service/calendar/v4"
-	"github.com/larksuite/oapi-sdk-go/v3/service/contact/v3"
-	"github.com/larksuite/oapi-sdk-go/v3/service/corehr/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/docx/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/drive/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/ehr/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/event/v1"
+	"github.com/larksuite/oapi-sdk-go/v3/service/acs"
+	"github.com/larksuite/oapi-sdk-go/v3/service/admin"
+	"github.com/larksuite/oapi-sdk-go/v3/service/application"
+	"github.com/larksuite/oapi-sdk-go/v3/service/approval"
+	"github.com/larksuite/oapi-sdk-go/v3/service/attendance"
+	"github.com/larksuite/oapi-sdk-go/v3/service/auth"
+	"github.com/larksuite/oapi-sdk-go/v3/service/authen"
+	"github.com/larksuite/oapi-sdk-go/v3/service/baike"
+	"github.com/larksuite/oapi-sdk-go/v3/service/bitable"
+	"github.com/larksuite/oapi-sdk-go/v3/service/block"
+	"github.com/larksuite/oapi-sdk-go/v3/service/calendar"
+	"github.com/larksuite/oapi-sdk-go/v3/service/contact"
+	"github.com/larksuite/oapi-sdk-go/v3/service/corehr"
+	"github.com/larksuite/oapi-sdk-go/v3/service/document_ai"
+	"github.com/larksuite/oapi-sdk-go/v3/service/docx"
+	"github.com/larksuite/oapi-sdk-go/v3/service/drive"
+	"github.com/larksuite/oapi-sdk-go/v3/service/ehr"
+	"github.com/larksuite/oapi-sdk-go/v3/service/event"
 	"github.com/larksuite/oapi-sdk-go/v3/service/ext"
-	"github.com/larksuite/oapi-sdk-go/v3/service/gray_test_open_sg/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/helpdesk/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/hire/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/human_authentication/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/im/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/mail/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/okr/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/optical_char_recognition/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/passport/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/personal_settings/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/search/v2"
-	"github.com/larksuite/oapi-sdk-go/v3/service/sheets/v3"
-	"github.com/larksuite/oapi-sdk-go/v3/service/speech_to_text/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/task/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/tenant/v2"
-	"github.com/larksuite/oapi-sdk-go/v3/service/translation/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/vc/v1"
-	"github.com/larksuite/oapi-sdk-go/v3/service/wiki/v2"
+	"github.com/larksuite/oapi-sdk-go/v3/service/gray_test_open_sg"
+	"github.com/larksuite/oapi-sdk-go/v3/service/helpdesk"
+	"github.com/larksuite/oapi-sdk-go/v3/service/hire"
+	"github.com/larksuite/oapi-sdk-go/v3/service/human_authentication"
+	"github.com/larksuite/oapi-sdk-go/v3/service/im"
+	"github.com/larksuite/oapi-sdk-go/v3/service/lingo"
+	"github.com/larksuite/oapi-sdk-go/v3/service/mail"
+	"github.com/larksuite/oapi-sdk-go/v3/service/mdm"
+	"github.com/larksuite/oapi-sdk-go/v3/service/meeting_room"
+	"github.com/larksuite/oapi-sdk-go/v3/service/okr"
+	"github.com/larksuite/oapi-sdk-go/v3/service/optical_char_recognition"
+	"github.com/larksuite/oapi-sdk-go/v3/service/passport"
+	"github.com/larksuite/oapi-sdk-go/v3/service/personal_settings"
+	"github.com/larksuite/oapi-sdk-go/v3/service/report"
+	"github.com/larksuite/oapi-sdk-go/v3/service/search"
+	"github.com/larksuite/oapi-sdk-go/v3/service/security_and_compliance"
+	"github.com/larksuite/oapi-sdk-go/v3/service/sheets"
+	"github.com/larksuite/oapi-sdk-go/v3/service/speech_to_text"
+	"github.com/larksuite/oapi-sdk-go/v3/service/task"
+	"github.com/larksuite/oapi-sdk-go/v3/service/tenant"
+	"github.com/larksuite/oapi-sdk-go/v3/service/translation"
+	"github.com/larksuite/oapi-sdk-go/v3/service/vc"
+	"github.com/larksuite/oapi-sdk-go/v3/service/verification"
+	"github.com/larksuite/oapi-sdk-go/v3/service/wiki"
+	"github.com/larksuite/oapi-sdk-go/v3/service/workplace"
 )
 
 type Client struct {
 	config                 *larkcore.Config
-	Acs                    *larkacs.AcsService                                         // 智能门禁
-	Admin                  *larkadmin.AdminService                                     // 管理后台-企业勋章
-	Application            *larkapplication.ApplicationService                         // 应用信息
-	Approval               *larkapproval.ApprovalService                               // 审批
-	Attendance             *larkattendance.AttendanceService                           // 打卡
-	Auth                   *larkauth.AuthService                                       //
-	Authen                 *larkauthen.AuthenService                                   //
-	Baike                  *larkbaike.BaikeService                                     // 企业百科
-	Bitable                *larkbitable.BitableService                                 // 云文档-多维表格
-	Block                  *larkblock.BlockService                                     // 小组件
-	Calendar               *larkcalendar.CalendarService                               // 日历
-	Contact                *larkcontact.ContactService                                 // 通讯录
-	Corehr                 *larkcorehr.CorehrService                                   // CoreHR
-	Docx                   *larkdocx.DocxService                                       // 云文档-文档
-	Drive                  *larkdrive.DriveService                                     // 云文档-文件管理
-	Ehr                    *larkehr.EhrService                                         // 智能人事
-	Event                  *larkevent.EventService                                     // 事件订阅
-	GrayTestOpenSg         *larkgray_test_open_sg.GrayTestOpenSgService                //
-	Helpdesk               *larkhelpdesk.HelpdeskService                               // 服务台
-	Hire                   *larkhire.HireService                                       // 招聘
-	HumanAuthentication    *larkhuman_authentication.HumanAuthenticationService        // 实名认证
-	Im                     *larkim.ImService                                           // 消息与群组
-	Mail                   *larkmail.MailService                                       // 邮箱
-	Okr                    *larkokr.OkrService                                         // OKR
-	OpticalCharRecognition *larkoptical_char_recognition.OpticalCharRecognitionService // AI能力
-	Passport               *larkpassport.PassportService                               // 帐号
-	PersonalSettings       *larkpersonal_settings.PersonalSettingsService              // 个人设置
-	Search                 *larksearch.SearchService                                   // 搜索
-	Sheets                 *larksheets.SheetsService                                   // 云文档-电子表格
-	SpeechToText           *larkspeech_to_text.SpeechToTextService                     // AI能力
-	Task                   *larktask.TaskService                                       // 任务
-	Tenant                 *larktenant.TenantService                                   // 企业信息
-	Translation            *larktranslation.TranslationService                         // AI能力
-	Vc                     *larkvc.VcService                                           // 视频会议
-	Wiki                   *larkwiki.WikiService                                       // 云文档-知识库
+	Calendar               *calendar.Service
+	HumanAuthentication    *human_authentication.Service
+	OpticalCharRecognition *optical_char_recognition.Service
+	PersonalSettings       *personal_settings.Service
+	Translation            *translation.Service
+	Drive                  *drive.Service
+	Contact                *contact.Service
+	DocumentAi             *document_ai.Service
+	Hire                   *hire.Service
+	Okr                    *okr.Service
+	Report                 *report.Service
+	SecurityAndCompliance  *security_and_compliance.Service
+	Acs                    *acs.Service
+	Event                  *event.Service
+	Mdm                    *mdm.Service
+	MeetingRoom            *meeting_room.Service
+	Vc                     *vc.Service
+	Authen                 *authen.Service
+	Auth                   *auth.Service
+	Ehr                    *ehr.Service
+	Passport               *passport.Service
+	Sheets                 *sheets.Service
+	Tenant                 *tenant.Service
+	Workplace              *workplace.Service
+	Admin                  *admin.Service
+	Mail                   *mail.Service
+	SpeechToText           *speech_to_text.Service
+	Task                   *task.Service
+	Verification           *verification.Service
+	Wiki                   *wiki.Service
+	Docx                   *docx.Service
+	GrayTestOpenSg         *gray_test_open_sg.Service
+	Helpdesk               *helpdesk.Service
+	Lingo                  *lingo.Service
+	Search                 *search.Service
+	Application            *application.Service
+	Attendance             *attendance.Service
+	Baike                  *baike.Service
+	Bitable                *bitable.Service
+	Block                  *block.Service
+	Corehr                 *corehr.Service
+	Im                     *im.Service
+	Approval               *approval.Service
 	Ext                    *larkext.ExtService
 }
 
@@ -221,41 +237,49 @@ func NewClient(appId, appSecret string, options ...ClientOptionFunc) *Client {
 }
 
 func initService(client *Client, config *larkcore.Config) {
-	client.Acs = larkacs.NewService(config)
-	client.Admin = larkadmin.NewService(config)
-	client.Application = larkapplication.NewService(config)
-	client.Approval = larkapproval.NewService(config)
-	client.Attendance = larkattendance.NewService(config)
-	client.Auth = larkauth.NewService(config)
-	client.Authen = larkauthen.NewService(config)
-	client.Baike = larkbaike.NewService(config)
-	client.Bitable = larkbitable.NewService(config)
-	client.Block = larkblock.NewService(config)
-	client.Calendar = larkcalendar.NewService(config)
-	client.Contact = larkcontact.NewService(config)
-	client.Corehr = larkcorehr.NewService(config)
-	client.Docx = larkdocx.NewService(config)
-	client.Drive = larkdrive.NewService(config)
-	client.Ehr = larkehr.NewService(config)
-	client.Event = larkevent.NewService(config)
-	client.GrayTestOpenSg = larkgray_test_open_sg.NewService(config)
-	client.Helpdesk = larkhelpdesk.NewService(config)
-	client.Hire = larkhire.NewService(config)
-	client.HumanAuthentication = larkhuman_authentication.NewService(config)
-	client.Im = larkim.NewService(config)
-	client.Mail = larkmail.NewService(config)
-	client.Okr = larkokr.NewService(config)
-	client.OpticalCharRecognition = larkoptical_char_recognition.NewService(config)
-	client.Passport = larkpassport.NewService(config)
-	client.PersonalSettings = larkpersonal_settings.NewService(config)
-	client.Search = larksearch.NewService(config)
-	client.Sheets = larksheets.NewService(config)
-	client.SpeechToText = larkspeech_to_text.NewService(config)
-	client.Task = larktask.NewService(config)
-	client.Tenant = larktenant.NewService(config)
-	client.Translation = larktranslation.NewService(config)
-	client.Vc = larkvc.NewService(config)
-	client.Wiki = larkwiki.NewService(config)
+	client.Calendar = calendar.NewService(config)
+	client.HumanAuthentication = human_authentication.NewService(config)
+	client.OpticalCharRecognition = optical_char_recognition.NewService(config)
+	client.PersonalSettings = personal_settings.NewService(config)
+	client.Translation = translation.NewService(config)
+	client.Drive = drive.NewService(config)
+	client.Contact = contact.NewService(config)
+	client.DocumentAi = document_ai.NewService(config)
+	client.Hire = hire.NewService(config)
+	client.Okr = okr.NewService(config)
+	client.Report = report.NewService(config)
+	client.SecurityAndCompliance = security_and_compliance.NewService(config)
+	client.Acs = acs.NewService(config)
+	client.Event = event.NewService(config)
+	client.Mdm = mdm.NewService(config)
+	client.MeetingRoom = meeting_room.NewService(config)
+	client.Vc = vc.NewService(config)
+	client.Authen = authen.NewService(config)
+	client.Auth = auth.NewService(config)
+	client.Ehr = ehr.NewService(config)
+	client.Passport = passport.NewService(config)
+	client.Sheets = sheets.NewService(config)
+	client.Tenant = tenant.NewService(config)
+	client.Workplace = workplace.NewService(config)
+	client.Admin = admin.NewService(config)
+	client.Mail = mail.NewService(config)
+	client.SpeechToText = speech_to_text.NewService(config)
+	client.Task = task.NewService(config)
+	client.Verification = verification.NewService(config)
+	client.Wiki = wiki.NewService(config)
+	client.Docx = docx.NewService(config)
+	client.GrayTestOpenSg = gray_test_open_sg.NewService(config)
+	client.Helpdesk = helpdesk.NewService(config)
+	client.Lingo = lingo.NewService(config)
+	client.Search = search.NewService(config)
+	client.Application = application.NewService(config)
+	client.Attendance = attendance.NewService(config)
+	client.Baike = baike.NewService(config)
+	client.Bitable = bitable.NewService(config)
+	client.Block = block.NewService(config)
+	client.Corehr = corehr.NewService(config)
+	client.Im = im.NewService(config)
+	client.Approval = approval.NewService(config)
 	client.Ext = larkext.NewService(config)
 }
 

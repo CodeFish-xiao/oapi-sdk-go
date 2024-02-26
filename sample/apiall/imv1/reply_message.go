@@ -31,11 +31,12 @@ func main() {
 		Body(larkim.NewReplyMessageReqBodyBuilder().
 			Content("").
 			MsgType("text").
+			ReplyInThread(false).
 			Uuid("a0d69e20-1dd1-458b-k525-dfeca4015204").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Im.Message.Reply(context.Background(), req)
+	resp, err := client.Im.V1.Message.Reply(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

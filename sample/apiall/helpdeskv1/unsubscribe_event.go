@@ -32,7 +32,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.Event.Unsubscribe(context.Background(), req)
+	resp, err := client.Helpdesk.V1.Event.Unsubscribe(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

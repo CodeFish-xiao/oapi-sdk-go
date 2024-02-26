@@ -35,7 +35,7 @@ func main() {
 		UpdateEndTime("1638848468869").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.Questionnaire.List(context.Background(), req)
+	resp, err := client.Hire.V1.Questionnaire.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -48,10 +48,11 @@ func main() {
 			ReplaceImage(larkdocx.NewReplaceImageRequestBuilder().Build()).
 			ReplaceFile(larkdocx.NewReplaceFileRequestBuilder().Build()).
 			UpdateText(larkdocx.NewUpdateTextRequestBuilder().Build()).
+			UpdateTask(larkdocx.NewUpdateTaskRequestBuilder().Build()).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Docx.DocumentBlock.Patch(context.Background(), req)
+	resp, err := client.Docx.V1.DocumentBlock.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

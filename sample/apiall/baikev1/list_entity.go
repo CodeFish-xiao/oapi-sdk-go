@@ -33,7 +33,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Baike.Entity.List(context.Background(), req)
+	resp, err := client.Baike.V1.Entity.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

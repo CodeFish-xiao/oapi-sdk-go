@@ -28,9 +28,10 @@ func main() {
 	// 创建请求对象
 	req := larkim.NewGetMessageReqBuilder().
 		MessageId("om_dc13264520392913993dd051dba21dcf").
+		UserIdType("open_id").
 		Build()
 	// 发起请求
-	resp, err := client.Im.Message.Get(context.Background(), req)
+	resp, err := client.Im.V1.Message.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

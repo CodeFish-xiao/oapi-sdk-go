@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.UserApproval.Create(context.Background(), req)
+	resp, err := client.Attendance.V1.UserApproval.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

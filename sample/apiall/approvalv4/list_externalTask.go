@@ -37,7 +37,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Approval.ExternalTask.List(context.Background(), req)
+	resp, err := client.Approval.V4.ExternalTask.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -30,7 +30,7 @@ func main() {
 		WorkingHoursTypeId("1212").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.WorkingHoursType.Get(context.Background(), req)
+	resp, err := client.Corehr.V1.WorkingHoursType.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

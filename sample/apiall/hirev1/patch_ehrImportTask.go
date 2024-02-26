@@ -35,7 +35,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.EhrImportTask.Patch(context.Background(), req)
+	resp, err := client.Hire.V1.EhrImportTask.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		CommentId("6937231762296684564").
 		Build()
 	// 发起请求
-	resp, err := client.Task.TaskComment.Delete(context.Background(), req)
+	resp, err := client.Task.V1.TaskComment.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -30,7 +30,7 @@ func main() {
 		JobFamilyId("mga5oa8ayjlp9rb").
 		Build()
 	// 发起请求
-	resp, err := client.Contact.JobFamily.Delete(context.Background(), req)
+	resp, err := client.Contact.V3.JobFamily.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

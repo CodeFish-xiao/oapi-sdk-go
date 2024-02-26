@@ -30,7 +30,7 @@ func main() {
 		VisibleOnly(true).
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.Ticket.CustomizedFields(context.Background(), req)
+	resp, err := client.Helpdesk.V1.Ticket.CustomizedFields(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -37,7 +37,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Drive.FileCommentReply.Update(context.Background(), req)
+	resp, err := client.Drive.V1.FileCommentReply.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

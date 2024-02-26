@@ -33,7 +33,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Approval.Instance.Get(context.Background(), req)
+	resp, err := client.Approval.V4.Instance.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

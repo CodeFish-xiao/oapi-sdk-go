@@ -32,7 +32,7 @@ func main() {
 		Action("view").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.PermissionMember.Auth(context.Background(), req)
+	resp, err := client.Drive.V1.PermissionMember.Auth(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

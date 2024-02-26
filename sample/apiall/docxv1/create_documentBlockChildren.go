@@ -38,7 +38,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Docx.DocumentBlockChildren.Create(context.Background(), req)
+	resp, err := client.Docx.V1.DocumentBlockChildren.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

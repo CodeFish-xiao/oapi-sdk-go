@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Auth.AppTicket.Resend(context.Background(), req)
+	resp, err := client.Auth.V3.AppTicket.Resend(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

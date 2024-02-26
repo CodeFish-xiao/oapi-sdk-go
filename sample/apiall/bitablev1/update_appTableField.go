@@ -32,13 +32,14 @@ func main() {
 		FieldId("fldPTb0U2y").
 		AppTableField(larkbitable.NewAppTableFieldBuilder().
 			FieldName("字段名称").
-			Type(1).
+			Type(0).
 			Property(larkbitable.NewAppTableFieldPropertyBuilder().Build()).
 			Description(larkbitable.NewAppTableFieldDescriptionBuilder().Build()).
+			UiType("Progress").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppTableField.Update(context.Background(), req)
+	resp, err := client.Bitable.V1.AppTableField.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -33,7 +33,7 @@ func main() {
 		DepartmentIdType("open_department_id").
 		Build()
 	// 发起请求
-	resp, err := client.Mail.MailgroupMember.Get(context.Background(), req)
+	resp, err := client.Mail.V1.MailgroupMember.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

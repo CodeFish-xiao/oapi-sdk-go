@@ -34,7 +34,7 @@ func main() {
 		PageSize(20).
 		Build()
 	// 发起请求
-	resp, err := client.Vc.Meeting.ListByNo(context.Background(), req)
+	resp, err := client.Vc.V1.Meeting.ListByNo(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

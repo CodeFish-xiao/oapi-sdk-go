@@ -30,6 +30,7 @@ func main() {
 		Shift(larkattendance.NewShiftBuilder().
 			ShiftName("早班").
 			PunchTimes(1).
+			SubShiftLeaderIds([]string{}).
 			IsFlexible(false).
 			FlexibleMinutes(60).
 			FlexibleRule([]*larkattendance.FlexibleRule{larkattendance.NewFlexibleRuleBuilder().Build()}).
@@ -37,10 +38,11 @@ func main() {
 			PunchTimeRule([]*larkattendance.PunchTimeRule{larkattendance.NewPunchTimeRuleBuilder().Build()}).
 			LateOffLateOnRule([]*larkattendance.LateOffLateOnRule{larkattendance.NewLateOffLateOnRuleBuilder().Build()}).
 			RestTimeRule([]*larkattendance.RestRule{larkattendance.NewRestRuleBuilder().Build()}).
+			OvertimeRule([]*larkattendance.OvertimeRule{larkattendance.NewOvertimeRuleBuilder().Build()}).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.Shift.Create(context.Background(), req)
+	resp, err := client.Attendance.V1.Shift.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

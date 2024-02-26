@@ -32,7 +32,7 @@ func main() {
 		SyncToken("ListCalendarsSyncToken_xxx").
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.Calendar.List(context.Background(), req)
+	resp, err := client.Calendar.V4.Calendar.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

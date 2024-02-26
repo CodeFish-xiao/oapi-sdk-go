@@ -32,7 +32,7 @@ func main() {
 		PageToken("「填写上次返回的page_token」").
 		Build()
 	// 发起请求
-	resp, err := client.Task.TaskReminder.List(context.Background(), req)
+	resp, err := client.Task.V1.TaskReminder.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

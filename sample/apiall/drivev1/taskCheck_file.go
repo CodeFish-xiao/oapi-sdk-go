@@ -30,7 +30,7 @@ func main() {
 		TaskId("12345").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.File.TaskCheck(context.Background(), req)
+	resp, err := client.Drive.V1.File.TaskCheck(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

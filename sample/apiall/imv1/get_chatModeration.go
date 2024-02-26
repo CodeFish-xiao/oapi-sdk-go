@@ -33,7 +33,7 @@ func main() {
 		PageToken("dmJCRHhpd3JRbGV1VEVNRFFyTitRWDY5ZFkybmYrMEUwMUFYT0VMMWdENEtuYUhsNUxGMDIwemtvdE5ORjBNQQ==").
 		Build()
 	// 发起请求
-	resp, err := client.Im.ChatModeration.Get(context.Background(), req)
+	resp, err := client.Im.V1.ChatModeration.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

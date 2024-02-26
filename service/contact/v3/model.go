@@ -14,10 +14,9 @@
 package larkcontact
 
 import (
-	"fmt"
-
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/larksuite/oapi-sdk-go/v3/event"
 
@@ -25,14 +24,25 @@ import (
 )
 
 const (
-	UserIdTypeUserId  = "user_id"  // 以user_id来识别用户
-	UserIdTypeUnionId = "union_id" // 以union_id来识别用户
-	UserIdTypeOpenId  = "open_id"  // 以open_id来识别用户
+	DepartmentIdTypeOpenDepartmentId = "open_department_id" // 指定使用open_department_id作为部门ID类型
+	DepartmentIdTypeDepartmentId     = "department_id"      // 指定使用department_id作为部门ID类型
 )
 
 const (
-	DepartmentIdTypeDepartmentId     = "department_id"      // 以自定义department_id来标识部门
-	DepartmentIdTypeOpenDepartmentId = "open_department_id" // 以open_department_id来标识部门
+	UserIdTypeOpenId  = "open_id"  // 指定使用open_id作为用户ID类型
+	UserIdTypeUnionId = "union_id" // 指定使用union_id作为用户ID类型
+	UserIdTypeUserId  = "user_id"  // 指定使用user_id作为用户ID类型
+)
+
+const (
+	UserIdTypeChildrenDepartmentUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeChildrenDepartmentUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeChildrenDepartmentOpenId  = "open_id"  // 以open_id来识别用户
+)
+
+const (
+	DepartmentIdTypeChildrenDepartmentDepartmentId     = "department_id"      // 以自定义department_id来标识部门
+	DepartmentIdTypeChildrenDepartmentOpenDepartmentId = "open_department_id" // 以open_department_id来标识部门
 )
 
 const (
@@ -120,6 +130,11 @@ const (
 const (
 	DepartmentIdTypeUpdateDepartmentDepartmentId     = "department_id"      // 以自定义department_id来标识部门
 	DepartmentIdTypeUpdateDepartmentOpenDepartmentId = "open_department_id" // 以open_department_id来标识部门
+)
+
+const (
+	DepartmentIdTypeUpdateDepartmentIdDepartmentDepartmentId     = "department_id"      // 以自定义department_id来标识部门
+	DepartmentIdTypeUpdateDepartmentIdDepartmentOpenDepartmentId = "open_department_id" // 以open_department_id来标识部门
 )
 
 const (
@@ -307,13 +322,24 @@ const (
 )
 
 const (
+	UserIdTypeBatchUserOpenId  = "open_id"  // 以open_id来识别用户
+	UserIdTypeBatchUserUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeBatchUserUserId  = "user_id"  // 以user_id来识别用户
+)
+
+const (
+	DepartmentIdTypeBatchUserOpenDepartmentId = "open_department_id" // 以open_department_id来标识部门
+	DepartmentIdTypeBatchUserDepartmentId     = "department_id"      // 以自定义department_id来标识部门
+)
+
+const (
 	UserIdTypeBatchGetIdUserOpenId  = "open_id"  // 用户的 open id
 	UserIdTypeBatchGetIdUserUnionId = "union_id" // 用户的 union id
 	UserIdTypeBatchGetIdUserUserId  = "user_id"  // 用户的 user id
 )
 
 const (
-	GenderTypeUnkown = 0 // 未知
+	GenderTypeUnkown = 0 // 保密
 	GenderTypeMale   = 1 // 男
 	GenderTypeFemale = 2 // 女
 
@@ -370,7 +396,7 @@ const (
 )
 
 const (
-	GenderTypePatchUserUnkown = 0 // 未知
+	GenderTypePatchUserUnkown = 0 // 保密
 	GenderTypePatchUserMale   = 1 // 男
 	GenderTypePatchUserFemale = 2 // 女
 
@@ -399,7 +425,7 @@ const (
 )
 
 const (
-	GenderTypeUpdateUserUnkown = 0 // 未知
+	GenderTypeUpdateUserUnkown = 0 // 保密
 	GenderTypeUpdateUserMale   = 1 // 男
 	GenderTypeUpdateUserFemale = 2 // 女
 
@@ -414,6 +440,12 @@ const (
 const (
 	DepartmentIdTypeUpdateUserDepartmentId     = "department_id"      // 以自定义department_id来标识部门
 	DepartmentIdTypeUpdateUserOpenDepartmentId = "open_department_id" // 以open_department_id来标识部门
+)
+
+const (
+	UserIdTypeUpdateUserIdUserUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeUpdateUserIdUserUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeUpdateUserIdUserOpenId  = "open_id"  // 以open_id来识别用户
 )
 
 type AvatarInfo struct {
@@ -1667,6 +1699,54 @@ func (builder *DepartmentI18nNameBuilder) Build() *DepartmentI18nName {
 	return req
 }
 
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
+
+	}
+	return req
+}
+
 type DepartmentParent struct {
 	DepartmentId *string  `json:"department_id,omitempty"` // 部门ID
 	ParentIds    []string `json:"parent_ids,omitempty"`    // 父部门ID列表，从直接父部门到根部门
@@ -1983,43 +2063,25 @@ func (builder *DynamicGroupExpressionBuilder) Build() *DynamicGroupExpression {
 }
 
 type DynamicGroupRule struct {
-	DepartmentIds   []string                  `json:"department_ids,omitempty"`   // 动态用户组匹配部门列表
 	DepartmentLevel *string                   `json:"department_level,omitempty"` // 动态用户组匹配部门层级
 	Expressions     []*DynamicGroupExpression `json:"expressions,omitempty"`      // 动态用户组规则表达式
 	JoinerRule      *string                   `json:"joiner_rule,omitempty"`      // 动态用户组表达式组合关系
-	WhiteList       []string                  `json:"white_list,omitempty"`       // 白名单用户 ID 列表，白名单用户一定会被拉入动态用户组
-	BlackList       []string                  `json:"black_list,omitempty"`       // 黑名单用户 ID 列表，黑名单用户一定会被排查在用户组外
 	GroupStatus     *string                   `json:"group_status,omitempty"`     // 动态用户组计算状态，只读，创建、更新用户组时不需要填写
 }
 
 type DynamicGroupRuleBuilder struct {
-	departmentIds       []string // 动态用户组匹配部门列表
-	departmentIdsFlag   bool
 	departmentLevel     string // 动态用户组匹配部门层级
 	departmentLevelFlag bool
 	expressions         []*DynamicGroupExpression // 动态用户组规则表达式
 	expressionsFlag     bool
 	joinerRule          string // 动态用户组表达式组合关系
 	joinerRuleFlag      bool
-	whiteList           []string // 白名单用户 ID 列表，白名单用户一定会被拉入动态用户组
-	whiteListFlag       bool
-	blackList           []string // 黑名单用户 ID 列表，黑名单用户一定会被排查在用户组外
-	blackListFlag       bool
 	groupStatus         string // 动态用户组计算状态，只读，创建、更新用户组时不需要填写
 	groupStatusFlag     bool
 }
 
 func NewDynamicGroupRuleBuilder() *DynamicGroupRuleBuilder {
 	builder := &DynamicGroupRuleBuilder{}
-	return builder
-}
-
-// 动态用户组匹配部门列表
-//
-// 示例值：
-func (builder *DynamicGroupRuleBuilder) DepartmentIds(departmentIds []string) *DynamicGroupRuleBuilder {
-	builder.departmentIds = departmentIds
-	builder.departmentIdsFlag = true
 	return builder
 }
 
@@ -2050,24 +2112,6 @@ func (builder *DynamicGroupRuleBuilder) JoinerRule(joinerRule string) *DynamicGr
 	return builder
 }
 
-// 白名单用户 ID 列表，白名单用户一定会被拉入动态用户组
-//
-// 示例值：
-func (builder *DynamicGroupRuleBuilder) WhiteList(whiteList []string) *DynamicGroupRuleBuilder {
-	builder.whiteList = whiteList
-	builder.whiteListFlag = true
-	return builder
-}
-
-// 黑名单用户 ID 列表，黑名单用户一定会被排查在用户组外
-//
-// 示例值：
-func (builder *DynamicGroupRuleBuilder) BlackList(blackList []string) *DynamicGroupRuleBuilder {
-	builder.blackList = blackList
-	builder.blackListFlag = true
-	return builder
-}
-
 // 动态用户组计算状态，只读，创建、更新用户组时不需要填写
 //
 // 示例值：1
@@ -2079,9 +2123,6 @@ func (builder *DynamicGroupRuleBuilder) GroupStatus(groupStatus string) *Dynamic
 
 func (builder *DynamicGroupRuleBuilder) Build() *DynamicGroupRule {
 	req := &DynamicGroupRule{}
-	if builder.departmentIdsFlag {
-		req.DepartmentIds = builder.departmentIds
-	}
 	if builder.departmentLevelFlag {
 		req.DepartmentLevel = &builder.departmentLevel
 
@@ -2092,12 +2133,6 @@ func (builder *DynamicGroupRuleBuilder) Build() *DynamicGroupRule {
 	if builder.joinerRuleFlag {
 		req.JoinerRule = &builder.joinerRule
 
-	}
-	if builder.whiteListFlag {
-		req.WhiteList = builder.whiteList
-	}
-	if builder.blackListFlag {
-		req.BlackList = builder.blackList
 	}
 	if builder.groupStatusFlag {
 		req.GroupStatus = &builder.groupStatus
@@ -2377,16 +2412,14 @@ func (builder *FunctionalRoleMemberResultBuilder) Build() *FunctionalRoleMemberR
 }
 
 type Group struct {
-	Id                    *string            `json:"id,omitempty"`                      // 用户组ID
-	Name                  *string            `json:"name,omitempty"`                    // 用户组名字
-	Description           *string            `json:"description,omitempty"`             // 用户组描述
-	MemberUserCount       *int               `json:"member_user_count,omitempty"`       // 用户组成员中用户的数量
-	MemberDepartmentCount *int               `json:"member_department_count,omitempty"` // 普通用户组成员中部门的数量，动态用户组成员中没有部门。
-	Type                  *int               `json:"type,omitempty"`                    // 用户组的类型
-	DynamicGroupRule      *DynamicGroupRule  `json:"dynamic_group_rule,omitempty"`      // 动态用户组的规则
-	VisibleScope          *GroupVisibleScope `json:"visible_scope,omitempty"`           // 用户组指定可见范围
-	DepartmentScopeList   []string           `json:"department_scope_list,omitempty"`   // 部门范围
-	GroupId               *string            `json:"group_id,omitempty"`                // 自定义用户组ID
+	Id                    *string `json:"id,omitempty"`                      // 用户组ID
+	Name                  *string `json:"name,omitempty"`                    // 用户组名字
+	Description           *string `json:"description,omitempty"`             // 用户组描述
+	MemberUserCount       *int    `json:"member_user_count,omitempty"`       // 用户组成员中用户的数量
+	MemberDepartmentCount *int    `json:"member_department_count,omitempty"` // 普通用户组成员中部门的数量，动态用户组成员中没有部门。
+	Type                  *int    `json:"type,omitempty"`                    // 用户组的类型
+
+	GroupId *string `json:"group_id,omitempty"` // 自定义用户组ID
 }
 
 type GroupBuilder struct {
@@ -2402,14 +2435,9 @@ type GroupBuilder struct {
 	memberDepartmentCountFlag bool
 	type_                     int // 用户组的类型
 	typeFlag                  bool
-	dynamicGroupRule          *DynamicGroupRule // 动态用户组的规则
-	dynamicGroupRuleFlag      bool
-	visibleScope              *GroupVisibleScope // 用户组指定可见范围
-	visibleScopeFlag          bool
-	departmentScopeList       []string // 部门范围
-	departmentScopeListFlag   bool
-	groupId                   string // 自定义用户组ID
-	groupIdFlag               bool
+
+	groupId     string // 自定义用户组ID
+	groupIdFlag bool
 }
 
 func NewGroupBuilder() *GroupBuilder {
@@ -2471,33 +2499,6 @@ func (builder *GroupBuilder) Type(type_ int) *GroupBuilder {
 	return builder
 }
 
-// 动态用户组的规则
-//
-// 示例值：
-func (builder *GroupBuilder) DynamicGroupRule(dynamicGroupRule *DynamicGroupRule) *GroupBuilder {
-	builder.dynamicGroupRule = dynamicGroupRule
-	builder.dynamicGroupRuleFlag = true
-	return builder
-}
-
-// 用户组指定可见范围
-//
-// 示例值：
-func (builder *GroupBuilder) VisibleScope(visibleScope *GroupVisibleScope) *GroupBuilder {
-	builder.visibleScope = visibleScope
-	builder.visibleScopeFlag = true
-	return builder
-}
-
-// 部门范围
-//
-// 示例值：
-func (builder *GroupBuilder) DepartmentScopeList(departmentScopeList []string) *GroupBuilder {
-	builder.departmentScopeList = departmentScopeList
-	builder.departmentScopeListFlag = true
-	return builder
-}
-
 // 自定义用户组ID
 //
 // 示例值：4ba51ab38648f9cd
@@ -2533,15 +2534,7 @@ func (builder *GroupBuilder) Build() *Group {
 		req.Type = &builder.type_
 
 	}
-	if builder.dynamicGroupRuleFlag {
-		req.DynamicGroupRule = builder.dynamicGroupRule
-	}
-	if builder.visibleScopeFlag {
-		req.VisibleScope = builder.visibleScope
-	}
-	if builder.departmentScopeListFlag {
-		req.DepartmentScopeList = builder.departmentScopeList
-	}
+
 	if builder.groupIdFlag {
 		req.GroupId = &builder.groupId
 
@@ -2631,7 +2624,7 @@ func (builder *GroupVisibleScopeBuilder) VisibleScopeType(visibleScopeType strin
 
 // 指定可见用户组的用户 ID列表
 //
-// 示例值：cfe29725
+// 示例值：
 func (builder *GroupVisibleScopeBuilder) VisibleUsers(visibleUsers []string) *GroupVisibleScopeBuilder {
 	builder.visibleUsers = visibleUsers
 	builder.visibleUsersFlag = true
@@ -3779,13 +3772,14 @@ type User struct {
 
 	JobTitle *string `json:"job_title,omitempty"` // 职务
 
-	IsFrozen        *bool               `json:"is_frozen,omitempty"`        // 是否暂停用户
-	Geo             *string             `json:"geo,omitempty"`              // 数据驻留地
-	JobLevelId      *string             `json:"job_level_id,omitempty"`     // 职级ID
-	JobFamilyId     *string             `json:"job_family_id,omitempty"`    // 序列ID
-	SubscriptionIds []string            `json:"subscription_ids,omitempty"` // 分配给用户的席位ID列表
-	AssignInfo      []*UserAssignInfo   `json:"assign_info,omitempty"`      // 用户席位列表
-	DepartmentPath  []*DepartmentDetail `json:"department_path,omitempty"`  // 部门路径
+	IsFrozen                *bool               `json:"is_frozen,omitempty"`                   // 是否暂停用户
+	Geo                     *string             `json:"geo,omitempty"`                         // 数据驻留地
+	JobLevelId              *string             `json:"job_level_id,omitempty"`                // 职级ID
+	JobFamilyId             *string             `json:"job_family_id,omitempty"`               // 序列ID
+	SubscriptionIds         []string            `json:"subscription_ids,omitempty"`            // 分配给用户的席位ID列表
+	AssignInfo              []*UserAssignInfo   `json:"assign_info,omitempty"`                 // 用户席位列表
+	DepartmentPath          []*DepartmentDetail `json:"department_path,omitempty"`             // 部门路径
+	DottedLineLeaderUserIds []string            `json:"dotted_line_leader_user_ids,omitempty"` // 虚线上级ID
 }
 
 type UserBuilder struct {
@@ -3844,20 +3838,22 @@ type UserBuilder struct {
 	jobTitle     string // 职务
 	jobTitleFlag bool
 
-	isFrozen            bool // 是否暂停用户
-	isFrozenFlag        bool
-	geo                 string // 数据驻留地
-	geoFlag             bool
-	jobLevelId          string // 职级ID
-	jobLevelIdFlag      bool
-	jobFamilyId         string // 序列ID
-	jobFamilyIdFlag     bool
-	subscriptionIds     []string // 分配给用户的席位ID列表
-	subscriptionIdsFlag bool
-	assignInfo          []*UserAssignInfo // 用户席位列表
-	assignInfoFlag      bool
-	departmentPath      []*DepartmentDetail // 部门路径
-	departmentPathFlag  bool
+	isFrozen                    bool // 是否暂停用户
+	isFrozenFlag                bool
+	geo                         string // 数据驻留地
+	geoFlag                     bool
+	jobLevelId                  string // 职级ID
+	jobLevelIdFlag              bool
+	jobFamilyId                 string // 序列ID
+	jobFamilyIdFlag             bool
+	subscriptionIds             []string // 分配给用户的席位ID列表
+	subscriptionIdsFlag         bool
+	assignInfo                  []*UserAssignInfo // 用户席位列表
+	assignInfoFlag              bool
+	departmentPath              []*DepartmentDetail // 部门路径
+	departmentPathFlag          bool
+	dottedLineLeaderUserIds     []string // 虚线上级ID
+	dottedLineLeaderUserIdsFlag bool
 }
 
 func NewUserBuilder() *UserBuilder {
@@ -4162,6 +4158,15 @@ func (builder *UserBuilder) DepartmentPath(departmentPath []*DepartmentDetail) *
 	return builder
 }
 
+// 虚线上级ID
+//
+// 示例值：
+func (builder *UserBuilder) DottedLineLeaderUserIds(dottedLineLeaderUserIds []string) *UserBuilder {
+	builder.dottedLineLeaderUserIds = dottedLineLeaderUserIds
+	builder.dottedLineLeaderUserIdsFlag = true
+	return builder
+}
+
 func (builder *UserBuilder) Build() *User {
 	req := &User{}
 	if builder.unionIdFlag {
@@ -4290,6 +4295,9 @@ func (builder *UserBuilder) Build() *User {
 	}
 	if builder.departmentPathFlag {
 		req.DepartmentPath = builder.departmentPath
+	}
+	if builder.dottedLineLeaderUserIdsFlag {
+		req.DottedLineLeaderUserIds = builder.dottedLineLeaderUserIds
 	}
 	return req
 }
@@ -4766,9 +4774,10 @@ type UserEvent struct {
 
 	Orders []*UserOrder `json:"orders,omitempty"` // 用户排序信息
 
-	CustomAttrs []*UserCustomAttr `json:"custom_attrs,omitempty"`  // 自定义属性
-	JobLevelId  *string           `json:"job_level_id,omitempty"`  // 职级ID
-	JobFamilyId *string           `json:"job_family_id,omitempty"` // 序列ID
+	CustomAttrs             []*UserCustomAttr `json:"custom_attrs,omitempty"`                // 自定义属性
+	JobLevelId              *string           `json:"job_level_id,omitempty"`                // 职级ID
+	JobFamilyId             *string           `json:"job_family_id,omitempty"`               // 序列ID
+	DottedLineLeaderUserIds []string          `json:"dotted_line_leader_user_ids,omitempty"` // 虚线上级ID
 }
 
 type UserEventBuilder struct {
@@ -4820,12 +4829,14 @@ type UserEventBuilder struct {
 	orders     []*UserOrder // 用户排序信息
 	ordersFlag bool
 
-	customAttrs     []*UserCustomAttr // 自定义属性
-	customAttrsFlag bool
-	jobLevelId      string // 职级ID
-	jobLevelIdFlag  bool
-	jobFamilyId     string // 序列ID
-	jobFamilyIdFlag bool
+	customAttrs                 []*UserCustomAttr // 自定义属性
+	customAttrsFlag             bool
+	jobLevelId                  string // 职级ID
+	jobLevelIdFlag              bool
+	jobFamilyId                 string // 序列ID
+	jobFamilyIdFlag             bool
+	dottedLineLeaderUserIds     []string // 虚线上级ID
+	dottedLineLeaderUserIdsFlag bool
 }
 
 func NewUserEventBuilder() *UserEventBuilder {
@@ -5058,6 +5069,15 @@ func (builder *UserEventBuilder) JobFamilyId(jobFamilyId string) *UserEventBuild
 	return builder
 }
 
+// 虚线上级ID
+//
+// 示例值：
+func (builder *UserEventBuilder) DottedLineLeaderUserIds(dottedLineLeaderUserIds []string) *UserEventBuilder {
+	builder.dottedLineLeaderUserIds = dottedLineLeaderUserIds
+	builder.dottedLineLeaderUserIdsFlag = true
+	return builder
+}
+
 func (builder *UserEventBuilder) Build() *UserEvent {
 	req := &UserEvent{}
 	if builder.openIdFlag {
@@ -5158,6 +5178,9 @@ func (builder *UserEventBuilder) Build() *UserEvent {
 	if builder.jobFamilyIdFlag {
 		req.JobFamilyId = &builder.jobFamilyId
 
+	}
+	if builder.dottedLineLeaderUserIdsFlag {
+		req.DottedLineLeaderUserIds = builder.dottedLineLeaderUserIds
 	}
 	return req
 }
@@ -5822,6 +5845,70 @@ func (resp *ListCustomAttrResp) Success() bool {
 	return resp.Code == 0
 }
 
+type BatchDepartmentReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewBatchDepartmentReqBuilder() *BatchDepartmentReqBuilder {
+	builder := &BatchDepartmentReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 查询的部门ID列表，类型需要与department_id_type对应
+//
+// 示例值：
+func (builder *BatchDepartmentReqBuilder) DepartmentIds(departmentIds []string) *BatchDepartmentReqBuilder {
+	for _, v := range departmentIds {
+		builder.apiReq.QueryParams.Add("department_ids", fmt.Sprint(v))
+	}
+	return builder
+}
+
+// 说明请求中department_id_list参数所使用的部门ID类型
+//
+// 示例值：open_department_id
+func (builder *BatchDepartmentReqBuilder) DepartmentIdType(departmentIdType string) *BatchDepartmentReqBuilder {
+	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+// 指定调用结果中包含用户（如部门leader）关联的用户ID类型
+//
+// 示例值：open_id
+func (builder *BatchDepartmentReqBuilder) UserIdType(userIdType string) *BatchDepartmentReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+func (builder *BatchDepartmentReqBuilder) Build() *BatchDepartmentReq {
+	req := &BatchDepartmentReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type BatchDepartmentReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type BatchDepartmentRespData struct {
+	Items []*Department `json:"items,omitempty"` // 查询到的部门信息，其中异常的部门ID不返回结果。
+}
+
+type BatchDepartmentResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *BatchDepartmentRespData `json:"data"` // 业务数据
+}
+
+func (resp *BatchDepartmentResp) Success() bool {
+	return resp.Code == 0
+}
+
 type ChildrenDepartmentReqBuilder struct {
 	apiReq *larkcore.ApiReq
 	limit  int // 最大返回多少记录，当使用迭代器访问时才有效
@@ -6393,7 +6480,7 @@ func (builder *SearchDepartmentReqBodyBuilder) Build() *SearchDepartmentReqBody 
 }
 
 type SearchDepartmentPathReqBodyBuilder struct {
-	query     string // 搜索关键词，匹配字段为部门名称（不支持匹配部门国际化名称）
+	query     string
 	queryFlag bool
 }
 
@@ -6542,7 +6629,7 @@ func (builder *UnbindDepartmentChatDepartmentReqBodyBuilder) Build() *UnbindDepa
 }
 
 type UnbindDepartmentChatDepartmentPathReqBodyBuilder struct {
-	departmentId     string // 部门ID
+	departmentId     string
 	departmentIdFlag bool
 }
 
@@ -6691,6 +6778,123 @@ type UpdateDepartmentResp struct {
 }
 
 func (resp *UpdateDepartmentResp) Success() bool {
+	return resp.Code == 0
+}
+
+type UpdateDepartmentIdDepartmentReqBodyBuilder struct {
+	newDepartmentId     string // 本部门的自定义部门新ID
+	newDepartmentIdFlag bool
+}
+
+func NewUpdateDepartmentIdDepartmentReqBodyBuilder() *UpdateDepartmentIdDepartmentReqBodyBuilder {
+	builder := &UpdateDepartmentIdDepartmentReqBodyBuilder{}
+	return builder
+}
+
+// 本部门的自定义部门新ID
+//
+//示例值：
+func (builder *UpdateDepartmentIdDepartmentReqBodyBuilder) NewDepartmentId(newDepartmentId string) *UpdateDepartmentIdDepartmentReqBodyBuilder {
+	builder.newDepartmentId = newDepartmentId
+	builder.newDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *UpdateDepartmentIdDepartmentReqBodyBuilder) Build() *UpdateDepartmentIdDepartmentReqBody {
+	req := &UpdateDepartmentIdDepartmentReqBody{}
+	if builder.newDepartmentIdFlag {
+		req.NewDepartmentId = &builder.newDepartmentId
+	}
+	return req
+}
+
+type UpdateDepartmentIdDepartmentPathReqBodyBuilder struct {
+	newDepartmentId     string
+	newDepartmentIdFlag bool
+}
+
+func NewUpdateDepartmentIdDepartmentPathReqBodyBuilder() *UpdateDepartmentIdDepartmentPathReqBodyBuilder {
+	builder := &UpdateDepartmentIdDepartmentPathReqBodyBuilder{}
+	return builder
+}
+
+// 本部门的自定义部门新ID
+//
+// 示例值：
+func (builder *UpdateDepartmentIdDepartmentPathReqBodyBuilder) NewDepartmentId(newDepartmentId string) *UpdateDepartmentIdDepartmentPathReqBodyBuilder {
+	builder.newDepartmentId = newDepartmentId
+	builder.newDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *UpdateDepartmentIdDepartmentPathReqBodyBuilder) Build() (*UpdateDepartmentIdDepartmentReqBody, error) {
+	req := &UpdateDepartmentIdDepartmentReqBody{}
+	if builder.newDepartmentIdFlag {
+		req.NewDepartmentId = &builder.newDepartmentId
+	}
+	return req, nil
+}
+
+type UpdateDepartmentIdDepartmentReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *UpdateDepartmentIdDepartmentReqBody
+}
+
+func NewUpdateDepartmentIdDepartmentReqBuilder() *UpdateDepartmentIdDepartmentReqBuilder {
+	builder := &UpdateDepartmentIdDepartmentReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 需要更新ID部门的ID
+//
+// 示例值：
+func (builder *UpdateDepartmentIdDepartmentReqBuilder) DepartmentId(departmentId string) *UpdateDepartmentIdDepartmentReqBuilder {
+	builder.apiReq.PathParams.Set("department_id", fmt.Sprint(departmentId))
+	return builder
+}
+
+// 此次调用中使用的部门ID的类型
+//
+// 示例值：
+func (builder *UpdateDepartmentIdDepartmentReqBuilder) DepartmentIdType(departmentIdType string) *UpdateDepartmentIdDepartmentReqBuilder {
+	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+//
+func (builder *UpdateDepartmentIdDepartmentReqBuilder) Body(body *UpdateDepartmentIdDepartmentReqBody) *UpdateDepartmentIdDepartmentReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *UpdateDepartmentIdDepartmentReqBuilder) Build() *UpdateDepartmentIdDepartmentReq {
+	req := &UpdateDepartmentIdDepartmentReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type UpdateDepartmentIdDepartmentReqBody struct {
+	NewDepartmentId *string `json:"new_department_id,omitempty"` // 本部门的自定义部门新ID
+}
+
+type UpdateDepartmentIdDepartmentReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *UpdateDepartmentIdDepartmentReqBody `body:""`
+}
+
+type UpdateDepartmentIdDepartmentResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *UpdateDepartmentIdDepartmentResp) Success() bool {
 	return resp.Code == 0
 }
 
@@ -6930,7 +7134,7 @@ func (builder *CreateFunctionalRoleReqBodyBuilder) Build() *CreateFunctionalRole
 }
 
 type CreateFunctionalRolePathReqBodyBuilder struct {
-	roleName     string // 角色名称，在单租户下唯一
+	roleName     string
 	roleNameFlag bool
 }
 
@@ -7075,7 +7279,7 @@ func (builder *UpdateFunctionalRoleReqBodyBuilder) Build() *UpdateFunctionalRole
 }
 
 type UpdateFunctionalRolePathReqBodyBuilder struct {
-	roleName     string // 修改的角色名称，在单租户下唯一
+	roleName     string
 	roleNameFlag bool
 }
 
@@ -7183,7 +7387,7 @@ func (builder *BatchCreateFunctionalRoleMemberReqBodyBuilder) Build() *BatchCrea
 }
 
 type BatchCreateFunctionalRoleMemberPathReqBodyBuilder struct {
-	members     []string // 角色添加的角色成员列表（一批用户的UserID列表)
+	members     []string
 	membersFlag bool
 }
 
@@ -7305,7 +7509,7 @@ func (builder *BatchDeleteFunctionalRoleMemberReqBodyBuilder) Build() *BatchDele
 }
 
 type BatchDeleteFunctionalRoleMemberPathReqBodyBuilder struct {
-	members     []string // 角色删除的角色成员列表（一批用户的UserID列表)
+	members     []string
 	membersFlag bool
 }
 
@@ -7603,9 +7807,9 @@ func (builder *ScopesFunctionalRoleMemberReqBodyBuilder) Build() *ScopesFunction
 }
 
 type ScopesFunctionalRoleMemberPathReqBodyBuilder struct {
-	members         []string // 角色修改的角色成员列表（一批用户的UserID列表)
+	members         []string
 	membersFlag     bool
-	departments     []string // 角色内用户的管理范围
+	departments     []string
 	departmentsFlag bool
 }
 
@@ -8164,11 +8368,11 @@ func (builder *AddGroupMemberReqBodyBuilder) Build() *AddGroupMemberReqBody {
 }
 
 type AddGroupMemberPathReqBodyBuilder struct {
-	memberType       string // 用户组成员的类型，取值为 user
+	memberType       string
 	memberTypeFlag   bool
-	memberIdType     string // 当member_type =user时候，member_id_type表示user_id_type，枚举值为open_id, union_id, user_id
+	memberIdType     string
 	memberIdTypeFlag bool
-	memberId         string // 添加的成员ID
+	memberId         string
 	memberIdFlag     bool
 }
 
@@ -8302,7 +8506,7 @@ func (builder *BatchAddGroupMemberReqBodyBuilder) Build() *BatchAddGroupMemberRe
 }
 
 type BatchAddGroupMemberPathReqBodyBuilder struct {
-	members     []*Memberlist // 待添加成员
+	members     []*Memberlist
 	membersFlag bool
 }
 
@@ -8415,7 +8619,7 @@ func (builder *BatchRemoveGroupMemberReqBodyBuilder) Build() *BatchRemoveGroupMe
 }
 
 type BatchRemoveGroupMemberPathReqBodyBuilder struct {
-	members     []*Memberlist // 待移除成员
+	members     []*Memberlist
 	membersFlag bool
 }
 
@@ -8551,11 +8755,11 @@ func (builder *RemoveGroupMemberReqBodyBuilder) Build() *RemoveGroupMemberReqBod
 }
 
 type RemoveGroupMemberPathReqBodyBuilder struct {
-	memberType       string // 用户组成员的类型，取值为 user
+	memberType       string
 	memberTypeFlag   bool
-	memberId         string // 操作移除的用户组成员ID
+	memberId         string
 	memberIdFlag     bool
-	memberIdType     string // 当member_type =user时候，member_id_type表示user_id_type，枚举值为open_id, union_id, user_id
+	memberIdType     string
 	memberIdTypeFlag bool
 }
 
@@ -9266,6 +9470,118 @@ func (resp *UpdateJobLevelResp) Success() bool {
 	return resp.Code == 0
 }
 
+type GetJobTitleReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewGetJobTitleReqBuilder() *GetJobTitleReqBuilder {
+	builder := &GetJobTitleReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 职务ID
+//
+// 示例值：dd39369b19b9
+func (builder *GetJobTitleReqBuilder) JobTitleId(jobTitleId string) *GetJobTitleReqBuilder {
+	builder.apiReq.PathParams.Set("job_title_id", fmt.Sprint(jobTitleId))
+	return builder
+}
+
+func (builder *GetJobTitleReqBuilder) Build() *GetJobTitleReq {
+	req := &GetJobTitleReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	return req
+}
+
+type GetJobTitleReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type GetJobTitleRespData struct {
+	JobTitle *JobTitle `json:"job_title,omitempty"` // 职务信息
+}
+
+type GetJobTitleResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *GetJobTitleRespData `json:"data"` // 业务数据
+}
+
+func (resp *GetJobTitleResp) Success() bool {
+	return resp.Code == 0
+}
+
+type ListJobTitleReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	limit  int // 最大返回多少记录，当使用迭代器访问时才有效
+}
+
+func NewListJobTitleReqBuilder() *ListJobTitleReqBuilder {
+	builder := &ListJobTitleReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 最大返回多少记录，当使用迭代器访问时才有效
+func (builder *ListJobTitleReqBuilder) Limit(limit int) *ListJobTitleReqBuilder {
+	builder.limit = limit
+	return builder
+}
+
+// 分页大小
+//
+// 示例值：10
+func (builder *ListJobTitleReqBuilder) PageSize(pageSize int) *ListJobTitleReqBuilder {
+	builder.apiReq.QueryParams.Set("page_size", fmt.Sprint(pageSize))
+	return builder
+}
+
+// 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果
+//
+// 示例值："xxx"
+func (builder *ListJobTitleReqBuilder) PageToken(pageToken string) *ListJobTitleReqBuilder {
+	builder.apiReq.QueryParams.Set("page_token", fmt.Sprint(pageToken))
+	return builder
+}
+
+func (builder *ListJobTitleReqBuilder) Build() *ListJobTitleReq {
+	req := &ListJobTitleReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.Limit = builder.limit
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type ListJobTitleReq struct {
+	apiReq *larkcore.ApiReq
+	Limit  int // 最多返回多少记录，只有在使用迭代器访问时，才有效
+
+}
+
+type ListJobTitleRespData struct {
+	Items     []*JobTitle `json:"items,omitempty"`      // 职务列表
+	PageToken *string     `json:"page_token,omitempty"` // 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
+	HasMore   *bool       `json:"has_more,omitempty"`   // 是否还有更多项
+}
+
+type ListJobTitleResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *ListJobTitleRespData `json:"data"` // 业务数据
+}
+
+func (resp *ListJobTitleResp) Success() bool {
+	return resp.Code == 0
+}
+
 type ListScopeReqBuilder struct {
 	apiReq *larkcore.ApiReq
 }
@@ -9396,11 +9712,11 @@ func (builder *BindDepartmentUnitReqBodyBuilder) Build() *BindDepartmentUnitReqB
 }
 
 type BindDepartmentUnitPathReqBodyBuilder struct {
-	unitId               string // 单位ID
+	unitId               string
 	unitIdFlag           bool
-	departmentId         string // 单位关联的部门ID
+	departmentId         string
 	departmentIdFlag     bool
-	departmentIdType     string // 此次调用中使用的部门ID的类型
+	departmentIdType     string
 	departmentIdTypeFlag bool
 }
 
@@ -9553,11 +9869,11 @@ func (builder *CreateUnitReqBodyBuilder) Build() *CreateUnitReqBody {
 }
 
 type CreateUnitPathReqBodyBuilder struct {
-	unitId       string // 单位ID。可自定义，不传时默认自动生成。1-64字节范围大小，需为数字字母
+	unitId       string
 	unitIdFlag   bool
-	name         string // 单位的名字，长度范围为1-100个字符
+	name         string
 	nameFlag     bool
-	unitType     string // 单位类型，长度范围为1-100个字符，创建后不可修改
+	unitType     string
 	unitTypeFlag bool
 }
 
@@ -9902,7 +10218,7 @@ func (builder *PatchUnitReqBodyBuilder) Build() *PatchUnitReqBody {
 }
 
 type PatchUnitPathReqBodyBuilder struct {
-	name     string // 单位的名字
+	name     string
 	nameFlag bool
 }
 
@@ -10038,11 +10354,11 @@ func (builder *UnbindDepartmentUnitReqBodyBuilder) Build() *UnbindDepartmentUnit
 }
 
 type UnbindDepartmentUnitPathReqBodyBuilder struct {
-	unitId               string // 单位ID
+	unitId               string
 	unitIdFlag           bool
-	departmentId         string // 预解除关联的部门ID
+	departmentId         string
 	departmentIdFlag     bool
-	departmentIdType     string // 此次调用中使用的部门ID的类型
+	departmentIdType     string
 	departmentIdTypeFlag bool
 }
 
@@ -10139,11 +10455,77 @@ func (resp *UnbindDepartmentUnitResp) Success() bool {
 	return resp.Code == 0
 }
 
+type BatchUserReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewBatchUserReqBuilder() *BatchUserReqBuilder {
+	builder := &BatchUserReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 要查询的用户ID列表
+//
+// 示例值：
+func (builder *BatchUserReqBuilder) UserIds(userIds []string) *BatchUserReqBuilder {
+	for _, v := range userIds {
+		builder.apiReq.QueryParams.Add("user_ids", fmt.Sprint(v))
+	}
+	return builder
+}
+
+// 指定请求中用户ID类型
+//
+// 示例值：open_id
+func (builder *BatchUserReqBuilder) UserIdType(userIdType string) *BatchUserReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+// 指定查询结果中用户关联的部门ID类型
+//
+// 示例值：open_department_id
+func (builder *BatchUserReqBuilder) DepartmentIdType(departmentIdType string) *BatchUserReqBuilder {
+	builder.apiReq.QueryParams.Set("department_id_type", fmt.Sprint(departmentIdType))
+	return builder
+}
+
+func (builder *BatchUserReqBuilder) Build() *BatchUserReq {
+	req := &BatchUserReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type BatchUserReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type BatchUserRespData struct {
+	Items []*User `json:"items,omitempty"` // 查询到的用户信息，其中异常的用户ID不返回结果。
+}
+
+type BatchUserResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *BatchUserRespData `json:"data"` // 业务数据
+}
+
+func (resp *BatchUserResp) Success() bool {
+	return resp.Code == 0
+}
+
 type BatchGetIdUserReqBodyBuilder struct {
-	emails      []string // 要查询的用户邮箱，最多 50 条。;;注意，emails与mobiles相互独立，每条用户邮箱返回对应的用户ID。;;本接口返回的用户ID数量为emails数量与mobiles数量的和。
-	emailsFlag  bool
-	mobiles     []string // 要查询的用户手机号，最多 50 条。;;注意;1. emails与mobiles相互独立，每条用户手机号返回对应的用户ID。;2.  非中国大陆地区的手机号需要添加以 “+” 开头的国家 / 地区代码。
-	mobilesFlag bool
+	emails              []string // 要查询的用户邮箱，最多 50 条。;;注意，emails与mobiles相互独立，每条用户邮箱返回对应的用户ID。;;本接口返回的用户ID数量为emails数量与mobiles数量的和。
+	emailsFlag          bool
+	mobiles             []string // 要查询的用户手机号，最多 50 条。;;注意;1. emails与mobiles相互独立，每条用户手机号返回对应的用户ID。;2.  非中国大陆地区的手机号需要添加以 “+” 开头的国家 / 地区代码。
+	mobilesFlag         bool
+	includeResigned     bool // 查询结果包含离职员工，可查询离职用户的ID
+	includeResignedFlag bool
 }
 
 func NewBatchGetIdUserReqBodyBuilder() *BatchGetIdUserReqBodyBuilder {
@@ -10169,6 +10551,15 @@ func (builder *BatchGetIdUserReqBodyBuilder) Mobiles(mobiles []string) *BatchGet
 	return builder
 }
 
+// 查询结果包含离职员工，可查询离职用户的ID
+//
+//示例值：true
+func (builder *BatchGetIdUserReqBodyBuilder) IncludeResigned(includeResigned bool) *BatchGetIdUserReqBodyBuilder {
+	builder.includeResigned = includeResigned
+	builder.includeResignedFlag = true
+	return builder
+}
+
 func (builder *BatchGetIdUserReqBodyBuilder) Build() *BatchGetIdUserReqBody {
 	req := &BatchGetIdUserReqBody{}
 	if builder.emailsFlag {
@@ -10177,14 +10568,19 @@ func (builder *BatchGetIdUserReqBodyBuilder) Build() *BatchGetIdUserReqBody {
 	if builder.mobilesFlag {
 		req.Mobiles = builder.mobiles
 	}
+	if builder.includeResignedFlag {
+		req.IncludeResigned = &builder.includeResigned
+	}
 	return req
 }
 
 type BatchGetIdUserPathReqBodyBuilder struct {
-	emails      []string // 要查询的用户邮箱，最多 50 条。;;注意，emails与mobiles相互独立，每条用户邮箱返回对应的用户ID。;;本接口返回的用户ID数量为emails数量与mobiles数量的和。
-	emailsFlag  bool
-	mobiles     []string // 要查询的用户手机号，最多 50 条。;;注意;1. emails与mobiles相互独立，每条用户手机号返回对应的用户ID。;2.  非中国大陆地区的手机号需要添加以 “+” 开头的国家 / 地区代码。
-	mobilesFlag bool
+	emails              []string
+	emailsFlag          bool
+	mobiles             []string
+	mobilesFlag         bool
+	includeResigned     bool
+	includeResignedFlag bool
 }
 
 func NewBatchGetIdUserPathReqBodyBuilder() *BatchGetIdUserPathReqBodyBuilder {
@@ -10210,6 +10606,15 @@ func (builder *BatchGetIdUserPathReqBodyBuilder) Mobiles(mobiles []string) *Batc
 	return builder
 }
 
+// 查询结果包含离职员工，可查询离职用户的ID
+//
+// 示例值：true
+func (builder *BatchGetIdUserPathReqBodyBuilder) IncludeResigned(includeResigned bool) *BatchGetIdUserPathReqBodyBuilder {
+	builder.includeResigned = includeResigned
+	builder.includeResignedFlag = true
+	return builder
+}
+
 func (builder *BatchGetIdUserPathReqBodyBuilder) Build() (*BatchGetIdUserReqBody, error) {
 	req := &BatchGetIdUserReqBody{}
 	if builder.emailsFlag {
@@ -10217,6 +10622,9 @@ func (builder *BatchGetIdUserPathReqBodyBuilder) Build() (*BatchGetIdUserReqBody
 	}
 	if builder.mobilesFlag {
 		req.Mobiles = builder.mobiles
+	}
+	if builder.includeResignedFlag {
+		req.IncludeResigned = &builder.includeResigned
 	}
 	return req, nil
 }
@@ -10258,8 +10666,9 @@ func (builder *BatchGetIdUserReqBuilder) Build() *BatchGetIdUserReq {
 }
 
 type BatchGetIdUserReqBody struct {
-	Emails  []string `json:"emails,omitempty"`  // 要查询的用户邮箱，最多 50 条。;;注意，emails与mobiles相互独立，每条用户邮箱返回对应的用户ID。;;本接口返回的用户ID数量为emails数量与mobiles数量的和。
-	Mobiles []string `json:"mobiles,omitempty"` // 要查询的用户手机号，最多 50 条。;;注意;1. emails与mobiles相互独立，每条用户手机号返回对应的用户ID。;2.  非中国大陆地区的手机号需要添加以 “+” 开头的国家 / 地区代码。
+	Emails          []string `json:"emails,omitempty"`           // 要查询的用户邮箱，最多 50 条。;;注意，emails与mobiles相互独立，每条用户邮箱返回对应的用户ID。;;本接口返回的用户ID数量为emails数量与mobiles数量的和。
+	Mobiles         []string `json:"mobiles,omitempty"`          // 要查询的用户手机号，最多 50 条。;;注意;1. emails与mobiles相互独立，每条用户手机号返回对应的用户ID。;2.  非中国大陆地区的手机号需要添加以 “+” 开头的国家 / 地区代码。
+	IncludeResigned *bool    `json:"include_resigned,omitempty"` // 查询结果包含离职员工，可查询离职用户的ID
 }
 
 type BatchGetIdUserReq struct {
@@ -10478,21 +10887,21 @@ func (builder *DeleteUserReqBodyBuilder) Build() *DeleteUserReqBody {
 }
 
 type DeleteUserPathReqBodyBuilder struct {
-	departmentChatAcceptorUserId     string // 部门群接收者。被删除用户为部门群群主时，转让群主给指定接收者，不指定接收者则默认转让给群内第一个入群的人
+	departmentChatAcceptorUserId     string
 	departmentChatAcceptorUserIdFlag bool
-	externalChatAcceptorUserId       string // 外部群接收者。被删除用户为外部群群主时，转让群主给指定接收者，不指定接收者则默认转让给群内与被删除用户在同一组织的第一个入群的人，如果组织内只有该用户在群里，则解散外部群
+	externalChatAcceptorUserId       string
 	externalChatAcceptorUserIdFlag   bool
-	docsAcceptorUserId               string // 文档接收者。用户被删除时，其拥有的文档转让给接收者。不指定接收者则默认转让给直属上级，如果无直属上级则将文档资源保留在该用户名下。
+	docsAcceptorUserId               string
 	docsAcceptorUserIdFlag           bool
-	calendarAcceptorUserId           string // 日程接收者。用户被删除时，其拥有的日程转让给接收者，不指定接收者则默认转让给直属上级，如果无直属上级则直接删除日程资源。
+	calendarAcceptorUserId           string
 	calendarAcceptorUserIdFlag       bool
-	applicationAcceptorUserId        string // 应用接受者。用户被删除时，其创建的应用转让给接收者，不指定接收者则默认转让给直属上级。如果无直属上级则保留应用在该用户名下，但该用户无法登录开发者后台进行应用管理，管理员可以在管理后台手动转移应用给其他人。
+	applicationAcceptorUserId        string
 	applicationAcceptorUserIdFlag    bool
-	minutesAcceptorUserId            string // 妙记接收者。用户被删除时，其拥有的妙记资源转让给接收者。如果不指定接收者，则默认转让给直属上级。如果无直属上级则将妙记保留在该用户名下。
+	minutesAcceptorUserId            string
 	minutesAcceptorUserIdFlag        bool
-	surveyAcceptorUserId             string // 飞书问卷接收者。用户被删除时，其拥有的飞书问卷资源转让给接收者，不指定接收者则默认转让给直属上级，如果无直属上级则直接删除飞书问卷资源。
+	surveyAcceptorUserId             string
 	surveyAcceptorUserIdFlag         bool
-	emailAcceptor                    *ResourceAcceptor // 用户邮件资源处理方式。用户被删除时，根据传递的操作指令对其拥有的邮件资源做对应处理。未传递指令时默认将邮件资源转让给直属上级，如果无直属上级则保留邮件资源在该用户名下。
+	emailAcceptor                    *ResourceAcceptor
 	emailAcceptorFlag                bool
 }
 
@@ -11029,9 +11438,9 @@ func (builder *ResurrectUserReqBodyBuilder) Build() *ResurrectUserReqBody {
 }
 
 type ResurrectUserPathReqBodyBuilder struct {
-	departments         []*UserDepartmentInfo // 指定恢复后用户所在部门
+	departments         []*UserDepartmentInfo
 	departmentsFlag     bool
-	subscriptionIds     []string // 指定恢复后分配的席位
+	subscriptionIds     []string
 	subscriptionIdsFlag bool
 }
 
@@ -11210,6 +11619,235 @@ type UpdateUserResp struct {
 }
 
 func (resp *UpdateUserResp) Success() bool {
+	return resp.Code == 0
+}
+
+type UpdateUserIdUserReqBodyBuilder struct {
+	newUserId     string // 自定义新用户ID
+	newUserIdFlag bool
+}
+
+func NewUpdateUserIdUserReqBodyBuilder() *UpdateUserIdUserReqBodyBuilder {
+	builder := &UpdateUserIdUserReqBodyBuilder{}
+	return builder
+}
+
+// 自定义新用户ID
+//
+//示例值：3e3cf96b
+func (builder *UpdateUserIdUserReqBodyBuilder) NewUserId(newUserId string) *UpdateUserIdUserReqBodyBuilder {
+	builder.newUserId = newUserId
+	builder.newUserIdFlag = true
+	return builder
+}
+
+func (builder *UpdateUserIdUserReqBodyBuilder) Build() *UpdateUserIdUserReqBody {
+	req := &UpdateUserIdUserReqBody{}
+	if builder.newUserIdFlag {
+		req.NewUserId = &builder.newUserId
+	}
+	return req
+}
+
+type UpdateUserIdUserPathReqBodyBuilder struct {
+	newUserId     string
+	newUserIdFlag bool
+}
+
+func NewUpdateUserIdUserPathReqBodyBuilder() *UpdateUserIdUserPathReqBodyBuilder {
+	builder := &UpdateUserIdUserPathReqBodyBuilder{}
+	return builder
+}
+
+// 自定义新用户ID
+//
+// 示例值：3e3cf96b
+func (builder *UpdateUserIdUserPathReqBodyBuilder) NewUserId(newUserId string) *UpdateUserIdUserPathReqBodyBuilder {
+	builder.newUserId = newUserId
+	builder.newUserIdFlag = true
+	return builder
+}
+
+func (builder *UpdateUserIdUserPathReqBodyBuilder) Build() (*UpdateUserIdUserReqBody, error) {
+	req := &UpdateUserIdUserReqBody{}
+	if builder.newUserIdFlag {
+		req.NewUserId = &builder.newUserId
+	}
+	return req, nil
+}
+
+type UpdateUserIdUserReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *UpdateUserIdUserReqBody
+}
+
+func NewUpdateUserIdUserReqBuilder() *UpdateUserIdUserReqBuilder {
+	builder := &UpdateUserIdUserReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 用户ID
+//
+// 示例值：
+func (builder *UpdateUserIdUserReqBuilder) UserId(userId string) *UpdateUserIdUserReqBuilder {
+	builder.apiReq.PathParams.Set("user_id", fmt.Sprint(userId))
+	return builder
+}
+
+// 此次调用中使用的用户ID的类型
+//
+// 示例值：
+func (builder *UpdateUserIdUserReqBuilder) UserIdType(userIdType string) *UpdateUserIdUserReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+//
+func (builder *UpdateUserIdUserReqBuilder) Body(body *UpdateUserIdUserReqBody) *UpdateUserIdUserReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *UpdateUserIdUserReqBuilder) Build() *UpdateUserIdUserReq {
+	req := &UpdateUserIdUserReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type UpdateUserIdUserReqBody struct {
+	NewUserId *string `json:"new_user_id,omitempty"` // 自定义新用户ID
+}
+
+type UpdateUserIdUserReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *UpdateUserIdUserReqBody `body:""`
+}
+
+type UpdateUserIdUserResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *UpdateUserIdUserResp) Success() bool {
+	return resp.Code == 0
+}
+
+type GetWorkCityReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewGetWorkCityReqBuilder() *GetWorkCityReqBuilder {
+	builder := &GetWorkCityReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 工作城市ID
+//
+// 示例值：dd39369b19b9
+func (builder *GetWorkCityReqBuilder) WorkCityId(workCityId string) *GetWorkCityReqBuilder {
+	builder.apiReq.PathParams.Set("work_city_id", fmt.Sprint(workCityId))
+	return builder
+}
+
+func (builder *GetWorkCityReqBuilder) Build() *GetWorkCityReq {
+	req := &GetWorkCityReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	return req
+}
+
+type GetWorkCityReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type GetWorkCityRespData struct {
+	WorkCity *WorkCity `json:"work_city,omitempty"` // 工作城市信息
+}
+
+type GetWorkCityResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *GetWorkCityRespData `json:"data"` // 业务数据
+}
+
+func (resp *GetWorkCityResp) Success() bool {
+	return resp.Code == 0
+}
+
+type ListWorkCityReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	limit  int // 最大返回多少记录，当使用迭代器访问时才有效
+}
+
+func NewListWorkCityReqBuilder() *ListWorkCityReqBuilder {
+	builder := &ListWorkCityReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 最大返回多少记录，当使用迭代器访问时才有效
+func (builder *ListWorkCityReqBuilder) Limit(limit int) *ListWorkCityReqBuilder {
+	builder.limit = limit
+	return builder
+}
+
+// 分页大小
+//
+// 示例值：10
+func (builder *ListWorkCityReqBuilder) PageSize(pageSize int) *ListWorkCityReqBuilder {
+	builder.apiReq.QueryParams.Set("page_size", fmt.Sprint(pageSize))
+	return builder
+}
+
+// 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果
+//
+// 示例值："xxx"
+func (builder *ListWorkCityReqBuilder) PageToken(pageToken string) *ListWorkCityReqBuilder {
+	builder.apiReq.QueryParams.Set("page_token", fmt.Sprint(pageToken))
+	return builder
+}
+
+func (builder *ListWorkCityReqBuilder) Build() *ListWorkCityReq {
+	req := &ListWorkCityReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.Limit = builder.limit
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type ListWorkCityReq struct {
+	apiReq *larkcore.ApiReq
+	Limit  int // 最多返回多少记录，只有在使用迭代器访问时，才有效
+
+}
+
+type ListWorkCityRespData struct {
+	Items     []*WorkCity `json:"items,omitempty"`      // 工作城市列表
+	PageToken *string     `json:"page_token,omitempty"` // 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
+	HasMore   *bool       `json:"has_more,omitempty"`   // 是否还有更多项
+}
+
+type ListWorkCityResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *ListWorkCityRespData `json:"data"` // 业务数据
+}
+
+func (resp *ListWorkCityResp) Success() bool {
 	return resp.Code == 0
 }
 
@@ -11944,6 +12582,60 @@ func (iterator *ListJobLevelIterator) NextPageToken() *string {
 	return iterator.nextPageToken
 }
 
+type ListJobTitleIterator struct {
+	nextPageToken *string
+	items         []*JobTitle
+	index         int
+	limit         int
+	ctx           context.Context
+	req           *ListJobTitleReq
+	listFunc      func(ctx context.Context, req *ListJobTitleReq, options ...larkcore.RequestOptionFunc) (*ListJobTitleResp, error)
+	options       []larkcore.RequestOptionFunc
+	curlNum       int
+}
+
+func (iterator *ListJobTitleIterator) Next() (bool, *JobTitle, error) {
+	// 达到最大量，则返回
+	if iterator.limit > 0 && iterator.curlNum >= iterator.limit {
+		return false, nil, nil
+	}
+
+	// 为0则拉取数据
+	if iterator.index == 0 || iterator.index >= len(iterator.items) {
+		if iterator.index != 0 && iterator.nextPageToken == nil {
+			return false, nil, nil
+		}
+		if iterator.nextPageToken != nil {
+			iterator.req.apiReq.QueryParams.Set("page_token", *iterator.nextPageToken)
+		}
+		resp, err := iterator.listFunc(iterator.ctx, iterator.req, iterator.options...)
+		if err != nil {
+			return false, nil, err
+		}
+
+		if resp.Code != 0 {
+			return false, nil, errors.New(fmt.Sprintf("Code:%d,Msg:%s", resp.Code, resp.Msg))
+		}
+
+		if len(resp.Data.Items) == 0 {
+			return false, nil, nil
+		}
+
+		iterator.nextPageToken = resp.Data.PageToken
+		iterator.items = resp.Data.Items
+		iterator.index = 0
+	}
+
+	block := iterator.items[iterator.index]
+	iterator.index++
+	iterator.curlNum++
+	return true, block, nil
+}
+
+func (iterator *ListJobTitleIterator) NextPageToken() *string {
+	return iterator.nextPageToken
+}
+
 type FindByDepartmentUserIterator struct {
 	nextPageToken *string
 	items         []*User
@@ -12049,5 +12741,59 @@ func (iterator *ListUserIterator) Next() (bool, *User, error) {
 }
 
 func (iterator *ListUserIterator) NextPageToken() *string {
+	return iterator.nextPageToken
+}
+
+type ListWorkCityIterator struct {
+	nextPageToken *string
+	items         []*WorkCity
+	index         int
+	limit         int
+	ctx           context.Context
+	req           *ListWorkCityReq
+	listFunc      func(ctx context.Context, req *ListWorkCityReq, options ...larkcore.RequestOptionFunc) (*ListWorkCityResp, error)
+	options       []larkcore.RequestOptionFunc
+	curlNum       int
+}
+
+func (iterator *ListWorkCityIterator) Next() (bool, *WorkCity, error) {
+	// 达到最大量，则返回
+	if iterator.limit > 0 && iterator.curlNum >= iterator.limit {
+		return false, nil, nil
+	}
+
+	// 为0则拉取数据
+	if iterator.index == 0 || iterator.index >= len(iterator.items) {
+		if iterator.index != 0 && iterator.nextPageToken == nil {
+			return false, nil, nil
+		}
+		if iterator.nextPageToken != nil {
+			iterator.req.apiReq.QueryParams.Set("page_token", *iterator.nextPageToken)
+		}
+		resp, err := iterator.listFunc(iterator.ctx, iterator.req, iterator.options...)
+		if err != nil {
+			return false, nil, err
+		}
+
+		if resp.Code != 0 {
+			return false, nil, errors.New(fmt.Sprintf("Code:%d,Msg:%s", resp.Code, resp.Msg))
+		}
+
+		if len(resp.Data.Items) == 0 {
+			return false, nil, nil
+		}
+
+		iterator.nextPageToken = resp.Data.PageToken
+		iterator.items = resp.Data.Items
+		iterator.index = 0
+	}
+
+	block := iterator.items[iterator.index]
+	iterator.index++
+	iterator.curlNum++
+	return true, block, nil
+}
+
+func (iterator *ListWorkCityIterator) NextPageToken() *string {
 	return iterator.nextPageToken
 }

@@ -17,6 +17,166 @@ import (
 	"github.com/larksuite/oapi-sdk-go/v3/core"
 )
 
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
+
+	}
+	return req
+}
+
+type TokenInfo struct {
+	AccessToken      *string `json:"access_token,omitempty"`       // user_access_token，用于获取用户资源和访问某些open api
+	RefreshToken     *string `json:"refresh_token,omitempty"`      // 刷新用户 `access_token` 时使用的 token
+	TokenType        *string `json:"token_type,omitempty"`         // token 类型，固定值
+	ExpiresIn        *int    `json:"expires_in,omitempty"`         // `access_token`的有效期，单位: 秒，一般是两个小时左右，需要以返回结果为准
+	RefreshExpiresIn *int    `json:"refresh_expires_in,omitempty"` // `refresh_token` 的有效期，单位: 秒，一般是30天左右，需要以返回结果为准
+	Scope            *string `json:"scope,omitempty"`              // 用户授予app的权限全集
+}
+
+type TokenInfoBuilder struct {
+	accessToken          string // user_access_token，用于获取用户资源和访问某些open api
+	accessTokenFlag      bool
+	refreshToken         string // 刷新用户 `access_token` 时使用的 token
+	refreshTokenFlag     bool
+	tokenType            string // token 类型，固定值
+	tokenTypeFlag        bool
+	expiresIn            int // `access_token`的有效期，单位: 秒，一般是两个小时左右，需要以返回结果为准
+	expiresInFlag        bool
+	refreshExpiresIn     int // `refresh_token` 的有效期，单位: 秒，一般是30天左右，需要以返回结果为准
+	refreshExpiresInFlag bool
+	scope                string // 用户授予app的权限全集
+	scopeFlag            bool
+}
+
+func NewTokenInfoBuilder() *TokenInfoBuilder {
+	builder := &TokenInfoBuilder{}
+	return builder
+}
+
+// user_access_token，用于获取用户资源和访问某些open api
+//
+// 示例值：u-5Dak9ZAxJ9tFUn8MaTD_BFM51FNdg5xzO0y010000HWb
+func (builder *TokenInfoBuilder) AccessToken(accessToken string) *TokenInfoBuilder {
+	builder.accessToken = accessToken
+	builder.accessTokenFlag = true
+	return builder
+}
+
+// 刷新用户 `access_token` 时使用的 token
+//
+// 示例值：ur-6EyFQZyplb9URrOx5NtT_HM53zrJg59HXwy040400G.e
+func (builder *TokenInfoBuilder) RefreshToken(refreshToken string) *TokenInfoBuilder {
+	builder.refreshToken = refreshToken
+	builder.refreshTokenFlag = true
+	return builder
+}
+
+// token 类型，固定值
+//
+// 示例值：Bearer
+func (builder *TokenInfoBuilder) TokenType(tokenType string) *TokenInfoBuilder {
+	builder.tokenType = tokenType
+	builder.tokenTypeFlag = true
+	return builder
+}
+
+// `access_token`的有效期，单位: 秒，一般是两个小时左右，需要以返回结果为准
+//
+// 示例值：7199
+func (builder *TokenInfoBuilder) ExpiresIn(expiresIn int) *TokenInfoBuilder {
+	builder.expiresIn = expiresIn
+	builder.expiresInFlag = true
+	return builder
+}
+
+// `refresh_token` 的有效期，单位: 秒，一般是30天左右，需要以返回结果为准
+//
+// 示例值：2591999
+func (builder *TokenInfoBuilder) RefreshExpiresIn(refreshExpiresIn int) *TokenInfoBuilder {
+	builder.refreshExpiresIn = refreshExpiresIn
+	builder.refreshExpiresInFlag = true
+	return builder
+}
+
+// 用户授予app的权限全集
+//
+// 示例值：auth:user.id:read bitable:app
+func (builder *TokenInfoBuilder) Scope(scope string) *TokenInfoBuilder {
+	builder.scope = scope
+	builder.scopeFlag = true
+	return builder
+}
+
+func (builder *TokenInfoBuilder) Build() *TokenInfo {
+	req := &TokenInfo{}
+	if builder.accessTokenFlag {
+		req.AccessToken = &builder.accessToken
+
+	}
+	if builder.refreshTokenFlag {
+		req.RefreshToken = &builder.refreshToken
+
+	}
+	if builder.tokenTypeFlag {
+		req.TokenType = &builder.tokenType
+
+	}
+	if builder.expiresInFlag {
+		req.ExpiresIn = &builder.expiresIn
+
+	}
+	if builder.refreshExpiresInFlag {
+		req.RefreshExpiresIn = &builder.refreshExpiresIn
+
+	}
+	if builder.scopeFlag {
+		req.Scope = &builder.scope
+
+	}
+	return req
+}
+
 type UserAccessTokenInfo struct {
 	AccessToken      *string `json:"access_token,omitempty"`       // user_access_token，用于获取用户资源
 	TokenType        *string `json:"token_type,omitempty"`         // token 类型
@@ -619,9 +779,9 @@ func (builder *CreateAccessTokenReqBodyBuilder) Build() *CreateAccessTokenReqBod
 }
 
 type CreateAccessTokenPathReqBodyBuilder struct {
-	grantType     string // 授权类型，**固定值**
+	grantType     string
 	grantTypeFlag bool
-	code          string // 登录预授权码，调用[获取登录预授权码](https://open.feishu.cn/document/ukTMukTMukTM/ukzN4UjL5cDO14SO3gTN)接口获取
+	code          string
 	codeFlag      bool
 }
 
@@ -728,6 +888,282 @@ func (resp *CreateAccessTokenResp) Success() bool {
 	return resp.Code == 0
 }
 
+type CreateOidcAccessTokenReqBodyBuilder struct {
+	grantType     string // 授权类型，**固定值**
+	grantTypeFlag bool
+	code          string // 登录预授权码
+	codeFlag      bool
+}
+
+func NewCreateOidcAccessTokenReqBodyBuilder() *CreateOidcAccessTokenReqBodyBuilder {
+	builder := &CreateOidcAccessTokenReqBodyBuilder{}
+	return builder
+}
+
+// 授权类型，**固定值**
+//
+//示例值：authorization_code
+func (builder *CreateOidcAccessTokenReqBodyBuilder) GrantType(grantType string) *CreateOidcAccessTokenReqBodyBuilder {
+	builder.grantType = grantType
+	builder.grantTypeFlag = true
+	return builder
+}
+
+// 登录预授权码
+//
+//示例值：xMSldislSkdK
+func (builder *CreateOidcAccessTokenReqBodyBuilder) Code(code string) *CreateOidcAccessTokenReqBodyBuilder {
+	builder.code = code
+	builder.codeFlag = true
+	return builder
+}
+
+func (builder *CreateOidcAccessTokenReqBodyBuilder) Build() *CreateOidcAccessTokenReqBody {
+	req := &CreateOidcAccessTokenReqBody{}
+	if builder.grantTypeFlag {
+		req.GrantType = &builder.grantType
+	}
+	if builder.codeFlag {
+		req.Code = &builder.code
+	}
+	return req
+}
+
+type CreateOidcAccessTokenPathReqBodyBuilder struct {
+	grantType     string
+	grantTypeFlag bool
+	code          string
+	codeFlag      bool
+}
+
+func NewCreateOidcAccessTokenPathReqBodyBuilder() *CreateOidcAccessTokenPathReqBodyBuilder {
+	builder := &CreateOidcAccessTokenPathReqBodyBuilder{}
+	return builder
+}
+
+// 授权类型，**固定值**
+//
+// 示例值：authorization_code
+func (builder *CreateOidcAccessTokenPathReqBodyBuilder) GrantType(grantType string) *CreateOidcAccessTokenPathReqBodyBuilder {
+	builder.grantType = grantType
+	builder.grantTypeFlag = true
+	return builder
+}
+
+// 登录预授权码
+//
+// 示例值：xMSldislSkdK
+func (builder *CreateOidcAccessTokenPathReqBodyBuilder) Code(code string) *CreateOidcAccessTokenPathReqBodyBuilder {
+	builder.code = code
+	builder.codeFlag = true
+	return builder
+}
+
+func (builder *CreateOidcAccessTokenPathReqBodyBuilder) Build() (*CreateOidcAccessTokenReqBody, error) {
+	req := &CreateOidcAccessTokenReqBody{}
+	if builder.grantTypeFlag {
+		req.GrantType = &builder.grantType
+	}
+	if builder.codeFlag {
+		req.Code = &builder.code
+	}
+	return req, nil
+}
+
+type CreateOidcAccessTokenReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *CreateOidcAccessTokenReqBody
+}
+
+func NewCreateOidcAccessTokenReqBuilder() *CreateOidcAccessTokenReqBuilder {
+	builder := &CreateOidcAccessTokenReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+//
+func (builder *CreateOidcAccessTokenReqBuilder) Body(body *CreateOidcAccessTokenReqBody) *CreateOidcAccessTokenReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *CreateOidcAccessTokenReqBuilder) Build() *CreateOidcAccessTokenReq {
+	req := &CreateOidcAccessTokenReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type CreateOidcAccessTokenReqBody struct {
+	GrantType *string `json:"grant_type,omitempty"` // 授权类型，**固定值**
+	Code      *string `json:"code,omitempty"`       // 登录预授权码
+}
+
+type CreateOidcAccessTokenReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *CreateOidcAccessTokenReqBody `body:""`
+}
+
+type CreateOidcAccessTokenRespData struct {
+	AccessToken      *string `json:"access_token,omitempty"`       // user_access_token，用于获取用户资源和访问某些open api
+	RefreshToken     *string `json:"refresh_token,omitempty"`      // 刷新用户 `access_token` 时使用的 token
+	TokenType        *string `json:"token_type,omitempty"`         // token 类型，固定值
+	ExpiresIn        *int    `json:"expires_in,omitempty"`         // `access_token`的有效期，单位: 秒，一般是两个小时左右，需要以返回结果为准
+	RefreshExpiresIn *int    `json:"refresh_expires_in,omitempty"` // `refresh_token` 的有效期，单位: 秒，一般是30天左右，需要以返回结果为准
+	Scope            *string `json:"scope,omitempty"`              // 用户授予app的权限全集
+}
+
+type CreateOidcAccessTokenResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *CreateOidcAccessTokenRespData `json:"data"` // 业务数据
+}
+
+func (resp *CreateOidcAccessTokenResp) Success() bool {
+	return resp.Code == 0
+}
+
+type CreateOidcRefreshAccessTokenReqBodyBuilder struct {
+	grantType        string // 授权类型，**固定值**：
+	grantTypeFlag    bool
+	refreshToken     string // 刷新 `user_access_token` 需要的凭证<br>获取user_access_token`接口和本接口均返回 `refresh_token`，**每次请求，请注意使用最新获取到的`refresh_token`**
+	refreshTokenFlag bool
+}
+
+func NewCreateOidcRefreshAccessTokenReqBodyBuilder() *CreateOidcRefreshAccessTokenReqBodyBuilder {
+	builder := &CreateOidcRefreshAccessTokenReqBodyBuilder{}
+	return builder
+}
+
+// 授权类型，**固定值**：
+//
+//示例值：refresh_token
+func (builder *CreateOidcRefreshAccessTokenReqBodyBuilder) GrantType(grantType string) *CreateOidcRefreshAccessTokenReqBodyBuilder {
+	builder.grantType = grantType
+	builder.grantTypeFlag = true
+	return builder
+}
+
+// 刷新 `user_access_token` 需要的凭证<br>获取user_access_token`接口和本接口均返回 `refresh_token`，**每次请求，请注意使用最新获取到的`refresh_token`**
+//
+//示例值：ur-oQ0mMq6MCcueAv0pwx2fQQhxqv__CbLu6G8ySFwafeKww2Def2BJdOkW3.9gCFM.LBQgFri901QaqeuL
+func (builder *CreateOidcRefreshAccessTokenReqBodyBuilder) RefreshToken(refreshToken string) *CreateOidcRefreshAccessTokenReqBodyBuilder {
+	builder.refreshToken = refreshToken
+	builder.refreshTokenFlag = true
+	return builder
+}
+
+func (builder *CreateOidcRefreshAccessTokenReqBodyBuilder) Build() *CreateOidcRefreshAccessTokenReqBody {
+	req := &CreateOidcRefreshAccessTokenReqBody{}
+	if builder.grantTypeFlag {
+		req.GrantType = &builder.grantType
+	}
+	if builder.refreshTokenFlag {
+		req.RefreshToken = &builder.refreshToken
+	}
+	return req
+}
+
+type CreateOidcRefreshAccessTokenPathReqBodyBuilder struct {
+	grantType        string
+	grantTypeFlag    bool
+	refreshToken     string
+	refreshTokenFlag bool
+}
+
+func NewCreateOidcRefreshAccessTokenPathReqBodyBuilder() *CreateOidcRefreshAccessTokenPathReqBodyBuilder {
+	builder := &CreateOidcRefreshAccessTokenPathReqBodyBuilder{}
+	return builder
+}
+
+// 授权类型，**固定值**：
+//
+// 示例值：refresh_token
+func (builder *CreateOidcRefreshAccessTokenPathReqBodyBuilder) GrantType(grantType string) *CreateOidcRefreshAccessTokenPathReqBodyBuilder {
+	builder.grantType = grantType
+	builder.grantTypeFlag = true
+	return builder
+}
+
+// 刷新 `user_access_token` 需要的凭证<br>获取user_access_token`接口和本接口均返回 `refresh_token`，**每次请求，请注意使用最新获取到的`refresh_token`**
+//
+// 示例值：ur-oQ0mMq6MCcueAv0pwx2fQQhxqv__CbLu6G8ySFwafeKww2Def2BJdOkW3.9gCFM.LBQgFri901QaqeuL
+func (builder *CreateOidcRefreshAccessTokenPathReqBodyBuilder) RefreshToken(refreshToken string) *CreateOidcRefreshAccessTokenPathReqBodyBuilder {
+	builder.refreshToken = refreshToken
+	builder.refreshTokenFlag = true
+	return builder
+}
+
+func (builder *CreateOidcRefreshAccessTokenPathReqBodyBuilder) Build() (*CreateOidcRefreshAccessTokenReqBody, error) {
+	req := &CreateOidcRefreshAccessTokenReqBody{}
+	if builder.grantTypeFlag {
+		req.GrantType = &builder.grantType
+	}
+	if builder.refreshTokenFlag {
+		req.RefreshToken = &builder.refreshToken
+	}
+	return req, nil
+}
+
+type CreateOidcRefreshAccessTokenReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *CreateOidcRefreshAccessTokenReqBody
+}
+
+func NewCreateOidcRefreshAccessTokenReqBuilder() *CreateOidcRefreshAccessTokenReqBuilder {
+	builder := &CreateOidcRefreshAccessTokenReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+//
+func (builder *CreateOidcRefreshAccessTokenReqBuilder) Body(body *CreateOidcRefreshAccessTokenReqBody) *CreateOidcRefreshAccessTokenReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *CreateOidcRefreshAccessTokenReqBuilder) Build() *CreateOidcRefreshAccessTokenReq {
+	req := &CreateOidcRefreshAccessTokenReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type CreateOidcRefreshAccessTokenReqBody struct {
+	GrantType    *string `json:"grant_type,omitempty"`    // 授权类型，**固定值**：
+	RefreshToken *string `json:"refresh_token,omitempty"` // 刷新 `user_access_token` 需要的凭证<br>获取user_access_token`接口和本接口均返回 `refresh_token`，**每次请求，请注意使用最新获取到的`refresh_token`**
+}
+
+type CreateOidcRefreshAccessTokenReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *CreateOidcRefreshAccessTokenReqBody `body:""`
+}
+
+type CreateOidcRefreshAccessTokenRespData struct {
+	AccessToken      *string `json:"access_token,omitempty"`       // user_access_token，用于获取用户资源和访问某些open api
+	RefreshToken     *string `json:"refresh_token,omitempty"`      // 刷新用户 `access_token` 时使用的 token
+	TokenType        *string `json:"token_type,omitempty"`         // token 类型，固定值
+	ExpiresIn        *int    `json:"expires_in,omitempty"`         // `access_token`的有效期，单位: 秒，一般是两个小时左右，需要以返回结果为准
+	RefreshExpiresIn *int    `json:"refresh_expires_in,omitempty"` // `refresh_token` 的有效期，单位: 秒，一般是30天左右，需要以返回结果为准
+	Scope            *string `json:"scope,omitempty"`              // 用户授予app的权限全集
+}
+
+type CreateOidcRefreshAccessTokenResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *CreateOidcRefreshAccessTokenRespData `json:"data"` // 业务数据
+}
+
+func (resp *CreateOidcRefreshAccessTokenResp) Success() bool {
+	return resp.Code == 0
+}
+
 type CreateRefreshAccessTokenReqBodyBuilder struct {
 	grantType        string // 授权类型，**固定值**：
 	grantTypeFlag    bool
@@ -770,9 +1206,9 @@ func (builder *CreateRefreshAccessTokenReqBodyBuilder) Build() *CreateRefreshAcc
 }
 
 type CreateRefreshAccessTokenPathReqBodyBuilder struct {
-	grantType        string // 授权类型，**固定值**：
+	grantType        string
 	grantTypeFlag    bool
-	refreshToken     string // 刷新 `user_access_token` 需要的凭证<br>获取user_access_token`接口和本接口均返回 `refresh_token`，**每次请求，请注意使用最新获取到的`refresh_token`**
+	refreshToken     string
 	refreshTokenFlag bool
 }
 

@@ -33,10 +33,12 @@ func main() {
 			TimeMax("2020-12-28T12:00:00+08:00").
 			UserId("ou_xxxxxxxxxx").
 			RoomId("omm_xxxxxxxxxx").
+			IncludeExternalCalendar(true).
+			OnlyBusy(true).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.Freebusy.List(context.Background(), req)
+	resp, err := client.Calendar.V4.Freebusy.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

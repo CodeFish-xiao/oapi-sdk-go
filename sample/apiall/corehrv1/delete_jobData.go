@@ -30,7 +30,7 @@ func main() {
 		JobDataId("467642764726472").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.JobData.Delete(context.Background(), req)
+	resp, err := client.Corehr.V1.JobData.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

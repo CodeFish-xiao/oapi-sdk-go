@@ -31,7 +31,7 @@ func main() {
 		Type(1).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.Attachment.Get(context.Background(), req)
+	resp, err := client.Hire.V1.Attachment.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

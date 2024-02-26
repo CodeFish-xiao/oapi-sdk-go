@@ -28,9 +28,10 @@ func main() {
 	// 创建请求对象
 	req := larkwiki.NewGetSpaceReqBuilder().
 		SpaceId("6870403571079249922").
+		Lang("en").
 		Build()
 	// 发起请求
-	resp, err := client.Wiki.Space.Get(context.Background(), req)
+	resp, err := client.Wiki.V2.Space.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

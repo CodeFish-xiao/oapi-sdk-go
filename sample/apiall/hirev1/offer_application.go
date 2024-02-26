@@ -30,9 +30,12 @@ func main() {
 		ApplicationId("6949805467799537964").
 		UserIdType("open_id").
 		DepartmentIdType("open_department_id").
+		JobLevelIdType("people_admin_job_level_id").
+		JobFamilyIdType("people_admin_job_category_id").
+		EmployeeTypeIdType("people_admin_employee_type_id").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.Application.Offer(context.Background(), req)
+	resp, err := client.Hire.V1.Application.Offer(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

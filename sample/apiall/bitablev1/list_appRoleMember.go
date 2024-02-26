@@ -33,7 +33,7 @@ func main() {
 		PageToken("xxxxx").
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppRoleMember.List(context.Background(), req)
+	resp, err := client.Bitable.V1.AppRoleMember.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

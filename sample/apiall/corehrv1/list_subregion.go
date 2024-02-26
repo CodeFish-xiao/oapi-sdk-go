@@ -32,7 +32,7 @@ func main() {
 		SubdivisionId("100").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Subregion.List(context.Background(), req)
+	resp, err := client.Corehr.V1.Subregion.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

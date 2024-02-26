@@ -25,7 +25,7 @@ func main() {
 	// 创建 Client
 	client := lark.NewClient("appID", "appSecret")
 	// 发起请求
-	resp, err := client.Acs.Device.List(context.Background())
+	resp, err := client.Acs.V1.Device.List(context.Background())
 
 	// 处理错误
 	if err != nil {

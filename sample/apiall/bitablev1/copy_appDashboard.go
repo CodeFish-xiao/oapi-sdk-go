@@ -34,7 +34,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppDashboard.Copy(context.Background(), req)
+	resp, err := client.Bitable.V1.AppDashboard.Copy(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

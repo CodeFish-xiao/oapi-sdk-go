@@ -32,7 +32,7 @@ func main() {
 		DepartmentIdType("people_corehr_department_id").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Department.Get(context.Background(), req)
+	resp, err := client.Corehr.V1.Department.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

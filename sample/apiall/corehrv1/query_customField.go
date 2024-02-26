@@ -30,7 +30,7 @@ func main() {
 		ObjectApiNameList([]string{}).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.CustomField.Query(context.Background(), req)
+	resp, err := client.Corehr.V1.CustomField.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

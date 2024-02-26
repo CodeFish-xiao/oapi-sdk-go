@@ -35,7 +35,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Vc.ReserveConfigAdmin.Patch(context.Background(), req)
+	resp, err := client.Vc.V1.ReserveConfigAdmin.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

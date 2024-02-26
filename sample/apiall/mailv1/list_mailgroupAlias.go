@@ -30,7 +30,7 @@ func main() {
 		MailgroupId("xxxxxxxxxxxxxxx 或 test_mail_group@xxx.xx").
 		Build()
 	// 发起请求
-	resp, err := client.Mail.MailgroupAlias.List(context.Background(), req)
+	resp, err := client.Mail.V1.MailgroupAlias.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

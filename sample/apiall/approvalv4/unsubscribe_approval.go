@@ -30,7 +30,7 @@ func main() {
 		ApprovalCode("7C468A54-8745-2245-9675-08B7C63E7A85").
 		Build()
 	// 发起请求
-	resp, err := client.Approval.Approval.Unsubscribe(context.Background(), req)
+	resp, err := client.Approval.V4.Approval.Unsubscribe(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

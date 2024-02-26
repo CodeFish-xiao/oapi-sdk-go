@@ -30,7 +30,7 @@ func main() {
 		Ticket("6990281865xxxxxxxx7843").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.ImportTask.Get(context.Background(), req)
+	resp, err := client.Drive.V1.ImportTask.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

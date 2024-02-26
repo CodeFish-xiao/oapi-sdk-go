@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppTable.BatchDelete(context.Background(), req)
+	resp, err := client.Bitable.V1.AppTable.BatchDelete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

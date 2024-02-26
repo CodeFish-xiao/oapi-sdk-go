@@ -28,9 +28,10 @@ func main() {
 	// 创建请求对象
 	req := larkwiki.NewGetNodeSpaceReqBuilder().
 		Token("wikcnKQ1k3p******8Vabcef").
+		ObjType("wiki").
 		Build()
 	// 发起请求
-	resp, err := client.Wiki.Space.GetNode(context.Background(), req)
+	resp, err := client.Wiki.V2.Space.GetNode(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

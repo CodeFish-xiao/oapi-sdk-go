@@ -30,7 +30,7 @@ func main() {
 		MeetingId("6911188411932033028").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.MeetingRecording.Get(context.Background(), req)
+	resp, err := client.Vc.V1.MeetingRecording.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

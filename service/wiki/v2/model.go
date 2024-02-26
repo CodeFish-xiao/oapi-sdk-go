@@ -14,12 +14,60 @@
 package larkwiki
 
 import (
-	"fmt"
-
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/larksuite/oapi-sdk-go/v3/core"
+)
+
+const (
+	ShowLanguageLangZH   = "zh"    // 中文（简体）（中华人民共和国）
+	ShowLanguageLangID   = "id"    // 印尼语（印度尼西亚）
+	ShowLanguageLangDE   = "de"    // 德语（德国）
+	ShowLanguageLangEN   = "en"    // 英语（美国）
+	ShowLanguageLangES   = "es"    // 西班牙语（西班牙）
+	ShowLanguageLangFR   = "fr"    // 法语（法国）
+	ShowLanguageLangIT   = "it"    // 意大利语（意大利）
+	ShowLanguageLangPT   = "pt"    // 葡萄牙语（巴西）
+	ShowLanguageLangVI   = "vi"    // 越南语（越南）
+	ShowLanguageLangRU   = "ru"    // 俄语（俄罗斯）
+	ShowLanguageLangHI   = "hi"    // 印地语（印度）
+	ShowLanguageLangTH   = "th"    // 泰语（泰国）
+	ShowLanguageLangKO   = "ko"    // 韩语（韩国）
+	ShowLanguageLangJA   = "ja"    // 日语（日本）
+	ShowLanguageLangZHHK = "zh-HK" // 中文（中国香港）
+	ShowLanguageLangZHTW = "zh-TW" // 中文（中国台湾）
+)
+
+const (
+	ObjTypeForQueryObjTypeDoc      = "doc"      // 旧版文档
+	ObjTypeForQueryObjTypeDocx     = "docx"     // 新版文档
+	ObjTypeForQueryObjTypeSheet    = "sheet"    // 表格
+	ObjTypeForQueryObjTypeMindNote = "mindnote" // 思维导图
+	ObjTypeForQueryObjTypeBitable  = "bitable"  // 多维表格
+	ObjTypeForQueryObjTypeFile     = "file"     // 文件
+	ObjTypeForQueryObjTypeSlides   = "slides"   // 幻灯片
+	ObjTypeForQueryObjTypeWiki     = "wiki"     // 知识库节点
+)
+
+const (
+	ShowLanguageListSpaceLangZH   = "zh"    // 中文（简体）（中华人民共和国）
+	ShowLanguageListSpaceLangID   = "id"    // 印尼语（印度尼西亚）
+	ShowLanguageListSpaceLangDE   = "de"    // 德语（德国）
+	ShowLanguageListSpaceLangEN   = "en"    // 英语（美国）
+	ShowLanguageListSpaceLangES   = "es"    // 西班牙语（西班牙）
+	ShowLanguageListSpaceLangFR   = "fr"    // 法语（法国）
+	ShowLanguageListSpaceLangIT   = "it"    // 意大利语（意大利）
+	ShowLanguageListSpaceLangPT   = "pt"    // 葡萄牙语（巴西）
+	ShowLanguageListSpaceLangVI   = "vi"    // 越南语（越南）
+	ShowLanguageListSpaceLangRU   = "ru"    // 俄语（俄罗斯）
+	ShowLanguageListSpaceLangHI   = "hi"    // 印地语（印度）
+	ShowLanguageListSpaceLangTH   = "th"    // 泰语（泰国）
+	ShowLanguageListSpaceLangKO   = "ko"    // 韩语（韩国）
+	ShowLanguageListSpaceLangJA   = "ja"    // 日语（日本）
+	ShowLanguageListSpaceLangZHHK = "zh-HK" // 中文（中国香港）
+	ShowLanguageListSpaceLangZHTW = "zh-TW" // 中文（中国台湾）
 )
 
 const (
@@ -29,6 +77,7 @@ const (
 	ObjTypeObjTypeBitable  = "bitable"  // 多维表格
 	ObjTypeObjTypeFile     = "file"     // 文件
 	ObjTypeObjTypeDocx     = "docx"     // 新版文档
+	ObjTypeObjTypeSlides   = "slides"   // 幻灯片
 )
 
 const (
@@ -43,11 +92,60 @@ const (
 	MoveDocsToWikiObjTypeObjTypeMindNote = "mindnote" // mindnote（思维导图）
 	MoveDocsToWikiObjTypeObjTypeDocx     = "docx"     // docx
 	MoveDocsToWikiObjTypeObjTypeFile     = "file"     // file (文件)
+	MoveDocsToWikiObjTypeObjTypeSlides   = "slides"   // slides（幻灯片）
 )
 
 const (
 	TaskTypeMove = "move" // MoveDocsToWiki任务
 )
+
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
+
+	}
+	return req
+}
 
 type Member struct {
 	MemberType *string `json:"member_type,omitempty"` // “openchat” - 群id ;;“userid” - 用户id;;“email” - 邮箱;;“opendepartmentid” - 部门id;;“openid” - 应用openid;;“unionid” - [unionid](/:ssltoken/home/user-identity-introduction/union-id;)
@@ -898,10 +996,19 @@ func (builder *GetSpaceReqBuilder) SpaceId(spaceId string) *GetSpaceReqBuilder {
 	return builder
 }
 
+// 当查询个人文档库时，指定返回的文档库名称展示语言。可选值有：zh, id, de, en, es, fr, it, pt, vi, ru, hi, th, ko, ja, zh-HK, zh-TW。
+//
+// 示例值：zh
+func (builder *GetSpaceReqBuilder) Lang(lang string) *GetSpaceReqBuilder {
+	builder.apiReq.QueryParams.Set("lang", fmt.Sprint(lang))
+	return builder
+}
+
 func (builder *GetSpaceReqBuilder) Build() *GetSpaceReq {
 	req := &GetSpaceReq{}
 	req.apiReq = &larkcore.ApiReq{}
 	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
 	return req
 }
 
@@ -941,6 +1048,14 @@ func NewGetNodeSpaceReqBuilder() *GetNodeSpaceReqBuilder {
 // 示例值：wikcnKQ1k3p******8Vabcef
 func (builder *GetNodeSpaceReqBuilder) Token(token string) *GetNodeSpaceReqBuilder {
 	builder.apiReq.QueryParams.Set("token", fmt.Sprint(token))
+	return builder
+}
+
+// 文档类型
+//
+// 示例值：docx
+func (builder *GetNodeSpaceReqBuilder) ObjType(objType string) *GetNodeSpaceReqBuilder {
+	builder.apiReq.QueryParams.Set("obj_type", fmt.Sprint(objType))
 	return builder
 }
 
@@ -1005,6 +1120,14 @@ func (builder *ListSpaceReqBuilder) PageToken(pageToken string) *ListSpaceReqBui
 	return builder
 }
 
+// 当查询个人文档库时，指定返回的文档库名称展示语言。可选值有：zh, id, de, en, es, fr, it, pt, vi, ru, hi, th, ko, ja, zh-HK, zh-TW。
+//
+// 示例值：zh
+func (builder *ListSpaceReqBuilder) Lang(lang string) *ListSpaceReqBuilder {
+	builder.apiReq.QueryParams.Set("lang", fmt.Sprint(lang))
+	return builder
+}
+
 func (builder *ListSpaceReqBuilder) Build() *ListSpaceReq {
 	req := &ListSpaceReq{}
 	req.apiReq = &larkcore.ApiReq{}
@@ -1021,8 +1144,8 @@ type ListSpaceReq struct {
 
 type ListSpaceRespData struct {
 	Items     []*Space `json:"items,omitempty"`      // 数据列表
-	PageToken *string  `json:"page_token,omitempty"` //
-	HasMore   *bool    `json:"has_more,omitempty"`   //
+	PageToken *string  `json:"page_token,omitempty"` // 分页标记，当 has_more 为 true 时，会同时返回新的 page_token，否则不返回 page_token
+	HasMore   *bool    `json:"has_more,omitempty"`   // 是否还有更多项
 }
 
 type ListSpaceResp struct {
@@ -1218,11 +1341,11 @@ func (builder *CopySpaceNodeReqBodyBuilder) Build() *CopySpaceNodeReqBody {
 }
 
 type CopySpaceNodePathReqBodyBuilder struct {
-	targetParentToken     string // 目标父节点token
+	targetParentToken     string
 	targetParentTokenFlag bool
-	targetSpaceId         string // 目标知识空间id
+	targetSpaceId         string
 	targetSpaceIdFlag     bool
-	title                 string // 复制后的新标题。如果填空，则新标题为空。如果不填，则使用原节点标题。
+	title                 string
 	titleFlag             bool
 }
 
@@ -1521,9 +1644,9 @@ func (builder *MoveSpaceNodeReqBodyBuilder) Build() *MoveSpaceNodeReqBody {
 }
 
 type MoveSpaceNodePathReqBodyBuilder struct {
-	targetParentToken     string // 移动到的父节点token
+	targetParentToken     string
 	targetParentTokenFlag bool
-	targetSpaceId         string // 移动到的知识空间ID
+	targetSpaceId         string
 	targetSpaceIdFlag     bool
 }
 
@@ -1699,13 +1822,13 @@ func (builder *MoveDocsToWikiSpaceNodeReqBodyBuilder) Build() *MoveDocsToWikiSpa
 }
 
 type MoveDocsToWikiSpaceNodePathReqBodyBuilder struct {
-	parentWikiToken     string // 节点的父亲token。;;传空或不传时将移动为知识空间一级节点。
+	parentWikiToken     string
 	parentWikiTokenFlag bool
-	objType             string // 文档类型
+	objType             string
 	objTypeFlag         bool
-	objToken            string // 文档token
+	objToken            string
 	objTokenFlag        bool
-	apply               bool // 没有权限时，是否申请移动文档。;;如果申请移动，文档将在处理人同意时自动移动至指定位置。
+	apply               bool
 	applyFlag           bool
 }
 
@@ -1859,7 +1982,7 @@ func (builder *UpdateTitleSpaceNodeReqBodyBuilder) Build() *UpdateTitleSpaceNode
 }
 
 type UpdateTitleSpaceNodePathReqBodyBuilder struct {
-	title     string // 节点新标题
+	title     string
 	titleFlag bool
 }
 

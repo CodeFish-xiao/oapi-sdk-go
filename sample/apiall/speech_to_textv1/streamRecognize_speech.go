@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.SpeechToText.Speech.StreamRecognize(context.Background(), req)
+	resp, err := client.SpeechToText.V1.Speech.StreamRecognize(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

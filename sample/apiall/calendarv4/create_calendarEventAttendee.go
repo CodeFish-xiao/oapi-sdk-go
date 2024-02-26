@@ -39,7 +39,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.CalendarEventAttendee.Create(context.Background(), req)
+	resp, err := client.Calendar.V4.CalendarEventAttendee.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

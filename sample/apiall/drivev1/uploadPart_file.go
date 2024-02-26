@@ -42,7 +42,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Drive.File.UploadPart(context.Background(), req)
+	resp, err := client.Drive.V1.File.UploadPart(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -30,7 +30,7 @@ func main() {
 		OfferSchemaId("1231231231231").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.OfferSchema.Get(context.Background(), req)
+	resp, err := client.Hire.V1.OfferSchema.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

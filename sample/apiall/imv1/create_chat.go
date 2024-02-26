@@ -38,17 +38,20 @@ func main() {
 			OwnerId("4d7a3c6g").
 			UserIdList([]string{}).
 			BotIdList([]string{}).
+			GroupMessageType("chat").
 			ChatMode("group").
 			ChatType("private").
-			External(false).
 			JoinMessageVisibility("all_members").
 			LeaveMessageVisibility("all_members").
 			MembershipApproval("no_approval_required").
 			RestrictedModeSetting(larkim.NewRestrictedModeSettingBuilder().Build()).
+			UrgentSetting("all_members").
+			VideoConferenceSetting("all_members").
+			EditPermission("all_members").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Im.Chat.Create(context.Background(), req)
+	resp, err := client.Im.V1.Chat.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

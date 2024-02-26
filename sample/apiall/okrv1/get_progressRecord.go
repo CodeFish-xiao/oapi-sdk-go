@@ -31,7 +31,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Okr.ProgressRecord.Get(context.Background(), req)
+	resp, err := client.Okr.V1.ProgressRecord.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

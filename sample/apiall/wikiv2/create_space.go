@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Wiki.Space.Create(context.Background(), req)
+	resp, err := client.Wiki.V2.Space.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -30,6 +30,9 @@ func main() {
 		EmployeeId("123").
 		UserIdType("open_id").
 		DepartmentIdType("people_admin_department_id").
+		JobLevelIdType("people_admin_job_level_id").
+		JobFamilyIdType("people_admin_job_category_id").
+		EmployeeTypeIdType("people_admin_employee_type_id").
 		ChangeEmployeeStage(larkhire.NewChangeEmployeeStageBuilder().
 			Operation(1).
 			ConversionInfo(larkhire.NewEmployeeConversionInfoBuilder().Build()).
@@ -37,7 +40,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.Employee.Patch(context.Background(), req)
+	resp, err := client.Hire.V1.Employee.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

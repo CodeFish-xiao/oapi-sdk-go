@@ -31,7 +31,7 @@ func main() {
 		TransferMailbox("888888@abc.com").
 		Build()
 	// 发起请求
-	resp, err := client.Mail.UserMailbox.Delete(context.Background(), req)
+	resp, err := client.Mail.V1.UserMailbox.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

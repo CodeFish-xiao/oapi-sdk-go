@@ -33,7 +33,7 @@ func main() {
 		UserIdType("open_id").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.FileVersion.Get(context.Background(), req)
+	resp, err := client.Drive.V1.FileVersion.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

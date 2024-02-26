@@ -32,9 +32,10 @@ func main() {
 		AsOfDate("2022-07-29").
 		EmploymentIdList([]string{}).
 		UserIdType("people_corehr_id").
+		TimeZone("Asia/Shanghai").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Leave.LeaveBalances(context.Background(), req)
+	resp, err := client.Corehr.V1.Leave.LeaveBalances(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -37,7 +37,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.ExternalBackgroundCheck.Create(context.Background(), req)
+	resp, err := client.Hire.V1.ExternalBackgroundCheck.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

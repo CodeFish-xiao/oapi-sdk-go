@@ -30,7 +30,7 @@ func main() {
 		LocationId("1215").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Location.Get(context.Background(), req)
+	resp, err := client.Corehr.V1.Location.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

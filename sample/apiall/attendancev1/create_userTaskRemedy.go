@@ -39,7 +39,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.UserTaskRemedy.Create(context.Background(), req)
+	resp, err := client.Attendance.V1.UserTaskRemedy.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

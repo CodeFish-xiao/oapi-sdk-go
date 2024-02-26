@@ -32,7 +32,7 @@ func main() {
 		RecordId("recpCsf4ME").
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppTableRecord.Delete(context.Background(), req)
+	resp, err := client.Bitable.V1.AppTableRecord.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

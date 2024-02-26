@@ -30,7 +30,7 @@ func main() {
 		FileKey("file_456a92d6-c6ea-4de4-ac3f-7afcf44ac78g").
 		Build()
 	// 发起请求
-	resp, err := client.Im.File.Get(context.Background(), req)
+	resp, err := client.Im.V1.File.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

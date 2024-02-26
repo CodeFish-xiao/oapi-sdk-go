@@ -30,7 +30,7 @@ func main() {
 		SubdivisionId("67489937334909845").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Subdivision.Get(context.Background(), req)
+	resp, err := client.Corehr.V1.Subdivision.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

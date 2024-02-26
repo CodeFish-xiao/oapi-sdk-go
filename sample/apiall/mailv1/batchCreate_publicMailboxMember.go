@@ -34,7 +34,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Mail.PublicMailboxMember.BatchCreate(context.Background(), req)
+	resp, err := client.Mail.V1.PublicMailboxMember.BatchCreate(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -37,7 +37,7 @@ func main() {
 		PageToken("").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.ResourceReservationList.Get(context.Background(), req)
+	resp, err := client.Vc.V1.ResourceReservationList.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

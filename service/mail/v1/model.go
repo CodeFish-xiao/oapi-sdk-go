@@ -14,10 +14,9 @@
 package larkmail
 
 import (
-	"fmt"
-
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/larksuite/oapi-sdk-go/v3/core"
 )
@@ -47,6 +46,24 @@ const (
 	WhoCanSendMailUpdateMailgroupALLINTERNALUSERS = "ALL_INTERNAL_USERS" // Anyone in the team can send mail to this mail group
 	WhoCanSendMailUpdateMailgroupALLGROUPMEMBERS  = "ALL_GROUP_MEMBERS"  // Any group member can send mail to this mail group
 	WhoCanSendMailUpdateMailgroupCUSTOMMEMBERS    = "CUSTOM_MEMBERS"     // Only custom members can send mail to this mail group, define in mailgroup.permission_members resoure
+)
+
+const (
+	UserIdTypeBatchCreateMailgroupManagerUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeBatchCreateMailgroupManagerUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeBatchCreateMailgroupManagerOpenId  = "open_id"  // 以open_id来识别用户
+)
+
+const (
+	UserIdTypeBatchDeleteMailgroupManagerUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeBatchDeleteMailgroupManagerUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeBatchDeleteMailgroupManagerOpenId  = "open_id"  // 以open_id来识别用户
+)
+
+const (
+	UserIdTypeListMailgroupManagerUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeListMailgroupManagerUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeListMailgroupManagerOpenId  = "open_id"  // 以open_id来识别用户
 )
 
 const (
@@ -155,6 +172,12 @@ const (
 )
 
 const (
+	UserIdTypeListPublicMailboxUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeListPublicMailboxUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeListPublicMailboxOpenId  = "open_id"  // 以open_id来识别用户
+)
+
+const (
 	UserIdTypeBatchCreatePublicMailboxMemberUserId  = "user_id"  // 以user_id来识别用户
 	UserIdTypeBatchCreatePublicMailboxMemberUnionId = "union_id" // 以user_id来识别用户
 	UserIdTypeBatchCreatePublicMailboxMemberOpenId  = "open_id"  // 以open_id来识别用户
@@ -181,6 +204,182 @@ const (
 	UserIdTypeListPublicMailboxMemberUnionId = "union_id" // 以union_id来识别用户
 	UserIdTypeListPublicMailboxMemberOpenId  = "open_id"  // 以open_id来识别用户
 )
+
+type Attachment struct {
+	Body           *string `json:"body,omitempty"`            // 附件的正文，使用 base64url 编码（支持的文件最大 37MB）
+	Filename       *string `json:"filename,omitempty"`        // 附件文件名
+	Id             *string `json:"id,omitempty"`              // 附件 id
+	AttachmentType *int    `json:"attachment_type,omitempty"` // 附件类型
+}
+
+type AttachmentBuilder struct {
+	body               string // 附件的正文，使用 base64url 编码（支持的文件最大 37MB）
+	bodyFlag           bool
+	filename           string // 附件文件名
+	filenameFlag       bool
+	id                 string // 附件 id
+	idFlag             bool
+	attachmentType     int // 附件类型
+	attachmentTypeFlag bool
+}
+
+func NewAttachmentBuilder() *AttachmentBuilder {
+	builder := &AttachmentBuilder{}
+	return builder
+}
+
+// 附件的正文，使用 base64url 编码（支持的文件最大 37MB）
+//
+// 示例值：aGVsbG8gd29ybGQK
+func (builder *AttachmentBuilder) Body(body string) *AttachmentBuilder {
+	builder.body = body
+	builder.bodyFlag = true
+	return builder
+}
+
+// 附件文件名
+//
+// 示例值：helloworld.txt
+func (builder *AttachmentBuilder) Filename(filename string) *AttachmentBuilder {
+	builder.filename = filename
+	builder.filenameFlag = true
+	return builder
+}
+
+// 附件 id
+//
+// 示例值：YQqYbQHoQoDqXjxWKhJbo8Gicjf
+func (builder *AttachmentBuilder) Id(id string) *AttachmentBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 附件类型
+//
+// 示例值：1
+func (builder *AttachmentBuilder) AttachmentType(attachmentType int) *AttachmentBuilder {
+	builder.attachmentType = attachmentType
+	builder.attachmentTypeFlag = true
+	return builder
+}
+
+func (builder *AttachmentBuilder) Build() *Attachment {
+	req := &Attachment{}
+	if builder.bodyFlag {
+		req.Body = &builder.body
+
+	}
+	if builder.filenameFlag {
+		req.Filename = &builder.filename
+
+	}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.attachmentTypeFlag {
+		req.AttachmentType = &builder.attachmentType
+
+	}
+	return req
+}
+
+type AttachmentDownloadUrlItem struct {
+	AttachmentId *string `json:"attachment_id,omitempty"` // 附件 id
+	DownloadUrl  *string `json:"download_url,omitempty"`  // 下载链接
+}
+
+type AttachmentDownloadUrlItemBuilder struct {
+	attachmentId     string // 附件 id
+	attachmentIdFlag bool
+	downloadUrl      string // 下载链接
+	downloadUrlFlag  bool
+}
+
+func NewAttachmentDownloadUrlItemBuilder() *AttachmentDownloadUrlItemBuilder {
+	builder := &AttachmentDownloadUrlItemBuilder{}
+	return builder
+}
+
+// 附件 id
+//
+// 示例值：YQqYbQHoQoDqXjxWKhJbo8Gicjf
+func (builder *AttachmentDownloadUrlItemBuilder) AttachmentId(attachmentId string) *AttachmentDownloadUrlItemBuilder {
+	builder.attachmentId = attachmentId
+	builder.attachmentIdFlag = true
+	return builder
+}
+
+// 下载链接
+//
+// 示例值：https://api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTZiZGViMDg3NzRjMzEwOWRkMGI1MTJlYmQxYTFmYTBfZTA5ZjZiOWU4NDYzMzkxMDUyOTIxMzBmNTVjMjAyZTFfSUQ6NzI4MTE4Nzg1OTE5NTc3Mjk0N18xNjk1ODg4NjQyOjE2OTU4ODg3MDJfVjM
+func (builder *AttachmentDownloadUrlItemBuilder) DownloadUrl(downloadUrl string) *AttachmentDownloadUrlItemBuilder {
+	builder.downloadUrl = downloadUrl
+	builder.downloadUrlFlag = true
+	return builder
+}
+
+func (builder *AttachmentDownloadUrlItemBuilder) Build() *AttachmentDownloadUrlItem {
+	req := &AttachmentDownloadUrlItem{}
+	if builder.attachmentIdFlag {
+		req.AttachmentId = &builder.attachmentId
+
+	}
+	if builder.downloadUrlFlag {
+		req.DownloadUrl = &builder.downloadUrl
+
+	}
+	return req
+}
+
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
+
+	}
+	return req
+}
 
 type EmailAlias struct {
 	PrimaryEmail *string `json:"primary_email,omitempty"` // 主邮箱地址
@@ -230,6 +429,214 @@ func (builder *EmailAliasBuilder) Build() *EmailAlias {
 	return req
 }
 
+type EventLog struct {
+	MailFrom      *string `json:"mail_from,omitempty"`       // 发信人
+	RcptTo        *string `json:"rcpt_to,omitempty"`         // 收信人
+	SmtpMessageId *string `json:"smtp_message_id,omitempty"` // 邮件ID
+	EventType     *string `json:"event_type,omitempty"`      // 行为类型
+	Timestamp     *int    `json:"timestamp,omitempty"`       // 时间戳
+}
+
+type EventLogBuilder struct {
+	mailFrom          string // 发信人
+	mailFromFlag      bool
+	rcptTo            string // 收信人
+	rcptToFlag        bool
+	smtpMessageId     string // 邮件ID
+	smtpMessageIdFlag bool
+	eventType         string // 行为类型
+	eventTypeFlag     bool
+	timestamp         int // 时间戳
+	timestampFlag     bool
+}
+
+func NewEventLogBuilder() *EventLogBuilder {
+	builder := &EventLogBuilder{}
+	return builder
+}
+
+// 发信人
+//
+// 示例值：abc@example.com
+func (builder *EventLogBuilder) MailFrom(mailFrom string) *EventLogBuilder {
+	builder.mailFrom = mailFrom
+	builder.mailFromFlag = true
+	return builder
+}
+
+// 收信人
+//
+// 示例值：abc@example.com
+func (builder *EventLogBuilder) RcptTo(rcptTo string) *EventLogBuilder {
+	builder.rcptTo = rcptTo
+	builder.rcptToFlag = true
+	return builder
+}
+
+// 邮件ID
+//
+// 示例值：abc@example.com
+func (builder *EventLogBuilder) SmtpMessageId(smtpMessageId string) *EventLogBuilder {
+	builder.smtpMessageId = smtpMessageId
+	builder.smtpMessageIdFlag = true
+	return builder
+}
+
+// 行为类型
+//
+// 示例值：auto_forward
+func (builder *EventLogBuilder) EventType(eventType string) *EventLogBuilder {
+	builder.eventType = eventType
+	builder.eventTypeFlag = true
+	return builder
+}
+
+// 时间戳
+//
+// 示例值：1706882657
+func (builder *EventLogBuilder) Timestamp(timestamp int) *EventLogBuilder {
+	builder.timestamp = timestamp
+	builder.timestampFlag = true
+	return builder
+}
+
+func (builder *EventLogBuilder) Build() *EventLog {
+	req := &EventLog{}
+	if builder.mailFromFlag {
+		req.MailFrom = &builder.mailFrom
+
+	}
+	if builder.rcptToFlag {
+		req.RcptTo = &builder.rcptTo
+
+	}
+	if builder.smtpMessageIdFlag {
+		req.SmtpMessageId = &builder.smtpMessageId
+
+	}
+	if builder.eventTypeFlag {
+		req.EventType = &builder.eventType
+
+	}
+	if builder.timestampFlag {
+		req.Timestamp = &builder.timestamp
+
+	}
+	return req
+}
+
+type Folder struct {
+	Id                 *string `json:"id,omitempty"`                   // folder id
+	Name               *string `json:"name,omitempty"`                 // 文件夹名称
+	ParentFolderId     *string `json:"parent_folder_id,omitempty"`     // 父文件夹 id，该值为 0 表示根文件夹
+	FolderType         *int    `json:"folder_type,omitempty"`          // 文件夹类型
+	UnreadMessageCount *int    `json:"unread_message_count,omitempty"` // 未读邮件数量
+	UnreadThreadCount  *int    `json:"unread_thread_count,omitempty"`  // 未读会话数量
+}
+
+type FolderBuilder struct {
+	id                     string // folder id
+	idFlag                 bool
+	name                   string // 文件夹名称
+	nameFlag               bool
+	parentFolderId         string // 父文件夹 id，该值为 0 表示根文件夹
+	parentFolderIdFlag     bool
+	folderType             int // 文件夹类型
+	folderTypeFlag         bool
+	unreadMessageCount     int // 未读邮件数量
+	unreadMessageCountFlag bool
+	unreadThreadCount      int // 未读会话数量
+	unreadThreadCountFlag  bool
+}
+
+func NewFolderBuilder() *FolderBuilder {
+	builder := &FolderBuilder{}
+	return builder
+}
+
+// folder id
+//
+// 示例值：12314123123123123
+func (builder *FolderBuilder) Id(id string) *FolderBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 文件夹名称
+//
+// 示例值：newsletter 相关
+func (builder *FolderBuilder) Name(name string) *FolderBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 父文件夹 id，该值为 0 表示根文件夹
+//
+// 示例值：725627422334644
+func (builder *FolderBuilder) ParentFolderId(parentFolderId string) *FolderBuilder {
+	builder.parentFolderId = parentFolderId
+	builder.parentFolderIdFlag = true
+	return builder
+}
+
+// 文件夹类型
+//
+// 示例值：1
+func (builder *FolderBuilder) FolderType(folderType int) *FolderBuilder {
+	builder.folderType = folderType
+	builder.folderTypeFlag = true
+	return builder
+}
+
+// 未读邮件数量
+//
+// 示例值：3
+func (builder *FolderBuilder) UnreadMessageCount(unreadMessageCount int) *FolderBuilder {
+	builder.unreadMessageCount = unreadMessageCount
+	builder.unreadMessageCountFlag = true
+	return builder
+}
+
+// 未读会话数量
+//
+// 示例值：4
+func (builder *FolderBuilder) UnreadThreadCount(unreadThreadCount int) *FolderBuilder {
+	builder.unreadThreadCount = unreadThreadCount
+	builder.unreadThreadCountFlag = true
+	return builder
+}
+
+func (builder *FolderBuilder) Build() *Folder {
+	req := &Folder{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	if builder.parentFolderIdFlag {
+		req.ParentFolderId = &builder.parentFolderId
+
+	}
+	if builder.folderTypeFlag {
+		req.FolderType = &builder.folderType
+
+	}
+	if builder.unreadMessageCountFlag {
+		req.UnreadMessageCount = &builder.unreadMessageCount
+
+	}
+	if builder.unreadThreadCountFlag {
+		req.UnreadThreadCount = &builder.unreadThreadCount
+
+	}
+	return req
+}
+
 type MailAddress struct {
 	MailAddress *string `json:"mail_address,omitempty"` // 邮件地址
 	Name        *string `json:"name,omitempty"`         // 名称
@@ -273,6 +680,166 @@ func (builder *MailAddressBuilder) Build() *MailAddress {
 	}
 	if builder.nameFlag {
 		req.Name = &builder.name
+
+	}
+	return req
+}
+
+type MailContact struct {
+	Id          *string `json:"id,omitempty"`           // 联系人 id
+	Name        *string `json:"name,omitempty"`         // 联系人姓名
+	Company     *string `json:"company,omitempty"`      // 联系人公司
+	Phone       *string `json:"phone,omitempty"`        // 联系人手机号
+	MailAddress *string `json:"mail_address,omitempty"` // 联系人邮箱
+	Tag         *string `json:"tag,omitempty"`          // 联系人标签
+	Remark      *string `json:"remark,omitempty"`       // 联系人备注
+	Avatar      *string `json:"avatar,omitempty"`       // 联系人头像
+	Position    *string `json:"position,omitempty"`     // 联系人职位
+}
+
+type MailContactBuilder struct {
+	id              string // 联系人 id
+	idFlag          bool
+	name            string // 联系人姓名
+	nameFlag        bool
+	company         string // 联系人公司
+	companyFlag     bool
+	phone           string // 联系人手机号
+	phoneFlag       bool
+	mailAddress     string // 联系人邮箱
+	mailAddressFlag bool
+	tag             string // 联系人标签
+	tagFlag         bool
+	remark          string // 联系人备注
+	remarkFlag      bool
+	avatar          string // 联系人头像
+	avatarFlag      bool
+	position        string // 联系人职位
+	positionFlag    bool
+}
+
+func NewMailContactBuilder() *MailContactBuilder {
+	builder := &MailContactBuilder{}
+	return builder
+}
+
+// 联系人 id
+//
+// 示例值：7256274576546463764
+func (builder *MailContactBuilder) Id(id string) *MailContactBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 联系人姓名
+//
+// 示例值：张三
+func (builder *MailContactBuilder) Name(name string) *MailContactBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 联系人公司
+//
+// 示例值：张三科技有限公司
+func (builder *MailContactBuilder) Company(company string) *MailContactBuilder {
+	builder.company = company
+	builder.companyFlag = true
+	return builder
+}
+
+// 联系人手机号
+//
+// 示例值：19912341234
+func (builder *MailContactBuilder) Phone(phone string) *MailContactBuilder {
+	builder.phone = phone
+	builder.phoneFlag = true
+	return builder
+}
+
+// 联系人邮箱
+//
+// 示例值：zhangsan@example.com
+func (builder *MailContactBuilder) MailAddress(mailAddress string) *MailContactBuilder {
+	builder.mailAddress = mailAddress
+	builder.mailAddressFlag = true
+	return builder
+}
+
+// 联系人标签
+//
+// 示例值：朋友
+func (builder *MailContactBuilder) Tag(tag string) *MailContactBuilder {
+	builder.tag = tag
+	builder.tagFlag = true
+	return builder
+}
+
+// 联系人备注
+//
+// 示例值：飞书发布会认识
+func (builder *MailContactBuilder) Remark(remark string) *MailContactBuilder {
+	builder.remark = remark
+	builder.remarkFlag = true
+	return builder
+}
+
+// 联系人头像
+//
+// 示例值：https://exampeimg.com/xxxx.jpg
+func (builder *MailContactBuilder) Avatar(avatar string) *MailContactBuilder {
+	builder.avatar = avatar
+	builder.avatarFlag = true
+	return builder
+}
+
+// 联系人职位
+//
+// 示例值：CFO
+func (builder *MailContactBuilder) Position(position string) *MailContactBuilder {
+	builder.position = position
+	builder.positionFlag = true
+	return builder
+}
+
+func (builder *MailContactBuilder) Build() *MailContact {
+	req := &MailContact{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	if builder.companyFlag {
+		req.Company = &builder.company
+
+	}
+	if builder.phoneFlag {
+		req.Phone = &builder.phone
+
+	}
+	if builder.mailAddressFlag {
+		req.MailAddress = &builder.mailAddress
+
+	}
+	if builder.tagFlag {
+		req.Tag = &builder.tag
+
+	}
+	if builder.remarkFlag {
+		req.Remark = &builder.remark
+
+	}
+	if builder.avatarFlag {
+		req.Avatar = &builder.avatar
+
+	}
+	if builder.positionFlag {
+		req.Position = &builder.position
 
 	}
 	return req
@@ -659,6 +1226,7 @@ type Message struct {
 	SmtpMessageId *string        `json:"smtp_message_id,omitempty"` // RFC协议id
 	MessageId     *string        `json:"message_id,omitempty"`      // 邮件id
 	BodyPlainText *string        `json:"body_plain_text,omitempty"` // 正文纯文本(base64url)
+	Attachments   []*Attachment  `json:"attachments,omitempty"`     // 邮件附件列表
 }
 
 type MessageBuilder struct {
@@ -686,6 +1254,8 @@ type MessageBuilder struct {
 	messageIdFlag     bool
 	bodyPlainText     string // 正文纯文本(base64url)
 	bodyPlainTextFlag bool
+	attachments       []*Attachment // 邮件附件列表
+	attachmentsFlag   bool
 }
 
 func NewMessageBuilder() *MessageBuilder {
@@ -801,6 +1371,15 @@ func (builder *MessageBuilder) BodyPlainText(bodyPlainText string) *MessageBuild
 	return builder
 }
 
+// 邮件附件列表
+//
+// 示例值：
+func (builder *MessageBuilder) Attachments(attachments []*Attachment) *MessageBuilder {
+	builder.attachments = attachments
+	builder.attachmentsFlag = true
+	return builder
+}
+
 func (builder *MessageBuilder) Build() *Message {
 	req := &Message{}
 	if builder.rawFlag {
@@ -847,6 +1426,9 @@ func (builder *MessageBuilder) Build() *Message {
 		req.BodyPlainText = &builder.bodyPlainText
 
 	}
+	if builder.attachmentsFlag {
+		req.Attachments = builder.attachments
+	}
 	return req
 }
 
@@ -854,6 +1436,7 @@ type PublicMailbox struct {
 	PublicMailboxId *string `json:"public_mailbox_id,omitempty"` // 公共邮箱唯一标识
 	Email           *string `json:"email,omitempty"`             // 公共邮箱地址
 	Name            *string `json:"name,omitempty"`              // 公共邮箱名称
+	Geo             *string `json:"geo,omitempty"`               // 数据驻留地
 }
 
 type PublicMailboxBuilder struct {
@@ -863,6 +1446,8 @@ type PublicMailboxBuilder struct {
 	emailFlag           bool
 	name                string // 公共邮箱名称
 	nameFlag            bool
+	geo                 string // 数据驻留地
+	geoFlag             bool
 }
 
 func NewPublicMailboxBuilder() *PublicMailboxBuilder {
@@ -897,6 +1482,15 @@ func (builder *PublicMailboxBuilder) Name(name string) *PublicMailboxBuilder {
 	return builder
 }
 
+// 数据驻留地
+//
+// 示例值：cn
+func (builder *PublicMailboxBuilder) Geo(geo string) *PublicMailboxBuilder {
+	builder.geo = geo
+	builder.geoFlag = true
+	return builder
+}
+
 func (builder *PublicMailboxBuilder) Build() *PublicMailbox {
 	req := &PublicMailbox{}
 	if builder.publicMailboxIdFlag {
@@ -909,6 +1503,10 @@ func (builder *PublicMailboxBuilder) Build() *PublicMailbox {
 	}
 	if builder.nameFlag {
 		req.Name = &builder.name
+
+	}
+	if builder.geoFlag {
+		req.Geo = &builder.geo
 
 	}
 	return req
@@ -978,6 +1576,337 @@ func (builder *PublicMailboxMemberBuilder) Build() *PublicMailboxMember {
 	return req
 }
 
+type Rule struct {
+	Id                   *string        `json:"id,omitempty"`                       // 规则 id
+	Condition            *RuleCondition `json:"condition,omitempty"`                // 匹配条件
+	Action               *RuleAction    `json:"action,omitempty"`                   // 匹配命中后的操作
+	IgnoreTheRestOfRules *bool          `json:"ignore_the_rest_of_rules,omitempty"` // 是否终点规则
+	Name                 *string        `json:"name,omitempty"`                     // 规则名称
+	IsEnable             *bool          `json:"is_enable,omitempty"`                // 是否启用
+}
+
+type RuleBuilder struct {
+	id                       string // 规则 id
+	idFlag                   bool
+	condition                *RuleCondition // 匹配条件
+	conditionFlag            bool
+	action                   *RuleAction // 匹配命中后的操作
+	actionFlag               bool
+	ignoreTheRestOfRules     bool // 是否终点规则
+	ignoreTheRestOfRulesFlag bool
+	name                     string // 规则名称
+	nameFlag                 bool
+	isEnable                 bool // 是否启用
+	isEnableFlag             bool
+}
+
+func NewRuleBuilder() *RuleBuilder {
+	builder := &RuleBuilder{}
+	return builder
+}
+
+// 规则 id
+//
+// 示例值：123124123123
+func (builder *RuleBuilder) Id(id string) *RuleBuilder {
+	builder.id = id
+	builder.idFlag = true
+	return builder
+}
+
+// 匹配条件
+//
+// 示例值：
+func (builder *RuleBuilder) Condition(condition *RuleCondition) *RuleBuilder {
+	builder.condition = condition
+	builder.conditionFlag = true
+	return builder
+}
+
+// 匹配命中后的操作
+//
+// 示例值：
+func (builder *RuleBuilder) Action(action *RuleAction) *RuleBuilder {
+	builder.action = action
+	builder.actionFlag = true
+	return builder
+}
+
+// 是否终点规则
+//
+// 示例值：false
+func (builder *RuleBuilder) IgnoreTheRestOfRules(ignoreTheRestOfRules bool) *RuleBuilder {
+	builder.ignoreTheRestOfRules = ignoreTheRestOfRules
+	builder.ignoreTheRestOfRulesFlag = true
+	return builder
+}
+
+// 规则名称
+//
+// 示例值：将李三的邮件标记为垃圾邮件
+func (builder *RuleBuilder) Name(name string) *RuleBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 是否启用
+//
+// 示例值：false
+func (builder *RuleBuilder) IsEnable(isEnable bool) *RuleBuilder {
+	builder.isEnable = isEnable
+	builder.isEnableFlag = true
+	return builder
+}
+
+func (builder *RuleBuilder) Build() *Rule {
+	req := &Rule{}
+	if builder.idFlag {
+		req.Id = &builder.id
+
+	}
+	if builder.conditionFlag {
+		req.Condition = builder.condition
+	}
+	if builder.actionFlag {
+		req.Action = builder.action
+	}
+	if builder.ignoreTheRestOfRulesFlag {
+		req.IgnoreTheRestOfRules = &builder.ignoreTheRestOfRules
+
+	}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	if builder.isEnableFlag {
+		req.IsEnable = &builder.isEnable
+
+	}
+	return req
+}
+
+type RuleAction struct {
+	Items []*RuleActionItem `json:"items,omitempty"` // 匹配中规则后的操作列表
+}
+
+type RuleActionBuilder struct {
+	items     []*RuleActionItem // 匹配中规则后的操作列表
+	itemsFlag bool
+}
+
+func NewRuleActionBuilder() *RuleActionBuilder {
+	builder := &RuleActionBuilder{}
+	return builder
+}
+
+// 匹配中规则后的操作列表
+//
+// 示例值：
+func (builder *RuleActionBuilder) Items(items []*RuleActionItem) *RuleActionBuilder {
+	builder.items = items
+	builder.itemsFlag = true
+	return builder
+}
+
+func (builder *RuleActionBuilder) Build() *RuleAction {
+	req := &RuleAction{}
+	if builder.itemsFlag {
+		req.Items = builder.items
+	}
+	return req
+}
+
+type RuleActionItem struct {
+	Type  *int    `json:"type,omitempty"`  // 操作类型
+	Input *string `json:"input,omitempty"` // 当 type 为移动到文件夹时，该字段填文件夹的 id
+}
+
+type RuleActionItemBuilder struct {
+	type_     int // 操作类型
+	typeFlag  bool
+	input     string // 当 type 为移动到文件夹时，该字段填文件夹的 id
+	inputFlag bool
+}
+
+func NewRuleActionItemBuilder() *RuleActionItemBuilder {
+	builder := &RuleActionItemBuilder{}
+	return builder
+}
+
+// 操作类型
+//
+// 示例值：1
+func (builder *RuleActionItemBuilder) Type(type_ int) *RuleActionItemBuilder {
+	builder.type_ = type_
+	builder.typeFlag = true
+	return builder
+}
+
+// 当 type 为移动到文件夹时，该字段填文件夹的 id
+//
+// 示例值：283412371233
+func (builder *RuleActionItemBuilder) Input(input string) *RuleActionItemBuilder {
+	builder.input = input
+	builder.inputFlag = true
+	return builder
+}
+
+func (builder *RuleActionItemBuilder) Build() *RuleActionItem {
+	req := &RuleActionItem{}
+	if builder.typeFlag {
+		req.Type = &builder.type_
+
+	}
+	if builder.inputFlag {
+		req.Input = &builder.input
+
+	}
+	return req
+}
+
+type RuleCondition struct {
+	MatchType *int                 `json:"match_type,omitempty"` // 匹配类型
+	Items     []*RuleConditionItem `json:"items,omitempty"`      // 匹配规则列表
+}
+
+type RuleConditionBuilder struct {
+	matchType     int // 匹配类型
+	matchTypeFlag bool
+	items         []*RuleConditionItem // 匹配规则列表
+	itemsFlag     bool
+}
+
+func NewRuleConditionBuilder() *RuleConditionBuilder {
+	builder := &RuleConditionBuilder{}
+	return builder
+}
+
+// 匹配类型
+//
+// 示例值：1
+func (builder *RuleConditionBuilder) MatchType(matchType int) *RuleConditionBuilder {
+	builder.matchType = matchType
+	builder.matchTypeFlag = true
+	return builder
+}
+
+// 匹配规则列表
+//
+// 示例值：
+func (builder *RuleConditionBuilder) Items(items []*RuleConditionItem) *RuleConditionBuilder {
+	builder.items = items
+	builder.itemsFlag = true
+	return builder
+}
+
+func (builder *RuleConditionBuilder) Build() *RuleCondition {
+	req := &RuleCondition{}
+	if builder.matchTypeFlag {
+		req.MatchType = &builder.matchType
+
+	}
+	if builder.itemsFlag {
+		req.Items = builder.items
+	}
+	return req
+}
+
+type RuleConditionItem struct {
+	Type     *int    `json:"type,omitempty"`     // 匹配条件左值
+	Operator *int    `json:"operator,omitempty"` // 匹配条件操作符
+	Input    *string `json:"input,omitempty"`    // 匹配条件右值
+}
+
+type RuleConditionItemBuilder struct {
+	type_        int // 匹配条件左值
+	typeFlag     bool
+	operator     int // 匹配条件操作符
+	operatorFlag bool
+	input        string // 匹配条件右值
+	inputFlag    bool
+}
+
+func NewRuleConditionItemBuilder() *RuleConditionItemBuilder {
+	builder := &RuleConditionItemBuilder{}
+	return builder
+}
+
+// 匹配条件左值
+//
+// 示例值：1
+func (builder *RuleConditionItemBuilder) Type(type_ int) *RuleConditionItemBuilder {
+	builder.type_ = type_
+	builder.typeFlag = true
+	return builder
+}
+
+// 匹配条件操作符
+//
+// 示例值：1
+func (builder *RuleConditionItemBuilder) Operator(operator int) *RuleConditionItemBuilder {
+	builder.operator = operator
+	builder.operatorFlag = true
+	return builder
+}
+
+// 匹配条件右值
+//
+// 示例值：hello@world.com
+func (builder *RuleConditionItemBuilder) Input(input string) *RuleConditionItemBuilder {
+	builder.input = input
+	builder.inputFlag = true
+	return builder
+}
+
+func (builder *RuleConditionItemBuilder) Build() *RuleConditionItem {
+	req := &RuleConditionItem{}
+	if builder.typeFlag {
+		req.Type = &builder.type_
+
+	}
+	if builder.operatorFlag {
+		req.Operator = &builder.operator
+
+	}
+	if builder.inputFlag {
+		req.Input = &builder.input
+
+	}
+	return req
+}
+
+type Subscriber struct {
+	UserIds []*UserId `json:"user_ids,omitempty"` // 收到邮件的用户 id 列表
+}
+
+type SubscriberBuilder struct {
+	userIds     []*UserId // 收到邮件的用户 id 列表
+	userIdsFlag bool
+}
+
+func NewSubscriberBuilder() *SubscriberBuilder {
+	builder := &SubscriberBuilder{}
+	return builder
+}
+
+// 收到邮件的用户 id 列表
+//
+// 示例值：
+func (builder *SubscriberBuilder) UserIds(userIds []*UserId) *SubscriberBuilder {
+	builder.userIds = userIds
+	builder.userIdsFlag = true
+	return builder
+}
+
+func (builder *SubscriberBuilder) Build() *Subscriber {
+	req := &Subscriber{}
+	if builder.userIdsFlag {
+		req.UserIds = builder.userIds
+	}
+	return req
+}
+
 type User struct {
 	Email  *string `json:"email,omitempty"`  // 邮箱地址
 	Status *int    `json:"status,omitempty"` // 邮箱地址状态
@@ -1037,6 +1966,70 @@ func (builder *UserBuilder) Build() *User {
 	}
 	if builder.typeFlag {
 		req.Type = &builder.type_
+
+	}
+	return req
+}
+
+type UserId struct {
+	UserId  *string `json:"user_id,omitempty"`  //
+	OpenId  *string `json:"open_id,omitempty"`  //
+	UnionId *string `json:"union_id,omitempty"` //
+}
+
+type UserIdBuilder struct {
+	userId      string //
+	userIdFlag  bool
+	openId      string //
+	openIdFlag  bool
+	unionId     string //
+	unionIdFlag bool
+}
+
+func NewUserIdBuilder() *UserIdBuilder {
+	builder := &UserIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *UserIdBuilder) UserId(userId string) *UserIdBuilder {
+	builder.userId = userId
+	builder.userIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *UserIdBuilder) OpenId(openId string) *UserIdBuilder {
+	builder.openId = openId
+	builder.openIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *UserIdBuilder) UnionId(unionId string) *UserIdBuilder {
+	builder.unionId = unionId
+	builder.unionIdFlag = true
+	return builder
+}
+
+func (builder *UserIdBuilder) Build() *UserId {
+	req := &UserId{}
+	if builder.userIdFlag {
+		req.UserId = &builder.userId
+
+	}
+	if builder.openIdFlag {
+		req.OpenId = &builder.openId
+
+	}
+	if builder.unionIdFlag {
+		req.UnionId = &builder.unionId
 
 	}
 	return req
@@ -1545,6 +2538,323 @@ func (resp *ListMailgroupAliasResp) Success() bool {
 	return resp.Code == 0
 }
 
+type BatchCreateMailgroupManagerReqBodyBuilder struct {
+	mailgroupManagerList     []*MailgroupManager // 邮件组管理员列表
+	mailgroupManagerListFlag bool
+}
+
+func NewBatchCreateMailgroupManagerReqBodyBuilder() *BatchCreateMailgroupManagerReqBodyBuilder {
+	builder := &BatchCreateMailgroupManagerReqBodyBuilder{}
+	return builder
+}
+
+// 邮件组管理员列表
+//
+//示例值：
+func (builder *BatchCreateMailgroupManagerReqBodyBuilder) MailgroupManagerList(mailgroupManagerList []*MailgroupManager) *BatchCreateMailgroupManagerReqBodyBuilder {
+	builder.mailgroupManagerList = mailgroupManagerList
+	builder.mailgroupManagerListFlag = true
+	return builder
+}
+
+func (builder *BatchCreateMailgroupManagerReqBodyBuilder) Build() *BatchCreateMailgroupManagerReqBody {
+	req := &BatchCreateMailgroupManagerReqBody{}
+	if builder.mailgroupManagerListFlag {
+		req.MailgroupManagerList = builder.mailgroupManagerList
+	}
+	return req
+}
+
+type BatchCreateMailgroupManagerPathReqBodyBuilder struct {
+	mailgroupManagerList     []*MailgroupManager
+	mailgroupManagerListFlag bool
+}
+
+func NewBatchCreateMailgroupManagerPathReqBodyBuilder() *BatchCreateMailgroupManagerPathReqBodyBuilder {
+	builder := &BatchCreateMailgroupManagerPathReqBodyBuilder{}
+	return builder
+}
+
+// 邮件组管理员列表
+//
+// 示例值：
+func (builder *BatchCreateMailgroupManagerPathReqBodyBuilder) MailgroupManagerList(mailgroupManagerList []*MailgroupManager) *BatchCreateMailgroupManagerPathReqBodyBuilder {
+	builder.mailgroupManagerList = mailgroupManagerList
+	builder.mailgroupManagerListFlag = true
+	return builder
+}
+
+func (builder *BatchCreateMailgroupManagerPathReqBodyBuilder) Build() (*BatchCreateMailgroupManagerReqBody, error) {
+	req := &BatchCreateMailgroupManagerReqBody{}
+	if builder.mailgroupManagerListFlag {
+		req.MailgroupManagerList = builder.mailgroupManagerList
+	}
+	return req, nil
+}
+
+type BatchCreateMailgroupManagerReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *BatchCreateMailgroupManagerReqBody
+}
+
+func NewBatchCreateMailgroupManagerReqBuilder() *BatchCreateMailgroupManagerReqBuilder {
+	builder := &BatchCreateMailgroupManagerReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 邮件组ID或邮箱地址
+//
+// 示例值：xxxxxx 或 test_mail_group@xx.xx
+func (builder *BatchCreateMailgroupManagerReqBuilder) MailgroupId(mailgroupId string) *BatchCreateMailgroupManagerReqBuilder {
+	builder.apiReq.PathParams.Set("mailgroup_id", fmt.Sprint(mailgroupId))
+	return builder
+}
+
+// 此次调用中使用的用户ID的类型
+//
+// 示例值：open_id
+func (builder *BatchCreateMailgroupManagerReqBuilder) UserIdType(userIdType string) *BatchCreateMailgroupManagerReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+// 批量创建邮件组管理员
+func (builder *BatchCreateMailgroupManagerReqBuilder) Body(body *BatchCreateMailgroupManagerReqBody) *BatchCreateMailgroupManagerReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *BatchCreateMailgroupManagerReqBuilder) Build() *BatchCreateMailgroupManagerReq {
+	req := &BatchCreateMailgroupManagerReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type BatchCreateMailgroupManagerReqBody struct {
+	MailgroupManagerList []*MailgroupManager `json:"mailgroup_manager_list,omitempty"` // 邮件组管理员列表
+}
+
+type BatchCreateMailgroupManagerReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *BatchCreateMailgroupManagerReqBody `body:""`
+}
+
+type BatchCreateMailgroupManagerResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchCreateMailgroupManagerResp) Success() bool {
+	return resp.Code == 0
+}
+
+type BatchDeleteMailgroupManagerReqBodyBuilder struct {
+	mailgroupManagerList     []*MailgroupManager // 邮件组管理员列表
+	mailgroupManagerListFlag bool
+}
+
+func NewBatchDeleteMailgroupManagerReqBodyBuilder() *BatchDeleteMailgroupManagerReqBodyBuilder {
+	builder := &BatchDeleteMailgroupManagerReqBodyBuilder{}
+	return builder
+}
+
+// 邮件组管理员列表
+//
+//示例值：
+func (builder *BatchDeleteMailgroupManagerReqBodyBuilder) MailgroupManagerList(mailgroupManagerList []*MailgroupManager) *BatchDeleteMailgroupManagerReqBodyBuilder {
+	builder.mailgroupManagerList = mailgroupManagerList
+	builder.mailgroupManagerListFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteMailgroupManagerReqBodyBuilder) Build() *BatchDeleteMailgroupManagerReqBody {
+	req := &BatchDeleteMailgroupManagerReqBody{}
+	if builder.mailgroupManagerListFlag {
+		req.MailgroupManagerList = builder.mailgroupManagerList
+	}
+	return req
+}
+
+type BatchDeleteMailgroupManagerPathReqBodyBuilder struct {
+	mailgroupManagerList     []*MailgroupManager
+	mailgroupManagerListFlag bool
+}
+
+func NewBatchDeleteMailgroupManagerPathReqBodyBuilder() *BatchDeleteMailgroupManagerPathReqBodyBuilder {
+	builder := &BatchDeleteMailgroupManagerPathReqBodyBuilder{}
+	return builder
+}
+
+// 邮件组管理员列表
+//
+// 示例值：
+func (builder *BatchDeleteMailgroupManagerPathReqBodyBuilder) MailgroupManagerList(mailgroupManagerList []*MailgroupManager) *BatchDeleteMailgroupManagerPathReqBodyBuilder {
+	builder.mailgroupManagerList = mailgroupManagerList
+	builder.mailgroupManagerListFlag = true
+	return builder
+}
+
+func (builder *BatchDeleteMailgroupManagerPathReqBodyBuilder) Build() (*BatchDeleteMailgroupManagerReqBody, error) {
+	req := &BatchDeleteMailgroupManagerReqBody{}
+	if builder.mailgroupManagerListFlag {
+		req.MailgroupManagerList = builder.mailgroupManagerList
+	}
+	return req, nil
+}
+
+type BatchDeleteMailgroupManagerReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	body   *BatchDeleteMailgroupManagerReqBody
+}
+
+func NewBatchDeleteMailgroupManagerReqBuilder() *BatchDeleteMailgroupManagerReqBuilder {
+	builder := &BatchDeleteMailgroupManagerReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 邮件组ID或者邮件组地址
+//
+// 示例值：xxxxxxxxxxxxxxx 或 test_mail_group@xxx.xx
+func (builder *BatchDeleteMailgroupManagerReqBuilder) MailgroupId(mailgroupId string) *BatchDeleteMailgroupManagerReqBuilder {
+	builder.apiReq.PathParams.Set("mailgroup_id", fmt.Sprint(mailgroupId))
+	return builder
+}
+
+// 此次调用中使用的用户ID的类型
+//
+// 示例值：open_id
+func (builder *BatchDeleteMailgroupManagerReqBuilder) UserIdType(userIdType string) *BatchDeleteMailgroupManagerReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+// 批量删除邮件组管理员
+func (builder *BatchDeleteMailgroupManagerReqBuilder) Body(body *BatchDeleteMailgroupManagerReqBody) *BatchDeleteMailgroupManagerReqBuilder {
+	builder.body = body
+	return builder
+}
+
+func (builder *BatchDeleteMailgroupManagerReqBuilder) Build() *BatchDeleteMailgroupManagerReq {
+	req := &BatchDeleteMailgroupManagerReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	req.apiReq.Body = builder.body
+	return req
+}
+
+type BatchDeleteMailgroupManagerReqBody struct {
+	MailgroupManagerList []*MailgroupManager `json:"mailgroup_manager_list,omitempty"` // 邮件组管理员列表
+}
+
+type BatchDeleteMailgroupManagerReq struct {
+	apiReq *larkcore.ApiReq
+	Body   *BatchDeleteMailgroupManagerReqBody `body:""`
+}
+
+type BatchDeleteMailgroupManagerResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+}
+
+func (resp *BatchDeleteMailgroupManagerResp) Success() bool {
+	return resp.Code == 0
+}
+
+type ListMailgroupManagerReqBuilder struct {
+	apiReq *larkcore.ApiReq
+	limit  int // 最大返回多少记录，当使用迭代器访问时才有效
+}
+
+func NewListMailgroupManagerReqBuilder() *ListMailgroupManagerReqBuilder {
+	builder := &ListMailgroupManagerReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 最大返回多少记录，当使用迭代器访问时才有效
+func (builder *ListMailgroupManagerReqBuilder) Limit(limit int) *ListMailgroupManagerReqBuilder {
+	builder.limit = limit
+	return builder
+}
+
+// 邮件组ID或邮箱地址
+//
+// 示例值：xxxxxx 或 test_mail_group@xx.xx
+func (builder *ListMailgroupManagerReqBuilder) MailgroupId(mailgroupId string) *ListMailgroupManagerReqBuilder {
+	builder.apiReq.PathParams.Set("mailgroup_id", fmt.Sprint(mailgroupId))
+	return builder
+}
+
+// 分页大小
+//
+// 示例值：20
+func (builder *ListMailgroupManagerReqBuilder) PageSize(pageSize int) *ListMailgroupManagerReqBuilder {
+	builder.apiReq.QueryParams.Set("page_size", fmt.Sprint(pageSize))
+	return builder
+}
+
+// 分页标记，第一次请求不填，表示从头开始遍历；分页查询结果还有更多项时会同时返回新的 page_token，下次遍历可采用该 page_token 获取查询结果
+//
+// 示例值：xxxxxx
+func (builder *ListMailgroupManagerReqBuilder) PageToken(pageToken string) *ListMailgroupManagerReqBuilder {
+	builder.apiReq.QueryParams.Set("page_token", fmt.Sprint(pageToken))
+	return builder
+}
+
+// 此次调用中使用的用户ID的类型
+//
+// 示例值：open_id
+func (builder *ListMailgroupManagerReqBuilder) UserIdType(userIdType string) *ListMailgroupManagerReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+func (builder *ListMailgroupManagerReqBuilder) Build() *ListMailgroupManagerReq {
+	req := &ListMailgroupManagerReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.Limit = builder.limit
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type ListMailgroupManagerReq struct {
+	apiReq *larkcore.ApiReq
+	Limit  int // 最多返回多少记录，只有在使用迭代器访问时，才有效
+
+}
+
+type ListMailgroupManagerRespData struct {
+	Items     []*MailgroupManager `json:"items,omitempty"`      // 邮件组管理员列表
+	PageToken *string             `json:"page_token,omitempty"` // 分页标识
+	HasMore   *bool               `json:"has_more,omitempty"`   // 是否有更多数据
+}
+
+type ListMailgroupManagerResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *ListMailgroupManagerRespData `json:"data"` // 业务数据
+}
+
+func (resp *ListMailgroupManagerResp) Success() bool {
+	return resp.Code == 0
+}
+
 type BatchCreateMailgroupMemberReqBodyBuilder struct {
 	items     []*MailgroupMember // 本次添加的邮件组成员列表
 	itemsFlag bool
@@ -1573,7 +2883,7 @@ func (builder *BatchCreateMailgroupMemberReqBodyBuilder) Build() *BatchCreateMai
 }
 
 type BatchCreateMailgroupMemberPathReqBodyBuilder struct {
-	items     []*MailgroupMember // 本次添加的邮件组成员列表
+	items     []*MailgroupMember
 	itemsFlag bool
 }
 
@@ -1703,7 +3013,7 @@ func (builder *BatchDeleteMailgroupMemberReqBodyBuilder) Build() *BatchDeleteMai
 }
 
 type BatchDeleteMailgroupMemberPathReqBodyBuilder struct {
-	memberIdList     []string // 本次调用删除的成员ID列表
+	memberIdList     []string
 	memberIdListFlag bool
 }
 
@@ -2102,7 +3412,7 @@ func (builder *BatchCreateMailgroupPermissionMemberReqBodyBuilder) Build() *Batc
 }
 
 type BatchCreateMailgroupPermissionMemberPathReqBodyBuilder struct {
-	items     []*MailgroupPermissionMember // 本次添加的邮件组权限成员列表
+	items     []*MailgroupPermissionMember
 	itemsFlag bool
 }
 
@@ -2232,7 +3542,7 @@ func (builder *BatchDeleteMailgroupPermissionMemberReqBodyBuilder) Build() *Batc
 }
 
 type BatchDeleteMailgroupPermissionMemberPathReqBodyBuilder struct {
-	permissionMemberIdList     []string // 本次调用删除的权限成员ID列表
+	permissionMemberIdList     []string
 	permissionMemberIdListFlag bool
 }
 
@@ -2639,6 +3949,7 @@ type CreatePublicMailboxRespData struct {
 	PublicMailboxId *string `json:"public_mailbox_id,omitempty"` // The unique ID of a public mailbox
 	Email           *string `json:"email,omitempty"`             // The public mailbox's email address
 	Name            *string `json:"name,omitempty"`              // The public mailbox's display name
+	Geo             *string `json:"geo,omitempty"`               // 数据驻留地
 }
 
 type CreatePublicMailboxResp struct {
@@ -2728,6 +4039,7 @@ type GetPublicMailboxRespData struct {
 	PublicMailboxId *string `json:"public_mailbox_id,omitempty"` // The unique ID of a public mailbox
 	Email           *string `json:"email,omitempty"`             // The public mailbox's email address
 	Name            *string `json:"name,omitempty"`              // The public mailbox's display name
+	Geo             *string `json:"geo,omitempty"`               // 数据驻留地
 }
 
 type GetPublicMailboxResp struct {
@@ -2757,6 +4069,22 @@ func NewListPublicMailboxReqBuilder() *ListPublicMailboxReqBuilder {
 // 最大返回多少记录，当使用迭代器访问时才有效
 func (builder *ListPublicMailboxReqBuilder) Limit(limit int) *ListPublicMailboxReqBuilder {
 	builder.limit = limit
+	return builder
+}
+
+// user_id
+//
+// 示例值：
+func (builder *ListPublicMailboxReqBuilder) UserId(userId string) *ListPublicMailboxReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id", fmt.Sprint(userId))
+	return builder
+}
+
+// 此次调用中使用的用户ID的类型
+//
+// 示例值：
+func (builder *ListPublicMailboxReqBuilder) UserIdType(userIdType string) *ListPublicMailboxReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
 	return builder
 }
 
@@ -2851,6 +4179,7 @@ type PatchPublicMailboxRespData struct {
 	PublicMailboxId *string `json:"public_mailbox_id,omitempty"` // The unique ID of a public mailbox
 	Email           *string `json:"email,omitempty"`             // The public mailbox's email address
 	Name            *string `json:"name,omitempty"`              // The public mailbox's display name
+
 }
 
 type PatchPublicMailboxResp struct {
@@ -2908,6 +4237,7 @@ type UpdatePublicMailboxRespData struct {
 	PublicMailboxId *string `json:"public_mailbox_id,omitempty"` // The unique ID of a public mailbox
 	Email           *string `json:"email,omitempty"`             // The public mailbox's email address
 	Name            *string `json:"name,omitempty"`              // The public mailbox's display name
+
 }
 
 type UpdatePublicMailboxResp struct {
@@ -3098,7 +4428,7 @@ func (builder *BatchCreatePublicMailboxMemberReqBodyBuilder) Build() *BatchCreat
 }
 
 type BatchCreatePublicMailboxMemberPathReqBodyBuilder struct {
-	items     []*PublicMailboxMember // 本次调用添加的公共邮箱成员列表
+	items     []*PublicMailboxMember
 	itemsFlag bool
 }
 
@@ -3220,7 +4550,7 @@ func (builder *BatchDeletePublicMailboxMemberReqBodyBuilder) Build() *BatchDelet
 }
 
 type BatchDeletePublicMailboxMemberPathReqBodyBuilder struct {
-	memberIdList     []string // 本次调用删除的公共邮箱成员ID列表
+	memberIdList     []string
 	memberIdListFlag bool
 }
 
@@ -3632,7 +4962,7 @@ func (builder *QueryUserReqBodyBuilder) Build() *QueryUserReqBody {
 }
 
 type QueryUserPathReqBodyBuilder struct {
-	emailList     []string // 需要查询的邮箱地址列表
+	emailList     []string
 	emailListFlag bool
 }
 
@@ -3976,6 +5306,60 @@ func (iterator *ListMailgroupIterator) Next() (bool, *Mailgroup, error) {
 }
 
 func (iterator *ListMailgroupIterator) NextPageToken() *string {
+	return iterator.nextPageToken
+}
+
+type ListMailgroupManagerIterator struct {
+	nextPageToken *string
+	items         []*MailgroupManager
+	index         int
+	limit         int
+	ctx           context.Context
+	req           *ListMailgroupManagerReq
+	listFunc      func(ctx context.Context, req *ListMailgroupManagerReq, options ...larkcore.RequestOptionFunc) (*ListMailgroupManagerResp, error)
+	options       []larkcore.RequestOptionFunc
+	curlNum       int
+}
+
+func (iterator *ListMailgroupManagerIterator) Next() (bool, *MailgroupManager, error) {
+	// 达到最大量，则返回
+	if iterator.limit > 0 && iterator.curlNum >= iterator.limit {
+		return false, nil, nil
+	}
+
+	// 为0则拉取数据
+	if iterator.index == 0 || iterator.index >= len(iterator.items) {
+		if iterator.index != 0 && iterator.nextPageToken == nil {
+			return false, nil, nil
+		}
+		if iterator.nextPageToken != nil {
+			iterator.req.apiReq.QueryParams.Set("page_token", *iterator.nextPageToken)
+		}
+		resp, err := iterator.listFunc(iterator.ctx, iterator.req, iterator.options...)
+		if err != nil {
+			return false, nil, err
+		}
+
+		if resp.Code != 0 {
+			return false, nil, errors.New(fmt.Sprintf("Code:%d,Msg:%s", resp.Code, resp.Msg))
+		}
+
+		if len(resp.Data.Items) == 0 {
+			return false, nil, nil
+		}
+
+		iterator.nextPageToken = resp.Data.PageToken
+		iterator.items = resp.Data.Items
+		iterator.index = 0
+	}
+
+	block := iterator.items[iterator.index]
+	iterator.index++
+	iterator.curlNum++
+	return true, block, nil
+}
+
+func (iterator *ListMailgroupManagerIterator) NextPageToken() *string {
 	return iterator.nextPageToken
 }
 

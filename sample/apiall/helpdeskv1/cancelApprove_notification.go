@@ -30,7 +30,7 @@ func main() {
 		NotificationId("6981801914270744596").
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.Notification.CancelApprove(context.Background(), req)
+	resp, err := client.Helpdesk.V1.Notification.CancelApprove(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

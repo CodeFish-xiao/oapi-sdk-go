@@ -44,7 +44,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Block.Entity.Update(context.Background(), req)
+	resp, err := client.Block.V2.Entity.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

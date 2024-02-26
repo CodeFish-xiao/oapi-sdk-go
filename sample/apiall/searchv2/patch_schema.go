@@ -30,10 +30,11 @@ func main() {
 		SchemaId("custom_schema_id").
 		Body(larksearch.NewPatchSchemaReqBodyBuilder().
 			Display(larksearch.NewSchemaDisplayBuilder().Build()).
+			Properties([]*larksearch.PatchSchemaProperty{larksearch.NewPatchSchemaPropertyBuilder().Build()}).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Search.Schema.Patch(context.Background(), req)
+	resp, err := client.Search.V2.Schema.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

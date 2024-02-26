@@ -30,11 +30,15 @@ func main() {
 		JobRequirementId("623455234").
 		UserIdType("open_id").
 		DepartmentIdType("open_department_id").
+		JobLevelIdType("people_admin_job_level_id").
+		JobFamilyIdType("people_admin_job_category_id").
+		EmployeeTypeIdType("people_admin_employee_type_id").
 		JobRequirement(larkhire.NewJobRequirementBuilder().
 			Name("test").
 			DisplayProgress(1).
 			HeadCount(11).
 			RecruitmentTypeId("1618209327096").
+			EmployeeTypeId("6807409776231254285").
 			MaxLevelId("123").
 			MinLevelId("11").
 			SequenceId("111").
@@ -52,10 +56,12 @@ func main() {
 			AddressId("11").
 			Description("11").
 			CustomizedDataList([]*larkhire.JobRequirementCustomizedData{larkhire.NewJobRequirementCustomizedDataBuilder().Build()}).
+			ProcessType(1).
+			JobTypeId("6930815272790114324").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.JobRequirement.Update(context.Background(), req)
+	resp, err := client.Hire.V1.JobRequirement.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

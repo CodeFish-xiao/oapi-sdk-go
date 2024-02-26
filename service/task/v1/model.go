@@ -14,10 +14,9 @@
 package larktask
 
 import (
-	"fmt"
-
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/larksuite/oapi-sdk-go/v3/event"
 
@@ -315,6 +314,54 @@ func (builder *CommentBuilder) Build() *Comment {
 	}
 	if builder.creatorIdFlag {
 		req.CreatorId = &builder.creatorId
+
+	}
+	return req
+}
+
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
 
 	}
 	return req
@@ -1465,9 +1512,9 @@ func (builder *PatchTaskReqBodyBuilder) Build() *PatchTaskReqBody {
 }
 
 type PatchTaskPathReqBodyBuilder struct {
-	task             *Task // 被更新的任务实体基础信息
+	task             *Task
 	taskFlag         bool
-	updateFields     []string // 指定需要更新的任务字段，否则服务端将不知道更新哪些字段
+	updateFields     []string
 	updateFieldsFlag bool
 }
 
@@ -2129,9 +2176,9 @@ func (builder *UpdateTaskCommentReqBodyBuilder) Build() *UpdateTaskCommentReqBod
 }
 
 type UpdateTaskCommentPathReqBodyBuilder struct {
-	content         string // 新的评论内容
+	content         string
 	contentFlag     bool
-	richContent     string // 新的富文本评论内容（优先使用）
+	richContent     string
 	richContentFlag bool
 }
 

@@ -35,7 +35,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Search.Schema.Create(context.Background(), req)
+	resp, err := client.Search.V2.Schema.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

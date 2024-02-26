@@ -30,7 +30,7 @@ func main() {
 		TaskId("83912691-2e43-47fc-94a4-d512e03984fa").
 		Build()
 	// 发起请求
-	resp, err := client.Task.Task.Delete(context.Background(), req)
+	resp, err := client.Task.V1.Task.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

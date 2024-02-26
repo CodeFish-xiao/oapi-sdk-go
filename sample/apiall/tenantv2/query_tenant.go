@@ -25,7 +25,7 @@ func main() {
 	// 创建 Client
 	client := lark.NewClient("appID", "appSecret")
 	// 发起请求
-	resp, err := client.Tenant.Tenant.Query(context.Background())
+	resp, err := client.Tenant.V2.Tenant.Query(context.Background())
 
 	// 处理错误
 	if err != nil {

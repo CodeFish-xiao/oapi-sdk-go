@@ -31,7 +31,7 @@ func main() {
 		AliasId("xxx@xx.xxx").
 		Build()
 	// 发起请求
-	resp, err := client.Mail.PublicMailboxAlias.Delete(context.Background(), req)
+	resp, err := client.Mail.V1.PublicMailboxAlias.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

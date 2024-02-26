@@ -32,7 +32,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.Group.Search(context.Background(), req)
+	resp, err := client.Attendance.V1.Group.Search(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

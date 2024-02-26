@@ -30,9 +30,12 @@ func main() {
 		PageSize(10).
 		PageToken("MTY1NTA3MTA1OXw3MTA4NDc2MDc1NzkyOTI0Nabcef").
 		FolderToken("fldbcO1UuPz8VwnpPx5a9abcef").
+		OrderBy("EditedTime").
+		Direction("DESC").
+		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.File.List(context.Background(), req)
+	resp, err := client.Drive.V1.File.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

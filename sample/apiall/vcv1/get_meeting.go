@@ -33,7 +33,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.Meeting.Get(context.Background(), req)
+	resp, err := client.Vc.V1.Meeting.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

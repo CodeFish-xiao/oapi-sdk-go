@@ -30,7 +30,7 @@ func main() {
 		AccessRecordId("6939433228970082591").
 		Build()
 	// 发起请求
-	resp, err := client.Acs.AccessRecordAccessPhoto.Get(context.Background(), req)
+	resp, err := client.Acs.V1.AccessRecordAccessPhoto.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

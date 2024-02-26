@@ -33,7 +33,7 @@ func main() {
 		MemberType("openid").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.PermissionMember.Delete(context.Background(), req)
+	resp, err := client.Drive.V1.PermissionMember.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

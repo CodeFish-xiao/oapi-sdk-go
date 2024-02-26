@@ -36,7 +36,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Docx.DocumentBlock.BatchUpdate(context.Background(), req)
+	resp, err := client.Docx.V1.DocumentBlock.BatchUpdate(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

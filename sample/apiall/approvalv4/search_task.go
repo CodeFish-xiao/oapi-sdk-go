@@ -46,7 +46,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Approval.Task.Search(context.Background(), req)
+	resp, err := client.Approval.V4.Task.Search(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

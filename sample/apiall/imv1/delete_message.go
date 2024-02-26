@@ -30,7 +30,7 @@ func main() {
 		MessageId("om_dc13264520392913993dd051dba21dcf").
 		Build()
 	// 发起请求
-	resp, err := client.Im.Message.Delete(context.Background(), req)
+	resp, err := client.Im.V1.Message.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

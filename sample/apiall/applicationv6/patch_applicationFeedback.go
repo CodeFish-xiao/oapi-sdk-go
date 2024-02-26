@@ -34,7 +34,7 @@ func main() {
 		OperatorId("ou_9565b69967831233761cc2f11b4c089f").
 		Build()
 	// 发起请求
-	resp, err := client.Application.ApplicationFeedback.Patch(context.Background(), req)
+	resp, err := client.Application.V6.ApplicationFeedback.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

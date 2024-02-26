@@ -31,7 +31,7 @@ func main() {
 		ItemId("01010111").
 		Build()
 	// 发起请求
-	resp, err := client.Search.DataSourceItem.Delete(context.Background(), req)
+	resp, err := client.Search.V2.DataSourceItem.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

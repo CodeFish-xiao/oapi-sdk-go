@@ -30,7 +30,7 @@ func main() {
 		TicketCustomizedFieldId("6948728206392295444").
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.TicketCustomizedField.Get(context.Background(), req)
+	resp, err := client.Helpdesk.V1.TicketCustomizedField.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -30,7 +30,7 @@ func main() {
 		JobRequirementId("1616161616").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.JobRequirement.Delete(context.Background(), req)
+	resp, err := client.Hire.V1.JobRequirement.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

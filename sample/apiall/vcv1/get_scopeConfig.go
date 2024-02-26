@@ -32,7 +32,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.ScopeConfig.Get(context.Background(), req)
+	resp, err := client.Vc.V1.ScopeConfig.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

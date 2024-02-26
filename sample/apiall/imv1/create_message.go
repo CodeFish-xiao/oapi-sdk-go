@@ -36,7 +36,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Im.Message.Create(context.Background(), req)
+	resp, err := client.Im.V1.Message.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

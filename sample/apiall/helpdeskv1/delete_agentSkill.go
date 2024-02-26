@@ -30,7 +30,7 @@ func main() {
 		AgentSkillId("test-skill-id").
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.AgentSkill.Delete(context.Background(), req)
+	resp, err := client.Helpdesk.V1.AgentSkill.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

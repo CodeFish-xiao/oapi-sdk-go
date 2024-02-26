@@ -30,7 +30,7 @@ func main() {
 		DataSourceId("service_ticket").
 		Build()
 	// 发起请求
-	resp, err := client.Search.DataSource.Get(context.Background(), req)
+	resp, err := client.Search.V2.DataSource.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

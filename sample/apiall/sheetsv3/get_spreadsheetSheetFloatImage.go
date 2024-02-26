@@ -32,7 +32,7 @@ func main() {
 		FloatImageId("ye06SS14ph").
 		Build()
 	// 发起请求
-	resp, err := client.Sheets.SpreadsheetSheetFloatImage.Get(context.Background(), req)
+	resp, err := client.Sheets.V3.SpreadsheetSheetFloatImage.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

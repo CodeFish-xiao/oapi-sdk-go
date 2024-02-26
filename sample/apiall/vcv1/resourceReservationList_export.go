@@ -37,7 +37,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Vc.Export.ResourceReservationList(context.Background(), req)
+	resp, err := client.Vc.V1.Export.ResourceReservationList(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

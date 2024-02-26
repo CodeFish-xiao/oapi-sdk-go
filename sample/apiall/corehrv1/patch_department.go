@@ -38,13 +38,13 @@ func main() {
 			IsConfidential(true).
 			HiberarchyCommon(larkcorehr.NewHiberarchyCommonBuilder().Build()).
 			EffectiveTime("2020-05-01 00:00:00").
-			ExpirationTime("2020-05-02 00:00:00").
 			CustomFields([]*larkcorehr.ObjectFieldData{larkcorehr.NewObjectFieldDataBuilder().Build()}).
 			CostCenterId("7142384817131652652").
+			StaffingModel(larkcorehr.NewEnumBuilder().Build()).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Department.Patch(context.Background(), req)
+	resp, err := client.Corehr.V1.Department.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

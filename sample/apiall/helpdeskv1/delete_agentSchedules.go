@@ -30,7 +30,7 @@ func main() {
 		AgentId("12345").
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.AgentSchedules.Delete(context.Background(), req)
+	resp, err := client.Helpdesk.V1.AgentSchedules.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

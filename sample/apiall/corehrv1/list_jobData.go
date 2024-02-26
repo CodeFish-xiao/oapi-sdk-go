@@ -38,7 +38,7 @@ func main() {
 		DepartmentIdType("people_corehr_department_id").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.JobData.List(context.Background(), req)
+	resp, err := client.Corehr.V1.JobData.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

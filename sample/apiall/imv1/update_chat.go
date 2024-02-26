@@ -44,10 +44,13 @@ func main() {
 			MembershipApproval("no_approval_required").
 			RestrictedModeSetting(larkim.NewRestrictedModeSettingBuilder().Build()).
 			ChatType("private").
+			GroupMessageType("chat").
+			UrgentSetting("all_members").
+			VideoConferenceSetting("all_members").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Im.Chat.Update(context.Background(), req)
+	resp, err := client.Im.V1.Chat.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

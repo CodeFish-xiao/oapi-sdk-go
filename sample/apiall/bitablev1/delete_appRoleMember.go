@@ -33,7 +33,7 @@ func main() {
 		MemberIdType("open_id").
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppRoleMember.Delete(context.Background(), req)
+	resp, err := client.Bitable.V1.AppRoleMember.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

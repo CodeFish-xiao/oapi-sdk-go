@@ -14,10 +14,9 @@
 package larkapproval
 
 import (
-	"fmt"
-
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/larksuite/oapi-sdk-go/v3/event"
 
@@ -56,6 +55,12 @@ const (
 	UserIdTypeCreateExternalApprovalUserId  = "user_id"  // 以user_id来识别用户
 	UserIdTypeCreateExternalApprovalUnionId = "union_id" // 以union_id来识别用户
 	UserIdTypeCreateExternalApprovalOpenId  = "open_id"  // 以open_id来识别用户
+)
+
+const (
+	UserIdTypeGetExternalApprovalUserId  = "user_id"  // 以user_id来识别用户
+	UserIdTypeGetExternalApprovalUnionId = "union_id" // 以union_id来识别用户
+	UserIdTypeGetExternalApprovalOpenId  = "open_id"  // 以open_id来识别用户
 )
 
 const (
@@ -1229,12 +1234,15 @@ func (builder *ApprovalEventBuilder) Build() *ApprovalEvent {
 }
 
 type ApprovalForm struct {
-	FormContent *string `json:"form_content,omitempty"` // 审批定义表单，json 数组，见下方form_content字段说明
+	FormContent    *string `json:"form_content,omitempty"`    // 审批定义表单，json 数组，见下方form_content字段说明
+	WidgetRelation *string `json:"widget_relation,omitempty"` // 控件之间数据条件约束表达式
 }
 
 type ApprovalFormBuilder struct {
-	formContent     string // 审批定义表单，json 数组，见下方form_content字段说明
-	formContentFlag bool
+	formContent        string // 审批定义表单，json 数组，见下方form_content字段说明
+	formContentFlag    bool
+	widgetRelation     string // 控件之间数据条件约束表达式
+	widgetRelationFlag bool
 }
 
 func NewApprovalFormBuilder() *ApprovalFormBuilder {
@@ -1251,10 +1259,23 @@ func (builder *ApprovalFormBuilder) FormContent(formContent string) *ApprovalFor
 	return builder
 }
 
+// 控件之间数据条件约束表达式
+//
+// 示例值：{\"groups\":[{\"id\":\"1\",\"parent_widgets_ids\":[\"widget1\",\"widget4\"],\"children_widget_ids\":[\"widget2.widget3\"],\"conditions\":[{\"parents_expr\":{\"type\":\"Multi\",\"expr\":{\"type\":\"and\",\"exprs\":[{\"type\":\"SingleWidget\",\"expr\":{\"type\":\"in\",\"widget_id\":\"widget1\",\"expect\":{\"type\":\"local\",\"value\":[{\"value\":\"value_0\"},{\"value\":\"value_1\"}]}}},{\"type\":\"Const\",\"expr\":{\"value\":true,\"widget_ids\":[\"widget4\"]}}]}},\"children_rule\":{\"expr\":{\"type\":\"SingleWidget\",\"expr\":{\"type\":\"in\",\"widget_id\":\"widget2.widget3\",\"expect\":{\"type\":\"local\",\"value\":[{\"value\":\"value_3\"},{\"value\":\"value_5\"}]}}},\"actions\":[{\"type\":\"SetOptions\",\"widget_id\":\"widget2.widget3\",\"value\":{\"type\":\"local\",\"value\":[{\"value\":\"value_3\"},{\"value\":\"value_4\"}]}}]}}]}]}
+func (builder *ApprovalFormBuilder) WidgetRelation(widgetRelation string) *ApprovalFormBuilder {
+	builder.widgetRelation = widgetRelation
+	builder.widgetRelationFlag = true
+	return builder
+}
+
 func (builder *ApprovalFormBuilder) Build() *ApprovalForm {
 	req := &ApprovalForm{}
 	if builder.formContentFlag {
 		req.FormContent = &builder.formContent
+
+	}
+	if builder.widgetRelationFlag {
+		req.WidgetRelation = &builder.widgetRelation
 
 	}
 	return req
@@ -3253,6 +3274,54 @@ func (builder *DefinitionBuilder) Build() *Definition {
 	}
 	if builder.createLinkMobileFlag {
 		req.CreateLinkMobile = &builder.createLinkMobile
+
+	}
+	return req
+}
+
+type DepartmentId struct {
+	DepartmentId     *string `json:"department_id,omitempty"`      //
+	OpenDepartmentId *string `json:"open_department_id,omitempty"` //
+}
+
+type DepartmentIdBuilder struct {
+	departmentId         string //
+	departmentIdFlag     bool
+	openDepartmentId     string //
+	openDepartmentIdFlag bool
+}
+
+func NewDepartmentIdBuilder() *DepartmentIdBuilder {
+	builder := &DepartmentIdBuilder{}
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) DepartmentId(departmentId string) *DepartmentIdBuilder {
+	builder.departmentId = departmentId
+	builder.departmentIdFlag = true
+	return builder
+}
+
+//
+//
+// 示例值：
+func (builder *DepartmentIdBuilder) OpenDepartmentId(openDepartmentId string) *DepartmentIdBuilder {
+	builder.openDepartmentId = openDepartmentId
+	builder.openDepartmentIdFlag = true
+	return builder
+}
+
+func (builder *DepartmentIdBuilder) Build() *DepartmentId {
+	req := &DepartmentId{}
+	if builder.departmentIdFlag {
+		req.DepartmentId = &builder.departmentId
+
+	}
+	if builder.openDepartmentIdFlag {
+		req.OpenDepartmentId = &builder.openDepartmentId
 
 	}
 	return req
@@ -5536,6 +5605,52 @@ func (builder *InstanceCreateBuilder) Build() *InstanceCreate {
 	return req
 }
 
+type InstanceDetailScenarioContext struct {
+	Object *ObjectContext           `json:"object,omitempty"` // object context
+	Extra  *MyAiInstanceDetailExtra `json:"extra,omitempty"`  // extra
+}
+
+type InstanceDetailScenarioContextBuilder struct {
+	object     *ObjectContext // object context
+	objectFlag bool
+	extra      *MyAiInstanceDetailExtra // extra
+	extraFlag  bool
+}
+
+func NewInstanceDetailScenarioContextBuilder() *InstanceDetailScenarioContextBuilder {
+	builder := &InstanceDetailScenarioContextBuilder{}
+	return builder
+}
+
+// object context
+//
+// 示例值：
+func (builder *InstanceDetailScenarioContextBuilder) Object(object *ObjectContext) *InstanceDetailScenarioContextBuilder {
+	builder.object = object
+	builder.objectFlag = true
+	return builder
+}
+
+// extra
+//
+// 示例值：
+func (builder *InstanceDetailScenarioContextBuilder) Extra(extra *MyAiInstanceDetailExtra) *InstanceDetailScenarioContextBuilder {
+	builder.extra = extra
+	builder.extraFlag = true
+	return builder
+}
+
+func (builder *InstanceDetailScenarioContextBuilder) Build() *InstanceDetailScenarioContext {
+	req := &InstanceDetailScenarioContext{}
+	if builder.objectFlag {
+		req.Object = builder.object
+	}
+	if builder.extraFlag {
+		req.Extra = builder.extra
+	}
+	return req
+}
+
 type InstanceSearch struct {
 	UserId                *string `json:"user_id,omitempty"`                  // 根据x_user_type填写用户 id
 	ApprovalCode          *string `json:"approval_code,omitempty"`            // 审批定义 code
@@ -7012,6 +7127,641 @@ func (builder *MessageBuilder) Build() *Message {
 	return req
 }
 
+type MyAiCardAction struct {
+	Tag   *string        `json:"tag,omitempty"`   // tag
+	Value *MyAiCardValue `json:"value,omitempty"` // value
+}
+
+type MyAiCardActionBuilder struct {
+	tag       string // tag
+	tagFlag   bool
+	value     *MyAiCardValue // value
+	valueFlag bool
+}
+
+func NewMyAiCardActionBuilder() *MyAiCardActionBuilder {
+	builder := &MyAiCardActionBuilder{}
+	return builder
+}
+
+// tag
+//
+// 示例值：button
+func (builder *MyAiCardActionBuilder) Tag(tag string) *MyAiCardActionBuilder {
+	builder.tag = tag
+	builder.tagFlag = true
+	return builder
+}
+
+// value
+//
+// 示例值：
+func (builder *MyAiCardActionBuilder) Value(value *MyAiCardValue) *MyAiCardActionBuilder {
+	builder.value = value
+	builder.valueFlag = true
+	return builder
+}
+
+func (builder *MyAiCardActionBuilder) Build() *MyAiCardAction {
+	req := &MyAiCardAction{}
+	if builder.tagFlag {
+		req.Tag = &builder.tag
+
+	}
+	if builder.valueFlag {
+		req.Value = builder.value
+	}
+	return req
+}
+
+type MyAiCardValue struct {
+	Body   *string `json:"body,omitempty"`   // body
+	Handle *string `json:"handle,omitempty"` // handle
+}
+
+type MyAiCardValueBuilder struct {
+	body       string // body
+	bodyFlag   bool
+	handle     string // handle
+	handleFlag bool
+}
+
+func NewMyAiCardValueBuilder() *MyAiCardValueBuilder {
+	builder := &MyAiCardValueBuilder{}
+	return builder
+}
+
+// body
+//
+// 示例值：value body
+func (builder *MyAiCardValueBuilder) Body(body string) *MyAiCardValueBuilder {
+	builder.body = body
+	builder.bodyFlag = true
+	return builder
+}
+
+// handle
+//
+// 示例值：handle
+func (builder *MyAiCardValueBuilder) Handle(handle string) *MyAiCardValueBuilder {
+	builder.handle = handle
+	builder.handleFlag = true
+	return builder
+}
+
+func (builder *MyAiCardValueBuilder) Build() *MyAiCardValue {
+	req := &MyAiCardValue{}
+	if builder.bodyFlag {
+		req.Body = &builder.body
+
+	}
+	if builder.handleFlag {
+		req.Handle = &builder.handle
+
+	}
+	return req
+}
+
+type MyAiComment struct {
+	UserName *string `json:"user_name,omitempty"` // 用户姓名
+	Comment  *string `json:"comment,omitempty"`   // 评论
+}
+
+type MyAiCommentBuilder struct {
+	userName     string // 用户姓名
+	userNameFlag bool
+	comment      string // 评论
+	commentFlag  bool
+}
+
+func NewMyAiCommentBuilder() *MyAiCommentBuilder {
+	builder := &MyAiCommentBuilder{}
+	return builder
+}
+
+// 用户姓名
+//
+// 示例值：张三
+func (builder *MyAiCommentBuilder) UserName(userName string) *MyAiCommentBuilder {
+	builder.userName = userName
+	builder.userNameFlag = true
+	return builder
+}
+
+// 评论
+//
+// 示例值：同意
+func (builder *MyAiCommentBuilder) Comment(comment string) *MyAiCommentBuilder {
+	builder.comment = comment
+	builder.commentFlag = true
+	return builder
+}
+
+func (builder *MyAiCommentBuilder) Build() *MyAiComment {
+	req := &MyAiComment{}
+	if builder.userNameFlag {
+		req.UserName = &builder.userName
+
+	}
+	if builder.commentFlag {
+		req.Comment = &builder.comment
+
+	}
+	return req
+}
+
+type MyAiInstance struct {
+	Name     *string        `json:"name,omitempty"`     // 审批名称
+	Form     *string        `json:"form,omitempty"`     // 表单
+	Tasks    []*MyAiTask    `json:"tasks,omitempty"`    // 审批记录
+	Comments []*MyAiComment `json:"comments,omitempty"` // 审批评论
+}
+
+type MyAiInstanceBuilder struct {
+	name         string // 审批名称
+	nameFlag     bool
+	form         string // 表单
+	formFlag     bool
+	tasks        []*MyAiTask // 审批记录
+	tasksFlag    bool
+	comments     []*MyAiComment // 审批评论
+	commentsFlag bool
+}
+
+func NewMyAiInstanceBuilder() *MyAiInstanceBuilder {
+	builder := &MyAiInstanceBuilder{}
+	return builder
+}
+
+// 审批名称
+//
+// 示例值：合同申请
+func (builder *MyAiInstanceBuilder) Name(name string) *MyAiInstanceBuilder {
+	builder.name = name
+	builder.nameFlag = true
+	return builder
+}
+
+// 表单
+//
+// 示例值：金额500元
+func (builder *MyAiInstanceBuilder) Form(form string) *MyAiInstanceBuilder {
+	builder.form = form
+	builder.formFlag = true
+	return builder
+}
+
+// 审批记录
+//
+// 示例值：
+func (builder *MyAiInstanceBuilder) Tasks(tasks []*MyAiTask) *MyAiInstanceBuilder {
+	builder.tasks = tasks
+	builder.tasksFlag = true
+	return builder
+}
+
+// 审批评论
+//
+// 示例值：
+func (builder *MyAiInstanceBuilder) Comments(comments []*MyAiComment) *MyAiInstanceBuilder {
+	builder.comments = comments
+	builder.commentsFlag = true
+	return builder
+}
+
+func (builder *MyAiInstanceBuilder) Build() *MyAiInstance {
+	req := &MyAiInstance{}
+	if builder.nameFlag {
+		req.Name = &builder.name
+
+	}
+	if builder.formFlag {
+		req.Form = &builder.form
+
+	}
+	if builder.tasksFlag {
+		req.Tasks = builder.tasks
+	}
+	if builder.commentsFlag {
+		req.Comments = builder.comments
+	}
+	return req
+}
+
+type MyAiInstanceDetailExtra struct {
+	InstanceId *string `json:"instance_id,omitempty"` // 审批实例ID
+}
+
+type MyAiInstanceDetailExtraBuilder struct {
+	instanceId     string // 审批实例ID
+	instanceIdFlag bool
+}
+
+func NewMyAiInstanceDetailExtraBuilder() *MyAiInstanceDetailExtraBuilder {
+	builder := &MyAiInstanceDetailExtraBuilder{}
+	return builder
+}
+
+// 审批实例ID
+//
+// 示例值：281946120421094712
+func (builder *MyAiInstanceDetailExtraBuilder) InstanceId(instanceId string) *MyAiInstanceDetailExtraBuilder {
+	builder.instanceId = instanceId
+	builder.instanceIdFlag = true
+	return builder
+}
+
+func (builder *MyAiInstanceDetailExtraBuilder) Build() *MyAiInstanceDetailExtra {
+	req := &MyAiInstanceDetailExtra{}
+	if builder.instanceIdFlag {
+		req.InstanceId = &builder.instanceId
+
+	}
+	return req
+}
+
+type MyAiMessageCallbackRequest struct {
+	MessageId    *string `json:"message_id,omitempty"`    // message ID
+	CallbackInfo *string `json:"callback_info,omitempty"` // context
+}
+
+type MyAiMessageCallbackRequestBuilder struct {
+	messageId        string // message ID
+	messageIdFlag    bool
+	callbackInfo     string // context
+	callbackInfoFlag bool
+}
+
+func NewMyAiMessageCallbackRequestBuilder() *MyAiMessageCallbackRequestBuilder {
+	builder := &MyAiMessageCallbackRequestBuilder{}
+	return builder
+}
+
+// message ID
+//
+// 示例值：om_xxxxxxxx
+func (builder *MyAiMessageCallbackRequestBuilder) MessageId(messageId string) *MyAiMessageCallbackRequestBuilder {
+	builder.messageId = messageId
+	builder.messageIdFlag = true
+	return builder
+}
+
+// context
+//
+// 示例值："{\"biz_id\":\"xxx\"}"
+func (builder *MyAiMessageCallbackRequestBuilder) CallbackInfo(callbackInfo string) *MyAiMessageCallbackRequestBuilder {
+	builder.callbackInfo = callbackInfo
+	builder.callbackInfoFlag = true
+	return builder
+}
+
+func (builder *MyAiMessageCallbackRequestBuilder) Build() *MyAiMessageCallbackRequest {
+	req := &MyAiMessageCallbackRequest{}
+	if builder.messageIdFlag {
+		req.MessageId = &builder.messageId
+
+	}
+	if builder.callbackInfoFlag {
+		req.CallbackInfo = &builder.callbackInfo
+
+	}
+	return req
+}
+
+type MyAiObjectScenarioContext struct {
+	Object *ObjectContext `json:"object,omitempty"` // object
+}
+
+type MyAiObjectScenarioContextBuilder struct {
+	object     *ObjectContext // object
+	objectFlag bool
+}
+
+func NewMyAiObjectScenarioContextBuilder() *MyAiObjectScenarioContextBuilder {
+	builder := &MyAiObjectScenarioContextBuilder{}
+	return builder
+}
+
+// object
+//
+// 示例值：
+func (builder *MyAiObjectScenarioContextBuilder) Object(object *ObjectContext) *MyAiObjectScenarioContextBuilder {
+	builder.object = object
+	builder.objectFlag = true
+	return builder
+}
+
+func (builder *MyAiObjectScenarioContextBuilder) Build() *MyAiObjectScenarioContext {
+	req := &MyAiObjectScenarioContext{}
+	if builder.objectFlag {
+		req.Object = builder.object
+	}
+	return req
+}
+
+type MyAiPresent struct {
+	Type           *string                   `json:"type,omitempty"`             // present type
+	Body           *string                   `json:"body,omitempty"`             // response body
+	CallbackUrl    *string                   `json:"callback_url,omitempty"`     // msg callback url
+	CallbackInfo   *string                   `json:"callback_info,omitempty"`    // approval context
+	CardTemplateId *string                   `json:"card_template_id,omitempty"` // template ID
+	CardVariables  *MyAiPresentCardVariables `json:"card_variables,omitempty"`   // 卡片变量
+	Interactable   *bool                     `json:"interactable,omitempty"`     // interactable
+	OperationType  *string                   `json:"operation_type,omitempty"`   // operation_type
+	OperationUrl   *string                   `json:"operation_url,omitempty"`    // operation_url
+}
+
+type MyAiPresentBuilder struct {
+	type_              string // present type
+	typeFlag           bool
+	body               string // response body
+	bodyFlag           bool
+	callbackUrl        string // msg callback url
+	callbackUrlFlag    bool
+	callbackInfo       string // approval context
+	callbackInfoFlag   bool
+	cardTemplateId     string // template ID
+	cardTemplateIdFlag bool
+	cardVariables      *MyAiPresentCardVariables // 卡片变量
+	cardVariablesFlag  bool
+	interactable       bool // interactable
+	interactableFlag   bool
+	operationType      string // operation_type
+	operationTypeFlag  bool
+	operationUrl       string // operation_url
+	operationUrlFlag   bool
+}
+
+func NewMyAiPresentBuilder() *MyAiPresentBuilder {
+	builder := &MyAiPresentBuilder{}
+	return builder
+}
+
+// present type
+//
+// 示例值：rich_text
+func (builder *MyAiPresentBuilder) Type(type_ string) *MyAiPresentBuilder {
+	builder.type_ = type_
+	builder.typeFlag = true
+	return builder
+}
+
+// response body
+//
+// 示例值：{}
+func (builder *MyAiPresentBuilder) Body(body string) *MyAiPresentBuilder {
+	builder.body = body
+	builder.bodyFlag = true
+	return builder
+}
+
+// msg callback url
+//
+// 示例值：https://open......./myai/message_callback
+func (builder *MyAiPresentBuilder) CallbackUrl(callbackUrl string) *MyAiPresentBuilder {
+	builder.callbackUrl = callbackUrl
+	builder.callbackUrlFlag = true
+	return builder
+}
+
+// approval context
+//
+// 示例值："{\"session_id\":\"11111\"}"
+func (builder *MyAiPresentBuilder) CallbackInfo(callbackInfo string) *MyAiPresentBuilder {
+	builder.callbackInfo = callbackInfo
+	builder.callbackInfoFlag = true
+	return builder
+}
+
+// template ID
+//
+// 示例值：default
+func (builder *MyAiPresentBuilder) CardTemplateId(cardTemplateId string) *MyAiPresentBuilder {
+	builder.cardTemplateId = cardTemplateId
+	builder.cardTemplateIdFlag = true
+	return builder
+}
+
+// 卡片变量
+//
+// 示例值：
+func (builder *MyAiPresentBuilder) CardVariables(cardVariables *MyAiPresentCardVariables) *MyAiPresentBuilder {
+	builder.cardVariables = cardVariables
+	builder.cardVariablesFlag = true
+	return builder
+}
+
+// interactable
+//
+// 示例值：true false
+func (builder *MyAiPresentBuilder) Interactable(interactable bool) *MyAiPresentBuilder {
+	builder.interactable = interactable
+	builder.interactableFlag = true
+	return builder
+}
+
+// operation_type
+//
+// 示例值：operation_type
+func (builder *MyAiPresentBuilder) OperationType(operationType string) *MyAiPresentBuilder {
+	builder.operationType = operationType
+	builder.operationTypeFlag = true
+	return builder
+}
+
+// operation_url
+//
+// 示例值：https://open-boe.feichu.com
+func (builder *MyAiPresentBuilder) OperationUrl(operationUrl string) *MyAiPresentBuilder {
+	builder.operationUrl = operationUrl
+	builder.operationUrlFlag = true
+	return builder
+}
+
+func (builder *MyAiPresentBuilder) Build() *MyAiPresent {
+	req := &MyAiPresent{}
+	if builder.typeFlag {
+		req.Type = &builder.type_
+
+	}
+	if builder.bodyFlag {
+		req.Body = &builder.body
+
+	}
+	if builder.callbackUrlFlag {
+		req.CallbackUrl = &builder.callbackUrl
+
+	}
+	if builder.callbackInfoFlag {
+		req.CallbackInfo = &builder.callbackInfo
+
+	}
+	if builder.cardTemplateIdFlag {
+		req.CardTemplateId = &builder.cardTemplateId
+
+	}
+	if builder.cardVariablesFlag {
+		req.CardVariables = builder.cardVariables
+	}
+	if builder.interactableFlag {
+		req.Interactable = &builder.interactable
+
+	}
+	if builder.operationTypeFlag {
+		req.OperationType = &builder.operationType
+
+	}
+	if builder.operationUrlFlag {
+		req.OperationUrl = &builder.operationUrl
+
+	}
+	return req
+}
+
+type MyAiPresentCardVariables struct {
+	Prologue     *string `json:"prologue,omitempty"`      // 文字
+	QuickActions *string `json:"quick_actions,omitempty"` // 快捷指令
+}
+
+type MyAiPresentCardVariablesBuilder struct {
+	prologue         string // 文字
+	prologueFlag     bool
+	quickActions     string // 快捷指令
+	quickActionsFlag bool
+}
+
+func NewMyAiPresentCardVariablesBuilder() *MyAiPresentCardVariablesBuilder {
+	builder := &MyAiPresentCardVariablesBuilder{}
+	return builder
+}
+
+// 文字
+//
+// 示例值：text
+func (builder *MyAiPresentCardVariablesBuilder) Prologue(prologue string) *MyAiPresentCardVariablesBuilder {
+	builder.prologue = prologue
+	builder.prologueFlag = true
+	return builder
+}
+
+// 快捷指令
+//
+// 示例值：{}
+func (builder *MyAiPresentCardVariablesBuilder) QuickActions(quickActions string) *MyAiPresentCardVariablesBuilder {
+	builder.quickActions = quickActions
+	builder.quickActionsFlag = true
+	return builder
+}
+
+func (builder *MyAiPresentCardVariablesBuilder) Build() *MyAiPresentCardVariables {
+	req := &MyAiPresentCardVariables{}
+	if builder.prologueFlag {
+		req.Prologue = &builder.prologue
+
+	}
+	if builder.quickActionsFlag {
+		req.QuickActions = &builder.quickActions
+
+	}
+	return req
+}
+
+type MyAiSimpleCommandResult struct {
+	Content *string `json:"content,omitempty"` // result_content
+}
+
+type MyAiSimpleCommandResultBuilder struct {
+	content     string // result_content
+	contentFlag bool
+}
+
+func NewMyAiSimpleCommandResultBuilder() *MyAiSimpleCommandResultBuilder {
+	builder := &MyAiSimpleCommandResultBuilder{}
+	return builder
+}
+
+// result_content
+//
+// 示例值：hi
+func (builder *MyAiSimpleCommandResultBuilder) Content(content string) *MyAiSimpleCommandResultBuilder {
+	builder.content = content
+	builder.contentFlag = true
+	return builder
+}
+
+func (builder *MyAiSimpleCommandResultBuilder) Build() *MyAiSimpleCommandResult {
+	req := &MyAiSimpleCommandResult{}
+	if builder.contentFlag {
+		req.Content = &builder.content
+
+	}
+	return req
+}
+
+type MyAiTask struct {
+	UserName *string `json:"user_name,omitempty"` // 用户姓名
+	Type     *string `json:"type,omitempty"`      // 操作类型
+	NodeName *string `json:"node_name,omitempty"` // 节点名称
+}
+
+type MyAiTaskBuilder struct {
+	userName     string // 用户姓名
+	userNameFlag bool
+	type_        string // 操作类型
+	typeFlag     bool
+	nodeName     string // 节点名称
+	nodeNameFlag bool
+}
+
+func NewMyAiTaskBuilder() *MyAiTaskBuilder {
+	builder := &MyAiTaskBuilder{}
+	return builder
+}
+
+// 用户姓名
+//
+// 示例值：张三
+func (builder *MyAiTaskBuilder) UserName(userName string) *MyAiTaskBuilder {
+	builder.userName = userName
+	builder.userNameFlag = true
+	return builder
+}
+
+// 操作类型
+//
+// 示例值：同意
+func (builder *MyAiTaskBuilder) Type(type_ string) *MyAiTaskBuilder {
+	builder.type_ = type_
+	builder.typeFlag = true
+	return builder
+}
+
+// 节点名称
+//
+// 示例值：财务审批
+func (builder *MyAiTaskBuilder) NodeName(nodeName string) *MyAiTaskBuilder {
+	builder.nodeName = nodeName
+	builder.nodeNameFlag = true
+	return builder
+}
+
+func (builder *MyAiTaskBuilder) Build() *MyAiTask {
+	req := &MyAiTask{}
+	if builder.userNameFlag {
+		req.UserName = &builder.userName
+
+	}
+	if builder.typeFlag {
+		req.Type = &builder.type_
+
+	}
+	if builder.nodeNameFlag {
+		req.NodeName = &builder.nodeName
+
+	}
+	return req
+}
+
 type NodeApprover struct {
 	Key   *string  `json:"key,omitempty"`   // node id 或 custom node id，通过 [查看审批定义](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/approval-v4/approval/get) 获取
 	Value []string `json:"value,omitempty"` // value: 审批人列表
@@ -7102,6 +7852,54 @@ func (builder *NodeCcBuilder) Build() *NodeCc {
 	}
 	if builder.valueFlag {
 		req.Value = builder.value
+	}
+	return req
+}
+
+type ObjectContext struct {
+	Type  *string `json:"type,omitempty"`   // 业务类型
+	BizId *string `json:"biz_id,omitempty"` // 业务ID
+}
+
+type ObjectContextBuilder struct {
+	type_     string // 业务类型
+	typeFlag  bool
+	bizId     string // 业务ID
+	bizIdFlag bool
+}
+
+func NewObjectContextBuilder() *ObjectContextBuilder {
+	builder := &ObjectContextBuilder{}
+	return builder
+}
+
+// 业务类型
+//
+// 示例值：Approval
+func (builder *ObjectContextBuilder) Type(type_ string) *ObjectContextBuilder {
+	builder.type_ = type_
+	builder.typeFlag = true
+	return builder
+}
+
+// 业务ID
+//
+// 示例值：72741982461846214
+func (builder *ObjectContextBuilder) BizId(bizId string) *ObjectContextBuilder {
+	builder.bizId = bizId
+	builder.bizIdFlag = true
+	return builder
+}
+
+func (builder *ObjectContextBuilder) Build() *ObjectContext {
+	req := &ObjectContext{}
+	if builder.typeFlag {
+		req.Type = &builder.type_
+
+	}
+	if builder.bizIdFlag {
+		req.BizId = &builder.bizId
+
 	}
 	return req
 }
@@ -7630,6 +8428,149 @@ func (builder *RollbackNodeBuilder) Build() *RollbackNode {
 	return req
 }
 
+type ShiftGroup struct {
+	Type             *string            `json:"type,omitempty"`               // 事件类型
+	InstanceCode     *string            `json:"instance_code,omitempty"`      // 审批实例code
+	UserId           *string            `json:"user_id,omitempty"`            // 发起人用户ID
+	SwapShiftUserId  *string            `json:"swap_shift_user_id,omitempty"` // 换班人用户ID
+	StartTime        *int               `json:"start_time,omitempty"`         // 开始时间
+	EndTime          *int               `json:"end_time,omitempty"`           // 结束时间
+	ShiftReason      *string            `json:"shift_reason,omitempty"`       // 换班原因
+	SwapShiftDetails []*SwapShiftDetail `json:"swap_shift_details,omitempty"` // 换班详情
+}
+
+type ShiftGroupBuilder struct {
+	type_                string // 事件类型
+	typeFlag             bool
+	instanceCode         string // 审批实例code
+	instanceCodeFlag     bool
+	userId               string // 发起人用户ID
+	userIdFlag           bool
+	swapShiftUserId      string // 换班人用户ID
+	swapShiftUserIdFlag  bool
+	startTime            int // 开始时间
+	startTimeFlag        bool
+	endTime              int // 结束时间
+	endTimeFlag          bool
+	shiftReason          string // 换班原因
+	shiftReasonFlag      bool
+	swapShiftDetails     []*SwapShiftDetail // 换班详情
+	swapShiftDetailsFlag bool
+}
+
+func NewShiftGroupBuilder() *ShiftGroupBuilder {
+	builder := &ShiftGroupBuilder{}
+	return builder
+}
+
+// 事件类型
+//
+// 示例值：shift_approval_v2
+func (builder *ShiftGroupBuilder) Type(type_ string) *ShiftGroupBuilder {
+	builder.type_ = type_
+	builder.typeFlag = true
+	return builder
+}
+
+// 审批实例code
+//
+// 示例值：4EAA9FD6-71E6-4661-A2C8-92CF68D2A0A0
+func (builder *ShiftGroupBuilder) InstanceCode(instanceCode string) *ShiftGroupBuilder {
+	builder.instanceCode = instanceCode
+	builder.instanceCodeFlag = true
+	return builder
+}
+
+// 发起人用户ID
+//
+// 示例值：xxx
+func (builder *ShiftGroupBuilder) UserId(userId string) *ShiftGroupBuilder {
+	builder.userId = userId
+	builder.userIdFlag = true
+	return builder
+}
+
+// 换班人用户ID
+//
+// 示例值：xxx
+func (builder *ShiftGroupBuilder) SwapShiftUserId(swapShiftUserId string) *ShiftGroupBuilder {
+	builder.swapShiftUserId = swapShiftUserId
+	builder.swapShiftUserIdFlag = true
+	return builder
+}
+
+// 开始时间
+//
+// 示例值：1695643504
+func (builder *ShiftGroupBuilder) StartTime(startTime int) *ShiftGroupBuilder {
+	builder.startTime = startTime
+	builder.startTimeFlag = true
+	return builder
+}
+
+// 结束时间
+//
+// 示例值：1695643504
+func (builder *ShiftGroupBuilder) EndTime(endTime int) *ShiftGroupBuilder {
+	builder.endTime = endTime
+	builder.endTimeFlag = true
+	return builder
+}
+
+// 换班原因
+//
+// 示例值：临时有事申请换班
+func (builder *ShiftGroupBuilder) ShiftReason(shiftReason string) *ShiftGroupBuilder {
+	builder.shiftReason = shiftReason
+	builder.shiftReasonFlag = true
+	return builder
+}
+
+// 换班详情
+//
+// 示例值：""
+func (builder *ShiftGroupBuilder) SwapShiftDetails(swapShiftDetails []*SwapShiftDetail) *ShiftGroupBuilder {
+	builder.swapShiftDetails = swapShiftDetails
+	builder.swapShiftDetailsFlag = true
+	return builder
+}
+
+func (builder *ShiftGroupBuilder) Build() *ShiftGroup {
+	req := &ShiftGroup{}
+	if builder.typeFlag {
+		req.Type = &builder.type_
+
+	}
+	if builder.instanceCodeFlag {
+		req.InstanceCode = &builder.instanceCode
+
+	}
+	if builder.userIdFlag {
+		req.UserId = &builder.userId
+
+	}
+	if builder.swapShiftUserIdFlag {
+		req.SwapShiftUserId = &builder.swapShiftUserId
+
+	}
+	if builder.startTimeFlag {
+		req.StartTime = &builder.startTime
+
+	}
+	if builder.endTimeFlag {
+		req.EndTime = &builder.endTime
+
+	}
+	if builder.shiftReasonFlag {
+		req.ShiftReason = &builder.shiftReason
+
+	}
+	if builder.swapShiftDetailsFlag {
+		req.SwapShiftDetails = builder.swapShiftDetails
+	}
+	return req
+}
+
 type SignGroup struct {
 	InstanceCode          *string `json:"instance_code,omitempty"`           //
 	UserId                *UserId `json:"user_id,omitempty"`                 //
@@ -7848,6 +8789,70 @@ func (builder *SpecifiedRollbackBuilder) Build() *SpecifiedRollback {
 	}
 	if builder.taskDefKeyListFlag {
 		req.TaskDefKeyList = builder.taskDefKeyList
+	}
+	return req
+}
+
+type SwapShiftDetail struct {
+	Date       *string `json:"date,omitempty"`        // 换班日期
+	ReturnDate *string `json:"return_date,omitempty"` // 还班日期
+	ShfitId    *string `json:"shfit_id,omitempty"`    // 班次ID
+}
+
+type SwapShiftDetailBuilder struct {
+	date           string // 换班日期
+	dateFlag       bool
+	returnDate     string // 还班日期
+	returnDateFlag bool
+	shfitId        string // 班次ID
+	shfitIdFlag    bool
+}
+
+func NewSwapShiftDetailBuilder() *SwapShiftDetailBuilder {
+	builder := &SwapShiftDetailBuilder{}
+	return builder
+}
+
+// 换班日期
+//
+// 示例值：2023-09-11
+func (builder *SwapShiftDetailBuilder) Date(date string) *SwapShiftDetailBuilder {
+	builder.date = date
+	builder.dateFlag = true
+	return builder
+}
+
+// 还班日期
+//
+// 示例值：2023-09-12
+func (builder *SwapShiftDetailBuilder) ReturnDate(returnDate string) *SwapShiftDetailBuilder {
+	builder.returnDate = returnDate
+	builder.returnDateFlag = true
+	return builder
+}
+
+// 班次ID
+//
+// 示例值：xxx
+func (builder *SwapShiftDetailBuilder) ShfitId(shfitId string) *SwapShiftDetailBuilder {
+	builder.shfitId = shfitId
+	builder.shfitIdFlag = true
+	return builder
+}
+
+func (builder *SwapShiftDetailBuilder) Build() *SwapShiftDetail {
+	req := &SwapShiftDetail{}
+	if builder.dateFlag {
+		req.Date = &builder.date
+
+	}
+	if builder.returnDateFlag {
+		req.ReturnDate = &builder.returnDate
+
+	}
+	if builder.shfitIdFlag {
+		req.ShfitId = &builder.shfitId
+
 	}
 	return req
 }
@@ -9912,12 +10917,13 @@ type GetApprovalReq struct {
 }
 
 type GetApprovalRespData struct {
-	ApprovalName     *string               `json:"approval_name,omitempty"`      // 审批名称
-	Status           *string               `json:"status,omitempty"`             // 审批定义状态
-	Form             *string               `json:"form,omitempty"`               // 控件信息，见下方form字段说明
-	NodeList         []*ApprovalNodeInfo   `json:"node_list,omitempty"`          // 节点信息
-	Viewers          []*ApprovalViewerInfo `json:"viewers,omitempty"`            // 可见人列表
-	ApprovalAdminIds []string              `json:"approval_admin_ids,omitempty"` // 有数据管理权限的审批流程管理员ID
+	ApprovalName       *string               `json:"approval_name,omitempty"`        // 审批名称
+	Status             *string               `json:"status,omitempty"`               // 审批定义状态
+	Form               *string               `json:"form,omitempty"`                 // 控件信息，见下方form字段说明
+	NodeList           []*ApprovalNodeInfo   `json:"node_list,omitempty"`            // 节点信息
+	Viewers            []*ApprovalViewerInfo `json:"viewers,omitempty"`              // 可见人列表
+	ApprovalAdminIds   []string              `json:"approval_admin_ids,omitempty"`   // 有数据管理权限的审批流程管理员ID
+	FormWidgetRelation *string               `json:"form_widget_relation,omitempty"` // 组件之间值关联关系
 }
 
 type GetApprovalResp struct {
@@ -10075,6 +11081,69 @@ func (resp *CreateExternalApprovalResp) Success() bool {
 	return resp.Code == 0
 }
 
+type GetExternalApprovalReqBuilder struct {
+	apiReq *larkcore.ApiReq
+}
+
+func NewGetExternalApprovalReqBuilder() *GetExternalApprovalReqBuilder {
+	builder := &GetExternalApprovalReqBuilder{}
+	builder.apiReq = &larkcore.ApiReq{
+		PathParams:  larkcore.PathParams{},
+		QueryParams: larkcore.QueryParams{},
+	}
+	return builder
+}
+
+// 审批定义code
+//
+// 示例值：7C468A54-8745-2245-9675-08B7C63E7A85
+func (builder *GetExternalApprovalReqBuilder) ApprovalCode(approvalCode string) *GetExternalApprovalReqBuilder {
+	builder.apiReq.PathParams.Set("approval_code", fmt.Sprint(approvalCode))
+	return builder
+}
+
+// 此次调用中使用的用户ID的类型
+//
+// 示例值：
+func (builder *GetExternalApprovalReqBuilder) UserIdType(userIdType string) *GetExternalApprovalReqBuilder {
+	builder.apiReq.QueryParams.Set("user_id_type", fmt.Sprint(userIdType))
+	return builder
+}
+
+func (builder *GetExternalApprovalReqBuilder) Build() *GetExternalApprovalReq {
+	req := &GetExternalApprovalReq{}
+	req.apiReq = &larkcore.ApiReq{}
+	req.apiReq.PathParams = builder.apiReq.PathParams
+	req.apiReq.QueryParams = builder.apiReq.QueryParams
+	return req
+}
+
+type GetExternalApprovalReq struct {
+	apiReq *larkcore.ApiReq
+}
+
+type GetExternalApprovalRespData struct {
+	ApprovalName  *string                  `json:"approval_name,omitempty"`  // 审批定义名称
+	ApprovalCode  *string                  `json:"approval_code,omitempty"`  // 审批定义code
+	GroupCode     *string                  `json:"group_code,omitempty"`     // 审批定义所属分组
+	GroupName     *string                  `json:"group_name,omitempty"`     // 分组名称
+	Description   *string                  `json:"description,omitempty"`    // 审批定义的说明
+	External      *ApprovalCreateExternal  `json:"external,omitempty"`       // 三方审批定义相关
+	Viewers       []*ApprovalCreateViewers `json:"viewers,omitempty"`        // 可见人列表
+	I18nResources []*I18nResource          `json:"i18n_resources,omitempty"` // 国际化文案
+	Managers      []string                 `json:"managers,omitempty"`       // 流程管理员
+}
+
+type GetExternalApprovalResp struct {
+	*larkcore.ApiResp `json:"-"`
+	larkcore.CodeError
+	Data *GetExternalApprovalRespData `json:"data"` // 业务数据
+}
+
+func (resp *GetExternalApprovalResp) Success() bool {
+	return resp.Code == 0
+}
+
 type CheckExternalInstanceReqBodyBuilder struct {
 	instances     []*ExteranlInstanceCheck // 校验的实例信息
 	instancesFlag bool
@@ -10103,7 +11172,7 @@ func (builder *CheckExternalInstanceReqBodyBuilder) Build() *CheckExternalInstan
 }
 
 type CheckExternalInstancePathReqBodyBuilder struct {
-	instances     []*ExteranlInstanceCheck // 校验的实例信息
+	instances     []*ExteranlInstanceCheck
 	instancesFlag bool
 }
 
@@ -10295,13 +11364,13 @@ func (builder *ListExternalTaskReqBodyBuilder) Build() *ListExternalTaskReqBody 
 }
 
 type ListExternalTaskPathReqBodyBuilder struct {
-	approvalCodes     []string // 审批定义 Code，用于指定只获取这些定义下的数据
+	approvalCodes     []string
 	approvalCodesFlag bool
-	instanceIds       []string // 审批实例 ID, 用于指定只获取这些实例下的数据，最多支持 20 个
+	instanceIds       []string
 	instanceIdsFlag   bool
-	userIds           []string // 审批人 user_id，用于指定只获取这些用户的数据
+	userIds           []string
 	userIdsFlag       bool
-	status            string // 审批任务状态，用于指定获取该状态下的数据
+	status            string
 	statusFlag        bool
 }
 
@@ -10571,21 +11640,21 @@ func (builder *AddSignInstanceReqBodyBuilder) Build() *AddSignInstanceReqBody {
 }
 
 type AddSignInstancePathReqBodyBuilder struct {
-	userId             string // 操作用户id
+	userId             string
 	userIdFlag         bool
-	approvalCode       string // 审批定义code
+	approvalCode       string
 	approvalCodeFlag   bool
-	instanceCode       string // 审批实例code
+	instanceCode       string
 	instanceCodeFlag   bool
-	taskId             string // 任务id
+	taskId             string
 	taskIdFlag         bool
-	comment            string // 意见
+	comment            string
 	commentFlag        bool
-	addSignUserIds     []string // 被加签人id
+	addSignUserIds     []string
 	addSignUserIdsFlag bool
-	addSignType        int // 1/2/3分别代表前加签/后加签/并加签
+	addSignType        int
 	addSignTypeFlag    bool
-	approvalMethod     int // 仅在前加签、后加签时需要填写，1/2 分别代表或签/会签
+	approvalMethod     int
 	approvalMethodFlag bool
 }
 
@@ -11183,19 +12252,19 @@ func (builder *PreviewInstanceReqBodyBuilder) Build() *PreviewInstanceReqBody {
 }
 
 type PreviewInstancePathReqBodyBuilder struct {
-	userId           string // 用户id
+	userId           string
 	userIdFlag       bool
-	approvalCode     string // 审批定义code
+	approvalCode     string
 	approvalCodeFlag bool
-	departmentId     string // 部门id
+	departmentId     string
 	departmentIdFlag bool
-	form             string // 表单数据
+	form             string
 	formFlag         bool
-	instanceCode     string // 审批实例code
+	instanceCode     string
 	instanceCodeFlag bool
-	locale           string // 语言类型
+	locale           string
 	localeFlag       bool
-	taskId           string // 任务id
+	taskId           string
 	taskIdFlag       bool
 }
 

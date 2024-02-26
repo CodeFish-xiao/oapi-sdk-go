@@ -28,6 +28,7 @@ func main() {
 	// 创建请求对象
 	req := larkattendance.NewGetLeaveEmployExpireRecordReqBuilder().
 		LeaveId("1").
+		UserIdType("open_id").
 		Body(larkattendance.NewGetLeaveEmployExpireRecordReqBodyBuilder().
 			EmploymentId("1").
 			LeaveTypeId("1").
@@ -37,7 +38,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.LeaveEmployExpireRecord.Get(context.Background(), req)
+	resp, err := client.Attendance.V1.LeaveEmployExpireRecord.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -34,10 +34,11 @@ func main() {
 			UserIds([]string{}).
 			CheckDateFrom(20190817).
 			CheckDateTo(20190820).
+			NeedOvertimeResult(true).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.UserTask.Query(context.Background(), req)
+	resp, err := client.Attendance.V1.UserTask.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

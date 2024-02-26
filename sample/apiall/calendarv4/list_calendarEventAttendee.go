@@ -30,11 +30,12 @@ func main() {
 		CalendarId("feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn").
 		EventId("xxxxxxxxx_0").
 		UserIdType("user_id").
+		NeedResourceCustomization(true).
 		PageToken("780TRhwXXXXX").
 		PageSize(20).
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.CalendarEventAttendee.List(context.Background(), req)
+	resp, err := client.Calendar.V4.CalendarEventAttendee.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

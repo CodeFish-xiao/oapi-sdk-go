@@ -43,7 +43,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Search.Message.Create(context.Background(), req)
+	resp, err := client.Search.V2.Message.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

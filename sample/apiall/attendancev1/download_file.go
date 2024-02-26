@@ -30,7 +30,7 @@ func main() {
 		FileId("xxxxxb306842b1c189bc5212eefxxxxx").
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.File.Download(context.Background(), req)
+	resp, err := client.Attendance.V1.File.Download(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -38,11 +38,12 @@ func main() {
 			TerminationReason("不合适").
 			DeliveryType(1).
 			ModifyTime(1618500278645).
+			CreateTime(1618500278644).
 			TerminationType("health").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.ExternalApplication.Update(context.Background(), req)
+	resp, err := client.Hire.V1.ExternalApplication.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

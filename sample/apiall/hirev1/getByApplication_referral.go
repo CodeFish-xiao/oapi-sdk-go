@@ -31,7 +31,7 @@ func main() {
 		UserIdType("open_id").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.Referral.GetByApplication(context.Background(), req)
+	resp, err := client.Hire.V1.Referral.GetByApplication(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

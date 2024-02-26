@@ -32,7 +32,7 @@ func main() {
 		FormId("vew6oMbAa4").
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppTableForm.Get(context.Background(), req)
+	resp, err := client.Bitable.V1.AppTableForm.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

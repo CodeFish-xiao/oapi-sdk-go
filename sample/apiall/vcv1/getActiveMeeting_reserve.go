@@ -32,7 +32,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.Reserve.GetActiveMeeting(context.Background(), req)
+	resp, err := client.Vc.V1.Reserve.GetActiveMeeting(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -31,7 +31,7 @@ func main() {
 		UserIdType("people_corehr_id").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.Employment.Delete(context.Background(), req)
+	resp, err := client.Corehr.V1.Employment.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

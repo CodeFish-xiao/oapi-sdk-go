@@ -35,7 +35,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.GroupMember.Add(context.Background(), req)
+	resp, err := client.Contact.V3.GroupMember.Add(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

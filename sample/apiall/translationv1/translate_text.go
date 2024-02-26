@@ -35,7 +35,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Translation.Text.Translate(context.Background(), req)
+	resp, err := client.Translation.V1.Text.Translate(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

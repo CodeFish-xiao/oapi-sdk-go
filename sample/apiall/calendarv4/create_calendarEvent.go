@@ -29,6 +29,7 @@ func main() {
 	req := larkcalendar.NewCreateCalendarEventReqBuilder().
 		CalendarId("feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn").
 		IdempotencyKey("25fdf41b-8c80-2ce1-e94c-de8b5e7aa7e6").
+		UserIdType("user_id").
 		CalendarEvent(larkcalendar.NewCalendarEventBuilder().
 			Summary("日程标题").
 			Description("日程描述").
@@ -47,7 +48,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.CalendarEvent.Create(context.Background(), req)
+	resp, err := client.Calendar.V4.CalendarEvent.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

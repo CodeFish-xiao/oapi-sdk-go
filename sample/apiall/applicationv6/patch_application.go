@@ -34,7 +34,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Application.Application.Patch(context.Background(), req)
+	resp, err := client.Application.V6.Application.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

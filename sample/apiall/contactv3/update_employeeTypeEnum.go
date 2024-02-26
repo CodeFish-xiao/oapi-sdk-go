@@ -36,7 +36,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.EmployeeTypeEnum.Update(context.Background(), req)
+	resp, err := client.Contact.V3.EmployeeTypeEnum.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

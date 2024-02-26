@@ -30,7 +30,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.Calendar.Primary(context.Background(), req)
+	resp, err := client.Calendar.V4.Calendar.Primary(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Im.Message.Patch(context.Background(), req)
+	resp, err := client.Im.V1.Message.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -30,7 +30,7 @@ func main() {
 		JobFamilyId("1554548").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.JobFamily.Get(context.Background(), req)
+	resp, err := client.Corehr.V1.JobFamily.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

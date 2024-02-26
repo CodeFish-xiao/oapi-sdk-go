@@ -41,7 +41,7 @@ func main() {
 		PageSize(20).
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppTableRecord.List(context.Background(), req)
+	resp, err := client.Bitable.V1.AppTableRecord.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

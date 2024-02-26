@@ -31,7 +31,7 @@ func main() {
 		Token("doccnZVxxxxxxxxxxxxGiyBgYqe").
 		Build()
 	// 发起请求
-	resp, err := client.Drive.ExportTask.Get(context.Background(), req)
+	resp, err := client.Drive.V1.ExportTask.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

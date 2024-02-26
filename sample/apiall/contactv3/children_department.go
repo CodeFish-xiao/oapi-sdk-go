@@ -35,7 +35,7 @@ func main() {
 		PageToken("AQD9/Rn9eij9Pm39ED40/RD/cIFmu77WxpxPB/2oHfQLZ+G8JG6tK7+ZnHiT7COhD2hMSICh/eBl7cpzU6JEC3J7COKNe4jrQ8ExwBCR").
 		Build()
 	// 发起请求
-	resp, err := client.Contact.Department.Children(context.Background(), req)
+	resp, err := client.Contact.V3.Department.Children(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

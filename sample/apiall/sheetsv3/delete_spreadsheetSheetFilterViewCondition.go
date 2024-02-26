@@ -33,7 +33,7 @@ func main() {
 		ConditionId("E").
 		Build()
 	// 发起请求
-	resp, err := client.Sheets.SpreadsheetSheetFilterViewCondition.Delete(context.Background(), req)
+	resp, err := client.Sheets.V3.SpreadsheetSheetFilterViewCondition.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

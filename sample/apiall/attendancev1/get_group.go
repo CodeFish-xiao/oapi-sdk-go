@@ -32,7 +32,7 @@ func main() {
 		DeptType("od-fcb45c28a45311afd441b8869541ece8").
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.Group.Get(context.Background(), req)
+	resp, err := client.Attendance.V1.Group.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

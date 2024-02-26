@@ -29,9 +29,13 @@ func main() {
 	req := larkcalendar.NewGetCalendarEventReqBuilder().
 		CalendarId("feishu.cn_xxxxxxxxxx@group.calendar.feishu.cn").
 		EventId("xxxxxxxxx_0").
+		NeedMeetingSettings(false).
+		NeedAttendee(false).
+		MaxAttendeeNum(10).
+		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.CalendarEvent.Get(context.Background(), req)
+	resp, err := client.Calendar.V4.CalendarEvent.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

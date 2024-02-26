@@ -33,13 +33,10 @@ func main() {
 		Group(larkcontact.NewGroupBuilder().
 			Name("外包 IT 用户组").
 			Description("IT 外包用户组，需要进行细粒度权限管控").
-			DynamicGroupRule(larkcontact.NewDynamicGroupRuleBuilder().Build()).
-			VisibleScope(larkcontact.NewGroupVisibleScopeBuilder().Build()).
-			DepartmentScopeList([]string{}).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.Group.Patch(context.Background(), req)
+	resp, err := client.Contact.V3.Group.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

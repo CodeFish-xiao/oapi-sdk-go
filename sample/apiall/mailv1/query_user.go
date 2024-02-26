@@ -32,7 +32,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Mail.User.Query(context.Background(), req)
+	resp, err := client.Mail.V1.User.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

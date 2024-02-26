@@ -38,7 +38,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Admin.Badge.Update(context.Background(), req)
+	resp, err := client.Admin.V1.Badge.Update(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

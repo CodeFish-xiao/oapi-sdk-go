@@ -32,7 +32,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Translation.Text.Detect(context.Background(), req)
+	resp, err := client.Translation.V1.Text.Detect(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

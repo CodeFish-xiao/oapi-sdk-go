@@ -30,7 +30,7 @@ func main() {
 		TicketId("123456").
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.Ticket.Get(context.Background(), req)
+	resp, err := client.Helpdesk.V1.Ticket.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

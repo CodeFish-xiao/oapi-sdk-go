@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Authen.RefreshAccessToken.Create(context.Background(), req)
+	resp, err := client.Authen.V1.RefreshAccessToken.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

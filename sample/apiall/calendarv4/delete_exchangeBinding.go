@@ -30,7 +30,7 @@ func main() {
 		ExchangeBindingId("ZW1haWxfYWRtaW5fZXhhbXBsZUBvdXRsb29rLmNvbSBlbWFpbF9hY2NvdW50X2V4YW1wbGVAb3V0bG9vay5jb20=").
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.ExchangeBinding.Delete(context.Background(), req)
+	resp, err := client.Calendar.V4.ExchangeBinding.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

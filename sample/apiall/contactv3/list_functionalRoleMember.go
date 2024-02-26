@@ -34,7 +34,7 @@ func main() {
 		DepartmentIdType("open_department_id").
 		Build()
 	// 发起请求
-	resp, err := client.Contact.FunctionalRoleMember.List(context.Background(), req)
+	resp, err := client.Contact.V3.FunctionalRoleMember.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

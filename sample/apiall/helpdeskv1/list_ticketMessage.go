@@ -34,7 +34,7 @@ func main() {
 		PageSize(10).
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.TicketMessage.List(context.Background(), req)
+	resp, err := client.Helpdesk.V1.TicketMessage.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

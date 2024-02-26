@@ -30,7 +30,7 @@ func main() {
 		CustomLevelIds("1000,1001").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.RoomLevel.Search(context.Background(), req)
+	resp, err := client.Vc.V1.RoomLevel.Search(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

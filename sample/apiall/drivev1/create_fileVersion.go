@@ -32,18 +32,18 @@ func main() {
 		Version(larkdrive.NewVersionBuilder().
 			Name("文档标题").
 			Version("version1").
-			ParentToken("").
+			ParentToken("doxcnMycg4ryxQofSeoKkJuXYOb").
 			OwnerId("694699009591869450").
 			CreatorId("694699009591869451").
 			CreateTime("1660708537").
 			UpdateTime("1660708537").
 			Status("0，1，2").
-			ObjType("doc/docx/sheet/bitable").
-			ParentType("doc/docx/sheet/bitable").
+			ObjType("docx").
+			ParentType("docx").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Drive.FileVersion.Create(context.Background(), req)
+	resp, err := client.Drive.V1.FileVersion.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

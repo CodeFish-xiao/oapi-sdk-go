@@ -30,7 +30,7 @@ func main() {
 		ShiftName("早班").
 		Build()
 	// 发起请求
-	resp, err := client.Attendance.Shift.Query(context.Background(), req)
+	resp, err := client.Attendance.V1.Shift.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

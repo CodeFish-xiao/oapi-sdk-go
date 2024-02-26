@@ -36,7 +36,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Sheets.SpreadsheetSheetFilter.Create(context.Background(), req)
+	resp, err := client.Sheets.V3.SpreadsheetSheetFilter.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

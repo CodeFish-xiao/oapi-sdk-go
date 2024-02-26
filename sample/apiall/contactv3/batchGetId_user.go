@@ -31,10 +31,11 @@ func main() {
 		Body(larkcontact.NewBatchGetIdUserReqBodyBuilder().
 			Emails([]string{}).
 			Mobiles([]string{}).
+			IncludeResigned(false).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.User.BatchGetId(context.Background(), req)
+	resp, err := client.Contact.V3.User.BatchGetId(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

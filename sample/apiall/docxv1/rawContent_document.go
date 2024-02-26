@@ -31,7 +31,7 @@ func main() {
 		Lang(0).
 		Build()
 	// 发起请求
-	resp, err := client.Docx.Document.RawContent(context.Background(), req)
+	resp, err := client.Docx.V1.Document.RawContent(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

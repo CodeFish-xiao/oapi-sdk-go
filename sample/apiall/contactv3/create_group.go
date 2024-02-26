@@ -33,14 +33,11 @@ func main() {
 			Name("IT 外包组").
 			Description("IT服务人员的集合").
 			Type(1).
-			DynamicGroupRule(larkcontact.NewDynamicGroupRuleBuilder().Build()).
-			VisibleScope(larkcontact.NewGroupVisibleScopeBuilder().Build()).
-			DepartmentScopeList([]string{}).
 			GroupId("g122817").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Contact.Group.Create(context.Background(), req)
+	resp, err := client.Contact.V3.Group.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

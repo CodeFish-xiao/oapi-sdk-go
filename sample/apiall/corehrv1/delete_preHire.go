@@ -30,7 +30,7 @@ func main() {
 		PreHireId("76534545454").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.PreHire.Delete(context.Background(), req)
+	resp, err := client.Corehr.V1.PreHire.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

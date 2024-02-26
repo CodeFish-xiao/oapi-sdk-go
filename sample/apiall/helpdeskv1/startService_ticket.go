@@ -35,7 +35,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.Ticket.StartService(context.Background(), req)
+	resp, err := client.Helpdesk.V1.Ticket.StartService(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

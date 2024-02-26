@@ -33,7 +33,7 @@ func main() {
 		ParentNodeToken("wikcnKQ1k3p******8Vabce").
 		Build()
 	// 发起请求
-	resp, err := client.Wiki.SpaceNode.List(context.Background(), req)
+	resp, err := client.Wiki.V2.SpaceNode.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

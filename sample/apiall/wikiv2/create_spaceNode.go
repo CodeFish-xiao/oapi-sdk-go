@@ -30,14 +30,14 @@ func main() {
 		SpaceId("6704147935988285963").
 		Node(larkwiki.NewNodeBuilder().
 			ObjType("doc").
-			ParentNodeToken("").
+			ParentNodeToken("wikcnKQ1k3p******8Vabcef").
 			NodeType("origin").
-			OriginNodeToken("").
-			Title("").
+			OriginNodeToken("wikcnKQ1k3p******8Vabcef").
+			Title("xxxx").
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Wiki.SpaceNode.Create(context.Background(), req)
+	resp, err := client.Wiki.V2.SpaceNode.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

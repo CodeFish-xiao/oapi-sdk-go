@@ -32,7 +32,7 @@ func main() {
 		PageToken("roljRpwIUt").
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppRole.List(context.Background(), req)
+	resp, err := client.Bitable.V1.AppRole.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

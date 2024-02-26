@@ -29,7 +29,7 @@ func main() {
 	req := larksearch.NewCreateDataSourceItemReqBuilder().
 		DataSourceId("service_ticket").
 		Item(larksearch.NewItemBuilder().
-			Id("").
+			Id("my_item_01010111").
 			Acl([]*larksearch.Acl{larksearch.NewAclBuilder().Build()}).
 			Metadata(larksearch.NewItemMetadataBuilder().Build()).
 			StructuredData("").
@@ -37,7 +37,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Search.DataSourceItem.Create(context.Background(), req)
+	resp, err := client.Search.V2.DataSourceItem.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

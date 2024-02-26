@@ -30,7 +30,7 @@ func main() {
 		ReserveId("6911188411932033028").
 		Build()
 	// 发起请求
-	resp, err := client.Vc.Reserve.Delete(context.Background(), req)
+	resp, err := client.Vc.V1.Reserve.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

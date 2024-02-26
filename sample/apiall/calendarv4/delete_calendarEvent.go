@@ -32,7 +32,7 @@ func main() {
 		NeedNotification(false).
 		Build()
 	// 发起请求
-	resp, err := client.Calendar.CalendarEvent.Delete(context.Background(), req)
+	resp, err := client.Calendar.V4.CalendarEvent.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

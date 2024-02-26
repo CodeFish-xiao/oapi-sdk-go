@@ -30,7 +30,7 @@ func main() {
 		ProcessId("123456987").
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.ProcessFormVariableData.Get(context.Background(), req)
+	resp, err := client.Corehr.V1.ProcessFormVariableData.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

@@ -30,7 +30,7 @@ func main() {
 		SystemStatusId("7101214603622940633").
 		Build()
 	// 发起请求
-	resp, err := client.PersonalSettings.SystemStatus.Delete(context.Background(), req)
+	resp, err := client.PersonalSettings.V1.SystemStatus.Delete(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

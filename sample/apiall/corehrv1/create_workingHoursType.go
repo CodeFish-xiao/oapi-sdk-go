@@ -38,7 +38,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Corehr.WorkingHoursType.Create(context.Background(), req)
+	resp, err := client.Corehr.V1.WorkingHoursType.Create(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

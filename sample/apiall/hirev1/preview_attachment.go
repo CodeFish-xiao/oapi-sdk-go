@@ -30,7 +30,7 @@ func main() {
 		AttachmentId("11111").
 		Build()
 	// 发起请求
-	resp, err := client.Hire.Attachment.Preview(context.Background(), req)
+	resp, err := client.Hire.V1.Attachment.Preview(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

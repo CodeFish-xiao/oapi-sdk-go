@@ -32,7 +32,7 @@ func main() {
 		FilterViewId("pH9hbVcCXA").
 		Build()
 	// 发起请求
-	resp, err := client.Sheets.SpreadsheetSheetFilterView.Get(context.Background(), req)
+	resp, err := client.Sheets.V3.SpreadsheetSheetFilterView.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

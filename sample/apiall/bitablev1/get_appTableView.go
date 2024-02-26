@@ -32,7 +32,7 @@ func main() {
 		ViewId("vewTpR1urY").
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.AppTableView.Get(context.Background(), req)
+	resp, err := client.Bitable.V1.AppTableView.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

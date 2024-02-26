@@ -30,7 +30,7 @@ func main() {
 		ChatId("oc_a0553eda9014c201e6969b478895c230").
 		Build()
 	// 发起请求
-	resp, err := client.Im.ChatMembers.MeJoin(context.Background(), req)
+	resp, err := client.Im.V1.ChatMembers.MeJoin(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

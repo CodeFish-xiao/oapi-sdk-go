@@ -30,7 +30,7 @@ func main() {
 		BatchMessageId("bm-0b3d5d1b2df7c6d5dbd1abe2c91e2217").
 		Build()
 	// 发起请求
-	resp, err := client.Im.BatchMessage.GetProgress(context.Background(), req)
+	resp, err := client.Im.V1.BatchMessage.GetProgress(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

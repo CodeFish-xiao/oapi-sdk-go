@@ -32,7 +32,7 @@ func main() {
 		PageToken("PxZFma9OIRhdBlT/dOYNiu2Ro8F2WAhcby7OhOijfljZ").
 		Build()
 	// 发起请求
-	resp, err := client.Search.DataSource.List(context.Background(), req)
+	resp, err := client.Search.V2.DataSource.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

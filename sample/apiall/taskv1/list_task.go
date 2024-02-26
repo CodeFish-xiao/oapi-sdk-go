@@ -35,7 +35,7 @@ func main() {
 		UserIdType("user_id").
 		Build()
 	// 发起请求
-	resp, err := client.Task.Task.List(context.Background(), req)
+	resp, err := client.Task.V1.Task.List(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

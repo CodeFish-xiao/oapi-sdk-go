@@ -30,7 +30,7 @@ func main() {
 		AppToken("appbcbWCzen6D8dezhoCH2RpMAh").
 		Build()
 	// 发起请求
-	resp, err := client.Bitable.App.Get(context.Background(), req)
+	resp, err := client.Bitable.V1.App.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

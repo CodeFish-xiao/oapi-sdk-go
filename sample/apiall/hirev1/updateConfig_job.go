@@ -38,13 +38,14 @@ func main() {
 			InterviewRoundConfList([]*larkhire.JobConfigInterviewRoundConf{larkhire.NewJobConfigInterviewRoundConfBuilder().Build()}).
 			JrIdList([]string{}).
 			InterviewRegistrationSchemaId("6930815272790114324").
+			OnboardRegistrationSchemaId("6930815272790114324").
 			InterviewRoundTypeConfList([]*larkhire.JobConfigRoundType{larkhire.NewJobConfigRoundTypeBuilder().Build()}).
 			RelatedJobIdList([]string{}).
 			InterviewAppointmentConfig(larkhire.NewInterviewAppointmentConfigBuilder().Build()).
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Hire.Job.UpdateConfig(context.Background(), req)
+	resp, err := client.Hire.V1.Job.UpdateConfig(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

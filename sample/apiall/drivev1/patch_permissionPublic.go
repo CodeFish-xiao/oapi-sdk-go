@@ -39,7 +39,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Drive.PermissionPublic.Patch(context.Background(), req)
+	resp, err := client.Drive.V1.PermissionPublic.Patch(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

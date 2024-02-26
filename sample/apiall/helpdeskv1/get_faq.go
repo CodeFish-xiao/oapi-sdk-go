@@ -30,7 +30,7 @@ func main() {
 		Id("6856395634652479491").
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.Faq.Get(context.Background(), req)
+	resp, err := client.Helpdesk.V1.Faq.Get(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

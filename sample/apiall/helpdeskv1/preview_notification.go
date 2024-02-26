@@ -30,7 +30,7 @@ func main() {
 		NotificationId("6985032626234982420").
 		Build()
 	// 发起请求
-	resp, err := client.Helpdesk.Notification.Preview(context.Background(), req)
+	resp, err := client.Helpdesk.V1.Notification.Preview(context.Background(), req)
 
 	// 处理错误
 	if err != nil {

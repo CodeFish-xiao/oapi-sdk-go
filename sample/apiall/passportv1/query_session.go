@@ -33,7 +33,7 @@ func main() {
 			Build()).
 		Build()
 	// 发起请求
-	resp, err := client.Passport.Session.Query(context.Background(), req)
+	resp, err := client.Passport.V1.Session.Query(context.Background(), req)
 
 	// 处理错误
 	if err != nil {
